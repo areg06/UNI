@@ -5,7 +5,10 @@ velocity & acceleration plans, A3 drawings). All user-facing text is in **Armeni
 keep it Armenian when editing. The owner often requests changes from a phone via GitHub,
 so make the change, rebuild, and commit the regenerated outputs in the same commit.
 
-Live site (GitHub Pages, branch `main`, root): https://areg06.github.io/kursayin/
+Live site: https://areg06.github.io/UNI/kursayin%20ashxatanq/Variant1/
+
+This folder is part of the single `areg06/UNI` repo (git root: `~/Desktop/UNI`, see the root
+`CLAUDE.md`). The old `areg06/kursayin` repo is archived; commit and push from the UNI repo.
 
 ## Layout
 
