@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Առաջադրանք №2 բացատրություն</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],strict:false});"></script>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ffffff; --card:#ffffff; --ink:#000000; --muted:#444444; --border:#cfd6e3;
+    --pen:#1d3a8a; --accent:#b4232c; --soft:#eef3ff; --warn-bg:#fff6e5; --warn:#9a5b00;
+    --ok-bg:#eaf7ee; --ok:#1e7a3c;
+    --s1:#d9480f; --s2:#2b8a3e; --s3:#7048e8; --s4:#1971c2; --s5:#c2255c; --line:#000000;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink); font:17px/1.65 "Noto Sans Armenian","Segoe UI",system-ui,sans-serif}
+  .page{max-width:900px; margin:0 auto; padding:32px 16px 72px}
+  h1{font-size:2rem; margin:0 0 6px; color:var(--pen)}
+  .lead{color:var(--muted); margin:0 0 26px}
+  h2{font-size:1.35rem; margin:0 0 12px; color:var(--pen)}
+  h3{font-size:1.08rem; margin:18px 0 6px}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 22px; margin:0 0 22px}
+  .toc a{color:var(--pen)}
+  .toc ol{margin:6px 0 0; padding-left:22px}
+  .tip,.warn,.write{border-radius:8px; padding:10px 14px; margin:12px 0}
+  .tip{background:var(--soft); border-left:4px solid var(--pen)}
+  .warn{background:var(--warn-bg); border-left:4px solid var(--warn)}
+  .write{background:var(--ok-bg); border-left:4px solid var(--ok)}
+  .write::before{content:"✍ Տետրում գրիր. "; font-weight:700; color:var(--ok)}
+  table{border-collapse:collapse; width:100%; font-size:.95rem}
+  th,td{border:1px solid var(--border); padding:6px 9px; text-align:left; vertical-align:top}
+  th{background:var(--soft)}
+  tr.hl td{background:#fff3bf; font-weight:600}
+  .tbl{overflow-x:auto}
+  .katex-display{overflow-x:auto; overflow-y:hidden; padding:2px 0}
+  svg{max-width:100%; height:auto; display:block; margin:8px auto}
+  svg text{font-family:inherit}
+  .chip{display:inline-block; padding:0 8px; border-radius:10px; color:#fff; font-weight:600; font-size:.9rem}
+  .c1{background:var(--s1)} .c2{background:var(--s2)} .c3{background:var(--s3)} .c4{background:var(--s4)} .c5{background:var(--s5)}
+  .flow{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:10px 0}
+  .flow span.box{border:1px solid var(--border); background:var(--soft); border-radius:8px; padding:4px 10px; font-size:.93rem}
+  .flow span.arr{color:var(--muted)}
+  .cap{font-size:.88rem; color:var(--muted); text-align:center; margin:2px 0 10px}
+  .two{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; align-items:start}
+  ol li, ul li{margin:4px 0}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Առաջադրանք №2 — բացատրություն զրոյից</h1>
+  <p class="lead">Մեխանիզմների և մեքենաների տեսություն, տարբերակ 1: Այս էջը միայն <b>հասկանալու</b> համար է: Տետրում գրվող մաքուր լուծումը, A3 թերթերի կոորդինատները և քայլերի ստուգաթերթը մյուս ֆայլում են (<code>TMM_Variant1.html</code>, «Տետր» բաժինը՝ էջ 10–16): Կանաչ «✍» դաշտերը ցույց են տալիս, թե բացատրության որ մասը տետրի որ տողին է վերաբերում:</p>
+
+  <div class="card toc">
+    <h2>Բովանդակություն</h2>
+    <ol>
+      <li><a href="#task">Ինչի՞ մասին է խնդիրը</a></li>
+      <li><a href="#scheme">Ինչպես կարդալ սխեման</a></li>
+      <li><a href="#data">Տրված տվյալները և բոլոր նշանակումները</a></li>
+      <li><a href="#ideas">Չորս գաղափար, որոնց վրա կանգնած է ամեն ինչ</a></li>
+      <li><a href="#s1">Քայլ 1 — մասշտաբը և գծագրային երկարությունները</a></li>
+      <li><a href="#s2">Քայլ 2 — եզրային դիրքերը, AB-ն և BC-ն</a></li>
+      <li><a href="#s3">Քայլ 3 — 8 դիրքերի պլանը</a></li>
+      <li><a href="#s4">Քայլ 4 — B կետի արագությունը և μ<sub>v</sub>-ն</a></li>
+      <li><a href="#s5">Քայլ 5 — արագությունների պլանի կառուցումը</a></li>
+      <li><a href="#s6">Քայլ 6 — թվերը, ω-ները և դրանց ուղղությունը</a></li>
+      <li><a href="#s7">Քայլ 7 — արագացումների պլանը (դիրք 2)</a></li>
+      <li><a href="#fre">F<sub>re</sub> գրաֆիկը և երկու A3 թերթերը</a></li>
+      <li><a href="#assume">Ենթադրություններ — ճշտիր դասախոսի մոտ</a></li>
+      <li><a href="#check">Ստուգաթերթ և տարածված սխալներ</a></li>
+    </ol>
+  </div>
+
+  <!-- ============ TASK ============ -->
+  <div class="card" id="task">
+    <h2>1. Ինչի՞ մասին է խնդիրը</h2>
+    <p>Պատկերացրու մամլիչ կամ դրոշմող մեքենա: Էլեկտրաշարժիչը հավասարաչափ պտտում է <b>կռունկը</b> (կարճ լծակ)՝ րոպեում 210 պտույտ: Մեզ պետք է, որ <b>սողնակը</b> (դանակ, դրոշմ) շարժվի <b>վեր ու վար</b> ուղղաձիգ ուղղորդով՝ 70 մմ ընթացքով: Պտույտը ետ ու առաջ շարժման վերածելու համար օգտագործում են <b>լծակավոր մեխանիզմ</b>. քո մեխանիզմն ունի 5 շարժական օղակ (գումարած անշարժ «հիմքը»):</p>
+    <p>Առաջադրանքում պետք է անել երեք բան.</p>
+    <ol>
+      <li><b>Սինթեզ</b> (§1). գտնել կռունկի և շարժաթևի <b>երկարությունները</b>, որոնք տրված չեն, և գծել մեխանիզմը 8 դիրքում:</li>
+      <li><b>Արագություններ</b> (§2). յուրաքանչյուր դիրքում գտնել կետերի արագությունները և օղակների անկյունային արագությունները՝ <b>արագությունների պլանի</b> օգնությամբ:</li>
+      <li><b>Արագացումներ</b> (§3). մեկ՝ 2-րդ (աշխատանքային) դիրքի համար գտնել արագացումները՝ <b>արագացումների պլանով</b>:</li>
+    </ol>
+    <p>Ինչու՞ է սա պետք: Հաջորդ բաժնում (ուժային հաշվարկ) իներցիայի ուժերը հաշվվում են <i>F</i> = <i>m</i>·<i>a</i>-ով, ուստի առանց արագացումների հնարավոր չէ իմանալ, թե ինչ ուժեր են ազդում օղակների վրա: Իսկ թափանիվի հաշվարկին պետք են արագությունները բոլոր դիրքերում:</p>
+    <div class="tip">«Պլանը» ուղղակի <b>վեկտորային գծագիր</b> է. արագությունները (կամ արագացումները) գծում ենք սլաքներով մասշտաբով, և հավասարումը լուծում ենք <b>երկրաչափորեն</b>՝ քանոնով և անկյունաչափով, առանց եռանկյունաչափության:</div>
+  </div>
+
+  <!-- ============ SCHEME ============ -->
+  <div class="card" id="scheme">
+    <h2>2. Ինչպես կարդալ սխեման</h2>
+    <p>Ահա քո մեխանիզմը 2-րդ (հաստ) դիրքում, իսկական համամասնություններով (A3 թերթի կոորդինատներից): Յուրաքանչյուր օղակ ունի իր գույնը. նույն գույները կտեսնես պլաններում:</p>
+    <svg viewBox="0 6 340 262" role="img" aria-label="Մեխանիզմը 2-րդ դիրքում՝ օղակների համարներով"><defs><marker id="m1-s1" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#d9480f"/></marker><marker id="m1-s2" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#2b8a3e"/></marker><marker id="m1-s3" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#7048e8"/></marker><marker id="m1-s4" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#1971c2"/></marker><marker id="m1-s5" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#c2255c"/></marker><marker id="m1-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#555"/></marker><marker id="m1-line" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#000"/></marker><marker id="m1-soft" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#eef3ff"/></marker></defs><line x1="90.0" y1="8.0" x2="90.0" y2="256.0" stroke="#888" stroke-width="0.7" stroke-dasharray="6 2 1 2" stroke-linecap="round"/><text x="95.0" y="252.0" font-size="6.5" fill="#555" text-anchor="start" dominant-baseline="central" font-weight="400" font-style="italic">yy</text><polyline points="14.2,107.0 15.9,108.4 17.7,109.7 19.4,111.1 21.2,112.3 23.0,113.6 24.9,114.8 26.8,116.0 28.6,117.1 30.6,118.2 32.5,119.3 34.4,120.4 36.4,121.4 38.4,122.3 40.4,123.3 42.4,124.2 44.4,125.0 46.5,125.8 48.6,126.6 50.6,127.4 52.7,128.1 54.8,128.7 57.0,129.4 59.1,129.9 61.2,130.5 63.4,131.0 65.5,131.5 67.7,131.9 69.9,132.3 72.1,132.7 74.2,133.0 76.4,133.2 78.6,133.5 80.8,133.6 83.0,133.8 85.2,133.9 87.4,134.0 89.7,134.0 91.9,134.0 94.1,133.9 96.3,133.8" fill="none" stroke="#999" stroke-width="0.6" stroke-dasharray="3 2"/><polyline points="110.3,120.1 112.2,119.7 114.2,119.3 116.1,118.8 118.0,118.3 119.9,117.8 121.8,117.2 123.7,116.6 125.6,116.0 127.5,115.3 129.3,114.6 131.2,113.8 133.0,113.1 134.8,112.3 136.6,111.4 138.4,110.5 140.2,109.6 141.9,108.7 143.7,107.7 145.4,106.7 147.1,105.7 148.8,104.6 150.4,103.5 152.1,102.4 153.7,101.2 155.3,100.0 156.8,98.8 158.4,97.6 159.9,96.3 161.4,95.0 162.9,93.7 164.4,92.3 165.8,90.9 167.2,89.5 168.6,88.1 169.9,86.6 171.2,85.2 172.5,83.7 173.8,82.1 175.0,80.6 176.3,79.0" fill="none" stroke="#999" stroke-width="0.6" stroke-dasharray="3 2"/><polyline points="314.0,99.7 313.9,97.6 313.7,95.5 313.2,93.5 312.6,91.5 311.8,89.6 310.8,87.7 309.7,85.9 308.4,84.3 307.0,82.7 305.5,81.3 303.8,80.0 302.0,78.9 300.2,77.9 298.2,77.1 296.2,76.5 294.2,76.0 292.1,75.8 290.0,75.7 287.9,75.8 285.8,76.0 283.8,76.5 281.8,77.1 279.8,77.9 278.0,78.9 276.2,80.0 274.5,81.3 273.0,82.7 271.6,84.3 270.3,85.9 269.2,87.7 268.2,89.6 267.4,91.5 266.8,93.5 266.3,95.5 266.1,97.6 266.0,99.7 266.1,101.8 266.3,103.9 266.8,105.9 267.4,107.9 268.2,109.9 269.2,111.7 270.3,113.5 271.6,115.2 273.0,116.7 274.5,118.1 276.2,119.4 278.0,120.5 279.8,121.5 281.8,122.3 283.8,122.9 285.8,123.4 287.9,123.7 290.0,123.8 292.1,123.7 294.2,123.4 296.2,122.9 298.2,122.3 300.2,121.5 302.0,120.5 303.8,119.4 305.5,118.1 307.0,116.7 308.4,115.2 309.7,113.5 310.8,111.7 311.8,109.9 312.6,107.9 313.2,105.9 313.7,103.9 313.9,101.8 314.0,99.7" fill="none" stroke="#999" stroke-width="0.6" stroke-dasharray="3 2"/><polygon points="90.0,14.0 145.2,106.8 50.4,127.3" fill="#7048e8" fill-opacity=".09" stroke="none"/><line x1="90.0" y1="14.0" x2="145.2" y2="106.8" stroke="#7048e8" stroke-width="2.6" stroke-linecap="round"/><line x1="90.0" y1="14.0" x2="50.4" y2="127.3" stroke="#7048e8" stroke-width="2.6" stroke-linecap="round"/><line x1="145.2" y1="106.8" x2="50.4" y2="127.3" stroke="#7048e8" stroke-width="0.7" stroke-dasharray="3 2" stroke-linecap="round"/><line x1="290.0" y1="99.7" x2="287.5" y2="75.8" stroke="#d9480f" stroke-width="2.8" stroke-linecap="round"/><line x1="287.5" y1="75.8" x2="145.2" y2="106.8" stroke="#2b8a3e" stroke-width="2.6" stroke-linecap="round"/><line x1="50.4" y1="127.3" x2="90.0" y2="234.5" stroke="#1971c2" stroke-width="2.6" stroke-linecap="round"/><line x1="86.5" y1="200.0" x2="86.5" y2="256.0" stroke="#000" stroke-width="1.0" stroke-linecap="round"/><line x1="86.5" y1="202.0" x2="83.5" y2="204.2" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="205.1" x2="83.5" y2="207.3" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="208.2" x2="83.5" y2="210.4" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="211.3" x2="83.5" y2="213.5" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="214.4" x2="83.5" y2="216.6" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="217.5" x2="83.5" y2="219.7" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="220.6" x2="83.5" y2="222.8" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="223.7" x2="83.5" y2="225.9" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="226.8" x2="83.5" y2="229.0" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="229.9" x2="83.5" y2="232.1" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="233.0" x2="83.5" y2="235.2" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="236.1" x2="83.5" y2="238.3" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="239.2" x2="83.5" y2="241.4" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="242.3" x2="83.5" y2="244.5" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="245.4" x2="83.5" y2="247.6" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="248.5" x2="83.5" y2="250.7" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="251.6" x2="83.5" y2="253.8" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><line x1="86.5" y1="254.7" x2="83.5" y2="256.9" stroke="#000" stroke-width="0.5" stroke-linecap="round"/><rect x="86.0" y="228.0" width="8" height="13" fill="#fff" stroke="#c2255c" stroke-width="2"/><path d="M290.0 99.7 L286.0 106.7 L294.0 106.7 Z" fill="#fff" stroke="#000" stroke-width="0.9"/><line x1="283.0" y1="106.7" x2="297.0" y2="106.7" stroke="#000" stroke-width="1.1"/><line x1="283.5" y1="106.7" x2="281.5" y2="109.7" stroke="#000" stroke-width="0.6"/><line x1="285.3" y1="106.7" x2="283.3" y2="109.7" stroke="#000" stroke-width="0.6"/><line x1="287.1" y1="106.7" x2="285.1" y2="109.7" stroke="#000" stroke-width="0.6"/><line x1="288.9" y1="106.7" x2="286.9" y2="109.7" stroke="#000" stroke-width="0.6"/><line x1="290.7" y1="106.7" x2="288.7" y2="109.7" stroke="#000" stroke-width="0.6"/><line x1="292.5" y1="106.7" x2="290.5" y2="109.7" stroke="#000" stroke-width="0.6"/><line x1="294.3" y1="106.7" x2="292.3" y2="109.7" stroke="#000" stroke-width="0.6"/><line x1="296.1" y1="106.7" x2="294.1" y2="109.7" stroke="#000" stroke-width="0.6"/><path d="M90.0 14.0 L86.0 7.0 L94.0 7.0 Z" fill="#fff" stroke="#000" stroke-width="0.9"/><line x1="83.0" y1="7.0" x2="97.0" y2="7.0" stroke="#000" stroke-width="1.1"/><line x1="83.5" y1="7.0" x2="81.5" y2="4.0" stroke="#000" stroke-width="0.6"/><line x1="85.3" y1="7.0" x2="83.3" y2="4.0" stroke="#000" stroke-width="0.6"/><line x1="87.1" y1="7.0" x2="85.1" y2="4.0" stroke="#000" stroke-width="0.6"/><line x1="88.9" y1="7.0" x2="86.9" y2="4.0" stroke="#000" stroke-width="0.6"/><line x1="90.7" y1="7.0" x2="88.7" y2="4.0" stroke="#000" stroke-width="0.6"/><line x1="92.5" y1="7.0" x2="90.5" y2="4.0" stroke="#000" stroke-width="0.6"/><line x1="94.3" y1="7.0" x2="92.3" y2="4.0" stroke="#000" stroke-width="0.6"/><line x1="96.1" y1="7.0" x2="94.1" y2="4.0" stroke="#000" stroke-width="0.6"/><circle cx="290.0" cy="99.7" r="2.2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="90.0" cy="14.0" r="2.2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="287.5" cy="75.8" r="2.2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="145.2" cy="106.8" r="2.2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="50.4" cy="127.3" r="2.2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="90.0" cy="234.5" r="2.2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="216.3" cy="91.3" r="1.8" fill="#000"/><polyline points="81.4,38.5 82.0,38.7 82.5,38.9 83.0,39.1 83.6,39.2 84.1,39.3 84.7,39.5 85.3,39.6 85.8,39.7 86.4,39.7 86.9,39.8 87.5,39.9 88.1,39.9 88.6,40.0 89.2,40.0 89.8,40.0 90.3,40.0 90.9,40.0 91.5,40.0 92.0,39.9 92.6,39.9 93.2,39.8 93.7,39.7 94.3,39.6 94.8,39.5 95.4,39.4 96.0,39.3 96.5,39.2 97.0,39.0 97.6,38.9 98.1,38.7 98.7,38.5 99.2,38.3 99.7,38.1 100.3,37.9 100.8,37.7 101.3,37.4 101.8,37.2 102.3,36.9 102.8,36.6 103.3,36.3" fill="none" stroke="#000" stroke-width="0.7" stroke-dasharray=""/><text x="92.0" y="46.0" font-size="6.5" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400">α = 50°</text><polyline points="286.2,110.1 284.5,109.2 282.9,108.1 281.6,106.8 280.5,105.2 279.7,103.5 279.2,101.6 279.0,99.7 279.2,97.8 279.7,96.0 280.5,94.2 281.6,92.6" fill="none" stroke="#d9480f" stroke-width="1.2" marker-end="url(#m1-s1)"/><text x="271.0" y="97.7" font-size="7.5" fill="#d9480f" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">ω<tspan font-size="4.5" dy="1.5">1</tspan></text><text x="298.0" y="103.7" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">A</text><text x="83.0" y="10.0" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">D</text><text x="291.5" y="68.8" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">B</text><text x="139.2" y="111.8" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">C</text><text x="43.4" y="127.3" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">E</text><text x="99.0" y="234.5" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">F</text><text x="216.3" y="85.3" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-weight="400" font-style="italic">S₂</text><circle cx="297.7" cy="87.8" r="5" fill="#d9480f"/><text x="297.7" y="87.8" font-size="6.5" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="700">1</text><circle cx="216.3" cy="98.3" r="5" fill="#2b8a3e"/><text x="216.3" y="98.3" font-size="6.5" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="700">2</text><circle cx="125.6" cy="58.4" r="5" fill="#7048e8"/><text x="125.6" y="58.4" font-size="6.5" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="700">3</text><circle cx="62.2" cy="70.6" r="5" fill="#7048e8"/><text x="62.2" y="70.6" font-size="6.5" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="700">3</text><circle cx="62.2" cy="180.9" r="5" fill="#1971c2"/><text x="62.2" y="180.9" font-size="6.5" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="700">4</text><circle cx="78.0" cy="234.5" r="5" fill="#c2255c"/><text x="78.0" y="234.5" font-size="6.5" fill="#fff" text-anchor="middle" dominant-baseline="central" font-weight="700">5</text><text x="200.0" y="240.0" font-size="7" fill="#555" text-anchor="middle" dominant-baseline="central" font-weight="400">մեխանիզմը 2-րդ (հաստ) դիրքում</text></svg>
+    <div class="tbl">
+    <table>
+      <tr><th>Օղակ</th><th>Անվանում</th><th>Ինչպես է շարժվում</th></tr>
+      <tr><td><span class="chip c1">1</span> AB</td><td><b>կռունկ</b></td><td>լրիվ պտտվում է A-ի շուրջը, հավասարաչափ (ω<sub>1</sub> = const), ժամացույցի սլաքի ուղղությամբ</td></tr>
+      <tr><td><span class="chip c2">2</span> BC</td><td><b>շարժաթև</b></td><td>բարդ (հարթ-զուգահեռ) շարժում. B-ն գնում է շրջանով, C-ն՝ աղեղով: S<sub>2</sub>-ը նրա մեջտեղն է (զանգվածի կենտրոն)</td></tr>
+      <tr><td><span class="chip c3">3</span> CDE</td><td><b>լծակ (ճոճաթև)</b></td><td>կոշտ «անկյուն»՝ երկու թևով (DC և DE), ∠CDE = α = 50°: <b>Ճոճվում</b> է D-ի շուրջը՝ լրիվ չպտտվելով</td></tr>
+      <tr><td><span class="chip c4">4</span> EF</td><td><b>շարժաթև</b></td><td>բարդ շարժում. E-ն գնում է աղեղով, F-ը՝ ուղիղ գծով</td></tr>
+      <tr><td><span class="chip c5">5</span> F</td><td><b>սողնակ</b></td><td>համընթաց շարժում ուղղաձիգ <i>yy</i> ուղղորդով (D-ով անցնող ուղղաձիգ)</td></tr>
+      <tr><td>0</td><td>հենարան (դարակ)</td><td>անշարժ. A և D հոդերը, ուղղորդը: Գծագրում նշվում են շտրիխավորված եռանկյունիներով</td></tr>
+    </table>
+    </div>
+    <h3>Շարժման ճանապարհը</h3>
+    <div class="flow">
+      <span class="box">Շարժիչ</span><span class="arr">→</span>
+      <span class="box"><span class="chip c1">1</span> կռունկը պտտվում է</span><span class="arr">→</span>
+      <span class="box"><span class="chip c2">2</span> BC-ն հրում/քաշում է C-ն</span><span class="arr">→</span>
+      <span class="box"><span class="chip c3">3</span> լծակը ճոճվում է D-ի շուրջը</span><span class="arr">→</span>
+      <span class="box"><span class="chip c4">4</span> EF-ը հրում է F-ը</span><span class="arr">→</span>
+      <span class="box"><span class="chip c5">5</span> սողնակը վեր-վար</span>
+    </div>
+    <p>Մեխանիզմը կազմված է երկու մասից. <b>ABCD քառօղակ</b> (կռունկ-ճոճաթևային), որը պտույտը դարձնում է ճոճում, և <b>DEF խումբ</b>, որը ճոճումը դարձնում է ուղղագիծ շարժում: Դրա համար էլ հաշվարկը միշտ գնում է նույն հերթականությամբ՝ <b>B → C → E → F</b>:</p>
+  </div>
+
+  <!-- ============ DATA ============ -->
+  <div class="card" id="data">
+    <h2>3. Տրված տվյալները</h2>
+    <p>Դու առաջադրանքի աղյուսակի №1 տողն ես.</p>
+    <div class="tbl">
+    <table>
+      <tr><th>Նշանակում</th><th>Արժեք</th><th>Ինչ է նշանակում</th></tr>
+      <tr><td>\(H_F\)</td><td>70 մմ = 0,07 մ</td><td>սողնակի <b>ընթացքը</b>՝ ամենավերին և ամենաներքին դիրքերի տարբերությունը</td></tr>
+      <tr><td>\(L_1\)</td><td>350 մմ</td><td>A և D հոդերի <b>հորիզոնական</b> հեռավորությունը</td></tr>
+      <tr><td>\(L_2\)</td><td>150 մմ</td><td>A և D հոդերի <b>ուղղաձիգ</b> հեռավորությունը</td></tr>
+      <tr><td>\(l_{EF}\)</td><td>200 մմ</td><td>4 շարժաթևի երկարությունը</td></tr>
+      <tr><td>\(l_{ED}\)</td><td>210 մմ</td><td>լծակի DE թևի երկարությունը</td></tr>
+      <tr><td>\(n_1\)</td><td>210 պտ/ր</td><td>կռունկի պտուտաթիվը</td></tr>
+      <tr><td>\(G_2,\ G_5,\ I_{S_2},\ F_{re}^{max}\)</td><td>38 Ն, 175 Ն, 350, 7800 Ն</td><td>կշիռներ, իներցիայի մոմենտ, օգտակար դիմադրության ուժ. <b>կինեմատիկային պետք չեն</b>, պետք կգան ուժային հաշվարկում</td></tr>
+    </table>
+    </div>
+    <p>Լրացուցիչ պայմաններ. \(l_{CD} = 0{,}9\,l_{ED} = 0{,}189\) մ, \(l_{BS_2} = 0{,}5\,l_{BC}\), \(\beta = 3°\div5°\) (ընդունում ենք 3°), \(\alpha = 50°\):</p>
+    <h3>Մյուս տառերը, որոնց կհանդիպես</h3>
+    <div class="tbl">
+    <table>
+      <tr><th>Նշանակում</th><th>Իմաստը</th></tr>
+      <tr><td>\(\mu_l\) («մյու»)</td><td><b>երկարությունների մասշտաբ</b>, մ/մմ. գծագրի 1 մմ-ը քանի մետր է իրականում</td></tr>
+      <tr><td>\(\mu_v,\ \mu_a\)</td><td>արագությունների ((մ/վ)/մմ) և արագացումների ((մ/վ²)/մմ) մասշտաբները</td></tr>
+      <tr><td>աստղանիշ՝ \(AB^*\), \(H_F^*\)</td><td>նույն երկարությունը <b>գծագրի վրա</b>, մմ-ով</td></tr>
+      <tr><td>\(p\), \(\pi\)</td><td>արագությունների և արագացումների պլանի <b>բևեռը</b>՝ «զրոյական» կետը. անշարժ կետերը (A, D) պլանում ընկնում են այստեղ</td></tr>
+      <tr><td>փոքրատառ \(b, c, e, f, s_2\)</td><td>մեխանիզմի B, C, E, F, S₂ կետերի «պատկերները» պլանում. \(pc\) հատվածը = \(V_C\)-ն մասշտաբով</td></tr>
+      <tr><td>\(V_{CB}\)</td><td>C-ի <b>հարաբերական</b> արագությունը B-ի նկատմամբ (կարդա՝ «C-ն B-ի նկատմամբ»)</td></tr>
+      <tr><td>\(\omega_2, \omega_3, \omega_4\)</td><td>օղակների անկյունային արագությունները, վ⁻¹ (= ռադ/վ)</td></tr>
+      <tr><td>\(a^n,\ a^t\)</td><td>արագացման <b>նորմալ</b> (կենտրոնաձիգ) և <b>շոշափող</b> բաղադրիչներ</td></tr>
+      <tr><td>\(n_2, n_3, n_4\)</td><td>արագացումների պլանի օժանդակ կետեր՝ նորմալ բաղադրիչի ծայրը</td></tr>
+      <tr><td>\(\varepsilon_2, \varepsilon_3, \varepsilon_4\)</td><td>անկյունային արագացումները, վ⁻²</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <!-- ============ IDEAS ============ -->
+  <div class="card" id="ideas">
+    <h2>4. Չորս գաղափար, որոնց վրա կանգնած է ամեն ինչ</h2>
+    <h3>Գաղափար 1. մասշտաբ</h3>
+    <p>Ցանկացած ֆիզիկական մեծություն թղթի վրա դառնում է հատված. <b>իրական = գծագրային × μ</b>, և հակառակը՝ <b>գծագրային = իրական / μ</b>: Սա միակ բանաձևն է, որ պետք է անգիր հիշել. մնացածը դրա կիրառություններն են:</p>
+    <h3>Գաղափար 2. պտտվող կետի արագությունը</h3>
+    <p>Եթե կետը պտտվում է կենտրոնի շուրջը \(l\) շառավղով, նրա արագությունը</p>
+    $$V = \omega\cdot l,\qquad \vec V \perp \text{շառավղին}$$
+    <p>Ինչպես անվի եզրը. արագությունը միշտ շոշափող է շրջանին, այսինքն ուղղահայաց շառավղին: Այս պատճառով տետրում ամենուր գրված է «⊥AB», «⊥CD», «⊥EF»:</p>
+    <h3>Գաղափար 3. երկու կետ մեկ օղակի վրա</h3>
+    <p>Եթե B-ն և C-ն մեկ կոշտ ձողի ծայրերն են, C-ի արագությունը = B-ի արագություն + C-ի պտույտը B-ի շուրջը.</p>
+    $$\vec V_C = \vec V_B + \vec V_{CB},\qquad \vec V_{CB}\perp BC$$
+    <p>Վեկտորային հավասարումը հարթության վրա = <b>երկու</b> թվային հավասարում, ուստի կարող ենք գտնել <b>երկու</b> անհայտ: Դրա համար տետրում հավասարման տակ գծում ենք «Մեծ. / ուղղ.» աղյուսակը. «+» = հայտնի է, «−» = անհայտ: Եթե «−»-երը ճիշտ երկուսն են, հավասարումը լուծվում է:</p>
+    <h3>Գաղափար 4. նմանության թեորեմ</h3>
+    <p>Կոշտ օղակի կետերը պլանում կազմում են պատկեր, որը <b>նման</b> է օղակին և նույն կերպ է կողմնորոշված (պտտված 90°-ով): Այսինքն, եթե գիտես c-ն, E-ի պատկերը (e) գտնում ես առանց որևէ հավասարման՝ համամասնությամբ.</p>
+    $$\frac{pe}{pc} = \frac{DE}{DC} = \frac{120}{108} = 1{,}111,\qquad \angle cpe = \angle CDE = 50°$$
+  </div>
+
+  <!-- ============ STEP 1 ============ -->
+  <div class="card" id="s1">
+    <h2>Քայլ 1 — Մասշտաբը և գծագրային երկարությունները</h2>
+    <h3>Գաղափարը</h3>
+    <p>Իրական մեխանիզմը մոտ կես մետր է, իսկ թերթը՝ 42 սմ: Պետք է փոքրացնել: \(L_1 = 0{,}35\) մ հեռավորությունը որոշում ենք գծել <b>200 մմ</b> (կլոր թիվ, որ մեխանիզմը լավ տեղավորվի). մնացած բոլոր երկարությունները հետևում են դրանից:</p>
+    $$\mu_l = \frac{L_1}{L_1^*} = \frac{0{,}35}{200} = 0{,}00175\ \text{մ/մմ}$$
+    <p>Հիմա յուրաքանչյուր իրական երկարություն բաժանում ենք \(\mu_l\)-ի.</p>
+    $$H_F^* = \frac{0{,}07}{0{,}00175} = 40\ \text{մմ},\quad L_2^* = \frac{0{,}15}{0{,}00175} = 85{,}71\ \text{մմ},\quad EF^* = \frac{0{,}2}{0{,}00175} = 114{,}29\ \text{մմ}$$
+    $$ED^* = \frac{0{,}21}{0{,}00175} = 120\ \text{մմ},\qquad CD^* = \frac{0{,}189}{0{,}00175} = 108\ \text{մմ}$$
+    <div class="tip"><b>Ինքնաստուգում.</b> \(CD^*\)-ը պետք է լինի \(ED^*\)-ի 0,9 մասը՝ 0,9·120 = 108 ✔:</div>
+    <div class="write">էջ 10–11. \(\mu_l\), \(H_F^*\), \(L_2^*\), \(EF\), \(ED\) (և \(CD\)) տողերը:</div>
+  </div>
+
+  <!-- ============ STEP 2 ============ -->
+  <div class="card" id="s2">
+    <h2>Քայլ 2 — Եզրային դիրքերը, AB-ն և BC-ն</h2>
+    <h3>Գաղափարը</h3>
+    <p>\(l_{AB}\)-ն և \(l_{BC}\)-ն տրված չեն: Դրանք պետք է ընտրել այնպես, որ սողնակը վեր-վար շարժվի <b>ճիշտ 70 մմ</b>: Գաղտնիքը <b>եզրային դիրքերն</b> են. սողնակը կանգ է առնում ու ետ դառնում այն պահին, երբ կռունկը և շարժաթևը <b>մեկ ուղղի վրա</b> են:</p>
+    <h3>ա) Սողնակի և լծակի եզրային դիրքերը</h3>
+    <ol>
+      <li><b>Ստորին դիրք.</b> DE թևը ուղղաձիգից շեղում ենք β = 3° → E₀′: E₀′-ից EF* = 114,29 մմ շառավղով աղեղը հատում է ուղղորդը → F₀′ (ամենացածր կետը):</li>
+      <li><b>Վերին դիրք.</b> F₀′-ից բարձրանում ենք \(H_F^*\) = 40 մմ → F₀: F₀-ից 114,29 մմ աղեղը հատում է E-ի հետագիծը → E₀:</li>
+      <li>Լծակը կոշտ է, ուստի C-ն միշտ E-ից 50° «աջ» է. E₀-ից և E₀′-ից ստանում ենք C₀ և C₀′ (կարկինով՝ \(CE^* = 96{,}97\) մմ աղեղով):</li>
+    </ol>
+    <p>Լծակի ճոճման անկյունը՝ \(\psi = \angle E_0DE_0' = 30{,}2°\):</p>
+    <h3>բ) Ինչու՞ են կռունկը և շարժաթևը մեկ ուղղի վրա</h3>
+    <svg viewBox="70 4 270 146" role="img" aria-label="Եզրային դիրքերը. ձգված և ծալված"><line x1="90.0" y1="14.0" x2="121.2" y2="117.4" stroke="#999" stroke-width="0.8" stroke-dasharray="3 2" stroke-linecap="round"/><line x1="90.0" y1="14.0" x2="169.0" y2="87.7" stroke="#999" stroke-width="0.8" stroke-dasharray="3 2" stroke-linecap="round"/><line x1="290.0" y1="99.7" x2="266.1" y2="102.2" stroke="#d9480f" stroke-width="2.6" stroke-linecap="round"/><line x1="266.1" y1="102.2" x2="121.2" y2="117.4" stroke="#2b8a3e" stroke-width="2.2" stroke-linecap="round"/><line x1="169.0" y1="87.7" x2="290.0" y2="99.7" stroke="#2b8a3e" stroke-width="2.2" stroke-dasharray="5 2" stroke-linecap="round"/><line x1="290.0" y1="99.7" x2="313.9" y2="102.1" stroke="#d9480f" stroke-width="2.6" stroke-linecap="round"/><circle cx="290.0" cy="99.7" r="2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="90.0" cy="14.0" r="2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="121.2" cy="117.4" r="2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="169.0" cy="87.7" r="2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="266.1" cy="102.2" r="2" fill="#fff" stroke="#000" stroke-width="1"/><circle cx="313.9" cy="102.1" r="2" fill="#fff" stroke="#000" stroke-width="1"/><text x="292.0" y="106.7" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-style="italic">A</text><text x="83.0" y="11.0" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-style="italic">D</text><text x="114.2" y="121.4" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-style="italic">C₀</text><text x="161.0" y="82.7" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-style="italic">C₀′</text><text x="266.1" y="109.2" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-style="italic">B₀</text><text x="319.9" y="108.1" font-size="8" fill="#000" text-anchor="middle" dominant-baseline="central" font-style="italic">B₀′</text><text x="200.0" y="120.0" font-size="7" fill="#2b8a3e" text-anchor="middle" dominant-baseline="central">AC₀ = AB + BC = 169,7</text><text x="235.0" y="84.0" font-size="7" fill="#2b8a3e" text-anchor="middle" dominant-baseline="central">AC₀′ = BC − AB = 121,6</text></svg>
+    <p class="cap">Եզրային դիրքերում A, B, C կետերը մեկ ուղղի վրա են. ձախում՝ «ձգված», աջում՝ «ծալված»:</p>
+    <p>Երբ C-ն հասնում է իր ամենահեռու կետին (C₀), A-ից C հեռավորությունը <b>ամենամեծն</b> է, և դա հնարավոր է միայն, երբ AB-ն և BC-ն մեկ գծով «ձգված» են. \(AC_0 = AB + BC\): Երբ C-ն ամենամոտ կետում է (C₀′), A-ն ընկնում է B-ի և C-ի միջև, «ծալված»՝ \(AC_0' = BC - AB\): Գծագրից չափում ենք \(AC_0\) և \(AC_0'\) ու լուծում ենք համակարգը.</p>
+    $$\begin{cases} AB + BC = 169{,}7 \\ BC - AB = 121{,}6 \end{cases}\quad\Rightarrow\quad 2\cdot BC = 291{,}3$$
+    $$BC = 145{,}65\ \text{մմ},\qquad AB = 169{,}7 - 145{,}65 = 24{,}05\ \text{մմ}$$
+    <p>Հավասարումները <b>գումարում</b> ենք (AB-ն կրճատվում է), դրա համար տետրում համակարգի կողքին գրված է «±»:</p>
+    $$l_{AB} = AB\cdot\mu_l = 24{,}05\cdot0{,}00175 = 0{,}0421\ \text{մ},\qquad l_{BC} = 145{,}65\cdot0{,}00175 = 0{,}2549\ \text{մ}$$
+    <div class="warn">AB-ն և BC-ն թողել եմ 2 նիշով (24,05 և 145,65), որ ստուգումը ճիշտ ստացվի. 24,05 + 145,65 = 169,7 ✔: Եթե կլորացնես 24,1 և 145,7, գումարը 169,8 կլինի: Քո չափած \(AC_0\)-ն կարող է 0,5 մմ-ով տարբերվել, դա նորմալ է. պարզապես նույն երկու տողը հաշվիր քո թվերով:</div>
+    <div class="tip"><b>Ստուգում, որ կռունկը լրիվ կպտտվի</b> (Գրասհոֆի պայման). ամենակարճ + ամենաերկար &lt; մյուս երկուսի գումարը. 0,042 + 0,381 = 0,423 &lt; 0,255 + 0,189 = 0,444 ✔: Ճնշման ամենափոքր անկյունը՝ \(\gamma_{min} \approx 35{,}8°\) (40°-ից մի փոքր պակաս, ընդունելի է):</div>
+    <div class="write">էջ 11. «±» համակարգը ընդհանուր տեսքով (AB₀ + B₀C₀ = AC₀…), հետո թվերով, 2·BC, BC, AB, \(l_{AB}\), \(l_{BC}\):</div>
+  </div>
+
+  <!-- ============ STEP 3 ============ -->
+  <div class="card" id="s3">
+    <h2>Քայլ 3 — 8 դիրքերի պլանը</h2>
+    <p>Մեխանիզմը շարժման մեջ ուսումնասիրելու համար «լուսանկարում» ենք 8 պահ: Կռունկի շրջանագիծը (\(R = AB^* = 24{,}05\) մմ) B₀-ից սկսած բաժանում ենք <b>8 հավասար մասի</b> (45°-ական)՝ ժամացույցի սլաքի ուղղությամբ: Ամեն Bᵢ-ի համար կարկինով.</p>
+    <div class="flow">
+      <span class="box">Bᵢ</span><span class="arr">→ R = BC* →</span>
+      <span class="box">Cᵢ (C-ի աղեղի վրա)</span><span class="arr">→ R = CE* →</span>
+      <span class="box">Eᵢ (E-ի աղեղի վրա)</span><span class="arr">→ R = EF* →</span>
+      <span class="box">Fᵢ (ուղղորդի վրա)</span>
+    </div>
+    <p>Բոլոր դիրքերը գծում ենք բարակ, իսկ <b>2-րդը՝ հաստ</b>. դա «աշխատանքային» դիրքն է, որի համար անում ենք արագացումների պլանը: 0-րդ դիրքը (B₀) մեռյալ դիրքն է, սողնակը ամենավերևում է:</p>
+    <div class="tip">Կռունկը B₀-ից B₀′ պտտվում է \(191{,}7°\) (սողնակը իջնում է՝ <b>աշխատանքային ընթացք</b>), վերադարձին՝ \(168{,}3°\) (<b>պարապ ընթացք</b>): \(K = 191{,}7/168{,}3 = 1{,}14 &gt; 1\). պարապ ընթացքն ավելի արագ է: 1, 2, 3, 4 դիրքերը աշխատանքային են, 5, 6, 7-ը՝ պարապ:</div>
+    <div class="write">տետրում այս քայլի համար հաշվարկ չկա, միայն թերթ 1-ի գծագիրն է: Գծելու բոլոր քայլերը նշվող վանդակներով՝ <code>TMM_Variant1.html</code>-ում:</div>
+  </div>
+
+  <!-- ============ STEP 4 ============ -->
+  <div class="card" id="s4">
+    <h2>Քայլ 4 — B կետի արագությունը և \(\mu_v\)-ն</h2>
+    <h3>Գաղափարը</h3>
+    <p>B-ն միակ կետն է, որի արագությունն <b>անմիջապես</b> հայտնի է. նա պտտվում է A-ի շուրջը հայտնի ω<sub>1</sub>-ով (Գաղափար 2): Նախ պտ/ր-ը դարձնում ենք ռադ/վ (1 պտույտ = 2π, 1 րոպե = 60 վ).</p>
+    $$\omega_1 = \frac{2\pi n_1}{60} = \frac{\pi n_1}{30} = \frac{3{,}14\cdot210}{30} = 21{,}99\ \text{վ}^{-1}$$
+    $$V_B = \omega_1\cdot l_{AB} = 21{,}99\cdot0{,}0421 = 0{,}926\ \text{մ/վ},\qquad \vec V_B\perp AB$$
+    <p>Կռունկը պտտվում է հավասարաչափ, ուստի \(V_B\)-ն <b>բոլոր 8 դիրքերում նույնն է</b>. փոխվում է միայն ուղղությունը:</p>
+    <h3>Մասշտաբը</h3>
+    <p>Տետրում գրված է «ընդ. pb = 50 մմ»՝ \(V_B\)-ն պլանում կլինի 50 մմ սլաք: Այստեղից.</p>
+    $$\mu_v = \frac{V_B}{pb} = \frac{0{,}926}{50} = 0{,}01852\ \frac{\text{մ/վ}}{\text{մմ}}$$
+    <p>Այսինքն պլանի 1 մմ-ը = 0,01852 մ/վ: Ցանկացած հատված պլանում բազմապատկում ես այս թվով ու ստանում արագություն:</p>
+    <div class="write">էջ 11. \(V_B\)-ի տողը և «\(\vec V_B\perp AB\) (\(\omega_1\)-ի ուղղությամբ)»: Էջ 12, կետ 6. \(\mu_v\)-ն և «ընդ. pb = 50 մմ»:</div>
+  </div>
+
+  <!-- ============ STEP 5 ============ -->
+  <div class="card" id="s5">
+    <h2>Քայլ 5 — Արագությունների պլանի կառուցումը (դիրք 2-ի օրինակով)</h2>
+    <svg viewBox="-34.0 -134.3 298.5 322.0" style="max-width:567px" role="img"><defs><marker id="mv-s1" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#d9480f"/></marker><marker id="mv-s2" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#2b8a3e"/></marker><marker id="mv-s3" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#7048e8"/></marker><marker id="mv-s4" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#1971c2"/></marker><marker id="mv-s5" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#c2255c"/></marker><marker id="mv-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#555"/></marker><marker id="mv-line" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#000"/></marker><marker id="mv-soft" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#eef3ff"/></marker></defs><line x1="188.9" y1="-112.3" x2="230.5" y2="80.6" stroke="#999" stroke-width="0.8" stroke-dasharray="3 2"/><line x1="0.0" y1="-0.0" x2="208.6" y2="-21.8" stroke="#d9480f" stroke-width="2.2" marker-end="url(#mv-s1)"/><text x="104.9" y="-5.0" font-size="7" fill="#555" text-anchor="middle" dominant-baseline="central" transform="rotate(-6 104.9 -5.0)">⊥AB</text><line x1="0.0" y1="-0.0" x2="188.9" y2="-112.3" stroke="#7048e8" stroke-width="2.2" marker-end="url(#mv-s3)"/><text x="97.5" y="-51.0" font-size="7" fill="#555" text-anchor="middle" dominant-baseline="central" transform="rotate(-31 97.5 -51.0)">⊥CD</text><line x1="208.6" y1="-21.8" x2="188.9" y2="-112.3" stroke="#2b8a3e" stroke-width="1.5" marker-end="url(#mv-s2)"/><line x1="0.0" y1="-0.0" x2="230.5" y2="80.6" stroke="#7048e8" stroke-width="2.2" marker-end="url(#mv-s3)"/><text x="113.3" y="46.0" font-size="7" fill="#555" text-anchor="middle" dominant-baseline="central" transform="rotate(19 113.3 46.0)">⊥DE</text><line x1="230.5" y1="80.6" x2="0.0" y2="165.7" stroke="#1971c2" stroke-width="1.5" marker-end="url(#mv-s4)"/><text x="113.2" y="117.5" font-size="7" fill="#555" text-anchor="middle" dominant-baseline="central" transform="rotate(-20 113.2 117.5)">⊥EF</text><line x1="0.0" y1="-0.0" x2="0.0" y2="165.7" stroke="#c2255c" stroke-width="2.2" marker-end="url(#mv-s5)"/><text x="-6.0" y="82.9" font-size="7" fill="#555" text-anchor="middle" dominant-baseline="central" transform="rotate(90 -6.0 82.9)">∥ yy</text><line x1="0.0" y1="-0.0" x2="198.8" y2="-67.1" stroke="#2b8a3e" stroke-width="1.1" stroke-dasharray="4 2" marker-end="url(#mv-s2)"/><circle cx="0.0" cy="-0.0" r="1.8" fill="#000"/><text x="-16.0" y="0.0" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">p (a, d)</text><circle cx="208.6" cy="-21.8" r="1.8" fill="#000"/><text x="215.6" y="-20.8" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">b</text><circle cx="188.9" cy="-112.3" r="1.8" fill="#000"/><text x="182.9" y="-117.3" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">c</text><circle cx="230.5" cy="80.6" r="1.8" fill="#000"/><text x="237.5" y="80.6" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">e</text><circle cx="0.0" cy="165.7" r="1.8" fill="#000"/><text x="-6.0" y="167.7" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">f</text><circle cx="198.8" cy="-67.1" r="1.8" fill="#000"/><text x="190.8" y="-71.1" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">s₂</text></svg>
+    <p class="cap">Դիրք 2-ի արագությունների պլանը. գույները նույնն են, ինչ սխեմայում: Մոխրագույն կետագիծը՝ նմանության եռանկյան կողմը:</p>
+    <h3>ա) b կետը</h3>
+    <p>Թղթի վրա ընտրում ենք p բևեռը: Նրանից տանում ենք <b>pb = 50 մմ ⊥ AB</b>, ω<sub>1</sub>-ի պտույտի կողմը: A-ն և D-ն անշարժ են, ուստի նրանց պատկերները (a, d) ընկնում են p-ում:</p>
+    <h3>բ) c կետը — հավասարում (1)</h3>
+    $$\vec V_C = \vec V_B + \vec V_{CB}$$
+    <div class="tbl">
+    <table>
+      <tr><th></th><th>\(\vec V_C\)</th><th>\(\vec V_B\)</th><th>\(\vec V_{CB}\)</th></tr>
+      <tr><td>Մեծ.</td><td>− (անհայտ)</td><td>+ (0,926 մ/վ)</td><td>− (անհայտ)</td></tr>
+      <tr><td>ուղղ.</td><td>+ (⊥CD, C-ն պտտվում է D-ի շուրջը)</td><td>+ (⊥AB)</td><td>+ (⊥BC)</td></tr>
+    </table>
+    </div>
+    <p>Երկու անհայտ (երկու «−») → լուծվում է: Երկրաչափորեն. <b>b-ով</b> տանում ենք ուղիղ ⊥BC (\(V_{CB}\)-ի ուղղությունը), <b>p-ով</b>՝ ուղիղ ⊥CD (\(V_C\)-ի ուղղությունը, քանի որ D-ն p-ում է): Դրանց <b>հատումը c կետն է</b>: Վերջ. չափում ենք pc-ն և bc-ն:</p>
+    <h3>գ) e կետը — նմանությամբ (3)</h3>
+    <p>E-ն նույն լծակի վրա է, ինչ C-ն (Գաղափար 4). պետք չէ նոր հավասարում.</p>
+    $$pe = pc\cdot\frac{DE}{CD} = 52{,}3\cdot1{,}111 = 58{,}1\ \text{մմ},\qquad \angle cpe = 50°$$
+    <p>pe-ն տանում ենք ⊥DE, և c-ից e պտույտը նույն կողմն է, ինչ մեխանիզմում C-ից E (ժամացույցի սլաքով): <b>pe-ն չենք չափում, հաշվում ենք</b>:</p>
+    <h3>դ) f կետը — հավասարում (4)</h3>
+    $$\vec V_F = \vec V_E + \vec V_{FE}$$
+    <p>\(V_F\)-ի ուղղությունը հայտնի է (սողնակը կարող է շարժվել միայն ուղղորդով՝ ∥yy), \(V_{FE}\)՝ ⊥EF: Դարձյալ երկու անհայտ մեծություն: <b>e-ով</b> տանում ենք ուղիղ ⊥EF, <b>p-ով</b>՝ ուղղաձիգ: Հատումը f-ն է:</p>
+    <h3>ե) s₂ կետը</h3>
+    <p>S₂-ը BC-ի մեջտեղում է, ուստի s₂-ը <b>bc հատվածի մեջտեղում է</b> (նմանություն, կետ 5՝ \(bs_2 = cs_2\)): ps₂-ը չափում ենք:</p>
+    <div class="warn"><b>Մեռյալ դիրքը (0).</b> A, B, C մեկ ուղղի վրա են, ուստի ⊥AB և ⊥BC ուղիղները համընկնում են, և c-ն ընկնում է p-ի վրա. \(V_C = V_E = V_F = 0\), \(bc = pb = 50\) մմ, s₂-ը pb-ի մեջտեղում: Պլանը պարզապես մեկ սլաք է: Սա սխալ չէ. սողնակն այդ պահին կանգնած է ու շրջվում է:</div>
+    <div class="write">էջ 11–12. հավասարումներ (1), (3), (4)՝ իրենց «Մեծ./ուղղ.» աղյուսակներով, կետ 5-ը (\(bs_2 = cs_2\)) և \(\angle cpe = \alpha\) տողը:</div>
+  </div>
+
+  <!-- ============ STEP 6 ============ -->
+  <div class="card" id="s6">
+    <h2>Քայլ 6 — Թվերը, ω-ները և դրանց ուղղությունը</h2>
+    <p>Պլանից չափում ենք հատվածները (մմ) և բազմապատկում \(\mu_v\)-ով (դիրք 2).</p>
+    $$V_C = pc\cdot\mu_v = 52{,}3\cdot0{,}01852 = 0{,}969\ \text{մ/վ}\qquad V_E = pe\cdot\mu_v = 58{,}1\cdot0{,}01852 = 1{,}076\ \text{մ/վ}$$
+    $$V_F = pf\cdot\mu_v = 39{,}5\cdot0{,}01852 = 0{,}732\ \text{մ/վ}\qquad V_{S_2} = ps_2\cdot\mu_v = 49{,}9\cdot0{,}01852 = 0{,}924\ \text{մ/վ}$$
+    $$V_{CB} = bc\cdot\mu_v = 22{,}0\cdot0{,}01852 = 0{,}407\ \text{մ/վ}\qquad V_{FE} = ef\cdot\mu_v = 58{,}5\cdot0{,}01852 = 1{,}083\ \text{մ/վ}$$
+    <h3>Անկյունային արագությունները</h3>
+    <p>Գաղափար 2-ը «հակառակ»՝ \(\omega = V/l\): Օղակի պտույտը տալիս է <b>հարաբերական</b> արագությունը (կամ անշարժ կետի նկատմամբ արագությունը).</p>
+    $$\omega_2 = \frac{V_{CB}}{l_{BC}} = \frac{0{,}407}{0{,}2549} = 1{,}60\ \text{վ}^{-1}$$
+    $$\omega_3 = \frac{V_C}{l_{CD}} = \frac{0{,}969}{0{,}189} = 5{,}13,\quad \omega_4 = \frac{V_{FE}}{l_{EF}} = \frac{1{,}083}{0{,}2} = 5{,}42\ \text{վ}^{-1}$$
+    <h3>Ինչպես գտնել պտույտի ուղղությունը (↻ թե ↺)</h3>
+    <ol>
+      <li>Պլանից վերցրու հարաբերական արագության սլաքը, օրինակ՝ \(\vec V_{CB}\) (b-ից c):</li>
+      <li>Մտովի տեղափոխիր այն մեխանիզմի <b>C</b> կետ:</li>
+      <li>Նայիր, թե ինչ կողմ է այն «պտտում» C-ն B-ի շուրջը. դա \(\omega_2\)-ի ուղղությունն է:</li>
+    </ol>
+    <p>\(\omega_3\)-ի համար՝ \(\vec V_C\)-ն (p-ից c) դնում ես C-ում ու նայում D-ի շուրջը, \(\omega_4\)-ի համար՝ \(\vec V_{FE}\)-ն (e-ից f) դնում ես F-ում ու նայում E-ի շուրջը:</p>
+    <h3>Բոլոր 8 դիրքերը</h3>
+    <div class="tbl">
+    <table>
+      <tr><th>i</th><th>\(V_C\), մ/վ</th><th>\(V_E\)</th><th>\(V_F\)</th><th>\(\omega_2\), վ⁻¹</th><th>\(\omega_3\)</th><th>\(\omega_4\)</th></tr>
+      <tr><td>0</td><td>0,000</td><td>0,000</td><td>0,000 —</td><td>3,63 ↺</td><td>0,00 —</td><td>0,00 —</td></tr><tr><td>1</td><td>0,728</td><td>0,809</td><td>0,809 ↓</td><td>1,83 ↺</td><td>3,85 ↺</td><td>4,11 ↻</td></tr><tr class=hl><td>2</td><td>0,969</td><td>1,076</td><td>0,732 ↓</td><td>1,60 ↻</td><td>5,13 ↺</td><td>5,42 ↻</td></tr><tr><td>3</td><td>0,796</td><td>0,885</td><td>0,296 ↓</td><td>4,34 ↻</td><td>4,21 ↺</td><td>4,43 ↻</td></tr><tr><td>4</td><td>0,241</td><td>0,267</td><td>0,031 ↓</td><td>4,30 ↻</td><td>1,28 ↺</td><td>1,34 ↻</td></tr><tr><td>5</td><td>0,767</td><td>0,852</td><td>0,187 ↑</td><td>0,75 ↻</td><td>4,06 ↻</td><td>4,26 ↺</td></tr><tr><td>6</td><td>1,172</td><td>1,302</td><td>0,804 ↑</td><td>2,11 ↺</td><td>6,20 ↻</td><td>6,55 ↺</td></tr><tr><td>7</td><td>0,796</td><td>0,885</td><td>0,876 ↑</td><td>3,42 ↺</td><td>4,21 ↻</td><td>4,49 ↺</td></tr>
+    </table>
+    </div>
+    <div class="tip"><b>Ինչ է ցույց տալիս աղյուսակը.</b> 1–4 դիրքերում \(V_F\)-ն ↓ է (սողնակը իջնում է՝ աշխատանքային ընթացք), 5–7-ում՝ ↑: 0-ում և ≈4-ում (ներքևի եզր) \(V_F \approx 0\): \(\omega_3\)-ը փոխում է նշանը 4-ի և 5-ի միջև. լծակը շրջվում է: Եթե քո աղյուսակում նույն օրինաչափությունը կա, պլանները ճիշտ են:</div>
+    <div class="write">էջ 12–13. կետ 7-ի տողերը դիրք 2-ի համար, \(\omega_2, \omega_3, \omega_4\), իսկ էջ 13-ի աղյուսակում՝ բոլոր 8 տողերը (մյուս դիրքերի հաշվարկը՝ «13ա» ներդիրում):</div>
+  </div>
+
+  <!-- ============ STEP 7 ============ -->
+  <div class="card" id="s7">
+    <h2>Քայլ 7 — Արագացումների պլանը (դիրք 2)</h2>
+    <h3>Գաղափարը</h3>
+    <p>Պտտվող կետի արագացումն ունի երկու մաս.</p>
+    <ul>
+      <li><b>նորմալ</b> \(a^n = \omega^2\cdot l\)՝ ուղղված դեպի պտտման <b>կենտրոնը</b> (այն «թեքում» է արագությունը): Հաշվվում է, քանի որ ω-ն արդեն գիտենք §2-ից:</li>
+      <li><b>շոշափող</b> \(a^t = \varepsilon\cdot l\)՝ ⊥ շառավղին (այն փոխում է արագության <b>մեծությունը</b>): Անհայտ է, որովհետև ε-ն չգիտենք:</li>
+    </ul>
+    <p>Ուստի յուրաքանչյուր հավասարումում հարաբերական արագացումը բաժանվում է երկու սլաքի՝ հայտնի \(a^n\) և անհայտ մեծությամբ \(a^t\):</p>
+    <svg viewBox="-55.9 -114.9 113.6 310.8" style="max-width:215px" role="img"><defs><marker id="ma-s1" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#d9480f"/></marker><marker id="ma-s2" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#2b8a3e"/></marker><marker id="ma-s3" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#7048e8"/></marker><marker id="ma-s4" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#1971c2"/></marker><marker id="ma-s5" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#c2255c"/></marker><marker id="ma-muted" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#555"/></marker><marker id="ma-line" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#000"/></marker><marker id="ma-soft" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="#eef3ff"/></marker></defs><line x1="-21.9" y1="-36.6" x2="15.5" y2="-44.8" stroke="#999" stroke-width="0.8" stroke-dasharray="3 2"/><line x1="18.2" y1="173.9" x2="-21.9" y2="-36.6" stroke="#999" stroke-width="0.8" stroke-dasharray="3 2"/><line x1="0.0" y1="-0.0" x2="18.2" y2="173.9" stroke="#d9480f" stroke-width="2.2" marker-end="url(#ma-s1)"/><line x1="18.2" y1="173.9" x2="23.7" y2="172.7" stroke="#2b8a3e" stroke-width="1.4" marker-end="url(#ma-s2)"/><line x1="23.7" y1="172.7" x2="-21.9" y2="-36.6" stroke="#2b8a3e" stroke-width="1.4" marker-end="url(#ma-s2)"/><line x1="0.0" y1="-0.0" x2="-21.8" y2="-36.7" stroke="#7048e8" stroke-width="1.4" marker-end="url(#ma-s3)"/><line x1="0.0" y1="-0.0" x2="-21.9" y2="-36.6" stroke="#7048e8" stroke-width="2.2" marker-end="url(#ma-s3)"/><line x1="0.0" y1="-0.0" x2="15.5" y2="-44.8" stroke="#7048e8" stroke-width="2.2" marker-end="url(#ma-s3)"/><line x1="15.5" y1="-44.8" x2="-2.0" y2="-92.2" stroke="#1971c2" stroke-width="1.4" marker-end="url(#ma-s4)"/><line x1="0.0" y1="-0.0" x2="0.0" y2="-92.9" stroke="#c2255c" stroke-width="2.2" marker-end="url(#ma-s5)"/><line x1="0.0" y1="-0.0" x2="-1.9" y2="68.6" stroke="#2b8a3e" stroke-width="1.1" stroke-dasharray="4 2" marker-end="url(#ma-s2)"/><circle cx="0.0" cy="-0.0" r="1.8" fill="#000"/><text x="17.0" y="2.0" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">π (a, d)</text><circle cx="18.2" cy="173.9" r="1.8" fill="#000"/><text x="12.2" y="175.9" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">b</text><circle cx="23.7" cy="172.7" r="1.8" fill="#000"/><text x="31.7" y="173.7" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">n₂</text><circle cx="-21.9" cy="-36.6" r="1.8" fill="#000"/><text x="-28.9" y="-41.6" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">c</text><circle cx="-21.8" cy="-36.7" r="1.8" fill="#000"/><text x="-30.8" y="-31.7" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">n₃</text><circle cx="15.5" cy="-44.8" r="1.8" fill="#000"/><text x="22.5" y="-44.8" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">e</text><circle cx="-2.0" cy="-92.2" r="1.8" fill="#000"/><text x="-10.0" y="-94.2" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">n₄</text><circle cx="0.0" cy="-92.9" r="1.8" fill="#000"/><text x="6.0" y="-95.9" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">f</text><circle cx="-1.9" cy="68.6" r="1.8" fill="#000"/><text x="-9.9" y="68.6" font-size="9" text-anchor="middle" dominant-baseline="central" font-style="italic">s₂</text></svg>
+    <p class="cap">Դիրք 2-ի արագացումների պլանը (πb = 70 մմ): n₂, n₃, n₄՝ նորմալ բաղադրիչների ծայրերը:</p>
+    <h3>ա) B կետը</h3>
+    $$a_B^t = \varepsilon_1\cdot l_{AB} = \frac{d\omega_1}{dt}\cdot l_{AB} = 0\ \ (\omega_1 = \text{const})$$
+    $$a_B = a_B^n = \omega_1^2\cdot l_{AB} = 21{,}99^2\cdot0{,}0421 = 20{,}36\ \text{մ/վ}^2,\ \ B\to A$$
+    $$\mu_a = \frac{a_B}{\pi b} = \frac{20{,}36}{70} = 0{,}2909\ \frac{\text{մ/վ}^2}{\text{մմ}}\qquad (\text{ընդ. } \pi b = 70\ \text{մմ})$$
+    <h3>բ) c կետը — հավասարումներ (1), (2), (3)</h3>
+    <p>C-ն գրում ենք <b>երկու</b> կողմից. որպես BC-ի կետ և որպես CD-ի կետ, ու հավասարեցնում.</p>
+    $$\vec a_B + \vec a_{CB}^n + \vec a_{CB}^t = \vec a_{CD}^n + \vec a_{CD}^t$$
+    $$a_{CB}^n = \omega_2^2\, l_{BC} = 1{,}60^2\cdot0{,}2549 = 0{,}65\ \text{մ/վ}^2 \Rightarrow bn_2 = \frac{0{,}65}{0{,}2909} = 2{,}2\ \text{մմ}\ \ (C\to B)$$
+    $$a_{CD}^n = \omega_3^2\, l_{CD} = 5{,}13^2\cdot0{,}189 = 4{,}97\ \text{մ/վ}^2 \Rightarrow \pi n_3 = \frac{4{,}97}{0{,}2909} = 17{,}1\ \text{մմ}\ \ (C\to D)$$
+    <p><b>Կառուցում.</b> b-ից bn₂ ∥ BC (C-ից B կողմ), n₂-ով՝ ուղիղ ⊥BC: π-ից πn₃ ∥ CD (C-ից D կողմ), n₃-ով՝ ուղիղ ⊥CD: <b>Հատումը c-ն է</b>: Նույն տրամաբանությունը, ինչ արագություններում, միայն յուրաքանչյուր կողմում մի սլաք ավել:</p>
+    <h3>գ) e, f, s₂</h3>
+    <p>e-ն՝ նմանությամբ. \(\pi e = \pi c\cdot1{,}111 = 17{,}1\cdot1{,}111 = 19{,}0\) մմ, \(\angle c\pi e = 50°\): f-ը՝ \(\vec a_F = \vec a_E + \vec a_{FE}^n + \vec a_{FE}^t\), որտեղ \(a_{FE}^n = \omega_4^2 l_{EF} = 5{,}42^2\cdot0{,}2 = 5{,}88\), \(en_4 = 20{,}2\) մմ (F→E), n₄-ով ⊥EF, π-ով ուղղաձիգ: s₂-ը՝ bc-ի մեջտեղում:</p>
+    <h3>դ) Թվերը</h3>
+    $$a_C = \pi c\cdot\mu_a = 17{,}1\cdot0{,}2909 = 4{,}97,\qquad a_E = \pi e\cdot\mu_a = 19{,}0\cdot0{,}2909 = 5{,}53\ \text{մ/վ}^2$$
+    $$a_F = \pi f\cdot\mu_a = 37{,}2\cdot0{,}2909 = 10{,}82,\qquad a_{S_2} = \pi s_2\cdot\mu_a = 27{,}5\cdot0{,}2909 = 8{,}00\ \text{մ/վ}^2$$
+    $$a_{CB}^t = n_2c\cdot\mu_a = 85{,}7\cdot0{,}2909 = 24{,}93\ \text{մ/վ}^2$$
+    $$a_{CD}^t = n_3c\cdot\mu_a = 0{,}1\cdot0{,}2909 = 0{,}03,\qquad a_{FE}^t = n_4f\cdot\mu_a = 0{,}8\cdot0{,}2909 = 0{,}23\ \text{մ/վ}^2$$
+    $$\varepsilon_2 = \frac{a_{CB}^t}{l_{BC}} = 97{,}8,\qquad \varepsilon_3 = \frac{a_{CD}^t}{l_{CD}} = 0{,}2,\qquad \varepsilon_4 = \frac{a_{FE}^t}{l_{EF}} = 1{,}2\ \text{վ}^{-2}$$
+    <div class="tip"><b>Ինչու՞ են n₃c-ն և n₄f-ը գրեթե զրո (0,1 մմ).</b> 2-րդ դիրքում լծակի ω<sub>3</sub>-ը մոտ է իր առավելագույնին (1-ում 3,85, 2-ում 5,13, 3-ում 4,21 վ⁻¹): Առավելագույնի մոտ արագությունը գրեթե չի փոխվում, ուստի ε<sub>3</sub> ≈ 0, և c-ն ընկնում է գրեթե n₃-ի վրա: Սա կառուցման սխալ չէ:</div>
+    <div class="tip"><b>Ֆիզիկական ստուգում.</b> 2-րդ դիրքում սողնակը իջնում է (\(V_F\) ↓), իսկ \(a_F\)-ն = 10,82 մ/վ² ուղղված է <b>վեր</b>. սողնակը արգելակվում է, քանի որ մոտենում է ներքևի եզրին: Տրամաբանական է ✔:</div>
+    <div class="write">էջ 14–16. \(a_B\)-ն (\(a_B^t = 0\)-ի բացատրությամբ), (1), (2), (3) հավասարումները աղյուսակներով, \(\mu_a\)-ն «ընդ. πb = 70 մմ»-ով, \(bn_2, \pi n_3\), \(\pi e\), \(\angle c\pi e = \alpha\), (6)-ը, \(en_4\), հետո բոլոր \(a\)-երն ու \(\varepsilon\)-երը:</div>
+  </div>
+
+  <!-- ============ FRE + SHEETS ============ -->
+  <div class="card" id="fre">
+    <h2>F<sub>re</sub> գրաֆիկը և երկու A3 թերթերը</h2>
+    <h3>F<sub>re</sub> գրաֆիկը</h3>
+    <p>Սա <b>օգտակար դիմադրության ուժն</b> է՝ այն, ինչ սողնակը «հաղթահարում է» (օրինակ՝ մետաղը դրոշմելիս): Այն գործում է <b>միայն աշխատանքային ընթացքում</b> (սողնակը իջնում է) և ուղղված է շարժմանը հակառակ: Գրաֆիկի ձևը արտագծում ես առաջադրանքի թերթից՝ S<sub>F</sub> առանցքը դնելով ուղղորդին զուգահեռ, որ յուրաքանչյուր Fᵢ-ից հորիզոնական գծով անմիջապես կարդաս F<sub>re</sub>-ն: Մասշտաբը՝ \(\mu_F = 7800/39 = 200\) Ն/մմ: Կինեմատիկային պետք չէ, բայց ուժային հաշվարկում պետք կգա:</p>
+    <h3>Ինչ կա ամեն թերթում</h3>
+    <div class="two">
+      <div class="tip"><b>Թերթ 1.</b> դիրքերի պլանը (8 դիրք, 2-րդը՝ հաստ), եզրային դիրքերի կառուցումը, L₁*, L₂*, H<sub>F</sub>* չափերը, F<sub>re</sub> գրաֆիկը և դիրք 2-ի <b>արագացումների պլանը</b>:</div>
+      <div class="tip"><b>Թերթ 2.</b> <b>8 արագությունների պլան</b>, 4 × 2 վանդակներում (վերևում՝ 0–3, ներքևում՝ 4–7), բոլորը նույն μ<sub>v</sub>-ով և pb = 50 մմ:</div>
+    </div>
+  </div>
+
+  <!-- ============ ASSUMPTIONS ============ -->
+  <div class="card" id="assume">
+    <h2>Ենթադրություններ — սրանք ճշտիր դասախոսի մոտ</h2>
+    <div class="tbl">
+    <table>
+      <tr><th>Ինչ</th><th>Ընդունված</th><th>Կփոխի՞ արդյունքը</th></tr>
+      <tr><td>β անկյունը</td><td>3° (թույլատրված 3°÷5°)</td><td>Այո, մի փոքր. կփոխվեն եզրային դիրքերը, AB-ն, BC-ն և բոլոր թվերը: Եթե դասախոսն այլ β ասի, ամեն ինչ պետք է վերահաշվել:</td></tr>
+      <tr><td>Կռունկի պտույտի ուղղությունը</td><td>ժամացույցի սլաքով (↻)</td><td>Եթե սխեմայում հակառակն է, պլանները կլինեն «հայելային», իսկ աշխատանքային ու պարապ ընթացքները՝ տեղերով փոխված:</td></tr>
+      <tr><td>pb և πb</td><td>50 և 70 մմ (տետրից)</td><td>Ոչ. փոխվում է միայն պլանի չափը, արագություններն ու արագացումները նույնն են:</td></tr>
+      <tr><td>Աշխատանքային դիրքը</td><td>2-րդ (տետր, էջ 14)</td><td>Եթե այլ դիրք պահանջվի, բոլոր դիրքերի արագացումները արդեն կան <code>TMM_Variant1.html</code>-ի աղյուսակներում:</td></tr>
+      <tr><td>\(I_{S_2}\)-ի միավորը</td><td>350·10⁻³ կգ·մ² (լուսանկարում վատ է երևում)</td><td>Կինեմատիկայի համար ոչ, ուժային հաշվարկի համար՝ այո:</td></tr>
+      <tr><td>F<sub>re</sub> կորի ձևը</td><td>թվայնացված է փոքր նկարից</td><td>Կինեմատիկայի համար ոչ:</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <!-- ============ CHECK ============ -->
+  <div class="card" id="check">
+    <h2>Ստուգաթերթ և տարածված սխալներ</h2>
+    <h3>Տետրի հերթականությունը (ինչպես նմուշում)</h3>
+    <ol>
+      <li>էջ 10. տվյալների աղյուսակ, պայմաններ 1–6, §1-ի վերնագիր, \(\mu_l\), \(H_F^*\), \(L_2^*\)</li>
+      <li>էջ 11. \(EF, ED, CD\), «±» համակարգը, AB, BC, \(l_{AB}, l_{BC}\), §2. \(V_B\), հավասարում (1)</li>
+      <li>էջ 12. (3) նմանություն, (4), \(bs_2 = cs_2\), \(\mu_v\), կետ 7 (դիրք 2)</li>
+      <li>էջ 13. \(\omega_3, \omega_4\) և 8 դիրքերի աղյուսակը (+ «13ա» ներդիր)</li>
+      <li>էջ 14–16. §3. արագացումներ դիրք 2-ի համար</li>
+    </ol>
+    <p>Յուրաքանչյուր տողի համար՝ <b>բանաձև → տեղադրված թվեր → արդյունք՝ միավորով</b>:</p>
+    <h3>Ստուգումներ, որոնք ապացուցում են, որ ճիշտ ես արել</h3>
+    <ul>
+      <li>\(AB + BC = AC_0\) և \(BC - AB = AC_0'\) (24,05 + 145,65 = 169,7)</li>
+      <li>Գծագրում սողնակի ընթացքը ճիշտ 40 մմ է (= \(H_F^*\))</li>
+      <li>Բոլոր 8 պլաններում pb = 50 մմ, և pb ⊥ համապատասխան AB-ին</li>
+      <li>\(pe = 1{,}111\cdot pc\) բոլոր դիրքերում</li>
+      <li>0-րդ դիրքում c, e, f ≡ p</li>
+      <li>\(V_F\)-ն ↓ 1–4 դիրքերում, ↑ 5–7-ում</li>
+      <li>\(a_F\)-ն 2-րդ դիրքում ուղղված է վեր (արգելակում)</li>
+    </ul>
+    <h3>Տարածված սխալներ</h3>
+    <ul>
+      <li>\(V_C\)-ն տանել ⊥BC՝ ⊥CD-ի փոխարեն: C-ն պտտվում է <b>D</b>-ի շուրջը, ուստի \(\vec V_C\perp CD\), իսկ ⊥BC-ն հարաբերական \(\vec V_{CB}\)-ի ուղղությունն է:</li>
+      <li>pe-ն չափել քանոնով՝ հաշվելու փոխարեն, կամ e-ն դնել c-ի մյուս կողմում (∠cpe-ն պետք է նույն կողմ լինի, ինչ ∠CDE-ն մեխանիզմում):</li>
+      <li>Նորմալ արագացումը տանել սխալ կողմ. \(a^n\)-ը միշտ դեպի <b>կենտրոն</b> է՝ C→B, C→D, F→E:</li>
+      <li>Մոռանալ, որ \(a_B^t = 0\) (ω<sub>1</sub> = const), և փնտրել ε<sub>1</sub>:</li>
+      <li>Տարբեր դիրքերի պլանները գծել տարբեր μ<sub>v</sub>-ով. բոլորը նույն 0,01852-ով են:</li>
+      <li>Միավորներ. ω-ն վ⁻¹ (ռադ/վ), ε-ն՝ վ⁻², արագացումները՝ մ/վ²:</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
