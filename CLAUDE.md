@@ -29,7 +29,7 @@ All user-facing text is in **Armenian**; keep it Armenian.
 | `meqenamaseri tesutyun/` | Մեքենամասերի տեսություն: gear reducer calculation and explanation | https://areg06.github.io/UNI/meqenamaseri%20tesutyun/ |
 | `kursayin ashxatanq/Variant1/` | Կուրսային աշխատանք (ՄՄՏ), variant 1; has its own `CLAUDE.md` with build steps | https://areg06.github.io/UNI/kursayin%20ashxatanq/Variant1/ |
 | `nyutagitutyun/` | Նյութագիտություն: lectures 1–7 and the midterm-1 study platform | https://areg06.github.io/UNI/nyutagitutyun/ |
-| `gazodinamika/` | Գազադինամիկա: Armenian translation of the textbook | https://areg06.github.io/UNI/gazodinamika/translation/gazadinamika_hy.html |
+| `gazodinamika/` | Գազադինամիկա: Armenian translation of the textbook (`translation/`) and the midterm-1 study platform (built by `midterm1/build.py`) | https://areg06.github.io/UNI/gazodinamika/ |
 
 ## Deliberately not in git
 
