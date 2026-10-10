@@ -1,0 +1,8 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Other variants of the course project: kept locally, not published
+kursayin ashxatanq/Variant13/
+kursayin ashxatanq/Variant13.zip
+kursayin ashxatanq/source/
