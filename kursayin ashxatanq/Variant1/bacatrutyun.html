@@ -47,6 +47,14 @@
   .cap{font-size:.88rem; color:var(--muted); text-align:center; margin:2px 0 10px}
   .two{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; align-items:start}
   ol li, ul li{margin:4px 0}
+  .rot{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; align-items:start}
+  .rot svg{width:100%; max-height:440px; touch-action:none; user-select:none; -webkit-user-select:none}
+  .rot svg.grab{cursor:grab} .rot svg.grab.hold{cursor:grabbing}
+  .rotctl{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:8px 0}
+  .rotctl label{display:flex; gap:8px; align-items:center; flex:1 1 220px}
+  .rotctl input[type=range]{flex:1; min-width:120px}
+  .rotctl button{font:inherit; font-size:.95rem; padding:4px 12px; border:1px solid var(--border); border-radius:8px; background:var(--soft); color:var(--pen); cursor:pointer}
+  .rotctl button.on{background:var(--pen); color:#fff}
 </style>
 </head>
 <body>
@@ -71,6 +79,7 @@
       <li><a href="#fre">F<sub>re</sub> գրաֆիկը և երկու A3 թերթերը</a></li>
       <li><a href="#assume">Ենթադրություններ — ճշտիր դասախոսի մոտ</a></li>
       <li><a href="#check">Ստուգաթերթ և տարածված սխալներ</a></li>
+      <li><a href="#rotor">Պտտիր մեխանիզմը ինքդ</a></li>
     </ol>
   </div>
 
@@ -401,6 +410,125 @@
       <li>Միավորներ. ω-ն վ⁻¹ (ռադ/վ), ε-ն՝ վ⁻², արագացումները՝ մ/վ²:</li>
     </ul>
   </div>
+
+  <div class="card" id="rotor">
+    <h2>Պտտիր մեխանիզմը ինքդ</h2>
+    <p>Բռնիր <b>B</b> կետը և պտտիր AB մղիչը: Մղիչը փոքր է, ուստի կարող ես քաշել սխեմայի ցանկացած տեղից. մղիչը կնայի դեպի մատդ (մկնիկը), A-ի շուրջը: Կարող ես նաև սեղմել «▶ Պտտել» կամ ընտրել 0–7 դիրքերից մեկը: Աջ կողմում արագությունների պլանն է նույն պահի համար, նույն μ<sub>v</sub> = 0,01852 (մ/վ)/մմ մասշտաբով: Մանուշակագույն եռանկյունը (p, c, e) միշտ նման է CDE լծակին. ստուգիր, որ pe/pc = 1,111 և ∠cpe = 50° ցանկացած դիրքում:</p>
+    <div class="rot">
+      <div><svg id="rotMech" class="grab" role="img" aria-label="Մեխանիզմ"></svg><p class="cap">Մեխանիզմը (ω<sub>1</sub>-ը ժամացույցի սլաքով)</p></div>
+      <div><svg id="rotPlan" role="img" aria-label="Արագությունների պլան"></svg><p class="cap">Արագությունների պլանը (p-ն՝ բևեռը)</p></div>
+    </div>
+    <div class="rotctl">
+      <button type="button" id="rotPlay">▶ Պտտել</button>
+      <label><span>φ<sub>1</sub> = <b id="rotPhiTxt">0°</b></span><input type="range" id="rotPhi" min="0" max="360" step="0.5" value="0"></label>
+    </div>
+    <div class="rotctl" id="rotPos"><span>Դիրք՝</span></div>
+    <div class="tbl"><table id="rotTab"></table></div>
+  </div>
+<script>
+(function(){
+const K = {"A": [200.0, -85.71428571428572], "AB": 24.036013738063986, "BC": 145.64911488547588, "CD": 108.00000000000001, "ED": 120.00000000000001, "EF": 114.2857142857143, "AL": 50.0, "MU": 0.0017499999999999998, "W1": 21.991148575128552, "MUV": 0.01852, "TH0": -174.02285884301776, "br": 0, "H": 40.00000000000001, "F0": [0.0, -193.948567688671], "col": {"s1": "#d9480f", "s2": "#2b8a3e", "s3": "#7048e8", "s4": "#1971c2", "s5": "#c2255c", "muted": "#555", "line": "#000", "soft": "#eef3ff"}}, C = K.col, A = K.A, D = [0,0], R = Math.PI/180;
+const ex = id => document.getElementById(id);
+const mech = ex('rotMech'), plan = ex('rotPlan');
+const nf = (x, d) => x.toFixed(d).replace('.', ',').replace('-', '−');
+function cint(c1, r1, c2, r2){
+  const dx = c2[0]-c1[0], dy = c2[1]-c1[1], d = Math.hypot(dx, dy);
+  const a = (r1*r1-r2*r2+d*d)/(2*d), h = Math.sqrt(Math.max(r1*r1-a*a, 0));
+  const ux = dx/d, uy = dy/d, px = c1[0]+a*ux, py = c1[1]+a*uy;
+  return [[px-h*uy, py+h*ux], [px+h*uy, py-h*ux]];
+}
+function rot(p, deg, s){ const c = Math.cos(deg*R), n = Math.sin(deg*R); return [(p[0]*c-p[1]*n)*s, (p[0]*n+p[1]*c)*s]; }
+function pos(phi){
+  const t = (K.TH0-phi)*R, B = [A[0]+K.AB*Math.cos(t), A[1]+K.AB*Math.sin(t)];
+  const Cp = cint(B, K.BC, D, K.CD)[K.br], E = rot(Cp, -K.AL, K.ED/K.CD);
+  const F = [0, E[1]-Math.sqrt(Math.max(K.EF*K.EF-E[0]*E[0], 0))];
+  return {B, C:Cp, E, F};
+}
+function kin(P){
+  const r = (p, q) => [(p[0]-q[0])*K.MU, (p[1]-q[1])*K.MU], ck = (w, v) => [-w*v[1], w*v[0]];
+  const rAB = r(P.B, A), rCB = r(P.C, P.B), rCD = r(P.C, D), rED = r(P.E, D), rFE = r(P.F, P.E);
+  const VB = ck(-K.W1, rAB);
+  const a11 = -rCB[1], a12 = rCD[1], a21 = rCB[0], a22 = -rCD[0], b1 = -VB[0], b2 = -VB[1], det = a11*a22-a12*a21;
+  const w2 = (b1*a22-a12*b2)/det, w3 = (a11*b2-b1*a21)/det;
+  const VC = ck(w3, rCD), VE = ck(w3, rED), w4 = VE[0]/rFE[1], VFE = ck(w4, rFE);
+  return {VB, VC, VE, VF:[VE[0]+VFE[0], VE[1]+VFE[1]], w2, w3, w4};
+}
+// fixed view boxes over a full turn
+let mb = [A[0], A[0], A[1], A[1]], pm = 0;
+const grow = p => { mb[0] = Math.min(mb[0], p[0]); mb[1] = Math.max(mb[1], p[0]); mb[2] = Math.min(mb[2], p[1]); mb[3] = Math.max(mb[3], p[1]); };
+for (let f = 0; f < 360; f += 2){
+  const P = pos(f); [D, P.B, P.C, P.E, P.F].forEach(grow);
+  const V = kin(P); [V.VB, V.VC, V.VE, V.VF].forEach(v => pm = Math.max(pm, Math.hypot(v[0], v[1])/K.MUV));
+}
+const pad = 22;
+mech.setAttribute('viewBox', `${mb[0]-pad} ${-mb[3]-pad} ${mb[1]-mb[0]+2*pad} ${mb[3]-mb[2]+2*pad}`);
+const pr = pm+14; plan.setAttribute('viewBox', `${-pr} ${-pr} ${2*pr} ${2*pr}`);
+const defs = '<defs>' + Object.keys(C).map(k => `<marker id="rm-${k}" viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0.8 L10,5 L0,9.2 z" fill="${C[k]}"/></marker>`).join('') + '</defs>';
+const Y = p => [p[0], -p[1]];
+const ln = (a, b, col, w, dash, arrow) => { a = Y(a); b = Y(b);
+  return `<line x1="${a[0].toFixed(2)}" y1="${a[1].toFixed(2)}" x2="${b[0].toFixed(2)}" y2="${b[1].toFixed(2)}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"${dash ? ` stroke-dasharray="${dash}"` : ''}${arrow ? ` marker-end="url(#rm-${arrow})"` : ''}/>`; };
+const tx = (p, s, dx, dy, sz, col) => { p = Y(p); return `<text x="${(p[0]+dx).toFixed(1)}" y="${(p[1]+dy).toFixed(1)}" font-size="${sz||9}" fill="${col||'#000'}" text-anchor="middle" dominant-baseline="central" font-style="italic">${s}</text>`; };
+const dot = (p, r, fill, stroke) => { p = Y(p); return `<circle cx="${p[0].toFixed(2)}" cy="${p[1].toFixed(2)}" r="${r}" fill="${fill}" stroke="${stroke||'#000'}" stroke-width="1"/>`; };
+function ground(p){ const q = Y(p); let s = `<path d="M${q[0]},${q[1]} l-7,11 h14 z" fill="#fff" stroke="#000" stroke-width="1"/>`;
+  for (let i = -8; i < 8; i += 3.5) s += `<line x1="${q[0]+i}" y1="${q[1]+11}" x2="${q[0]+i-3}" y2="${q[1]+15}" stroke="#000" stroke-width=".7"/>`; return s; }
+// static background of the mechanism: B circle, 8 positions, slider guide
+let bg = defs;
+{ const a = Y(A); bg += `<circle cx="${a[0]}" cy="${a[1]}" r="${K.AB}" fill="none" stroke="#999" stroke-width=".7" stroke-dasharray="3 2"/>`; }
+for (let i = 0; i < 8; i++){ const P = pos(45*i), u = [P.B[0]-A[0], P.B[1]-A[1]], L = Math.hypot(u[0], u[1]);
+  bg += dot(P.B, 1.3, '#999', '#999') + tx([A[0]+u[0]/L*(K.AB+9), A[1]+u[1]/L*(K.AB+9)], i, 0, 0, 7, '#777'); }
+bg += `<line x1="-6" y1="${-mb[3]-6}" x2="-6" y2="${-mb[2]+6}" stroke="#000" stroke-width=".8"/><line x1="6" y1="${-mb[3]-6}" x2="6" y2="${-mb[2]+6}" stroke="#000" stroke-width=".8"/>`;
+bg += ground(A) + ground(D);
+let phi = 0, playing = false, last = 0;
+const posBox = ex('rotPos');
+for (let i = 0; i < 8; i++){ const b = document.createElement('button'); b.type = 'button'; b.textContent = i; b.onclick = () => { stop(); set(45*i); }; posBox.appendChild(b); }
+function draw(){
+  const P = pos(phi), V = kin(P);
+  let s = bg;
+  s += `<polygon points="${[D, P.C, P.E].map(p => Y(p).map(v => v.toFixed(2)).join(',')).join(' ')}" fill="${C.s3}" fill-opacity=".12" stroke="none"/>`;
+  s += ln(D, P.C, C.s3, 3) + ln(D, P.E, C.s3, 3) + ln(P.C, P.E, C.s3, .8, '3 2');
+  s += ln(P.B, P.C, C.s2, 3) + ln(P.E, P.F, C.s4, 3) + ln(A, P.B, C.s1, 3.4);
+  { const f = Y(P.F); s += `<rect x="${(f[0]-5).toFixed(2)}" y="${(f[1]-8).toFixed(2)}" width="10" height="16" fill="#fff" stroke="${C.s5}" stroke-width="2"/>`; }
+  s += dot(A, 2.2, '#fff') + dot(D, 2.2, '#fff') + dot(P.C, 2.2, '#fff') + dot(P.E, 2.2, '#fff') + dot(P.F, 2.2, '#fff');
+  s += dot(P.B, 6, C.s1, '#fff');
+  s += tx(A, 'A', 0, -10) + tx(D, 'D', -11, -4) + tx(P.B, 'B', 11, -9, 10, C.s1) + tx(P.C, 'C', 10, -6) + tx(P.E, 'E', -10, 0) + tx(P.F, 'F', 13, 0);
+  mech.innerHTML = s;
+  // velocity plan, plan-mm = V / mu_v
+  const m = v => [v[0]/K.MUV, v[1]/K.MUV], p = [0, 0], b = m(V.VB), c = m(V.VC), e = m(V.VE), f = m(V.VF);
+  let q = defs + `<polygon points="${[p, c, e].map(t => Y(t).map(v => v.toFixed(2)).join(',')).join(' ')}" fill="${C.s3}" fill-opacity=".15" stroke="#999" stroke-width=".7" stroke-dasharray="3 2"/>`;
+  const vec = (a, z, col, w, dash) => Math.hypot(z[0]-a[0], z[1]-a[1]) > 2.5 ? ln(a, z, C[col], w, dash, col) : '';
+  q += vec(b, c, 's2', 1.6) + vec(e, f, 's4', 1.6) + vec(p, b, 's1', 2.4) + vec(p, c, 's3', 2.4) + vec(p, e, 's3', 2.4) + vec(p, f, 's5', 2.4);
+  q += dot(p, 2, '#000') + tx(p, 'p', -8, 6);
+  [[b, 'b'], [c, 'c'], [e, 'e'], [f, 'f']].forEach(([z, n]) => { const L = Math.hypot(z[0], z[1]) || 1; q += tx(z, n, z[0]/L*8, -z[1]/L*8, 10); });
+  plan.innerHTML = q;
+  // numbers
+  const vl = v => Math.hypot(v[0], v[1]), pc = vl(c), pe = vl(e);
+  let ang = '—', rat = '—';
+  if (pc > 0.5){ rat = nf(pe/pc, 3); let a = Math.abs((Math.atan2(e[1], e[0])-Math.atan2(c[1], c[0]))/R); if (a > 180) a = 360-a; ang = nf(a, 1)+'°'; }
+  const row = (k, mm, v) => `<tr><th scope="row">${k}</th><td>${mm}</td><td>${v}</td></tr>`;
+  ex('rotTab').innerHTML = '<tr><th></th><th>պլանում, մմ</th><th>իրական</th></tr>'
+    + row('V<sub>B</sub>', nf(vl(b), 1), nf(vl(V.VB), 3)+' մ/վ') + row('V<sub>C</sub>', nf(pc, 1), nf(vl(V.VC), 3)+' մ/վ')
+    + row('V<sub>E</sub>', nf(pe, 1), nf(vl(V.VE), 3)+' մ/վ') + row('V<sub>F</sub>', nf(vl(f), 1), nf(vl(V.VF), 3)+' մ/վ '+(V.VF[1] < -1e-6 ? '↓' : V.VF[1] > 1e-6 ? '↑' : ''))
+    + row('ω<sub>3</sub>', '', nf(Math.abs(V.w3), 2)+' վ⁻¹') + row('pe / pc', rat, 'պետք է լինի 1,111')
+    + row('∠cpe', ang, 'պետք է լինի 50°');
+  ex('rotPhiTxt').textContent = nf(phi, 1).replace(',0', '')+'°';
+  ex('rotPhi').value = phi;
+  posBox.querySelectorAll('button').forEach((bt, i) => bt.classList.toggle('on', Math.abs(phi-45*i) < 0.6));
+}
+function set(f){ phi = ((f % 360)+360) % 360; draw(); }
+function stop(){ playing = false; ex('rotPlay').textContent = '▶ Պտտել'; }
+function tick(t){ if (!playing) return; if (last) set(phi + (t-last)*0.045); last = t; requestAnimationFrame(tick); }
+ex('rotPlay').onclick = () => { if (playing) stop(); else { playing = true; last = 0; ex('rotPlay').textContent = '⏸ Կանգնեցնել'; requestAnimationFrame(tick); } };
+ex('rotPhi').oninput = ev => { stop(); set(+ev.target.value); };
+let drag = false;
+function pt(ev){ const s = mech.createSVGPoint(); s.x = ev.clientX; s.y = ev.clientY; const p = s.matrixTransform(mech.getScreenCTM().inverse()); return [p.x, -p.y]; }
+function toPhi(ev){ const p = pt(ev); set(K.TH0 - Math.atan2(p[1]-A[1], p[0]-A[0])/R); }
+mech.addEventListener('pointerdown', ev => { drag = true; stop(); mech.setPointerCapture(ev.pointerId); mech.classList.add('hold'); toPhi(ev); ev.preventDefault(); });
+mech.addEventListener('pointermove', ev => { if (drag) toPhi(ev); });
+const up = () => { drag = false; mech.classList.remove('hold'); };
+mech.addEventListener('pointerup', up); mech.addEventListener('pointercancel', up);
+set(45*2);
+})();
+</script>
 
 </div>
 </body>
