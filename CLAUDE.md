@@ -30,6 +30,7 @@ All user-facing text is in **Armenian**; keep it Armenian.
 | `kursayin ashxatanq/Variant1/` | Կուրսային աշխատանք (ՄՄՏ), variant 1; has its own `CLAUDE.md` with build steps | https://areg06.github.io/UNI/kursayin%20ashxatanq/Variant1/ |
 | `nyutagitutyun/` | Նյութագիտություն: lectures 1–7 and the midterm-1 study platform | https://areg06.github.io/UNI/nyutagitutyun/ |
 | `gazodinamika/` | Գազադինամիկա: Armenian translation of the textbook (`translation/`) and the midterm-1 study platform (built by `midterm1/build.py`) | https://areg06.github.io/UNI/gazodinamika/ |
+| `jermatexnika/` | Ջերմատեխնիկա: practical work, ideal-gas cycle calculation (variant 10: p=const, dq=0, v=const, T=const); constants cp=1, cv=0.71, R=287, k=1.4 | https://areg06.github.io/UNI/jermatexnika/ |
 
 ## Deliberately not in git
 
