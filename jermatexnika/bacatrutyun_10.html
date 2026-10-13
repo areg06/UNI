@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Բացատրություն, տարբերակ 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400..700&display=swap">
+<style>
+:root{--bg:#f6f7f7;--card:#fff;--fg:#1b2127;--muted:#5d6870;--line:#dde2e4;--accent:#2a4c9c;--hot:#c0462c;--cold:#2a7bb0;--ok:#2d7a4a;--soft:#eef2fa}
+@media (prefers-color-scheme:dark){:root{--bg:#121619;--card:#1a2025;--fg:#e6eaec;--muted:#98a4ac;--line:#2c363c;--accent:#8fa9f2;--hot:#f08a6c;--cold:#6cb8e8;--ok:#7cc896;--soft:#1f2836}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "Noto Sans Armenian",system-ui,sans-serif;padding:40px 16px}
+main{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1{font-size:1.7rem;margin:0;line-height:1.25}
+h2{font-size:1.25rem;margin:0 0 8px;color:var(--accent)}
+h3{font-size:1.05rem;margin:18px 0 6px}
+p{margin:6px 0}
+p.sub{margin:4px 0 0;color:var(--muted)}
+.back{color:var(--muted);font-size:.95rem}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.f{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.05rem;background:var(--soft);border-radius:8px;padding:8px 12px;margin:6px 0;overflow-x:auto;white-space:nowrap}
+.r{font-weight:700;color:var(--accent)}
+.note{color:var(--muted);font-size:.93rem}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;min-width:460px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:center}
+th{background:var(--soft)}
+td.n{font-weight:700}
+.pos{color:var(--hot)} .neg{color:var(--cold)}
+.given{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.given div{background:var(--soft);border-radius:8px;padding:8px 12px;text-align:center}
+.given b{display:block;font-size:1.1rem}
+.pics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pics img{width:100%;border-radius:8px;border:1px solid var(--line)}
+@media (max-width:560px){.pics{grid-template-columns:1fr}}
+svg{width:100%;height:auto;max-width:560px;display:block;margin:0 auto}
+svg text{fill:var(--fg);font-family:"Noto Sans Armenian",sans-serif}
+.ax{stroke:var(--fg);stroke-width:1.5;fill:none}
+.gr{stroke:var(--line);stroke-width:1}
+.cy{stroke:var(--accent);stroke-width:2.5;fill:none}
+.pt{fill:var(--card);stroke:var(--accent);stroke-width:2}
+.lbl{font-size:13px;fill:var(--muted)}
+ul{margin:6px 0;padding-left:22px}
+li{margin:3px 0}
+.check{border-left:4px solid var(--ok)}
+/* ---- copybook (as in kursayin) ---- */
+:root{--f-math:"STIX Two Text","Noto Sans Armenian","Times New Roman",serif}
+.nav{display:flex;flex-wrap:wrap;gap:8px}
+.nav a{border:1px solid var(--line);border-radius:999px;padding:4px 14px;color:var(--accent);text-decoration:none;background:var(--card);font-size:.95rem}
+.nbook{display:grid;gap:22px}
+.npage{position:relative;background-color:#FBFAF3;background-image:linear-gradient(#C9CCE6 1px,transparent 1px),linear-gradient(90deg,#C9CCE6 1px,transparent 1px);background-size:20px 20px;background-position:-1px -1px;
+  color:#22388A;font-family:var(--f-math);font-size:17px;line-height:1.5;padding:46px 30px 34px 62px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 6px 18px rgba(0,0,0,.08);border-radius:2px 6px 6px 2px;overflow-x:auto}
+.npage::before{content:"";position:absolute;top:0;bottom:0;left:46px;width:1.5px;background:#E07B7B}
+.npno{position:absolute;top:12px;left:12px;width:30px;height:30px;border:1.5px solid currentColor;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600}
+.npage sub,.npage sup{font-size:.68em}
+.nl{padding:4px 0;min-height:40px;line-height:2.05;white-space:nowrap}
+.nl.ind{padding-left:1.6em}
+.nnum{font-weight:700;font-size:1.15rem}
+.nr{font-weight:700;color:#14246B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.nf{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .1em}
+.nf>span{padding:0 .2em}
+.nf>span:last-child{border-top:1.2px solid currentColor}
+.nhead{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.nhead svg{width:250px;max-width:100%;margin:0}
+.ngiven{border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;padding:4px 16px 8px;line-height:2.1;white-space:nowrap}
+.npencil{color:#4a4d55}
+.ntbl{border-collapse:collapse;margin:10px 0;font-size:.95rem;background:rgba(251,250,243,.7);min-width:0;width:auto}
+.ntbl th,.ntbl td{border:1.3px solid #6b6e78;color:#4a4d55;padding:3px 12px;text-align:center;white-space:nowrap;font-weight:400;background:none}
+.ntext{font-family:"Noto Sans Armenian",sans-serif;font-size:.95rem;margin:10px 0;white-space:normal}
+.nnote{font-family:"Noto Sans Armenian",sans-serif;font-size:.8rem;margin:10px 0 0;opacity:.85;white-space:normal}
+.npage svg text{fill:#4a4d55;font-family:var(--f-math)}
+.sk{stroke:#5a5d66;stroke-width:1.6;fill:none}
+@media (max-width:600px){.npage{padding:44px 14px 24px 40px;font-size:15px}.nl{white-space:normal;line-height:1.9}.npage::before{left:30px}.npno{left:6px}}
+a.card{display:block;padding:16px 20px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:inherit;text-decoration:none}a.card:hover{border-color:var(--accent)}.card b{display:block;color:var(--accent);font-size:1.1rem}.card span{color:var(--muted);font-size:.95rem}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="./">← Ջերմատեխնիկա</a>
+<header>
+  <h1>Ցիկլի հաշվարկ · տարբերակ 10 · բացատրություն</h1>
+  <p class="sub">Ինչ և ինչու է արվում յուրաքանչյուր քայլում</p>
+</header>
+<nav class="nav"><a href="cikl_10.html">← Լուծումը (տետրում)</a></nav>
+
+<section id="cond">
+  <h2>Խնդրի պայմանը</h2>
+  <p>Որոշել ցիկլի բնութագրական կետերում գազի վիճակի պարամետրերը (p, v, t, T, u, i), իսկ առանձին պրոցեսներում՝ ներքին էներգիայի և էնթալպիայի փոփոխությունները, ջերմությունը և աշխատանքը։</p>
+  <div class="given">
+    <div>p₁<b>2,0 ՄՊա</b></div>
+    <div>t₁<b>200 °C</b></div>
+    <div>t₂<b>350 °C</b></div>
+    <div>v₄<b>0,12 մ³/կգ</b></div>
+  </div>
+  <h3>Ցիկլի պրոցեսները (սխեմա 10)</h3>
+  <ul>
+    <li><b>1–2</b>՝ իզոբար (p = const), ընդարձակում</li>
+    <li><b>2–3</b>՝ ադիաբատ (dq = 0), ընդարձակում</li>
+    <li><b>3–4</b>՝ իզոխոր (v = const), սառեցում</li>
+    <li><b>4–1</b>՝ իզոթերմ (T = const), սեղմում</li>
+  </ul>
+  <h3>Հաստատուններ (օդի համար)</h3>
+  <div class="f">c<sub>p</sub> = 1 կՋ/(կգ·Կ), &nbsp; c<sub>v</sub> = 0,71 կՋ/(կգ·Կ), &nbsp; R = 287 Ջ/(կգ·Կ), &nbsp; k = 1,4, &nbsp; T = t + 273</div>
+  <div class="pics">
+    <img src="xndir10_sxema.jpg" alt="Ցիկլի սխեման, տարբերակ 10">
+    <img src="axyusak_1_4.jpg" alt="Աղյուսակ 1.4՝ տարբերակների տվյալները">
+  </div>
+</section>
+
+<section>
+  <h2>p–v դիագրամ (մասշտաբով)</h2>
+  <svg viewBox="0 0 500 340" role="img" aria-label="Ցիկլի p–v դիագրամը">
+    <line class="gr" x1="86.7" y1="30" x2="86.7" y2="300"/><line class="gr" x1="193.3" y1="30" x2="193.3" y2="300"/><line class="gr" x1="300" y1="30" x2="300" y2="300"/><line class="gr" x1="406.7" y1="30" x2="406.7" y2="300"/>
+    <line class="gr" x1="60" y1="278.4" x2="470" y2="278.4"/><line class="gr" x1="60" y1="235.2" x2="470" y2="235.2"/><line class="gr" x1="60" y1="192" x2="470" y2="192"/><line class="gr" x1="60" y1="148.8" x2="470" y2="148.8"/><line class="gr" x1="60" y1="105.6" x2="470" y2="105.6"/><line class="gr" x1="60" y1="62.4" x2="470" y2="62.4"/>
+    <path class="ax" d="M60,20 L60,300 L480,300"/>
+    <path class="ax" d="M55,30 L60,20 L65,30 M470,295 L480,300 L470,305"/>
+    <text x="68" y="24" font-size="15">p, ՄՊա</text><text x="455" y="325" font-size="15">v, մ³/կգ</text>
+    <text class="lbl" x="86.7" y="318" text-anchor="middle">0,06</text><text class="lbl" x="193.3" y="318" text-anchor="middle">0,08</text><text class="lbl" x="300" y="318" text-anchor="middle">0,10</text><text class="lbl" x="406.7" y="318" text-anchor="middle">0,12</text>
+    <text class="lbl" x="52" y="282" text-anchor="end">1,0</text><text class="lbl" x="52" y="239" text-anchor="end">1,2</text><text class="lbl" x="52" y="196" text-anchor="end">1,4</text><text class="lbl" x="52" y="153" text-anchor="end">1,6</text><text class="lbl" x="52" y="110" text-anchor="end">1,8</text><text class="lbl" x="52" y="66" text-anchor="end">2,0</text>
+    <path class="cy" d="M128.7,62.4 L243.5,62.4"/>
+    <path class="cy" d="M243.5,62.4 L248.9,69.2 L254.3,75.8 L259.8,82.3 L265.2,88.6 L270.7,94.7 L276.1,100.6 L281.5,106.5 L287.0,112.1 L292.4,117.7 L297.9,123.0 L303.3,128.3 L308.7,133.4 L314.2,138.4 L319.6,143.3 L325.1,148.1 L330.5,152.8 L335.9,157.3 L341.4,161.8 L346.8,166.2 L352.3,170.4 L357.7,174.6 L363.1,178.7 L368.6,182.7 L374.0,186.6 L379.5,190.4 L384.9,194.1 L390.3,197.8 L395.8,201.4 L401.2,204.9 L406.7,208.3"/>
+    <path class="cy" d="M406.7,208.3 L406.7,250"/>
+    <path class="cy" d="M128.7,62.4 L137.9,73.2 L147.2,83.4 L156.5,93.2 L165.7,102.5 L175.0,111.4 L184.3,119.9 L193.5,128.0 L202.8,135.8 L212.1,143.3 L221.3,150.4 L230.6,157.3 L239.9,163.9 L249.1,170.3 L258.4,176.4 L267.7,182.3 L276.9,187.9 L286.2,193.4 L295.5,198.7 L304.7,203.8 L314.0,208.7 L323.3,213.4 L332.5,218.0 L341.8,222.5 L351.1,226.8 L360.3,231.0 L369.6,235.0 L378.9,239.0 L388.1,242.8 L397.4,246.5 L406.7,250.0"/>
+    <circle class="pt" cx="128.7" cy="62.4" r="5"/><circle class="pt" cx="243.5" cy="62.4" r="5"/><circle class="pt" cx="406.7" cy="208.3" r="5"/><circle class="pt" cx="406.7" cy="250" r="5"/>
+    <text x="120" y="50" font-size="16" font-weight="700">1</text><text x="240" y="50" font-size="16" font-weight="700">2</text><text x="415" y="206" font-size="16" font-weight="700">3</text><text x="415" y="262" font-size="16" font-weight="700">4</text>
+    <text class="lbl" x="186" y="54" text-anchor="middle">p = const</text>
+    <text class="lbl" x="335" y="122">dq = 0</text>
+    <text class="lbl" x="418" y="234">v = const</text>
+    <text class="lbl" x="196" y="182">T = const</text>
+  </svg>
+  <p class="note">Սլաքների ուղղությունը՝ 1 → 2 → 3 → 4 → 1 (ժամացույցի սլաքի ուղղությամբ, ուստի ցիկլի աշխատանքը դրական է՝ ուղիղ ցիկլ)։ Իզոթերմը (4–1) ավելի թեք է, քան իզոբարը, բայց ավելի մեղմ, քան ադիաբատը։</p>
+</section>
+
+<section>
+  <h2>1. Կետերի պարամետրերի որոշումը</h2>
+
+  <h3>Կետ 1 (տրված են p₁, t₁)</h3>
+  <div class="f">T₁ = t₁ + 273 = 200 + 273 = <span class="r">473 Կ</span></div>
+  <div class="f">v₁ = R·T₁ / p₁ = 287·473 / (2,0·10⁶) = 0,0679 ≈ <span class="r">0,068 մ³/կգ</span></div>
+  <div class="f">u₁ = c<sub>v</sub>·t₁ = 0,71·200 = <span class="r">142 կՋ/կգ</span>, &nbsp; i₁ = c<sub>p</sub>·t₁ = 1·200 = <span class="r">200 կՋ/կգ</span></div>
+
+  <h3>Կետ 2 (1–2 իզոբար ⇒ p₂ = p₁, տրված է t₂)</h3>
+  <div class="f">p₂ = p₁ = <span class="r">2,0 ՄՊա</span>, &nbsp; T₂ = 350 + 273 = <span class="r">623 Կ</span></div>
+  <div class="f">v₂ = R·T₂ / p₂ = 287·623 / (2,0·10⁶) = 0,0894 ≈ <span class="r">0,089 մ³/կգ</span></div>
+  <p class="note">Ստուգում իզոբարի օրենքով՝ v₂/v₁ = T₂/T₁ = 623/473 = 1,317 ⇒ v₂ = 0,068·1,317 = 0,089 ✓</p>
+  <div class="f">u₂ = 0,71·350 = <span class="r">248,5 կՋ/կգ</span>, &nbsp; i₂ = 1·350 = <span class="r">350 կՋ/կգ</span></div>
+
+  <h3>Կետ 4 (տրված է v₄, իսկ 4–1 իզոթերմ ⇒ T₄ = T₁)</h3>
+  <p>3-րդ կետը չի կարելի գտնել առանց 4-րդի ծավալի, ուստի նախ հաշվում ենք 4-րդ կետը։</p>
+  <div class="f">T₄ = T₁ = <span class="r">473 Կ</span> (t₄ = 200 °C)</div>
+  <div class="f">p₄ = R·T₄ / v₄ = 287·473 / 0,12 = 1,131·10⁶ Պա = <span class="r">1,13 ՄՊա</span></div>
+  <p class="note">Ստուգում իզոթերմի օրենքով՝ p₁v₁ = p₄v₄ ⇒ p₄ = 2,0·0,068/0,12 = 1,13 ✓</p>
+  <div class="f">u₄ = u₁ = <span class="r">142 կՋ/կգ</span>, &nbsp; i₄ = i₁ = <span class="r">200 կՋ/կգ</span></div>
+
+  <h3>Կետ 3 (3–4 իզոխոր ⇒ v₃ = v₄, իսկ 2–3 ադիաբատ)</h3>
+  <div class="f">v₃ = v₄ = <span class="r">0,12 մ³/կգ</span></div>
+  <div class="f">T₂v₂<sup>k−1</sup> = T₃v₃<sup>k−1</sup> ⇒ T₃ = T₂·(v₂/v₃)<sup>k−1</sup> = 623·(0,0894/0,12)<sup>0,4</sup> = 623·0,889 = <span class="r">553,8 Կ</span> &nbsp;⇒&nbsp; t₃ = <span class="r">280,8 °C</span></div>
+  <div class="f">p₃ = R·T₃ / v₃ = 287·553,8 / 0,12 = 1,32·10⁶ Պա = <span class="r">1,32 ՄՊա</span></div>
+  <p class="note">Ստուգում p-ի ադիաբատի բանաձևով՝ p₃ = p₂·(v₂/v₃)<sup>k</sup> = 2,0·(0,745)<sup>1,4</sup> = 2,0·0,662 = 1,32 ՄՊա ✓</p>
+  <div class="f">u₃ = 0,71·280,8 = <span class="r">199,4 կՋ/կգ</span>, &nbsp; i₃ = 1·280,8 = <span class="r">280,8 կՋ/կգ</span></div>
+  <p class="note">Տրամաբանական ստուգում՝ 3–4 իզոխորում գազը սառչում է 554 Կ-ից 473 Կ, ուստի ճնշումն էլ պետք է ընկնի՝ 1,32 → 1,13 ՄՊա ✓ (կետ 4-ը դիագրամում 3-ից ներքև է)։</p>
+
+  <h3>Կետերի աղյուսակ</h3>
+  <div class="tw"><table>
+    <tr><th>N</th><th>p, ՄՊա</th><th>v, մ³/կգ</th><th>t, °C</th><th>T, Կ</th><th>u, կՋ/կգ</th><th>i, կՋ/կգ</th></tr>
+    <tr><td class="n">1</td><td>2,0</td><td>0,068</td><td>200</td><td>473</td><td>142</td><td>200</td></tr>
+    <tr><td class="n">2</td><td>2,0</td><td>0,089</td><td>350</td><td>623</td><td>248,5</td><td>350</td></tr>
+    <tr><td class="n">3</td><td>1,32</td><td>0,12</td><td>280,8</td><td>553,8</td><td>199,4</td><td>280,8</td></tr>
+    <tr><td class="n">4</td><td>1,13</td><td>0,12</td><td>200</td><td>473</td><td>142</td><td>200</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <h2>2. Պրոցեսների հաշվարկը</h2>
+  <p>Բոլոր պրոցեսներում՝ Δu = u<sub>վերջ</sub> − u<sub>սկիզբ</sub>, Δi = i<sub>վերջ</sub> − i<sub>սկիզբ</sub>։ Ջերմությունը (q) և աշխատանքը (l) կախված են պրոցեսի տեսակից։ Թերմոդինամիկայի առաջին օրենքը՝ q = Δu + l։</p>
+
+  <h3>1–2 իզոբար (p = const)</h3>
+  <div class="f">Δu = 248,5 − 142 = <span class="r">106,5</span>, &nbsp; Δi = 350 − 200 = <span class="r">150 կՋ/կգ</span></div>
+  <div class="f">q = Δi = c<sub>p</sub>(t₂ − t₁) = <span class="r">150 կՋ/կգ</span></div>
+  <div class="f">l = p(v₂ − v₁) = R(T₂ − T₁) = 0,287·150 = <span class="r">43,1 կՋ/կգ</span></div>
+  <p class="note">Գազը տաքանում և ընդարձակվում է. ստացված ջերմության մի մասը (106,5) մեծացնում է ներքին էներգիան, մնացածը (≈43) ծախսվում է աշխատանքի վրա։</p>
+
+  <h3>2–3 ադիաբատ (dq = 0)</h3>
+  <div class="f">Δu = 199,4 − 248,5 = <span class="r">−49,1</span>, &nbsp; Δi = 280,8 − 350 = <span class="r">−69,2 կՋ/կգ</span></div>
+  <div class="f">q = <span class="r">0</span>, &nbsp; l = −Δu = <span class="r">49,1 կՋ/կգ</span></div>
+  <p class="note">Ջերմափոխանակություն չկա. գազն ընդարձակվելով աշխատանք է կատարում իր ներքին էներգիայի հաշվին, ուստի սառչում է (350 → 281 °C)։</p>
+
+  <h3>3–4 իզոխոր (v = const)</h3>
+  <div class="f">Δu = 142 − 199,4 = <span class="r">−57,4</span>, &nbsp; Δi = 200 − 280,8 = <span class="r">−80,8 կՋ/կգ</span></div>
+  <div class="f">l = <span class="r">0</span> (ծավալը չի փոխվում), &nbsp; q = Δu = <span class="r">−57,4 կՋ/կգ</span></div>
+  <p class="note">Գազը ջերմություն է տալիս շրջապատին (q &lt; 0), սառչում է, ճնշումն ընկնում է։</p>
+
+  <h3>4–1 իզոթերմ (T = const)</h3>
+  <div class="f">Δu = <span class="r">0</span>, &nbsp; Δi = <span class="r">0</span> (ջերմաստիճանը չի փոխվում)</div>
+  <div class="f">q = l = R·T·ln(v₁/v₄) = 0,287·473·ln(0,0679/0,12) = 135,75·(−0,5695) = <span class="r">−77,3 կՋ/կգ</span></div>
+  <p class="note">Սեղմման ժամանակ գազի վրա կատարվում է աշխատանք (l &lt; 0), և այդ ամբողջ էներգիան ջերմության ձևով հեռացվում է (q &lt; 0), որպեսզի ջերմաստիճանը մնա հաստատուն։</p>
+
+  <h3>Պրոցեսների աղյուսակ (կՋ/կգ)</h3>
+  <div class="tw"><table>
+    <tr><th>N</th><th>Δu</th><th>Δi</th><th>q</th><th>l</th></tr>
+    <tr><td class="n">1–2</td><td class="pos">106,5</td><td class="pos">150</td><td class="pos">150</td><td class="pos">43,1</td></tr>
+    <tr><td class="n">2–3</td><td class="neg">−49,1</td><td class="neg">−69,2</td><td>0</td><td class="pos">49,1</td></tr>
+    <tr><td class="n">3–4</td><td class="neg">−57,4</td><td class="neg">−80,8</td><td class="neg">−57,4</td><td>0</td></tr>
+    <tr><td class="n">4–1</td><td>0</td><td>0</td><td class="neg">−77,3</td><td class="neg">−77,3</td></tr>
+    <tr><th>Σ</th><th>0</th><th>0</th><th>15,3</th><th>14,9</th></tr>
+  </table></div>
+</section>
+
+<section class="check">
+  <h2>3. Ստուգում</h2>
+  <ul>
+    <li><b>ΣΔu = 0 և ΣΔi = 0</b>՝ 106,5 − 49,1 − 57,4 + 0 = 0 ✓. Ներքին էներգիան և էնթալպիան վիճակի ֆունկցիաներ են, իսկ ցիկլում գազը վերադառնում է սկզբնական վիճակին։</li>
+    <li><b>Σq ≈ Σl</b>՝ 15,3 ≈ 14,9 կՋ/կգ ✓. Ցիկլի համար q<sub>ց</sub> = l<sub>ց</sub>։ Փոքր տարբերությունը (0,45) կլորացված հաստատուններից է՝ c<sub>p</sub> − c<sub>v</sub> = 0,29, իսկ R = 0,287 (Մայերի հավասարում՝ c<sub>p</sub> − c<sub>v</sub> = R)։ Այն ամբողջությամբ գալիս է 1–2 իզոբարից՝ 150 − 43,05 = 106,95 ≈ 106,5։</li>
+  </ul>
+  <h3>Լրացուցիչ՝ ցիկլի ՕԳԳ</h3>
+  <div class="f">q₁ = 150 կՋ/կգ (հաղորդված ջերմություն, միայն 1–2), &nbsp; |q₂| = 57,4 + 77,3 = 134,7 կՋ/կգ</div>
+  <div class="f">η<sub>t</sub> = l<sub>ց</sub> / q₁ = (q₁ − |q₂|) / q₁ ≈ 15 / 150 ≈ <span class="r">0,10 (10 %)</span></div>
+</section>
+
+<section>
+  <h2>Ինչպես լուծել նման խնդիրները</h2>
+  <ul>
+    <li>Սկզբում գրել, թե որ պրոցեսը որ կետերի միջև է, և ինչ է դրանից հետևում. իզոբար՝ p հավասար, իզոխոր՝ v հավասար, իզոթերմ՝ T հավասար։</li>
+    <li>Գտնել այն կետը, որտեղ երկու պարամետր հայտնի է, և pv = RT-ով գտնել երրորդը։ Հետո շարժվել ցիկլով. երբեմն ճիշտ է գնալ «հակառակ» կողմով (այստեղ՝ 1 → 4 → 3)։</li>
+    <li>Ադիաբատի համար՝ pv<sup>k</sup> = const, Tv<sup>k−1</sup> = const։</li>
+    <li>Բանաձևերում միշտ <b>T-ն Կելվինով</b> (pv = RT, RT·ln…), իսկ u = c<sub>v</sub>t և i = c<sub>p</sub>t բանաձևերում՝ t-ն °C-ով։</li>
+    <li>Վերջում ստուգել ΣΔu = 0 և Σq ≈ Σl։</li>
+  </ul>
+</section>
+
+<a class="card" href="cikl_10.html"><b>← Լուծումը</b><span>Ինչ գրել տետրում՝ լրացված էջեր</span></a>
+</main>
+</body>
+</html>
