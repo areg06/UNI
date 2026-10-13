@@ -44,6 +44,34 @@ svg text{fill:var(--fg);font-family:"Noto Sans Armenian",sans-serif}
 ul{margin:6px 0;padding-left:22px}
 li{margin:3px 0}
 .check{border-left:4px solid var(--ok)}
+/* ---- copybook (as in kursayin) ---- */
+:root{--f-math:"STIX Two Text","Noto Sans Armenian","Times New Roman",serif}
+.nav{display:flex;flex-wrap:wrap;gap:8px}
+.nav a{border:1px solid var(--line);border-radius:999px;padding:4px 14px;color:var(--accent);text-decoration:none;background:var(--card);font-size:.95rem}
+.nbook{display:grid;gap:22px}
+.npage{position:relative;background-color:#FBFAF3;background-image:linear-gradient(#C9CCE6 1px,transparent 1px),linear-gradient(90deg,#C9CCE6 1px,transparent 1px);background-size:20px 20px;background-position:-1px -1px;
+  color:#22388A;font-family:var(--f-math);font-size:17px;line-height:1.5;padding:46px 30px 34px 62px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 6px 18px rgba(0,0,0,.08);border-radius:2px 6px 6px 2px;overflow-x:auto}
+.npage::before{content:"";position:absolute;top:0;bottom:0;left:46px;width:1.5px;background:#E07B7B}
+.npno{position:absolute;top:12px;left:12px;width:30px;height:30px;border:1.5px solid currentColor;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600}
+.npage sub,.npage sup{font-size:.68em}
+.nl{padding:4px 0;min-height:40px;line-height:2.05;white-space:nowrap}
+.nl.ind{padding-left:1.6em}
+.nnum{font-weight:700;font-size:1.15rem}
+.nr{font-weight:700;color:#14246B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.nf{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .1em}
+.nf>span{padding:0 .2em}
+.nf>span:last-child{border-top:1.2px solid currentColor}
+.nhead{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.nhead svg{width:250px;max-width:100%;margin:0}
+.ngiven{border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;padding:4px 16px 8px;line-height:2.1;white-space:nowrap}
+.npencil{color:#4a4d55}
+.ntbl{border-collapse:collapse;margin:10px 0;font-size:.95rem;background:rgba(251,250,243,.7);min-width:0;width:auto}
+.ntbl th,.ntbl td{border:1.3px solid #6b6e78;color:#4a4d55;padding:3px 12px;text-align:center;white-space:nowrap;font-weight:400;background:none}
+.ntext{font-family:"Noto Sans Armenian",sans-serif;font-size:.95rem;margin:10px 0;white-space:normal}
+.nnote{font-family:"Noto Sans Armenian",sans-serif;font-size:.8rem;margin:10px 0 0;opacity:.85;white-space:normal}
+.npage svg text{fill:#4a4d55;font-family:var(--f-math)}
+.sk{stroke:#5a5d66;stroke-width:1.6;fill:none}
+@media (max-width:600px){.npage{padding:44px 14px 24px 40px;font-size:15px}.nl{white-space:normal;line-height:1.9}.npage::before{left:30px}.npno{left:6px}}
 </style>
 </head>
 <body>
@@ -53,8 +81,9 @@ li{margin:3px 0}
   <h1>Թերմոդինամիկական ցիկլի հաշվարկ · տարբերակ 10</h1>
   <p class="sub">Աշխատող մարմինը՝ օդ (իդեալական գազ), m = 1 կգ</p>
 </header>
+<nav class="nav"><a href="#cond">Պայմանը</a><a href="#copybook">Տետրում գրել</a><a href="#explain">Բացատրություն</a></nav>
 
-<section>
+<section id="cond">
   <h2>Խնդրի պայմանը</h2>
   <p>Որոշել ցիկլի բնութագրական կետերում գազի վիճակի պարամետրերը (p, v, t, T, u, i), իսկ առանձին պրոցեսներում՝ ներքին էներգիայի և էնթալպիայի փոփոխությունները, ջերմությունը և աշխատանքը։</p>
   <div class="given">
@@ -76,6 +105,85 @@ li{margin:3px 0}
     <img src="xndir10_sxema.jpg" alt="Ցիկլի սխեման, տարբերակ 10">
     <img src="axyusak_1_4.jpg" alt="Աղյուսակ 1.4՝ տարբերակների տվյալները">
   </div>
+</section>
+
+<section id="copybook" style="background:none;border:0;padding:0">
+  <h2>Տետրում գրել</h2>
+  <p>Ձեր տետրի պես լրացված էջեր (ինչպես 20-րդ խնդրում)՝ նույն հերթականությամբ և նշանակումներով։ Ընդգծված թվերը արդյունքներն են։ Ինչու է այդպես հաշվվում՝ տե՛ս ներքևում՝ <a href="#explain">Բացատրություն</a>։</p>
+  <div class="nbook"><article class="npage" aria-label="Տետրի էջ 1"><span class="npno">1</span>
+<div class="nhead"><div><span class="nnum">10)</span><svg viewBox="40 20 450 300" aria-label="Ցիկլի էսքիզ">
+<path class="sk" d="M60,20 L60,300 L480,300 M55,30 L60,20 L65,30 M470,295 L480,300 L470,305"/>
+<path class="sk" d="M128.7,62.4 L243.5,62.4"/>
+<path class="sk" d="M243.5,62.4 C300,140 350,180 406.7,208.3"/>
+<path class="sk" d="M406.7,208.3 L406.7,250"/>
+<path class="sk" d="M128.7,62.4 C200,150 300,215 406.7,250"/>
+<path class="sk" d="M330,152 L380,120"/><path class="sk" d="M270,195 L215,235"/>
+<g font-size="20"><text x="72" y="36">p</text><text x="462" y="320">v</text>
+<text x="118" y="52">1</text><text x="240" y="52">2</text><text x="415" y="206">3</text><text x="415" y="266">4</text>
+<text x="176" y="54">p</text><text x="383" y="118">dq=0</text><text x="415" y="236">v</text><text x="160" y="255">T=const</text></g>
+</svg></div>
+<div class="ngiven">p₁ = 2,0 ՄՊա<br>t₁ = 200 °C<br>t₂ = 350 °C<br>v₄ = 0,12 մ³/կգ</div></div>
+<div class="nl ">c<sub>p</sub> = 1 <span class="nf"><span>կՋ</span><span>կգ·Կ</span></span> &nbsp;&nbsp; c<sub>v</sub> = 0,71 <span class="nf"><span>կՋ</span><span>կգ·Կ</span></span> &nbsp;&nbsp; R = 287 <span class="nf"><span>Ջ</span><span>կգ·Կ</span></span></div>
+<div class="nl ind">k = 1,4</div>
+<table class="ntbl"><tr><th>N</th><th>p</th><th>v</th><th>t</th><th>T</th><th>u</th><th>i</th></tr>
+<tr><td>1</td><td>2,0</td><td>0,068</td><td>200</td><td>473</td><td>142</td><td>200</td></tr>
+<tr><td>2</td><td>2,0</td><td>0,089</td><td>350</td><td>623</td><td>248,5</td><td>350</td></tr>
+<tr><td>3</td><td>1,32</td><td>0,12</td><td>280,8</td><td>553,8</td><td>199,4</td><td>280,8</td></tr>
+<tr><td>4</td><td>1,13</td><td>0,12</td><td>200</td><td>473</td><td>142</td><td>200</td></tr></table>
+<p class="nnote">Ձեր տետրի պես՝ սխեման և աղյուսակները մատիտով, մնացածը՝ գրիչով։ Աղյուսակը լրացրեք վերջում, երբ բոլոր կետերը հաշված են (կարող եք նախապես գծել դատարկ)։</p>
+</article><article class="npage" aria-label="Տետրի էջ 2"><span class="npno">2</span>
+<div class="nl ">T₁ = t₁ + 273 = 200 + 273 = <b class="nr">473 Կ</b></div>
+<div class="nl ">v₁ = <span class="nf"><span>R·T₁</span><span>p₁</span></span> = <span class="nf"><span>287·473</span><span>2,0·10⁶</span></span> = 0,0679 ≈ <b class="nr">0,068 մ³/կգ</b></div>
+<div class="nl ">u₁ = c<sub>v</sub>t₁ = 0,71·200 = <b class="nr">142 կՋ/կգ</b></div>
+<div class="nl ">i₁ = c<sub>p</sub>t₁ = 1·200 = <b class="nr">200 կՋ/կգ</b></div>
+<div class="nl ">p₁ = p₂ = 2,0 ՄՊա</div>
+<div class="nl ">T₂ = t₂ + 273 = 350 + 273 = <b class="nr">623 Կ</b></div>
+<div class="nl ">v₂ = <span class="nf"><span>R·T₂</span><span>p₂</span></span> = <span class="nf"><span>287·623</span><span>2,0·10⁶</span></span> = 0,0894 ≈ <b class="nr">0,089 մ³/կգ</b></div>
+<div class="nl ">u₂ = c<sub>v</sub>t₂ = 0,71·350 = <b class="nr">248,5 կՋ/կգ</b></div>
+<div class="nl ">i₂ = c<sub>p</sub>t₂ = 1·350 = <b class="nr">350 կՋ/կգ</b></div>
+<div class="nl ">T₄ = T₁ = <b class="nr">473 Կ</b> &nbsp; (t₄ = 200 °C)</div>
+<div class="nl ">p₄ = <span class="nf"><span>R·T₄</span><span>v₄</span></span> = <span class="nf"><span>287·473</span><span>0,12</span></span> = 1,13·10⁶ Պա = <b class="nr">1,13 ՄՊա</b></div>
+<div class="nl ">u₄ = u₁ = <b class="nr">142 կՋ/կգ</b></div>
+<div class="nl ">i₄ = i₁ = <b class="nr">200 կՋ/կգ</b></div>
+<div class="nl ">v₃ = v₄ = 0,12 մ³/կգ</div>
+<div class="nl ">T₂v₂<sup>k−1</sup> = T₃v₃<sup>k−1</sup></div>
+<div class="nl ">T₃ = T₂·(<span class="nf"><span>v₂</span><span>v₃</span></span>)<sup>k−1</sup> = 623·(<span class="nf"><span>0,0894</span><span>0,12</span></span>)<sup>0,4</sup> = <b class="nr">553,8 Կ</b></div>
+<div class="nl ">t₃ = T₃ − 273 = 553,8 − 273 = <b class="nr">280,8 °C</b></div>
+<div class="nl ">p₃ = <span class="nf"><span>R·T₃</span><span>v₃</span></span> = <span class="nf"><span>287·553,8</span><span>0,12</span></span> = 1,32·10⁶ Պա = <b class="nr">1,32 ՄՊա</b></div>
+<div class="nl ">u₃ = c<sub>v</sub>t₃ = 0,71·280,8 = <b class="nr">199,4 կՋ/կգ</b></div>
+<div class="nl ">i₃ = c<sub>p</sub>t₃ = 1·280,8 = <b class="nr">280,8 կՋ/կգ</b></div>
+<p class="nnote">Կետերի հերթականությունը՝ 1 → 2 → 4 → 3. 3-րդ կետը գտնելու համար նախ պետք է 4-րդի ծավալը (v₃ = v₄)։ T₃-ի և q₄₋₁-ի բանաձևերում գրեք ավելի ճշգրիտ 0,0894 և 0,0679 (ոչ թե 0,089 և 0,068), որ պատասխանները չշեղվեն։</p>
+</article><article class="npage" aria-label="Տետրի էջ 3"><span class="npno">3</span>
+<p class="ntext" style="color:#22388A">Որոշել ցիկլի առանձին պրոցեսներում ներքին էներգիայի և էնթալպիայի փոփոխությունները, աշխատանքը և ջերմությունը։</p>
+<table class="ntbl"><tr><th>N</th><th>Δu</th><th>Δi</th><th>q</th><th>l</th></tr>
+<tr><td>1–2</td><td>106,5</td><td>150</td><td>150</td><td>43,1</td></tr>
+<tr><td>2–3</td><td>−49,1</td><td>−69,2</td><td>0</td><td>49,1</td></tr>
+<tr><td>3–4</td><td>−57,4</td><td>−80,8</td><td>−57,4</td><td>0</td></tr>
+<tr><td>4–1</td><td>0</td><td>0</td><td>−77,3</td><td>−77,3</td></tr></table>
+<div class="nl "><b>1–2</b> &nbsp;p = const</div>
+<div class="nl ind">Δu = u₂ − u₁ = 248,5 − 142 = <b class="nr">106,5 կՋ/կգ</b></div>
+<div class="nl ind">Δi = i₂ − i₁ = 350 − 200 = <b class="nr">150 կՋ/կգ</b></div>
+<div class="nl ind">q = Δi = <b class="nr">150 կՋ/կգ</b></div>
+<div class="nl ind">l = R(T₂ − T₁) = 0,287·(623 − 473) = <b class="nr">43,1 կՋ/կգ</b></div>
+<div class="nl "><b>2–3</b> &nbsp;dq = 0</div>
+<div class="nl ind">Δu = u₃ − u₂ = 199,4 − 248,5 = <b class="nr">−49,1 կՋ/կգ</b></div>
+<div class="nl ind">Δi = i₃ − i₂ = 280,8 − 350 = <b class="nr">−69,2 կՋ/կգ</b></div>
+<div class="nl ind">q = 0, &nbsp; l = −Δu = <b class="nr">49,1 կՋ/կգ</b></div>
+<div class="nl "><b>3–4</b> &nbsp;v = const</div>
+<div class="nl ind">Δu = u₄ − u₃ = 142 − 199,4 = <b class="nr">−57,4 կՋ/կգ</b></div>
+<div class="nl ind">Δi = i₄ − i₃ = 200 − 280,8 = <b class="nr">−80,8 կՋ/կգ</b></div>
+<div class="nl ind">l = 0, &nbsp; q = Δu = <b class="nr">−57,4 կՋ/կգ</b></div>
+<div class="nl "><b>4–1</b> &nbsp;T = const</div>
+<div class="nl ind">Δu = 0, &nbsp; Δi = 0</div>
+<div class="nl ind">q = l = RT₁·ln<span class="nf"><span>v₁</span><span>v₄</span></span> = 0,287·473·ln<span class="nf"><span>0,0679</span><span>0,12</span></span> = <b class="nr">−77,3 կՋ/կգ</b></div>
+<div class="nl ">Σq = 150 + 0 − 57,4 − 77,3 = 15,3 ≈ Σl = 43,1 + 49,1 + 0 − 77,3 = 14,9 կՋ/կգ</div>
+<p class="nnote">Ձեր տետրի պես կարող եք գրել միայն աղյուսակը և իզոթերմի (4–1) բանաձևը։ Մնացած տողերը ցույց են տալիս, թե որտեղից է ստացվել յուրաքանչյուր թիվ։ Վերջին տողը ստուգումն է. Σq-ն և Σl-ը պետք է մոտավորապես հավասար լինեն։</p>
+</article></div>
+</section>
+
+<section id="explain">
+  <h2>Բացատրություն</h2>
+  <p>Ստորև նույն լուծումն է՝ մանրամասն բացատրությամբ, ստուգումներով և մասշտաբով p–v դիագրամով։</p>
 </section>
 
 <section>
@@ -107,12 +215,12 @@ li{margin:3px 0}
 
   <h3>Կետ 1 (տրված են p₁, t₁)</h3>
   <div class="f">T₁ = t₁ + 273 = 200 + 273 = <span class="r">473 Կ</span></div>
-  <div class="f">v₁ = R·T₁ / p₁ = 287·473 / (2,0·10⁶) = <span class="r">0,068 մ³/կգ</span></div>
+  <div class="f">v₁ = R·T₁ / p₁ = 287·473 / (2,0·10⁶) = 0,0679 ≈ <span class="r">0,068 մ³/կգ</span></div>
   <div class="f">u₁ = c<sub>v</sub>·t₁ = 0,71·200 = <span class="r">142 կՋ/կգ</span>, &nbsp; i₁ = c<sub>p</sub>·t₁ = 1·200 = <span class="r">200 կՋ/կգ</span></div>
 
   <h3>Կետ 2 (1–2 իզոբար ⇒ p₂ = p₁, տրված է t₂)</h3>
   <div class="f">p₂ = p₁ = <span class="r">2,0 ՄՊա</span>, &nbsp; T₂ = 350 + 273 = <span class="r">623 Կ</span></div>
-  <div class="f">v₂ = R·T₂ / p₂ = 287·623 / (2,0·10⁶) = <span class="r">0,089 մ³/կգ</span></div>
+  <div class="f">v₂ = R·T₂ / p₂ = 287·623 / (2,0·10⁶) = 0,0894 ≈ <span class="r">0,089 մ³/կգ</span></div>
   <p class="note">Ստուգում իզոբարի օրենքով՝ v₂/v₁ = T₂/T₁ = 623/473 = 1,317 ⇒ v₂ = 0,068·1,317 = 0,089 ✓</p>
   <div class="f">u₂ = 0,71·350 = <span class="r">248,5 կՋ/կգ</span>, &nbsp; i₂ = 1·350 = <span class="r">350 կՋ/կգ</span></div>
 
@@ -125,9 +233,9 @@ li{margin:3px 0}
 
   <h3>Կետ 3 (3–4 իզոխոր ⇒ v₃ = v₄, իսկ 2–3 ադիաբատ)</h3>
   <div class="f">v₃ = v₄ = <span class="r">0,12 մ³/կգ</span></div>
-  <div class="f">p₂v₂<sup>k</sup> = p₃v₃<sup>k</sup> ⇒ p₃ = p₂·(v₂/v₃)<sup>k</sup> = 2,0·(0,089/0,12)<sup>1,4</sup> = 2,0·0,662 = <span class="r">1,32 ՄՊա</span></div>
-  <div class="f">T₃ = p₃·v₃ / R = 1,32·10⁶·0,12 / 287 = <span class="r">554 Կ</span> &nbsp;⇒&nbsp; t₃ = 554 − 273 ≈ <span class="r">281 °C</span></div>
-  <p class="note">Ստուգում ադիաբատի մյուս բանաձևով՝ T₃ = T₂·(v₂/v₃)<sup>k−1</sup> = 623·(0,745)<sup>0,4</sup> = 623·0,889 = 554 Կ ✓</p>
+  <div class="f">T₂v₂<sup>k−1</sup> = T₃v₃<sup>k−1</sup> ⇒ T₃ = T₂·(v₂/v₃)<sup>k−1</sup> = 623·(0,0894/0,12)<sup>0,4</sup> = 623·0,889 = <span class="r">553,8 Կ</span> &nbsp;⇒&nbsp; t₃ = <span class="r">280,8 °C</span></div>
+  <div class="f">p₃ = R·T₃ / v₃ = 287·553,8 / 0,12 = 1,32·10⁶ Պա = <span class="r">1,32 ՄՊա</span></div>
+  <p class="note">Ստուգում p-ի ադիաբատի բանաձևով՝ p₃ = p₂·(v₂/v₃)<sup>k</sup> = 2,0·(0,745)<sup>1,4</sup> = 2,0·0,662 = 1,32 ՄՊա ✓</p>
   <div class="f">u₃ = 0,71·280,8 = <span class="r">199,4 կՋ/կգ</span>, &nbsp; i₃ = 1·280,8 = <span class="r">280,8 կՋ/կգ</span></div>
   <p class="note">Տրամաբանական ստուգում՝ 3–4 իզոխորում գազը սառչում է 554 Կ-ից 473 Կ, ուստի ճնշումն էլ պետք է ընկնի՝ 1,32 → 1,13 ՄՊա ✓ (կետ 4-ը դիագրամում 3-ից ներքև է)։</p>
 
@@ -136,7 +244,7 @@ li{margin:3px 0}
     <tr><th>N</th><th>p, ՄՊա</th><th>v, մ³/կգ</th><th>t, °C</th><th>T, Կ</th><th>u, կՋ/կգ</th><th>i, կՋ/կգ</th></tr>
     <tr><td class="n">1</td><td>2,0</td><td>0,068</td><td>200</td><td>473</td><td>142</td><td>200</td></tr>
     <tr><td class="n">2</td><td>2,0</td><td>0,089</td><td>350</td><td>623</td><td>248,5</td><td>350</td></tr>
-    <tr><td class="n">3</td><td>1,32</td><td>0,12</td><td>281</td><td>554</td><td>199,4</td><td>280,8</td></tr>
+    <tr><td class="n">3</td><td>1,32</td><td>0,12</td><td>280,8</td><td>553,8</td><td>199,4</td><td>280,8</td></tr>
     <tr><td class="n">4</td><td>1,13</td><td>0,12</td><td>200</td><td>473</td><td>142</td><td>200</td></tr>
   </table></div>
 </section>
@@ -163,7 +271,7 @@ li{margin:3px 0}
 
   <h3>4–1 իզոթերմ (T = const)</h3>
   <div class="f">Δu = <span class="r">0</span>, &nbsp; Δi = <span class="r">0</span> (ջերմաստիճանը չի փոխվում)</div>
-  <div class="f">q = l = R·T·ln(v₁/v₄) = 0,287·473·ln(0,068/0,12) = 135,8·(−0,570) = <span class="r">−77,4 կՋ/կգ</span></div>
+  <div class="f">q = l = R·T·ln(v₁/v₄) = 0,287·473·ln(0,0679/0,12) = 135,75·(−0,5695) = <span class="r">−77,3 կՋ/կգ</span></div>
   <p class="note">Սեղմման ժամանակ գազի վրա կատարվում է աշխատանք (l &lt; 0), և այդ ամբողջ էներգիան ջերմության ձևով հեռացվում է (q &lt; 0), որպեսզի ջերմաստիճանը մնա հաստատուն։</p>
 
   <h3>Պրոցեսների աղյուսակ (կՋ/կգ)</h3>
@@ -172,8 +280,8 @@ li{margin:3px 0}
     <tr><td class="n">1–2</td><td class="pos">106,5</td><td class="pos">150</td><td class="pos">150</td><td class="pos">43,1</td></tr>
     <tr><td class="n">2–3</td><td class="neg">−49,1</td><td class="neg">−69,2</td><td>0</td><td class="pos">49,1</td></tr>
     <tr><td class="n">3–4</td><td class="neg">−57,4</td><td class="neg">−80,8</td><td class="neg">−57,4</td><td>0</td></tr>
-    <tr><td class="n">4–1</td><td>0</td><td>0</td><td class="neg">−77,4</td><td class="neg">−77,4</td></tr>
-    <tr><th>Σ</th><th>0</th><th>0</th><th>15,2</th><th>14,8</th></tr>
+    <tr><td class="n">4–1</td><td>0</td><td>0</td><td class="neg">−77,3</td><td class="neg">−77,3</td></tr>
+    <tr><th>Σ</th><th>0</th><th>0</th><th>15,3</th><th>14,9</th></tr>
   </table></div>
 </section>
 
@@ -181,10 +289,10 @@ li{margin:3px 0}
   <h2>3. Ստուգում</h2>
   <ul>
     <li><b>ΣΔu = 0 և ΣΔi = 0</b>՝ 106,5 − 49,1 − 57,4 + 0 = 0 ✓. Ներքին էներգիան և էնթալպիան վիճակի ֆունկցիաներ են, իսկ ցիկլում գազը վերադառնում է սկզբնական վիճակին։</li>
-    <li><b>Σq ≈ Σl</b>՝ 15,2 ≈ 14,8 կՋ/կգ ✓. Ցիկլի համար q<sub>ց</sub> = l<sub>ց</sub>։ Փոքր տարբերությունը (0,45) կլորացված հաստատուններից է՝ c<sub>p</sub> − c<sub>v</sub> = 0,29, իսկ R = 0,287 (Մայերի հավասարում՝ c<sub>p</sub> − c<sub>v</sub> = R)։ Այն ամբողջությամբ գալիս է 1–2 իզոբարից՝ 150 − 43,05 = 106,95 ≈ 106,5։</li>
+    <li><b>Σq ≈ Σl</b>՝ 15,3 ≈ 14,9 կՋ/կգ ✓. Ցիկլի համար q<sub>ց</sub> = l<sub>ց</sub>։ Փոքր տարբերությունը (0,45) կլորացված հաստատուններից է՝ c<sub>p</sub> − c<sub>v</sub> = 0,29, իսկ R = 0,287 (Մայերի հավասարում՝ c<sub>p</sub> − c<sub>v</sub> = R)։ Այն ամբողջությամբ գալիս է 1–2 իզոբարից՝ 150 − 43,05 = 106,95 ≈ 106,5։</li>
   </ul>
   <h3>Լրացուցիչ՝ ցիկլի ՕԳԳ</h3>
-  <div class="f">q₁ = 150 կՋ/կգ (հաղորդված ջերմություն, միայն 1–2), &nbsp; |q₂| = 57,4 + 77,4 = 134,8 կՋ/կգ</div>
+  <div class="f">q₁ = 150 կՋ/կգ (հաղորդված ջերմություն, միայն 1–2), &nbsp; |q₂| = 57,4 + 77,3 = 134,7 կՋ/կգ</div>
   <div class="f">η<sub>t</sub> = l<sub>ց</sub> / q₁ = (q₁ − |q₂|) / q₁ ≈ 15 / 150 ≈ <span class="r">0,10 (10 %)</span></div>
 </section>
 
