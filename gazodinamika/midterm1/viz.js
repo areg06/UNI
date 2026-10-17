@@ -364,7 +364,7 @@ f(st){
     setT(big, 'ℓ = ' + kJ(L) + ' կՋ/կգ'); big.style.fill = pos ? C.good : C.bad;
     setT(sub, pos ? 'ընդարձակում (dυ > 0)' : 'սեղմում (dυ < 0)');
     setT(fx, mode === 'p' ? 'ℓ = p(υ₂ − υ₁)' : mode === 'T' ? 'ℓ = RT ln(υ₂/υ₁)' : 'ℓ = R(T₁ − T₂)/(k − 1)');
-  }, c);
+  }, c, 2.5);
 }};
 
 /* ---------- 3.4 mean heat capacity ---------- */

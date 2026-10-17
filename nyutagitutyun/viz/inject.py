@@ -18,8 +18,8 @@ hooks = [
      "${s.figs ? `<div class=\"figs\">${s.figs.map(figHTML).join('')}</div>` : ''}${window.vizHTML ? vizHTML(l.id, i) : ''}</section>`).join('')}"),
     ("document.querySelectorAll('[data-zlec]').forEach(a => a.onclick = () => { quizCfg.lec = a.dataset.zlec; quiz = null; });\n}",
      "document.querySelectorAll('[data-zlec]').forEach(a => a.onclick = () => { quizCfg.lec = a.dataset.zlec; quiz = null; });\n  if (window.mountViz) mountViz();\n}")]
-for old, new in hooks:
-    if new not in html:
+for (old, new), mark in zip(hooks, ('vizHTML(l.id, i)', 'mountViz()')):
+    if mark not in html:
         assert html.count(old) == 1, old[:60]
         html = html.replace(old, new)
 open(PAGE, 'w', encoding='utf-8').write(html)

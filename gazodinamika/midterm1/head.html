@@ -282,6 +282,44 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
 .gd-in{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
 .gd-in label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
 .gd-in input[type=number]{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;width:100%}
+
+/* Print: one lecture on A4 (button «Տպել» in the lecture header). Light colors, no navigation or controls. */
+.print-only{display:none}
+@media print{
+  @page{size:A4;margin:14mm 15mm 16mm;@bottom-center{content:counter(page);font-size:9pt;color:#56636C}}
+  :root:not(#_){--bg:#EDF0F0; --surface:#FAFBFB; --sunk:#E3E8E9; --ink:#162027; --muted:#56636C; --line:#CDD5D8;
+    --accent:#2A4C9C; --accent-ink:#FFFFFF; --accent-soft:#DCE4F5; --heat:#B4530F; --heat-soft:#F6E2D2;
+    --good:#2C7A4B; --good-soft:#D9EEDF; --warn:#A86A12; --warn-soft:#F5E8CF; --bad:#B0302A; --bad-soft:#F6DAD8;
+    color-scheme:light}
+  html,body{background:#fff}
+  body{font-size:10.5pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .rail,.mobile-nav,.view-head,.view>.row,.lec-tabs,.toc,.reader-foot,.print-btn,.lb,.vz-ctl,.vz-play,.vz-btn,.vz-tag,.search-hits{display:none!important}
+  .shell{display:block}
+  main{padding:0}
+  .view{max-width:none;gap:0}
+  .print-only{display:block}
+  .reader{gap:12px}
+  .reader-head{padding-bottom:8px;gap:2px}
+  .reader-head .print-only{font-size:9pt;color:#56636C;letter-spacing:.04em}
+  .reader-head h2{font-size:17pt}
+  .sec{gap:6px}
+  .sec h3{font-size:13pt;break-after:avoid;page-break-after:avoid}
+  .prose{max-width:none}
+  .formula{font-size:10.5pt;overflow:visible}
+  .formula.big{font-size:13pt}
+  .key,.formula,figure,table,tr,dt{break-inside:avoid;page-break-inside:avoid}
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .plate{padding:4px;cursor:auto}
+  .plate img{max-height:58mm}
+  figcaption{font-size:8.5pt}
+  .viz{border:1px solid #CDD5D8;padding:6px 8px;gap:4px;margin:4px 0}
+  .vz-stage{overflow:visible;gap:4px}
+  .vz-svg{min-width:0!important;max-height:80mm}
+  .vz-cv{width:auto;max-width:100%;max-height:62mm;margin:0 auto}
+  .vz-row{flex-wrap:nowrap}
+  .vz-out{font-size:9pt}
+  a{color:inherit;text-decoration:none}
+}
 </style>
 
 </head><body>

@@ -76,7 +76,7 @@ f(st, a){
     if (a !== 's' && Math.abs(q) > 1 && moving) for (let i = 0; i < 3; i++){ const xx = 45 + i * 30; q > 0 ? arrow(harr, xx, 252, xx, 226, C.heat, 2.4, 8) : arrow(harr, xx, 226, xx, 252, C.acc, 2.4, 8); }
     if (Math.abs(l) > 1 && moving) l > 0 ? arrow(warr, 140, py + 10, 140, py - 30, C.good, 2.4, 8) : arrow(warr, 140, py - 30, 140, py + 10, C.bad, 2.4, 8);
     setT(note, a === 's' ? 'Պատերը ջերմամեկուսացված են՝ q = 0' : q > 0 ? 'Ջերմությունը հաղորդվում է' : 'Ջերմությունը հեռացվում է');
-  }, c);
+  }, c, 2.7);
 }};
 
 /* ---------- 4.5 adiabat steeper than isotherm ---------- */

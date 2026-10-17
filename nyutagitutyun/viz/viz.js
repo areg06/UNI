@@ -111,7 +111,7 @@ f(st){
     clear(G[3]); S('rect', {x:530, y:cy - 18, width:100, height:36, rx:6, fill:C.accS, stroke:C.acc}, G[3]);
     for (let i = 0; i < 5; i++){ const x = 540 + i * 20; S('line', {x1:x, y1:cy - 18, x2:x + a * 14 * (i / 4), y2:cy + 18, stroke:C.acc}, G[3]); }
     S('path', {d:`M618 ${cy - 26} a10 26 0 1 1 0 52`, fill:'none', stroke:C.bad, 'stroke-width':2}, G[3]);
-  }, ctl(st));
+  }, ctl(st), 3.4);
 }};
 
 /* ---------- 1.3 tensile test ---------- */
@@ -151,7 +151,7 @@ f(st){
     if (broken) mark(end, 'խզում', -8, 'end');
     specimen(e, broken);
     setT(note, broken ? 'δ = (l − l₀)/l₀·100%,   ψ = (F₀ − F)/F₀·100%' : e < .012 ? 'առաձգական դեֆորմացիա' : e < .25 ? 'պլաստիկ դեֆորմացիա' : 'վզիկի առաջացում');
-  }, c);
+  }, c, 6.2);
 }};
 
 /* ---------- 1.4 hardness ---------- */
@@ -179,7 +179,7 @@ f(st){
         else if (k === 'v'){ S('rect', {x:cx - 12, y:vy - 12, width:24, height:24, transform:`rotate(45 ${cx} ${vy})`, fill:C.sunk, stroke:C.ink}, d); S('line', {x1:cx - 17, x2:cx + 17, y1:vy, y2:vy, stroke:C.heat, 'stroke-width':2}, d); T(d, cx + 21, vy + 4, 'd', {fill:C.heat}); }
         else { S('line', {x1:cx + 26, x2:cx + 26, y1:sy, y2:sy + 18, stroke:C.heat, 'stroke-width':2}, g); T(g, cx + 31, sy + 14, 'h', {fill:C.heat, 'font-weight':700}); } }
     });
-  }, ctl(st));
+  }, ctl(st), 1.7);
 }};
 
 /* ---------- 1.5 density and hysteresis ---------- */
@@ -212,7 +212,7 @@ f(st){
     const u = (t / 1.6) % seq.length, i = Math.floor(u), r = u - i, tr = [];
     for (let k = 0; k <= 30; k++){ const q = seq[i][0](r * k / 30); tr.push([A.X(q[0]), A.Y(q[1])]); }
     attrs(trace, {d:pts(tr)}); const q = seq[i][0](r); attrs(dot, {cx:A.X(q[0]), cy:A.Y(q[1])}); setT(lab, seq[i][1]);
-  }, ctl(st));
+  }, ctl(st), 4.2);
 }};
 
 /* ---------- 2.1 metallic bond ---------- */
@@ -236,7 +236,7 @@ f(st){
     if (sh > .9){ for (let i = 0; i < 5; i++){ const x = 340 + 35 + 42 + i * 42; arrow(rep, x, 79, x, 70, C.bad, 1.6, 5); arrow(rep, x, 92, x, 101, C.bad, 1.6, 5); } }
     setT(msg[0], sh > .9 ? 'կապը չի խզվում' : ''); msg[0].style.fill = C.good;
     setT(msg[1], sh > .9 ? 'նույնանուն լիցքեր → վանողություն' : ''); msg[1].style.fill = C.bad;
-  }, ctl(st));
+  }, ctl(st), 2.5);
 }};
 
 /* ---------- 2.2 crystalline vs amorphous ---------- */
@@ -258,7 +258,7 @@ f(st){
     const order = ss((u - .3) / .32), jit = u < .3 ? 3 : 3 * (1 - order) + .6;
     at.forEach((a, i) => attrs(a.c, {cx:lerp(a.rx, a.gx, order) + Math.sin(t * 9 + i) * jit, cy:lerp(a.ry, a.gy, order) + Math.cos(t * 8 + i * 2) * jit}));
     setT(lab, u < .3 ? 'հեղուկ' : u < .62 ? 'բյուրեղացում...' : 'բյուրեղ՝ կանոնավոր դասավորություն');
-  }, ctl(st));
+  }, ctl(st), 5.4);
 }};
 
 /* ---------- 2.3–2.4 unit cells ---------- */
@@ -405,7 +405,7 @@ f(st){
       o.innerHTML = `Կենտրոններ՝ <b class="mono">${N.length}</b> · պինդ բաժին՝ <b class="mono">${Math.round(done / W / Hh * 100)}%</b>${done === W * Hh ? ' · <span class="vz-good">բյուրեղացումն ավարտված է՝ ' + N.length + ' հատիկ</span>' : ''}`;
     } else if (!wait) wait = t;
     else if (t - wait > 2.5){ wait = 0; reset(); }
-  }, c);
+  }, c, 7);
 }};
 
 /* ---------- 3.3 Curie points ---------- */
@@ -448,7 +448,7 @@ f(st){
     const ud = (t % 9) / 7;
     branches.forEach(b => { const st0 = b.lvl * .25 + (b.lvl ? (Math.hypot(b.x - 370, b.y - 150) / 240) * .25 : 0), k = clamp((ud - st0) / .3, 0, 1); if (k <= 0) return;
       S('line', {x1:b.x, y1:b.y, x2:b.x + Math.cos(b.a) * b.len * k, y2:b.y + Math.sin(b.a) * b.len * k, stroke:[C.acc, C.good, C.warn, C.heat][b.lvl], 'stroke-width':[5, 3, 1.8, 1][b.lvl], 'stroke-linecap':'round'}, dg); });
-  }, ctl(st));
+  }, ctl(st), 7.3);
 }};
 
 /* ---------- 3.5 stresses and dislocation glide ---------- */
@@ -485,7 +485,7 @@ f(st){
     if (u > 0 && u < 1){ S('line', {x1:xd - 10, x2:xd + 10, y1:ys, y2:ys, stroke:C.bad, 'stroke-width':3}, sym); S('line', {x1:xd, x2:xd, y1:ys, y2:ys - 18, stroke:C.bad, 'stroke-width':3}, sym); }
     S('line', {x1:30, x2:610, y1:ys, y2:ys, stroke:C.muted, 'stroke-dasharray':'3 5'}, sym);
     setT(lab, u === 0 ? 'սկզբնական բյուրեղ' : u < 1 ? 'դիսլոկացիան շարժվում է սահքի հարթությամբ' : 'վերին մասը սահել է մեկ միջատոմային հեռավորությամբ (աստիճան)');
-  }, ctl(st));
+  }, ctl(st), 5.8);
 }};
 
 /* ---------- 3.6 work hardening ---------- */

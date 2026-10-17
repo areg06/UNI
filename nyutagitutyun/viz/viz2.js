@@ -79,7 +79,7 @@ f(st){
     const k = ss((u - .85) / .12);
     attrs(L, {d:B.fn(liq, 0, Math.max(k, .001))}); attrs(So, {d:B.fn(sol, 0, Math.max(k, .001))});
     clear(lbl); if (k > .9){ T(lbl, B.X(.42), B.Y(liq(.42)) - 8, 'լիկվիդուս', {'font-size':11, 'text-anchor':'end'}); T(lbl, B.X(.62), B.Y(sol(.62)) + 16, 'սոլիդուս', {'font-size':11}); }
-  }, ctl(st));
+  }, ctl(st), 9.6);
 }};
 
 /* ---------- 5.2 Gibbs phase rule ---------- */
@@ -185,7 +185,7 @@ f(st){
     const u = (t % 6) / 4.5, r = curve(Math.min(u, 1.2));
     attrs(cp, {d:pts(r)}); const last = r[r.length - 1], Tc = (B.o.y + B.o.h - last[1]) / B.o.h;
     attrs(vl, {x1:A.X(x), x2:A.X(x), y1:A.Y(.97), y2:A.Y(0)}); attrs(dot, {cx:A.X(x), cy:A.Y(Tc)});
-  }, c);
+  }, c, 4.4);
 }};
 
 /* ---------- 5.6 Kurnakov ---------- */
@@ -226,7 +226,7 @@ f(st){
     setT(lab, {L:'հեղուկ', d:'Fe_{δ}, К8', g:'Fe_{γ}, К12', a:'Fe_{α}, К8, ոչ մագնիսական', m:'Fe_{α}, К8, ֆեռոմագնիսական'}[ph]);
     if (ph !== state){ state = ph; if (ph === 'L') cell.liquid(); else cell.set(ph === 'g' ? 'K12' : 'K8', 'cell');
       o.innerHTML = ph === 'g' ? 'C-ի լուծելիություն Fe<sub>γ</sub>-ում՝ մինչև <b>2%</b>' : ph === 'a' || ph === 'm' ? 'C-ի լուծելիություն Fe<sub>α</sub>-ում՝ մինչև <b>0,02%</b>' : ''; }
-  }, ctl(st));
+  }, ctl(st), 8.4);
 }};
 
 /* ---------- 6.2 phases of the Fe–C system ---------- */
@@ -268,7 +268,7 @@ f(st){
       img[i * 4] = p[0]; img[i * 4 + 1] = p[1]; img[i * 4 + 2] = p[2]; img[i * 4 + 3] = 255; }
     cv.g.putImageData(cv.img, 0, 0);
     o.innerHTML = el < 1.2 ? 'Աուստենիտ (0,8% C), 727°C-ից բարձր' : el < 6.5 ? 'Ա<sub>0,8</sub> → Ֆ<sub>0,02</sub> + Ց<sub>6,67</sub>՝ պեռլիտի գաղութներն աճում են հատիկների սահմաններից' : '<b>Պեռլիտ</b>՝ ֆերիտ (բաց) + ցեմենտիտ (մուգ)';
-  }, c);
+  }, c, 6.5);
 }};
 
 /* ---------- 6.5 / 7.1 microstructure by carbon content ---------- */

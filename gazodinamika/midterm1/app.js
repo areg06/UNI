@@ -108,12 +108,14 @@ function viewLectures(){
       return `<button class="hit" data-jump="${h.L.id}:${h.i}"><b>Թեմա ${h.L.id} · ${esc(h.s.h)}</b>${frag.replace(re, m=>`<mark>${m}</mark>`)}</button>`;}).join('')}</div>`;
   } else {
     body = `<article class="reader ${S.sup?'sup-on':''}">
-      <header class="reader-head"><span class="eyebrow">Թեմա ${l.id} · ծրագրի հարցեր ${l.topics.join(', ')}</span><h2>${l.title}</h2>
-      <nav class="toc">${l.sections.map((s,i)=>`<a href="#lectures" data-jump="${l.id}:${i}">${s.h}</a>`).join('')}</nav></header>
+      <header class="reader-head"><span class="print-only">Գազադինամիկա · Միջանկյալ քննություն 1</span><span class="eyebrow">Թեմա ${l.id} · ծրագրի հարցեր ${l.topics.join(', ')}</span><h2>${l.title}</h2>
+      <nav class="toc">${l.sections.map((s,i)=>`<a href="#lectures" data-jump="${l.id}:${i}">${s.h}</a>`).join('')}</nav>
+      <div><button type="button" class="btn small print-btn" data-print title="Տպել այս թեման A4 թղթի վրա">🖨 Տպել (A4)</button></div></header>
       ${l.sections.map((s,i) => `<section class="sec" id="s${l.id}-${i}"><h3><span class="n">${l.id}.${i+1}</span>${s.h}</h3>
         <div class="prose">${wrapTables(s.html)}</div>
         ${s.figs ? `<div class="figs">${s.figs.map(figHTML).join('')}</div>` : ''}${window.vizHTML ? vizHTML(l.id, i) : ''}</section>`).join('')}
       <footer class="reader-foot">
+        <button type="button" class="btn small print-btn" data-print title="Տպել այս թեման A4 թղթի վրա">🖨 Տպել (A4)</button>
         <button class="btn ${S.read[l.id]?'':'primary'}" id="markread">${S.read[l.id]?'✓ Կարդացված է':'Նշել որպես կարդացված'}</button>
         <a class="btn" href="#questions" data-qlec="${l.id}">Հարցեր այս թեմայից</a>
         <a class="btn" href="#quiz" data-zlec="${l.id}">Թեստ այս թեմայից</a>
@@ -131,6 +133,23 @@ function viewLectures(){
     ${body}
   </div>`;
 }
+/* ---------- print one lecture on A4 ---------- */
+// Re-render in light colors (canvas drawings read the theme), let images load, advance animations to a full frame, print, restore.
+function printLecture(){
+  const root = document.documentElement, prev = root.getAttribute('data-theme'), y = window.scrollY;
+  root.setAttribute('data-theme', 'light'); render();
+  const imgs = [...document.querySelectorAll('#main img')]; imgs.forEach(i => i.loading = 'eager');
+  const loaded = Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
+  let restored = false;
+  const restore = () => { if (restored) return; restored = true; window.removeEventListener('afterprint', restore);
+    if (prev == null) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', prev);
+    if (window.vizPrint) vizPrint.done(); render(); window.scrollTo(0, y); };
+  window.addEventListener('afterprint', restore);
+  Promise.race([loaded, new Promise(r => setTimeout(r, 3000))]).then(() => {
+    if (window.vizPrint) vizPrint.prep();
+    setTimeout(() => { window.print(); }, 150);
+  });
+}
 function bindLectures(){
   document.querySelectorAll('[data-lec]').forEach(b => b.onclick = () => { curLec = +b.dataset.lec; lecQuery=''; render(); window.scrollTo(0,0); });
   document.querySelectorAll('[data-jump]').forEach(b => b.onclick = e => { e.preventDefault(); const [L,i] = b.dataset.jump.split(':'); curLec=+L; lecQuery=''; render(); const el = document.getElementById('s'+L+'-'+i); if (el) el.scrollIntoView({behavior:'smooth'}); });
@@ -139,6 +158,7 @@ function bindLectures(){
   const mr = $('#markread'); if (mr) mr.onclick = () => { S.read[curLec] = !S.read[curLec]; save(); render(); };
   document.querySelectorAll('[data-qlec]').forEach(a => a.onclick = () => { qFilter = 'l'+a.dataset.qlec; });
   document.querySelectorAll('[data-zlec]').forEach(a => a.onclick = () => { quizCfg.lec = a.dataset.zlec; quiz = null; });
+  document.querySelectorAll('[data-print]').forEach(b => b.onclick = printLecture);
   if (window.mountViz) mountViz();
 }
 

@@ -94,8 +94,10 @@ function seg(host, opts, val, on){
 function btn(host, label, on){ const b = H('button', {type:'button', class:'vz-btn', html:label}, host); b.onclick = on; return b; }
 const out = host => H('div', {class:'vz-out'}, host);
 
-/* animation loop: runs only while visible; starts paused if the user prefers reduced motion */
-function anim(host, step, c){
+/* animation loop: runs only while visible; starts paused if the user prefers reduced motion.
+   pt = the moment (s) to show on paper: before printing, the animation is advanced to it and frozen. */
+const LIVE = []; let FROZEN = false;
+function anim(host, step, c, pt){
   let on = !RM, vis = false, last = 0, t = 0, raf = 0;
   const b = c ? H('button', {type:'button', class:'vz-btn vz-play'}, c) : null;
   const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => { vis = es[es.length - 1].isIntersecting; kick(); }) : null;
@@ -103,16 +105,21 @@ function anim(host, step, c){
   function frame(now){
     raf = 0;
     if (!host.isConnected){ if (io) io.disconnect(); return; }
-    if (!on || !vis) return;
+    if (!on || !vis || FROZEN) return;
     const dt = last ? Math.min(.05, (now - last) / 1000) : 0; last = now; t += dt; step(dt, t);
     raf = requestAnimationFrame(frame);
   }
-  function kick(){ if (on && vis && !raf){ last = 0; raf = requestAnimationFrame(frame); } }
+  function kick(){ if (on && vis && !FROZEN && !raf){ last = 0; raf = requestAnimationFrame(frame); } }
   function lbl(){ if (b){ b.textContent = on ? '❚❚ Դադար' : '▶ Նվագարկել'; b.setAttribute('aria-pressed', String(on)); } }
   if (b) b.onclick = () => { on = !on; lbl(); kick(); };
   lbl(); step(0, 0);
+  LIVE.push({host, kick, prep(){ if (!pt) return; t = 0; step(0, 0); while (t < pt){ t += .05; step(.05, t); } }});
   return {get t(){ return t; }, set t(v){ t = v; }, draw(){ step(0, t); }, play(){ on = true; lbl(); kick(); }};
 }
+// used by the lecture print button
+window.vizPrint = {
+  prep(){ FROZEN = true; for (let i = LIVE.length - 1; i >= 0; i--) if (!LIVE[i].host.isConnected) LIVE.splice(i, 1); LIVE.forEach(a => a.prep()); },
+  done(){ FROZEN = false; LIVE.forEach(a => a.kick()); }};
 
 const st = document.createElement('style');
 st.textContent = `
