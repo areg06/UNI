@@ -112,7 +112,7 @@ function viewLectures(){
       <nav class="toc">${l.sections.map((s,i)=>`<a href="#lectures" data-jump="${l.id}:${i}">${s.h}</a>`).join('')}</nav></header>
       ${l.sections.map((s,i) => `<section class="sec" id="s${l.id}-${i}"><h3><span class="n">${l.id}.${i+1}</span>${s.h}</h3>
         <div class="prose">${wrapTables(s.html)}</div>
-        ${s.figs ? `<div class="figs">${s.figs.map(figHTML).join('')}</div>` : ''}</section>`).join('')}
+        ${s.figs ? `<div class="figs">${s.figs.map(figHTML).join('')}</div>` : ''}${window.vizHTML ? vizHTML(l.id, i) : ''}</section>`).join('')}
       <footer class="reader-foot">
         <button class="btn ${S.read[l.id]?'':'primary'}" id="markread">${S.read[l.id]?'✓ Կարդացված է':'Նշել որպես կարդացված'}</button>
         <a class="btn" href="#questions" data-qlec="${l.id}">Հարցեր այս թեմայից</a>
@@ -139,6 +139,7 @@ function bindLectures(){
   const mr = $('#markread'); if (mr) mr.onclick = () => { S.read[curLec] = !S.read[curLec]; save(); render(); };
   document.querySelectorAll('[data-qlec]').forEach(a => a.onclick = () => { qFilter = 'l'+a.dataset.qlec; });
   document.querySelectorAll('[data-zlec]').forEach(a => a.onclick = () => { quizCfg.lec = a.dataset.zlec; quiz = null; });
+  if (window.mountViz) mountViz();
 }
 
 /* ---------- QUESTIONS ---------- */

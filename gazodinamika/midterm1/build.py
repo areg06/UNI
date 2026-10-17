@@ -22,7 +22,9 @@ js = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
 
 head = open(os.path.join(D, 'head.html'), encoding='utf-8').read()
 app = open(os.path.join(D, 'app.js'), encoding='utf-8').read()
+viz = ''.join(open(os.path.join(D, f), encoding='utf-8').read() for f in ('viz_core.js', 'viz.js', 'viz2.js'))
 html = (head + '<script>// Course content: gas dynamics midterm 1 (24 questions). Text marked class="sup" is a textbook supplement.\n'
-        + 'window.DATA = ' + js(data) + ';</script>\n<script>window.IMG=' + js(IMG) + ';</script>\n' + app)
+        + 'window.DATA = ' + js(data) + ';</script>\n<script>window.IMG=' + js(IMG) + ';</script>\n'
+        + '<script>' + viz.replace('</', '<\\/') + '</script>\n' + app)
 open(OUT, 'w', encoding='utf-8').write(html)
 print(OUT, len(html)//1024, 'KB', len(QUESTIONS), 'questions', len(CARDS), 'cards', len(QUIZ), 'quiz')
