@@ -262,8 +262,12 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
 }
 @media (prefers-reduced-motion:reduce){ .card-in{transition:none} }
 
-/* Print: one lecture on A4 (button «Տպել» in the lecture header). Light colors, no navigation or controls. */
+/* Print: one lecture or the questions on A4 (buttons «Տպել»). Light colors, no navigation or controls. */
 .print-only{display:none}
+.print-row{gap:8px;align-items:center}
+.print-note{font-size:13px;color:var(--muted)}
+.pq{display:flex;flex-direction:column;gap:8px}
+.pq>h3{display:flex;gap:10px;font-size:17px}
 @media print{
   @page{size:A4;margin:14mm 15mm 16mm;@bottom-center{content:counter(page);font-size:9pt;color:#56636C}}
   :root:not(#_){--bg:#EDF0F0; --surface:#FAFBFB; --sunk:#E3E8E9; --ink:#162027; --muted:#56636C; --line:#CDD5D8;
@@ -298,6 +302,14 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
   .vz-row{flex-wrap:nowrap}
   .vz-out{font-size:9pt}
   a{color:inherit;text-decoration:none}
+  .qprint .qgroup{gap:10px;margin-bottom:12px}
+  .qprint .qgroup>h2{font-size:14pt;break-after:avoid;page-break-after:avoid}
+  .pq{gap:6px}
+  .pq+.pq{border-top:1px solid #CDD5D8;padding-top:10px}
+  .pq>h3{font-size:12pt;break-after:avoid;page-break-after:avoid}
+  .pq .q-id{font-size:11pt}
+  .pq .full-in{padding:0;gap:10px}
+  .pq .full-in .sec h3{font-size:11.5pt}
 }
 </style>
 
@@ -2259,17 +2271,18 @@ function viewLectures(){
     ${body}
   </div>`;
 }
-/* ---------- print one lecture on A4 ---------- */
+/* ---------- print on A4 (one lecture, or questions) ---------- */
 // Re-render in light colors (canvas drawings read the theme), let images load, advance animations to a full frame, print, restore.
-function printLecture(){
+// set/unset switch the view into its print layout and back (used by the questions print).
+function printView(set, unset){
   const root = document.documentElement, prev = root.getAttribute('data-theme'), y = window.scrollY;
-  root.setAttribute('data-theme', 'light'); render();
+  root.setAttribute('data-theme', 'light'); if (set) set(); render();
   const imgs = [...document.querySelectorAll('#main img')]; imgs.forEach(i => i.loading = 'eager');
   const loaded = Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; })));
   let restored = false;
   const restore = () => { if (restored) return; restored = true; window.removeEventListener('afterprint', restore);
     if (prev == null) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', prev);
-    if (window.vizPrint) vizPrint.done(); render(); window.scrollTo(0, y); };
+    if (unset) unset(); if (window.vizPrint) vizPrint.done(); render(); window.scrollTo(0, y); };
   window.addEventListener('afterprint', restore);
   Promise.race([loaded, new Promise(r => setTimeout(r, 3000))]).then(() => {
     if (window.vizPrint) vizPrint.prep();
@@ -2284,7 +2297,7 @@ function bindLectures(){
   const mr = $('#markread'); if (mr) mr.onclick = () => { S.read[curLec] = !S.read[curLec]; save(); render(); };
   document.querySelectorAll('[data-qlec]').forEach(a => a.onclick = () => { qFilter = 'l'+a.dataset.qlec; });
   document.querySelectorAll('[data-zlec]').forEach(a => a.onclick = () => { quizCfg.lec = a.dataset.zlec; quiz = null; });
-  document.querySelectorAll('[data-print]').forEach(b => b.onclick = printLecture);
+  document.querySelectorAll('[data-print]').forEach(b => b.onclick = () => printView());
   if (window.mountViz) mountViz();
 }
 
@@ -2304,11 +2317,21 @@ function checklist(q){
   return `<div class="checklist"><div class="row" style="justify-content:space-between"><b>Ստուգեք ձեր պատասխանը․ ի՞նչ եք գրել</b><span class="mono cl-score">${n}/${pts.length}</span></div>
     ${pts.map((p,k)=>`<label class="cl-item"><input type="checkbox" data-ck="${q.id}" data-k="${k}" ${c[k]?'checked':''}><span>${p}</span></label>`).join('')}</div>`;
 }
-function fullAnswer(q, open){
+function answerSecs(q){
   const L = lecById(q.l);
-  return `<details class="full" ${open?'open':''}><summary>Ամբողջական պատասխան (դասախոսության տեքստը և նկարները)</summary>
-    <div class="full-in ${S.sup?'sup-on':''}">${q.sec.map(i => { const s = L.sections[i]; return `<section class="sec"><h3><span class="n">${L.id}.${i+1}</span>${s.h}</h3><div class="prose">${wrapTables(s.html)}</div>${s.figs?`<div class="figs">${s.figs.map(figHTML).join('')}</div>`:''}</section>`; }).join('')}</div></details>`;
+  return `<div class="full-in ${S.sup?'sup-on':''}">${q.sec.map(i => { const s = L.sections[i]; return `<section class="sec"><h3><span class="n">${L.id}.${i+1}</span>${s.h}</h3><div class="prose">${wrapTables(s.html)}</div>${s.figs?`<div class="figs">${s.figs.map(figHTML).join('')}</div>`:''}</section>`; }).join('')}</div>`;
 }
+function fullAnswer(q, open){
+  return `<details class="full" ${open?'open':''}><summary>Ամբողջական պատասխան (դասախոսության տեքստը և նկարները)</summary>
+    ${answerSecs(q)}</details>`;
+}
+// Print layout: printQ = {ids, full}; the questions view then shows only these questions, each with its answer plan (and the full answer if full).
+let printQ = null;
+function qPrint(q){
+  return `<article class="pq"><h3><span class="q-id">${q.id}</span><span>${esc(q.q)}</span></h3>
+    <div class="answer prose">${q.a}</div>${printQ.full ? answerSecs(q) : ''}</article>`;
+}
+function printQuestions(ids, full){ printView(() => { printQ = {ids, full}; }, () => { printQ = null; }); }
 function rateRow(q){
   const r = rateOf(q.id);
   return `<div class="rate"><span style="color:var(--muted)">Որքանո՞վ գիտեք</span>${[1,2,3].map(k=>`<button data-r="${k}" data-rq="${q.id}" aria-pressed="${r===k}">${RATE_T[k]}</button>`).join('')}</div>`;
@@ -2318,7 +2341,7 @@ function qCard(q){
   if (S.qmode==='study') return `<div class="q" id="q-${q.id}">
     <button class="q-head" data-tq="${q.id}" aria-expanded="${open}"><span class="q-id">${q.id}</span><span class="q-text">${esc(q.q)}</span><span class="badge r${r}">${RATE_T[r]}</span></button>
     ${open ? `<div class="q-body"><span class="eyebrow">Պատասխանի պլան</span><div class="answer prose">${q.a}</div>${fullAnswer(q,true)}
-      <div class="row"><button class="btn small primary" data-tocheck="${q.id}">Սովորեցի → Ստուգել ինձ գրավոր</button></div>${rateRow(q)}</div>` : ''}
+      <div class="row"><button class="btn small primary" data-tocheck="${q.id}">Սովորեցի → Ստուգել ինձ գրավոր</button><button type="button" class="btn small print-btn" data-pq1="${q.id}" title="Տպել այս հարցը պատասխանով A4 թղթի վրա">🖨 Տպել այս հարցը</button></div>${rateRow(q)}</div>` : ''}
   </div>`;
   return `<div class="q" id="q-${q.id}">
     <button class="q-head" data-tq="${q.id}" aria-expanded="${open}"><span class="q-id">${q.id}</span><span class="q-text">${esc(q.q)}</span><span class="badge r${r}">${RATE_T[r]}</span></button>
@@ -2336,9 +2359,11 @@ const wc = t => { const n = (t.trim().match(/\S+/g)||[]).length; return n ? n+' 
 function viewQuestions(){
   const F = [['all','Բոլորը'],['weak','Չսովորածները'],...D.lectures.map(l=>['l'+l.id,'Դաս. '+l.id])];
   const groups = [1,2,3,4,0].map(t => {
-    const items = D.questions.filter(q => q.t===t && qMatches(q)); if (!items.length) return '';
-    return `<section class="qgroup"><h2>${t?'Թեմա '+t+'. ':''}${TOPICS[t]}</h2>${items.map(q=>qCard(q)).join('')}</section>`;
+    const items = D.questions.filter(q => q.t===t && (printQ ? printQ.ids.includes(q.id) : qMatches(q))); if (!items.length) return '';
+    return `<section class="qgroup"><h2>${t?'Թեմա '+t+'. ':''}${TOPICS[t]}</h2>${items.map(q=>printQ?qPrint(q):qCard(q)).join('')}</section>`;
   }).join('');
+  if (printQ) return `<div class="view qprint"><header class="reader-head"><span class="print-only">Նյութագիտություն · Միջանկյալ քննություն 1</span><h2>Գրավոր հարցեր${printQ.full?'':'․ պատասխանների պլաններ'}</h2></header>${groups}</div>`;
+  const nq = D.questions.filter(qMatches).length;
   return `<div class="view">
     <header class="view-head"><span class="eyebrow">Ծրագրի հարցեր · թեմաներ 1–4 և լաբորատոր 1–5</span><h1>Գրավոր հարցեր</h1>
     <p class="lede">Նախ <b>Սովորել</b> ռեժիմում կարդացեք հարցը և պատասխանը։ Հետո <b>Ստուգել</b> ռեժիմում գրեք պատասխանը առանց նայելու և համեմատեք հիմնական կետերի հետ։ Սեղմեք հարցի վրա՝ բացելու համար։</p></header>
@@ -2348,6 +2373,7 @@ function viewQuestions(){
       <button role="tab" data-qm="check" aria-selected="${S.qmode==='check'}"><b>2 · Ստուգել</b><span>Գրել առանց նայելու, համեմատել</span></button>
     </div>
     <div class="filters">${F.map(([k,t])=>`<button data-qf="${k}" aria-pressed="${qFilter===k}">${t}</button>`).join('')}</div>
+    ${nq ? `<div class="row print-row"><button type="button" class="btn small print-btn" data-pq="full" title="Հարց, պատասխանի պլան, դասախոսության տեքստը և նկարները">🖨 Տպել պատասխաններով (A4)</button><button type="button" class="btn small print-btn" data-pq="plan" title="Միայն հարցերը և պատասխանների պլանները, կարճ">🖨 Տպել միայն պլանները</button><span class="print-note">${nq} հարց՝ ընտրված ֆիլտրով</span></div>` : ''}
     ${groups || '<div class="panel">Այս ֆիլտրով հարցեր չկան։ Ընտրեք «Բոլորը»։</div>'}
   </div>`;
 }
@@ -2358,6 +2384,8 @@ function bindQuestions(){
   document.querySelectorAll('[data-tq]').forEach(b => b.onclick = () => { openQ = openQ===b.dataset.tq ? null : b.dataset.tq; render(); });
   document.querySelectorAll('[data-show]').forEach(b => b.onclick = () => { shown[b.dataset.show] = true; render(); });
   document.querySelectorAll('[data-rq]').forEach(b => b.onclick = () => { S.rate[b.dataset.rq] = +b.dataset.r; save(); render(); });
+  document.querySelectorAll('[data-pq]').forEach(b => b.onclick = () => printQuestions(D.questions.filter(qMatches).map(q => q.id), b.dataset.pq==='full'));
+  document.querySelectorAll('[data-pq1]').forEach(b => b.onclick = () => printQuestions([b.dataset.pq1], true));
   bindWriting();
   if (openQ){ const el = document.getElementById('q-'+openQ); if (el && !el.dataset.seen){ const r = el.getBoundingClientRect(); if (r.top<0||r.top>innerHeight-100) el.scrollIntoView({block:'start'}); } }
 }

@@ -283,8 +283,12 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
 .gd-in label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
 .gd-in input[type=number]{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;width:100%}
 
-/* Print: one lecture on A4 (button «Տպել» in the lecture header). Light colors, no navigation or controls. */
+/* Print: one lecture or the questions on A4 (buttons «Տպել»). Light colors, no navigation or controls. */
 .print-only{display:none}
+.print-row{gap:8px;align-items:center}
+.print-note{font-size:13px;color:var(--muted)}
+.pq{display:flex;flex-direction:column;gap:8px}
+.pq>h3{display:flex;gap:10px;font-size:17px}
 @media print{
   @page{size:A4;margin:14mm 15mm 16mm;@bottom-center{content:counter(page);font-size:9pt;color:#56636C}}
   :root:not(#_){--bg:#EDF0F0; --surface:#FAFBFB; --sunk:#E3E8E9; --ink:#162027; --muted:#56636C; --line:#CDD5D8;
@@ -319,6 +323,14 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
   .vz-row{flex-wrap:nowrap}
   .vz-out{font-size:9pt}
   a{color:inherit;text-decoration:none}
+  .qprint .qgroup{gap:10px;margin-bottom:12px}
+  .qprint .qgroup>h2{font-size:14pt;break-after:avoid;page-break-after:avoid}
+  .pq{gap:6px}
+  .pq+.pq{border-top:1px solid #CDD5D8;padding-top:10px}
+  .pq>h3{font-size:12pt;break-after:avoid;page-break-after:avoid}
+  .pq .q-id{font-size:11pt}
+  .pq .full-in{padding:0;gap:10px}
+  .pq .full-in .sec h3{font-size:11.5pt}
 }
 </style>
 
