@@ -266,6 +266,10 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
 .print-only{display:none}
 .print-row{gap:8px;align-items:center}
 .print-note{font-size:13px;color:var(--muted)}
+.print-row .btn:disabled{opacity:.5;cursor:not-allowed}
+.q-sel{display:grid;grid-template-columns:20px 52px minmax(0,1fr);gap:12px;align-items:start;padding:14px 16px;cursor:pointer}
+.q-sel input{margin-top:4px;width:16px;height:16px;accent-color:var(--accent)}
+.q-sel:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
 .pq{display:flex;flex-direction:column;gap:8px}
 .pq>h3{display:flex;gap:10px;font-size:17px}
 @media print{
@@ -2331,6 +2335,13 @@ function qPrint(q){
   return `<article class="pq"><h3><span class="q-id">${q.id}</span><span>${esc(q.q)}</span></h3>
     <div class="answer prose">${q.a}</div>${printQ.full ? answerSecs(q) : ''}</article>`;
 }
+// Choosing what to print: in pick mode the cards become checkbox rows; the print buttons then print the picked questions (kept across filters).
+let picking = false; const picked = new Set();
+const toPrint = () => picking ? D.questions.filter(q => picked.has(q.id)) : D.questions.filter(qMatches);
+const printNote = () => picking ? (picked.size ? `Ընտրված է ${picked.size} հարց` : 'Նշեք տպելու հարցերը') : `${D.questions.filter(qMatches).length} հարց՝ ընտրված ֆիլտրով`;
+function qPick(q){
+  return `<label class="q q-sel"><input type="checkbox" data-pick="${q.id}" ${picked.has(q.id)?'checked':''}><span class="q-id">${q.id}</span><span class="q-text">${esc(q.q)}</span></label>`;
+}
 function printQuestions(ids, full){ printView(() => { printQ = {ids, full}; }, () => { printQ = null; }); }
 function rateRow(q){
   const r = rateOf(q.id);
@@ -2360,10 +2371,9 @@ function viewQuestions(){
   const F = [['all','Բոլորը'],['weak','Չսովորածները'],...D.lectures.map(l=>['l'+l.id,'Դաս. '+l.id])];
   const groups = [1,2,3,4,0].map(t => {
     const items = D.questions.filter(q => q.t===t && (printQ ? printQ.ids.includes(q.id) : qMatches(q))); if (!items.length) return '';
-    return `<section class="qgroup"><h2>${t?'Թեմա '+t+'. ':''}${TOPICS[t]}</h2>${items.map(q=>printQ?qPrint(q):qCard(q)).join('')}</section>`;
+    return `<section class="qgroup"><h2>${t?'Թեմա '+t+'. ':''}${TOPICS[t]}</h2>${items.map(q=>printQ?qPrint(q):picking?qPick(q):qCard(q)).join('')}</section>`;
   }).join('');
   if (printQ) return `<div class="view qprint"><header class="reader-head"><span class="print-only">Նյութագիտություն · Միջանկյալ քննություն 1</span><h2>Գրավոր հարցեր${printQ.full?'':'․ պատասխանների պլաններ'}</h2></header>${groups}</div>`;
-  const nq = D.questions.filter(qMatches).length;
   return `<div class="view">
     <header class="view-head"><span class="eyebrow">Ծրագրի հարցեր · թեմաներ 1–4 և լաբորատոր 1–5</span><h1>Գրավոր հարցեր</h1>
     <p class="lede">Նախ <b>Սովորել</b> ռեժիմում կարդացեք հարցը և պատասխանը։ Հետո <b>Ստուգել</b> ռեժիմում գրեք պատասխանը առանց նայելու և համեմատեք հիմնական կետերի հետ։ Սեղմեք հարցի վրա՝ բացելու համար։</p></header>
@@ -2373,7 +2383,10 @@ function viewQuestions(){
       <button role="tab" data-qm="check" aria-selected="${S.qmode==='check'}"><b>2 · Ստուգել</b><span>Գրել առանց նայելու, համեմատել</span></button>
     </div>
     <div class="filters">${F.map(([k,t])=>`<button data-qf="${k}" aria-pressed="${qFilter===k}">${t}</button>`).join('')}</div>
-    ${nq ? `<div class="row print-row"><button type="button" class="btn small print-btn" data-pq="full" title="Հարց, պատասխանի պլան, դասախոսության տեքստը և նկարները">🖨 Տպել պատասխաններով (A4)</button><button type="button" class="btn small print-btn" data-pq="plan" title="Միայն հարցերը և պատասխանների պլանները, կարճ">🖨 Տպել միայն պլանները</button><span class="print-note">${nq} հարց՝ ընտրված ֆիլտրով</span></div>` : ''}
+    <div class="row print-row"><button type="button" class="btn small print-btn" data-pq="full" title="Հարց, պատասխանի պլան, դասախոսության տեքստը և նկարները" ${toPrint().length?'':'disabled'}>🖨 Տպել պատասխաններով (A4)</button><button type="button" class="btn small print-btn" data-pq="plan" title="Միայն հարցերը և պատասխանների պլանները, կարճ" ${toPrint().length?'':'disabled'}>🖨 Տպել միայն պլանները</button>
+      ${picking ? `<button type="button" class="btn small" data-pickall>Նշել բոլորը</button><button type="button" class="btn small" data-pickclear>Մաքրել</button><button type="button" class="btn small primary" data-picking>✓ Ավարտել ընտրությունը</button>`
+        : `<button type="button" class="btn small" data-picking title="Նշել, թե որ հարցերը տպել">☑ Ընտրել հարցերը</button>`}
+      <span class="print-note">${printNote()}</span></div>
     ${groups || '<div class="panel">Այս ֆիլտրով հարցեր չկան։ Ընտրեք «Բոլորը»։</div>'}
   </div>`;
 }
@@ -2384,7 +2397,15 @@ function bindQuestions(){
   document.querySelectorAll('[data-tq]').forEach(b => b.onclick = () => { openQ = openQ===b.dataset.tq ? null : b.dataset.tq; render(); });
   document.querySelectorAll('[data-show]').forEach(b => b.onclick = () => { shown[b.dataset.show] = true; render(); });
   document.querySelectorAll('[data-rq]').forEach(b => b.onclick = () => { S.rate[b.dataset.rq] = +b.dataset.r; save(); render(); });
-  document.querySelectorAll('[data-pq]').forEach(b => b.onclick = () => printQuestions(D.questions.filter(qMatches).map(q => q.id), b.dataset.pq==='full'));
+  document.querySelectorAll('[data-pq]').forEach(b => b.onclick = () => printQuestions(toPrint().map(q => q.id), b.dataset.pq==='full'));
+  document.querySelectorAll('[data-picking]').forEach(b => b.onclick = () => { picking = !picking; render(); });
+  document.querySelectorAll('[data-pickall]').forEach(b => b.onclick = () => { D.questions.filter(qMatches).forEach(q => picked.add(q.id)); render(); });
+  document.querySelectorAll('[data-pickclear]').forEach(b => b.onclick = () => { picked.clear(); render(); });
+  // ticking updates the count and buttons in place (no re-render, keeps the scroll position)
+  document.querySelectorAll('[data-pick]').forEach(c => c.onchange = () => {
+    if (c.checked) picked.add(c.dataset.pick); else picked.delete(c.dataset.pick);
+    $('.print-note').textContent = printNote(); document.querySelectorAll('[data-pq]').forEach(b => b.disabled = !picked.size);
+  });
   document.querySelectorAll('[data-pq1]').forEach(b => b.onclick = () => printQuestions([b.dataset.pq1], true));
   bindWriting();
   if (openQ){ const el = document.getElementById('q-'+openQ); if (el && !el.dataset.seen){ const r = el.getBoundingClientRect(); if (r.top<0||r.top>innerHeight-100) el.scrollIntoView({block:'start'}); } }
