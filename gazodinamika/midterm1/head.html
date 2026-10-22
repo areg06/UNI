@@ -283,6 +283,27 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
 .gd-in label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
 .gd-in input[type=number]{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;width:100%}
 
+/* Written answer ("what to write on the paper"): numbered derivation steps, boxed results, sketches to draw */
+.wr h4{font-size:16px;margin:14px 0 4px}
+.wr .katex-display{margin:6px 0;overflow-x:auto;overflow-y:hidden;padding:2px 0}
+.wsteps{counter-reset:ws;list-style:none;padding-left:0!important}
+.wsteps>li{counter-increment:ws;position:relative;padding-left:30px;margin:6px 0}
+.wsteps>li::before{content:counter(ws);position:absolute;left:0;top:1px;width:21px;height:21px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.res{border:2px solid var(--accent);border-radius:8px;padding:2px 12px;margin:8px 0 12px;background:var(--surface)}
+.sk{margin:8px 0 12px;display:inline-flex;flex-direction:column;gap:4px;max-width:100%;margin-right:12px;vertical-align:top}
+.sk-svg{width:280px;max-width:100%;height:auto;color:var(--ink);font-size:11px;font-family:var(--f-body)}
+.sk-svg text{fill:currentColor}
+.sk-svg .ax,.sk-svg .arr{stroke:currentColor;stroke-width:1.2;fill:none}
+.sk-svg .axh{fill:currentColor}
+.sk-svg .cv{stroke:var(--accent);stroke-width:2.2;fill:none}
+.sk-svg .cv2{stroke:var(--heat);stroke-width:2;fill:none;stroke-dasharray:5 3}
+.sk-svg .c1{stroke:var(--heat)} .sk-svg .c2{stroke:var(--good)} .sk-svg .c3{stroke:var(--bad)}
+.sk-svg .area{fill:var(--accent-soft);stroke:none}
+.sk-svg .dash{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3;fill:none}
+.sk-svg .pt{fill:var(--accent)}
+.sk-svg .wall{stroke:currentColor;stroke-width:1.8;fill:none}
+.sk-svg .big{font-size:22px;font-weight:700}
+.sk figcaption{max-width:280px}
 /* Print: one lecture or the questions on A4 (buttons «Տպել»). Light colors, no navigation or controls. */
 .print-only{display:none}
 .print-row{gap:8px;align-items:center}
@@ -335,6 +356,10 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
   .pq .q-id{font-size:11pt}
   .pq .full-in{padding:0;gap:10px}
   .pq .full-in .sec h3{font-size:11.5pt}
+  .wr h4{font-size:11pt;margin:8px 0 2px;break-after:avoid;page-break-after:avoid}
+  .wsteps>li,.res,.sk{break-inside:avoid;page-break-inside:avoid}
+  .sk-svg{width:62mm}
+  .wr .katex-display{overflow:visible}
 }
 </style>
 

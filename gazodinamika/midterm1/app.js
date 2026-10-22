@@ -183,15 +183,19 @@ function answerSecs(q){
   const L = lecById(q.l);
   return `<div class="full-in ${S.sup?'sup-on':''}">${q.sec.map(i => { const s = L.sections[i]; return `<section class="sec"><h3><span class="n">${L.id}.${i+1}</span>${s.h}</h3><div class="prose">${wrapTables(s.html)}</div>${s.figs?`<div class="figs">${s.figs.map(figHTML).join('')}</div>`:''}</section>`; }).join('')}</div>`;
 }
+// The model written answer: what to put on the paper, with every derivation step.
+const written = q => `<div class="answer prose wr">${q.w}</div>`;
+const writtenDetails = q => `<details class="full"><summary>Ի՞նչ գրել թղթին (օրինակելի գրավոր պատասխան)</summary><div class="full-in">${written(q)}</div></details>`;
+const planDetails = q => `<details class="full"><summary>Կարճ պլան (հիմնական կետերը)</summary><div class="full-in"><div class="answer prose">${q.a}</div></div></details>`;
 function fullAnswer(q, open){
   return `<details class="full" ${open?'open':''}><summary>Ամբողջական պատասխան (դասախոսության տեքստը և նկարները)</summary>
     ${answerSecs(q)}</details>`;
 }
-// Print layout: printQ = {ids, full}; the questions view then shows only these questions, each with its answer plan (and the full answer if full).
+// Print layout: printQ = {ids, mode}; the questions view then shows only these questions with the written answer ('w'), the short plan ('plan') or the written answer plus the lecture text ('full').
 let printQ = null;
 function qPrint(q){
   return `<article class="pq"><h3><span class="q-id">${q.id}</span><span>${esc(q.q)}</span></h3>
-    <div class="answer prose">${q.a}</div>${printQ.full ? answerSecs(q) : ''}</article>`;
+    ${printQ.mode==='plan' ? `<div class="answer prose">${q.a}</div>` : written(q)}${printQ.mode==='full' ? answerSecs(q) : ''}</article>`;
 }
 // Choosing what to print: in pick mode the cards become checkbox rows; the print buttons then print the picked questions (kept across filters).
 let picking = false; const picked = new Set();
@@ -200,7 +204,7 @@ const printNote = () => picking ? (picked.size ? `Ընտրված է ${picked.siz
 function qPick(q){
   return `<label class="q q-sel"><input type="checkbox" data-pick="${q.id}" ${picked.has(q.id)?'checked':''}><span class="q-id">${q.id}</span><span class="q-text">${esc(q.q)}</span></label>`;
 }
-function printQuestions(ids, full){ printView(() => { printQ = {ids, full}; }, () => { printQ = null; }); }
+function printQuestions(ids, mode){ printView(() => { printQ = {ids, mode}; }, () => { printQ = null; }); }
 function rateRow(q){
   const r = rateOf(q.id);
   return `<div class="rate"><span style="color:var(--muted)">Որքանո՞վ գիտեք</span>${[1,2,3].map(k=>`<button data-r="${k}" data-rq="${q.id}" aria-pressed="${r===k}">${RATE_T[k]}</button>`).join('')}</div>`;
@@ -209,8 +213,8 @@ function qCard(q){
   const open = openQ===q.id, r = rateOf(q.id), d = S.draft[q.id] || '';
   if (S.qmode==='study') return `<div class="q" id="q-${q.id}">
     <button class="q-head" data-tq="${q.id}" aria-expanded="${open}"><span class="q-id">${q.id}</span><span class="q-text">${esc(q.q)}</span><span class="badge r${r}">${RATE_T[r]}</span></button>
-    ${open ? `<div class="q-body"><span class="eyebrow">Պատասխանի պլան</span><div class="answer prose">${q.a}</div>${fullAnswer(q,true)}
-      <div class="row"><button class="btn small primary" data-tocheck="${q.id}">Սովորեցի → Ստուգել ինձ գրավոր</button><button type="button" class="btn small print-btn" data-pq1="${q.id}" title="Տպել այս հարցը պատասխանով A4 թղթի վրա">🖨 Տպել այս հարցը</button></div>${rateRow(q)}</div>` : ''}
+    ${open ? `<div class="q-body"><span class="eyebrow">Ի՞նչ գրել թղթին</span>${written(q)}${planDetails(q)}${fullAnswer(q)}
+      <div class="row"><button class="btn small primary" data-tocheck="${q.id}">Սովորեցի → Ստուգել ինձ գրավոր</button><button type="button" class="btn small print-btn" data-pq1="${q.id}" title="Տպել այս հարցի գրավոր պատասխանը A4 թղթի վրա">🖨 Տպել այս հարցը</button></div>${rateRow(q)}</div>` : ''}
   </div>`;
   return `<div class="q" id="q-${q.id}">
     <button class="q-head" data-tq="${q.id}" aria-expanded="${open}"><span class="q-id">${q.id}</span><span class="q-text">${esc(q.q)}</span><span class="badge r${r}">${RATE_T[r]}</span></button>
@@ -218,7 +222,7 @@ function qCard(q){
       <label class="eyebrow" for="dr-${q.id}">1 · Գրեք պատասխանը առանց նայելու</label>
       <textarea id="dr-${q.id}" data-draft="${q.id}" placeholder="Սահմանում → բացատրություն → բանաձև կամ սխեմա → օրինակներ, թվեր…">${esc(d)}</textarea>
       <div class="row" style="justify-content:space-between;font-size:13px;color:var(--muted)"><span class="wc" data-wc="${q.id}">${wc(d)}</span><span>Սևագիրը պահվում է ավտոմատ</span></div>
-      ${shown[q.id] ? `<span class="eyebrow">2 · Համեմատեք</span>${checklist(q)}${fullAnswer(q)}
+      ${shown[q.id] ? `<span class="eyebrow">2 · Համեմատեք</span>${checklist(q)}${writtenDetails(q)}${fullAnswer(q)}
         <span class="eyebrow">3 · Գնահատեք ձեզ</span>${rateRow(q)}`
       : `<div><button class="btn primary small" data-show="${q.id}">Ստուգել պատասխանը</button></div>`}
     </div>` : ''}
@@ -231,17 +235,17 @@ function viewQuestions(){
     const items = D.questions.filter(q => q.t===t && (printQ ? printQ.ids.includes(q.id) : qMatches(q))); if (!items.length) return '';
     return `<section class="qgroup"><h2>${TOPICS[t]}</h2>${items.map(q=>printQ?qPrint(q):picking?qPick(q):qCard(q)).join('')}</section>`;
   }).join('');
-  if (printQ) return `<div class="view qprint"><header class="reader-head"><span class="print-only">Գազադինամիկա · Միջանկյալ քննություն 1</span><h2>Գրավոր հարցեր${printQ.full?'':'․ պատասխանների պլաններ'}</h2></header>${groups}</div>`;
+  if (printQ) return `<div class="view qprint"><header class="reader-head"><span class="print-only">Գազադինամիկա · Միջանկյալ քննություն 1</span><h2>Գրավոր հարցեր${{w:'․ ինչ գրել թղթին',plan:'․ պատասխանների պլաններ',full:''}[printQ.mode]}</h2></header>${groups}</div>`;
   return `<div class="view">
     <header class="view-head"><span class="eyebrow">Ծրագրի հարցաշար · 24 հարց</span><h1>Գրավոր հարցեր</h1>
-    <p class="lede">Նախ <b>Սովորել</b> ռեժիմում կարդացեք հարցը և պատասխանը։ Հետո <b>Ստուգել</b> ռեժիմում գրեք պատասխանը առանց նայելու և համեմատեք հիմնական կետերի հետ։ Սեղմեք հարցի վրա՝ բացելու համար։</p></header>
+    <p class="lede">Նախ <b>Սովորել</b> ռեժիմում կարդացեք հարցը և «Ի՞նչ գրել թղթին» պատասխանը. դա հենց այն է, ինչ պետք է գրել քննությանը՝ սահմանումներ, արտածումներ քայլ առ քայլ, գծագրեր։ Հետո <b>Ստուգել</b> ռեժիմում գրեք պատասխանը առանց նայելու և համեմատեք հիմնական կետերի հետ։ Սեղմեք հարցի վրա՝ բացելու համար։</p></header>
     <div class="panel tip"><b>Լավ գրավոր պատասխանի կառուցվածքը</b><ol><li><b>Սահմանում</b>՝ ճշգրիտ ձևակերպմամբ (օր․ «Իզոխոր է կոչվում…»)։</li><li><b>Բանաձևեր և արտածում</b>՝ ելակետային հավասարումից մինչև վերջնական արդյունք, համարակալված քայլերով։</li><li><b>Դիագրամ</b>՝ գծեք պրոցեսը \\(p\\text{–}\\upsilon\\) կամ \\(T\\text{–}s\\) կոորդինատներում, կոմպրեսոր/տուրբին/փողրակ՝ սխեմայով։</li><li><b>Ֆիզիկական իմաստ և եզրակացություն</b>՝ ինչի վրա է ծախսվում ջերմությունը, ինչ է ցույց տալիս բանաձևը։</li></ol></div>
     <div class="modes" role="tablist">
       <button role="tab" data-qm="study" aria-selected="${S.qmode==='study'}"><b>1 · Սովորել</b><span>Կարդալ հարցերը պատասխաններով</span></button>
       <button role="tab" data-qm="check" aria-selected="${S.qmode==='check'}"><b>2 · Ստուգել</b><span>Գրել առանց նայելու, համեմատել</span></button>
     </div>
     <div class="filters">${F.map(([k,t])=>`<button data-qf="${k}" aria-pressed="${qFilter===k}">${t}</button>`).join('')}</div>
-    <div class="row print-row"><button type="button" class="btn small print-btn" data-pq="full" title="Հարց, պատասխանի պլան, դասախոսության տեքստը և նկարները" ${toPrint().length?'':'disabled'}>🖨 Տպել պատասխաններով (A4)</button><button type="button" class="btn small print-btn" data-pq="plan" title="Միայն հարցերը և պատասխանների պլանները, կարճ" ${toPrint().length?'':'disabled'}>🖨 Տպել միայն պլանները</button>
+    <div class="row print-row"><button type="button" class="btn small print-btn" data-pq="w" title="Հարցերը և գրավոր պատասխանները՝ ինչ գրել թղթին" ${toPrint().length?'':'disabled'}>🖨 Տպել գրավոր պատասխանները (A4)</button><button type="button" class="btn small print-btn" data-pq="plan" title="Միայն հարցերը և պատասխանների պլանները, կարճ" ${toPrint().length?'':'disabled'}>🖨 Տպել միայն պլանները</button><button type="button" class="btn small print-btn" data-pq="full" title="Գրավոր պատասխանը, դասախոսության տեքստը և նկարները" ${toPrint().length?'':'disabled'}>🖨 Տպել դասախոսության տեքստով</button>
       ${picking ? `<button type="button" class="btn small" data-pickall>Նշել բոլորը</button><button type="button" class="btn small" data-pickclear>Մաքրել</button><button type="button" class="btn small primary" data-picking>✓ Ավարտել ընտրությունը</button>`
         : `<button type="button" class="btn small" data-picking title="Նշել, թե որ հարցերը տպել">☑ Ընտրել հարցերը</button>`}
       <span class="print-note">${printNote()}</span></div>
@@ -255,7 +259,7 @@ function bindQuestions(){
   document.querySelectorAll('[data-tq]').forEach(b => b.onclick = () => { openQ = openQ===b.dataset.tq ? null : b.dataset.tq; render(); });
   document.querySelectorAll('[data-show]').forEach(b => b.onclick = () => { shown[b.dataset.show] = true; render(); });
   document.querySelectorAll('[data-rq]').forEach(b => b.onclick = () => { S.rate[b.dataset.rq] = +b.dataset.r; save(); render(); });
-  document.querySelectorAll('[data-pq]').forEach(b => b.onclick = () => printQuestions(toPrint().map(q => q.id), b.dataset.pq==='full'));
+  document.querySelectorAll('[data-pq]').forEach(b => b.onclick = () => printQuestions(toPrint().map(q => q.id), b.dataset.pq));
   document.querySelectorAll('[data-picking]').forEach(b => b.onclick = () => { picking = !picking; render(); });
   document.querySelectorAll('[data-pickall]').forEach(b => b.onclick = () => { D.questions.filter(qMatches).forEach(q => picked.add(q.id)); render(); });
   document.querySelectorAll('[data-pickclear]').forEach(b => b.onclick = () => { picked.clear(); render(); });
@@ -264,7 +268,7 @@ function bindQuestions(){
     if (c.checked) picked.add(c.dataset.pick); else picked.delete(c.dataset.pick);
     $('.print-note').textContent = printNote(); document.querySelectorAll('[data-pq]').forEach(b => b.disabled = !picked.size);
   });
-  document.querySelectorAll('[data-pq1]').forEach(b => b.onclick = () => printQuestions([b.dataset.pq1], true));
+  document.querySelectorAll('[data-pq1]').forEach(b => b.onclick = () => printQuestions([b.dataset.pq1], 'w'));
   bindWriting();
   if (openQ){ const el = document.getElementById('q-'+openQ); if (el && !el.dataset.seen){ const r = el.getBoundingClientRect(); if (r.top<0||r.top>innerHeight-100) el.scrollIntoView({block:'start'}); } }
 }
@@ -404,7 +408,7 @@ function viewExam(){
       ${exam.done?`<button class="btn" id="exnew">Նոր տոմս</button>`:`<button class="btn primary" id="exend">Ավարտել և ստուգել</button>`}</div>
     ${qs.map((q,k)=>`<div class="ticket"><span class="q-id">Հարց ${k+1} · №${q.id} · ${TOPICS[q.t]}</span><h3>${esc(q.q)}</h3>
       ${exam.done ? `${exam.txt[q.id]?`<div class="panel" style="white-space:pre-wrap;font-size:14.5px"><span class="eyebrow">Ձեր պատասխանը</span><br>${esc(exam.txt[q.id])}</div>`:''}
-        ${checklist(q)}${fullAnswer(q)}${rateRow(q)}`
+        ${checklist(q)}${writtenDetails(q)}${fullAnswer(q)}${rateRow(q)}`
       : `<textarea id="ex-${k}" data-ext="${q.id}" placeholder="Գրեք պատասխանը այստեղ․ սահմանում, բացատրություն, բանաձև/սխեմա, թվեր…">${esc(exam.txt[q.id]||'')}</textarea>`}</div>`).join('')}
   </div>`;
 }
