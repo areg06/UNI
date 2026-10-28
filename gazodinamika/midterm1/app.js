@@ -13,6 +13,19 @@ try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.
 S.draft = S.draft || {}; S.chk = S.chk || {}; S.qmode = S.qmode || 'study';
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };
 
+/* ---------- light/dark theme: follows the system until the viewer picks one (own key, so "reset progress" keeps it) ---------- */
+const TKEY = 'gaz-theme', ROOT = document.documentElement;
+try { const t = localStorage.getItem(TKEY); if (t === 'light' || t === 'dark') ROOT.setAttribute('data-theme', t); } catch(e){}
+const isDark = () => (ROOT.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+const themeLabel = () => isDark() ? '☀ Լուսավոր ռեժիմ' : '☾ Մութ ռեժիմ';
+// re-render so the canvas drawings pick up the new colors; keep the scroll position
+function toggleTheme(){
+  const t = isDark() ? 'light' : 'dark'; ROOT.setAttribute('data-theme', t);
+  try { localStorage.setItem(TKEY, t); } catch(e){}
+  const y = window.scrollY; render(); window.scrollTo(0, y);
+}
+document.addEventListener('click', e => { if (e.target.closest('[data-theme-toggle]')) toggleTheme(); });
+
 const ICONS = {
   home:'<path d="M3 10.5 12 4l9 6.5V20h-6v-6H9v6H3z"/>',
   lectures:'<path d="M4 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4zM20 5h-6a3 3 0 0 0-3 3"/><path d="M20 5v13h-7"/>',
@@ -28,7 +41,9 @@ const VIEWS = [
 ];
 function buildNav(cur){
   $('#nav').innerHTML = VIEWS.map(([id,t]) => `<a href="#${id}" ${cur===id?'aria-current="page"':''}><svg class="ic" viewBox="0 0 24 24">${ICONS[id]}</svg>${t}</a>`).join('');
-  $('#mnav').innerHTML = VIEWS.map(([id,t]) => `<a href="#${id}" ${cur===id?'aria-current="page"':''}>${t}</a>`).join('');
+  $('#mnav').innerHTML = VIEWS.map(([id,t]) => `<a href="#${id}" ${cur===id?'aria-current="page"':''}>${t}</a>`).join('')
+    + `<button class="theme-btn" type="button" data-theme-toggle>${isDark() ? '☀' : '☾'}</button>`;
+  $('#theme').textContent = themeLabel();
 }
 
 const lecById = id => D.lectures.find(l => l.id === +id);
