@@ -201,7 +201,8 @@ function answerSecs(q){
 // The model written answer: what to put on the paper, with every derivation step.
 const written = q => `<div class="answer prose wr">${q.w}</div>`;
 const writtenDetails = q => `<details class="full"><summary>Ի՞նչ գրել թղթին (օրինակելի գրավոր պատասխան)</summary><div class="full-in">${written(q)}</div></details>`;
-const planDetails = q => `<details class="full"><summary>Կարճ պլան (հիմնական կետերը)</summary><div class="full-in"><div class="answer prose">${q.a}</div></div></details>`;
+const planList = q => `<ol class="plan">${q.p.map(h => `<li>${h}</li>`).join('')}</ol>`;
+const planDetails = q => `<details class="full"><summary>Կարճ պլան (միայն վերնագրերը)</summary><div class="full-in"><div class="answer prose">${planList(q)}</div></div></details>`;
 function fullAnswer(q, open){
   return `<details class="full" ${open?'open':''}><summary>Ամբողջական պատասխան (դասախոսության տեքստը և նկարները)</summary>
     ${answerSecs(q)}</details>`;
@@ -210,7 +211,7 @@ function fullAnswer(q, open){
 let printQ = null;
 function qPrint(q){
   return `<article class="pq"><h3><span class="q-id">${q.id}</span><span>${esc(q.q)}</span></h3>
-    ${printQ.mode==='plan' ? `<div class="answer prose">${q.a}</div>` : written(q)}${printQ.mode==='full' ? answerSecs(q) : ''}</article>`;
+    ${printQ.mode==='plan' ? `<div class="answer prose">${planList(q)}</div>` : written(q)}${printQ.mode==='full' ? answerSecs(q) : ''}</article>`;
 }
 // Choosing what to print: in pick mode the cards become checkbox rows; the print buttons then print the picked questions (kept across filters).
 let picking = false; const picked = new Set();

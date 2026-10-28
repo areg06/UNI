@@ -4,6 +4,7 @@ import base64, json, os, subprocess, tempfile
 from content_lectures import LECTURES, FIGS
 from content_questions import GROUPS, QUESTIONS, CARDS, QUIZ
 from content_written import WRITTEN
+from content_plan import PLAN
 
 D = os.path.dirname(os.path.abspath(__file__))
 FIGDIR = os.path.join(D, '..', 'translation', 'figs')
@@ -15,7 +16,7 @@ def img_uri(name):
         subprocess.run(['cwebp', '-quiet', '-q', '82', '-resize', '900', '0', src, '-o', t.name], check=True)
         return 'data:image/webp;base64,' + base64.b64encode(open(t.name, 'rb').read()).decode()
 
-for q in QUESTIONS: q['w'] = WRITTEN[int(q['id'])]
+for q in QUESTIONS: q['w'] = WRITTEN[int(q['id'])]; q['p'] = PLAN[int(q['id'])]
 
 used = {f[0] for L in LECTURES for s in L['sections'] for f in s.get('figs', [])}
 IMG = {k: img_uri(v) for k, v in FIGS.items() if k in used}
