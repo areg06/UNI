@@ -254,7 +254,7 @@ function viewQuestions(){
   return `<div class="view">
     <header class="view-head"><span class="eyebrow">Ծրագրի հարցաշար · 24 հարց</span><h1>Գրավոր հարցեր</h1>
     <p class="lede">Նախ <b>Սովորել</b> ռեժիմում կարդացեք հարցը և «Ի՞նչ գրել թղթին» պատասխանը. դա հենց այն է, ինչ պետք է գրել քննությանը՝ սահմանումներ, արտածումներ քայլ առ քայլ, գծագրեր։ Հետո <b>Ստուգել</b> ռեժիմում գրեք պատասխանը առանց նայելու և համեմատեք հիմնական կետերի հետ։ Սեղմեք հարցի վրա՝ բացելու համար։</p></header>
-    <div class="panel tip"><b>Լավ գրավոր պատասխանի կառուցվածքը</b><ol><li><b>Սահմանում</b>՝ ճշգրիտ ձևակերպմամբ (օր․ «Իզոխոր է կոչվում…»)։</li><li><b>Բանաձևեր և արտածում</b>՝ ելակետային հավասարումից մինչև վերջնական արդյունք, համարակալված քայլերով։</li><li><b>Դիագրամ</b>՝ գծեք պրոցեսը \\(p\\text{–}\\upsilon\\) կամ \\(T\\text{–}s\\) կոորդինատներում, կոմպրեսոր/տուրբին/փողրակ՝ սխեմայով։</li><li><b>Ֆիզիկական իմաստ և եզրակացություն</b>՝ ինչի վրա է ծախսվում ջերմությունը, ինչ է ցույց տալիս բանաձևը։</li></ol></div>
+    <details class="panel tip" ${matchMedia('(min-width:861px)').matches ? 'open' : ''}><summary><b>Լավ գրավոր պատասխանի կառուցվածքը</b></summary><ol><li><b>Սահմանում</b>՝ ճշգրիտ ձևակերպմամբ (օր․ «Իզոխոր է կոչվում…»)։</li><li><b>Բանաձևեր և արտածում</b>՝ ելակետային հավասարումից մինչև վերջնական արդյունք, համարակալված քայլերով։</li><li><b>Դիագրամ</b>՝ գծեք պրոցեսը \\(p\\text{–}\\upsilon\\) կամ \\(T\\text{–}s\\) կոորդինատներում, կոմպրեսոր/տուրբին/փողրակ՝ սխեմայով։</li><li><b>Ֆիզիկական իմաստ և եզրակացություն</b>՝ ինչի վրա է ծախսվում ջերմությունը, ինչ է ցույց տալիս բանաձևը։</li></ol></details>
     <div class="modes" role="tablist">
       <button role="tab" data-qm="study" aria-selected="${S.qmode==='study'}"><b>1 · Սովորել</b><span>Կարդալ հարցերը պատասխաններով</span></button>
       <button role="tab" data-qm="check" aria-selected="${S.qmode==='check'}"><b>2 · Ստուգել</b><span>Գրել առանց նայելու, համեմատել</span></button>
@@ -271,7 +271,8 @@ function bindQuestions(){
   document.querySelectorAll('[data-qm]').forEach(b => b.onclick = () => { S.qmode = b.dataset.qm; save(); render(); });
   document.querySelectorAll('[data-tocheck]').forEach(b => b.onclick = () => { S.qmode = 'check'; openQ = b.dataset.tocheck; shown[openQ] = false; save(); render(); document.getElementById('q-'+openQ)?.scrollIntoView({block:'start'}); });
   document.querySelectorAll('[data-qf]').forEach(b => b.onclick = () => { qFilter = b.dataset.qf; render(); });
-  document.querySelectorAll('[data-tq]').forEach(b => b.onclick = () => { openQ = openQ===b.dataset.tq ? null : b.dataset.tq; render(); });
+  document.querySelectorAll('[data-tq]').forEach(b => b.onclick = () => { const id = b.dataset.tq; openQ = openQ===id ? null : id; render();
+    const el = document.getElementById('q-' + id); if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({block:'start'}); });  // after closing a long answer, return to its question
   document.querySelectorAll('[data-show]').forEach(b => b.onclick = () => { shown[b.dataset.show] = true; render(); });
   document.querySelectorAll('[data-rq]').forEach(b => b.onclick = () => { S.rate[b.dataset.rq] = +b.dataset.r; save(); render(); });
   document.querySelectorAll('[data-pq]').forEach(b => b.onclick = () => printQuestions(toPrint().map(q => q.id), b.dataset.pq));

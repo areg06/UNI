@@ -365,6 +365,41 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
   .sk-svg{width:66mm}
   .sk-svg.wide{width:110mm}
 }
+
+/* Questions tab on phones: full-width question text, compact answer boxes, the open question's header sticks under the top bar */
+.tip>summary{cursor:pointer;list-style:none}
+.tip>summary::-webkit-details-marker{display:none}
+.tip>summary b::after{content:" ▾";color:var(--muted);font-weight:400}
+.tip[open]>summary b::after{content:" ▴"}
+.q{scroll-margin-top:64px}
+@media (max-width:860px){
+  .q-head{grid-template-columns:auto minmax(0,1fr);gap:4px 10px;padding:12px 14px}
+  .q-head .badge{grid-column:2;justify-self:start;font-size:11.5px}
+  .q-id{font-size:12.5px;padding-top:2px}
+  .q-head[aria-expanded="true"] .q-id::after{content:"✕";display:block;margin-top:6px;color:var(--accent);font-size:14px}
+  .q-text{font-size:15px}
+  .q-body{padding:0 12px 14px;gap:10px}
+  .q:has(>.q-body)>.q-head{position:sticky;top:calc(env(safe-area-inset-top,0px) + 53px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line);border-radius:var(--r) var(--r) 0 0}
+  .answer{padding-left:10px}
+  .wr h4{font-size:15.5px}
+  details.full>summary{padding:10px 12px}
+  .full-in{padding:4px 10px 14px}
+  .checklist{padding:10px 12px}
+  .q-body .katex-display,.q-body .formula{overflow-x:auto;overflow-y:hidden;max-width:100%}
+  .q-body img,.q-body svg{max-width:100%;height:auto}
+  .filters{flex-wrap:nowrap;overflow-x:auto;margin-inline:-16px;padding:2px 16px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:none}
+  .modes button{padding:8px 10px}
+  .print-row{display:grid;grid-template-columns:1fr 1fr}
+  .print-row .btn{white-space:normal;line-height:1.3;min-height:40px}
+  .print-row .print-note{grid-column:1/-1}
+  .q:has(>.q-body)>.q-head .badge{display:none}
+  .rate{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rate>span{grid-column:1/-1}
+  .rate button{min-height:40px;padding:6px 4px}
+  .mobile-nav .theme-btn{box-shadow:-10px 0 10px var(--bg)}
+}
 </style>
 
 </head><body>
@@ -2433,7 +2468,7 @@ function viewQuestions(){
   return `<div class="view">
     <header class="view-head"><span class="eyebrow">Ծրագրի հարցեր · թեմաներ 1–4 և լաբորատոր 1–5</span><h1>Գրավոր հարցեր</h1>
     <p class="lede">Նախ <b>Սովորել</b> ռեժիմում կարդացեք հարցը և «Ի՞նչ գրել թղթին» պատասխանը. դա հենց այն է, ինչ պետք է գրել քննությանը՝ սահմանումներ, բանաձևեր քայլ առ քայլ, գծագրեր։ Հետո <b>Ստուգել</b> ռեժիմում գրեք պատասխանը առանց նայելու և համեմատեք հիմնական կետերի հետ։ Սեղմեք հարցի վրա՝ բացելու համար։</p></header>
-    <div class="panel tip"><b>Լավ գրավոր պատասխանի կառուցվածքը</b><ol><li><b>Սահմանում</b>՝ ճշգրիտ ձևակերպմամբ (օր․ «Կոփում կոչվում է…»)։</li><li><b>Բացատրություն</b>՝ ինչպես և ինչու է տեղի ունենում։</li><li><b>Բանաձև, սխեմա կամ դիագրամ</b>՝ գծեք, եթե հարցը թույլ է տալիս (ցանցեր, ձգման դիագրամ, Fe–Fe₃C)։</li><li><b>Թվեր և օրինակներ</b>՝ ջերմաստիճաններ, տոկոսներ, մետաղներ։</li></ol></div>
+    <details class="panel tip" ${matchMedia('(min-width:861px)').matches ? 'open' : ''}><summary><b>Լավ գրավոր պատասխանի կառուցվածքը</b></summary><ol><li><b>Սահմանում</b>՝ ճշգրիտ ձևակերպմամբ (օր․ «Կոփում կոչվում է…»)։</li><li><b>Բացատրություն</b>՝ ինչպես և ինչու է տեղի ունենում։</li><li><b>Բանաձև, սխեմա կամ դիագրամ</b>՝ գծեք, եթե հարցը թույլ է տալիս (ցանցեր, ձգման դիագրամ, Fe–Fe₃C)։</li><li><b>Թվեր և օրինակներ</b>՝ ջերմաստիճաններ, տոկոսներ, մետաղներ։</li></ol></details>
     <div class="modes" role="tablist">
       <button role="tab" data-qm="study" aria-selected="${S.qmode==='study'}"><b>1 · Սովորել</b><span>Կարդալ հարցերը պատասխաններով</span></button>
       <button role="tab" data-qm="check" aria-selected="${S.qmode==='check'}"><b>2 · Ստուգել</b><span>Գրել առանց նայելու, համեմատել</span></button>
@@ -2450,7 +2485,8 @@ function bindQuestions(){
   document.querySelectorAll('[data-qm]').forEach(b => b.onclick = () => { S.qmode = b.dataset.qm; save(); render(); });
   document.querySelectorAll('[data-tocheck]').forEach(b => b.onclick = () => { S.qmode = 'check'; openQ = b.dataset.tocheck; shown[openQ] = false; save(); render(); document.getElementById('q-'+openQ)?.scrollIntoView({block:'start'}); });
   document.querySelectorAll('[data-qf]').forEach(b => b.onclick = () => { qFilter = b.dataset.qf; render(); });
-  document.querySelectorAll('[data-tq]').forEach(b => b.onclick = () => { openQ = openQ===b.dataset.tq ? null : b.dataset.tq; render(); });
+  document.querySelectorAll('[data-tq]').forEach(b => b.onclick = () => { const id = b.dataset.tq; openQ = openQ===id ? null : id; render();
+    const el = document.getElementById('q-' + id); if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({block:'start'}); });  // after closing a long answer, return to its question
   document.querySelectorAll('[data-show]').forEach(b => b.onclick = () => { shown[b.dataset.show] = true; render(); });
   document.querySelectorAll('[data-rq]').forEach(b => b.onclick = () => { S.rate[b.dataset.rq] = +b.dataset.r; save(); render(); });
   document.querySelectorAll('[data-pq]').forEach(b => b.onclick = () => printQuestions(toPrint().map(q => q.id), b.dataset.pq));
