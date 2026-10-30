@@ -114,5 +114,30 @@ if '.wsteps{' not in html:
     assert html.count(a) == 1
     html = html.replace(a, a + PRINT)
 
+# 4) short plans: only the headings of each answer (q.p); the plan view and the plan print use them
+from content_plan import PLAN
+missing = [i for i in ids if i not in PLAN]
+assert not missing, missing
+block = ('<script id="plan">// Short answer plans: headings only (built by written/inject.py from content_plan.py).\n'
+         'window.DATA.questions.forEach(q => q.p = (' + json.dumps(PLAN, ensure_ascii=False) + ')[q.id] || []);</script>\n')
+html = re.sub(r'<script id="plan">.*?</script>\n', '', html, flags=re.S)
+i = html.index('<script>window.IMG=')
+html = html[:i] + block + html[i:]
+plan_hooks = [
+ ("const planDetails = q => `<details class=\"full\"><summary>Կարճ պլան (հիմնական կետերը)</summary><div class=\"full-in\"><div class=\"answer prose\">${q.a}</div></div></details>`;",
+  "const planList = q => `<ol class=\"plan\">${q.p.map(h => `<li>${h}</li>`).join('')}</ol>`;\n"
+  "const planDetails = q => `<details class=\"full\"><summary>Կարճ պլան (միայն վերնագրերը)</summary><div class=\"full-in\"><div class=\"answer prose\">${planList(q)}</div></div></details>`;"),
+ ("${printQ.mode==='plan' ? `<div class=\"answer prose\">${q.a}</div>` : written(q)}",
+  "${printQ.mode==='plan' ? `<div class=\"answer prose\">${planList(q)}</div>` : written(q)}"),
+]
+if 'const planList = q =>' not in html:
+    for old, new in plan_hooks:
+        assert html.count(old) == 1, old[:70]
+        html = html.replace(old, new)
+if '.plan{' not in html:
+    a = "/* Print: one lecture or the questions on A4"
+    assert html.count(a) == 1
+    html = html.replace(a, ".plan{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:4px;font-weight:500}\n" + a)
+
 open(PAGE, 'w', encoding='utf-8').write(html)
 print(PAGE, len(html) // 1024, 'KB,', len(ids), 'questions')
