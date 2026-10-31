@@ -309,6 +309,10 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
 .sk-svg.wide{width:460px}
 .sk:has(.wide) figcaption{max-width:460px}
 .plan{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:4px;font-weight:500}
+.theme-btn{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;align-self:flex-start}
+.theme-btn:hover{border-color:var(--accent)}
+.theme-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mobile-nav .theme-btn{margin-left:auto;flex:none;padding:5px 11px;position:sticky;right:0;box-shadow:-10px 0 10px var(--bg)}
 /* Print: one lecture or the questions on A4 (buttons «Տպել»). Light colors, no navigation or controls. */
 .print-only{display:none}
 .print-row{gap:8px;align-items:center}
@@ -412,6 +416,7 @@ details.full>summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(
     <div class="rail-foot">
       <span>Դասախոսություններ 1–7 · թեմաներ 1–4</span>
       <span>Առաջընթացը պահվում է այս դիտարկիչում։</span>
+      <button class="theme-btn" type="button" id="theme" data-theme-toggle></button>
       <button class="linkbtn" id="reset">Զրոյացնել առաջընթացը</button>
     </div>
   </aside>
@@ -2244,6 +2249,18 @@ let S = { read:{}, rate:{}, known:{}, quiz:[], sup:true, draft:{}, chk:{} };
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch(e){}
 S.draft = S.draft || {}; S.chk = S.chk || {}; S.qmode = S.qmode || 'study';
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };
+/* ---------- light/dark theme: follows the system until the viewer picks one (own key, so "reset progress" keeps it) ---------- */
+const TKEY = 'nyut-theme', ROOT = document.documentElement;
+try { const t = localStorage.getItem(TKEY); if (t === 'light' || t === 'dark') ROOT.setAttribute('data-theme', t); } catch(e){}
+const isDark = () => (ROOT.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+const themeLabel = () => isDark() ? '☀ Լուսավոր ռեժիմ' : '☾ Մութ ռեժիմ';
+// re-render so the drawings pick up the new colors; keep the scroll position
+function toggleTheme(){
+  const t = isDark() ? 'light' : 'dark'; ROOT.setAttribute('data-theme', t);
+  try { localStorage.setItem(TKEY, t); } catch(e){}
+  const y = window.scrollY; render(); window.scrollTo(0, y);
+}
+document.addEventListener('click', e => { if (e.target.closest('[data-theme-toggle]')) toggleTheme(); });
 
 const ICONS = {
   home:'<path d="M3 10.5 12 4l9 6.5V20h-6v-6H9v6H3z"/>',
@@ -2260,7 +2277,9 @@ const VIEWS = [
 ];
 function buildNav(cur){
   $('#nav').innerHTML = VIEWS.map(([id,t]) => `<a href="#${id}" ${cur===id?'aria-current="page"':''}><svg class="ic" viewBox="0 0 24 24">${ICONS[id]}</svg>${t}</a>`).join('');
-  $('#mnav').innerHTML = VIEWS.map(([id,t]) => `<a href="#${id}" ${cur===id?'aria-current="page"':''}>${t}</a>`).join('');
+  $('#mnav').innerHTML = VIEWS.map(([id,t]) => `<a href="#${id}" ${cur===id?'aria-current="page"':''}>${t}</a>`).join('')
+    + `<button class="theme-btn" type="button" data-theme-toggle>${isDark() ? '☀' : '☾'}</button>`;
+  $('#theme').textContent = themeLabel();
 }
 
 const lecById = id => D.lectures.find(l => l.id === +id);

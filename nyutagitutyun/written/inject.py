@@ -139,5 +139,40 @@ if '.plan{' not in html:
     assert html.count(a) == 1
     html = html.replace(a, ".plan{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:4px;font-weight:500}\n" + a)
 
+# 5) light/dark toggle (same as the gazodinamika platform): rail button + button at the end of the mobile tabs
+theme_hooks = [
+ ("const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };\n",
+  "const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };\n"
+  "/* ---------- light/dark theme: follows the system until the viewer picks one (own key, so \"reset progress\" keeps it) ---------- */\n"
+  "const TKEY = 'nyut-theme', ROOT = document.documentElement;\n"
+  "try { const t = localStorage.getItem(TKEY); if (t === 'light' || t === 'dark') ROOT.setAttribute('data-theme', t); } catch(e){}\n"
+  "const isDark = () => (ROOT.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';\n"
+  "const themeLabel = () => isDark() ? '☀ Լուսավոր ռեժիմ' : '☾ Մութ ռեժիմ';\n"
+  "// re-render so the drawings pick up the new colors; keep the scroll position\n"
+  "function toggleTheme(){\n"
+  "  const t = isDark() ? 'light' : 'dark'; ROOT.setAttribute('data-theme', t);\n"
+  "  try { localStorage.setItem(TKEY, t); } catch(e){}\n"
+  "  const y = window.scrollY; render(); window.scrollTo(0, y);\n"
+  "}\n"
+  "document.addEventListener('click', e => { if (e.target.closest('[data-theme-toggle]')) toggleTheme(); });\n"),
+ ("  $('#mnav').innerHTML = VIEWS.map(([id,t]) => `<a href=\"#${id}\" ${cur===id?'aria-current=\"page\"':''}>${t}</a>`).join('');\n",
+  "  $('#mnav').innerHTML = VIEWS.map(([id,t]) => `<a href=\"#${id}\" ${cur===id?'aria-current=\"page\"':''}>${t}</a>`).join('')\n"
+  "    + `<button class=\"theme-btn\" type=\"button\" data-theme-toggle>${isDark() ? '☀' : '☾'}</button>`;\n"
+  "  $('#theme').textContent = themeLabel();\n"),
+ ('      <button class="linkbtn" id="reset">Զրոյացնել առաջընթացը</button>\n',
+  '      <button class="theme-btn" type="button" id="theme" data-theme-toggle></button>\n'
+  '      <button class="linkbtn" id="reset">Զրոյացնել առաջընթացը</button>\n'),
+ ("/* Print: one lecture or the questions on A4",
+  ".theme-btn{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;align-self:flex-start}\n"
+  ".theme-btn:hover{border-color:var(--accent)}\n"
+  ".theme-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}\n"
+  ".mobile-nav .theme-btn{margin-left:auto;flex:none;padding:5px 11px;position:sticky;right:0;box-shadow:-10px 0 10px var(--bg)}\n"
+  "/* Print: one lecture or the questions on A4"),
+]
+if "const TKEY = 'nyut-theme'" not in html:
+    for old, new in theme_hooks:
+        assert html.count(old) == 1, old[:70]
+        html = html.replace(old, new)
+
 open(PAGE, 'w', encoding='utf-8').write(html)
 print(PAGE, len(html) // 1024, 'KB,', len(ids), 'questions')
