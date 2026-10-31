@@ -1,4 +1,4 @@
-"""The notebook (copybook) pages 10–16, filled in for this variant, laid out like the teacher's template."""
+"""The notebook (copybook) pages 10–18, filled in for this variant, laid out like the teacher's template."""
 import model as M
 import calc as C
 from calc import n, r
@@ -226,7 +226,7 @@ p18 = page(18, f"""
 SECTION = f'''
 <section class="wide-sec sec" id="copybook">
   <div class="wrap">
-    <h2>Տետրը (էջ 10–16)</h2>
+    <h2>Տետրը (էջ 10–18)</h2>
     <div class="prose">
       <p>Ձեր տետրի էջերը՝ լրացված այս տարբերակի թվերով։ Կառուցվածքը, համարակալումը և նշանակումները նույնն են, ինչ լուսանկարներում. «…»-ի տեղում թվերն են։ Թավով գրվածը վերջնական արդյունքն է։ <b>13ա</b> ներդիրը ցույց է տալիս 7-րդ կետը բոլոր 8 դիրքերի համար. էջ 13-ի աղյուսակը լրացվում է դրանից։</p>
       <p class="note">Հատվածները (pc, bc, pf, …) չափված են A3 թերթի պլաններից. ձեր չափումները կարող են տարբերվել ±0,5 մմ-ով, դա նորմալ է. այդ դեպքում արագությունը վերահաշվեք նույն բանաձևով։ pe-ն և πe-ն չեն չափվում, հաշվվում են (3) և (4) բանաձևերով։</p>

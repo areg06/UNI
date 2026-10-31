@@ -235,7 +235,7 @@ data_sec = f'''
       </tbody>
     </table>
   </div>
-  <p class="note">Այս թերթի (կինեմատիկայի) համար պետք են <i>H</i><sub>F</sub>, <i>L</i><sub>1</sub>, <i>L</i><sub>2</sub>, {lEF}, {lED}, {lCD}, <i>n</i><sub>1</sub>, <i>α</i>, <i>β</i> և F<sub>re</sub> գրաֆիկի ձևը։ <i>G</i><sub>2</sub>, <i>G</i><sub>5</sub>, <i>I</i><sub>S₂</sub>, <i>M</i><sub>m</sub>, <i>δ</i> մեծությունները պետք են հաջորդ բաժիններում (ուժային հաշվարկ, թափանիվ)։ <i>I</i><sub>S₂</sub>-ի միավորի աստիճանը լուսանկարում վատ է երևում (10⁻³ կամ 10⁻¹). ստուգեք ձեր թերթում, երբ հասնեք ուժային հաշվարկին։</p>
+  <p class="note">Այս թերթի (կինեմատիկայի) համար պետք են <i>H</i><sub>F</sub>, <i>L</i><sub>1</sub>, <i>L</i><sub>2</sub>, {lEF}, {lED}, {lCD}, <i>n</i><sub>1</sub>, <i>α</i>, <i>β</i> և F<sub>re</sub> գրաֆիկի ձևը։ <i>G</i><sub>2</sub>, <i>G</i><sub>5</sub> և F<sub>re</sub><sup>max</sup>-ը պետք են <a href="#s4">§4</a>-ում (բերված մոմենտ), <i>I</i><sub>S₂</sub>, <i>M</i><sub>m</sub>, <i>δ</i>-ն՝ հետագա բաժիններում (թափանիվ)։ <i>I</i><sub>S₂</sub>-ի միավորի աստիճանը լուսանկարում վատ է երևում (10⁻³ կամ 10⁻¹). ստուգեք ձեր թերթում, երբ հասնեք ուժային հաշվարկին։</p>
 </div>'''
 
 # ---------------- step-by-step derivation of the key results ----------------
@@ -329,6 +329,7 @@ results_sec = f'''
     <div><dt>Արագությունների մասշտաբ</dt><dd>{mu_V} = {MUVT} (մ/վ)/մմ <span>pb = {n(C.PB)} մմ</span></dd></div>
     <div><dt>B կետի արագացում</dt><dd>{a_('B')} = {n(C.AB_ACC,2)} մ/վ²</dd></div>
     <div><dt>Արագացումների մասշտաբ</dt><dd>{mu_a} = {MUAT} (մ/վ²)/մմ <span>πb = {n(C.PIB)} մմ</span></dd></div>
+    <div><dt>Բերված մոմենտ (առավելագույն)</dt><dd><i>M</i><sub>P</sub> = {n(C.MP[2]['M'])} Ն·մ <span>դիրք 2, μ<sub>M</sub> = {n(C.MU_M,2)}</span></dd></div>
     <div><dt>Ընթացքների անկյուններ</dt><dd>{n(M.PHI_W)}° / {n(M.PHI_I)}° <span>աշխատանքային / պարապ</span></dd></div>
   </dl>
   {calc_html}
@@ -622,44 +623,9 @@ s3 = f'''
 </div>'''
 
 # ---------------- §4: reduced moment on the crank ----------------
-def mp_graph():
-    """M_P(φ) as drawn on paper: φ axis 8 × 20 mm, |M_P|max = 80 mm (1 svg unit = 1 mm)."""
-    x0, y0 = 26, 22
-    pts = [(x0 + 20*j, y0 - C.MP[j]['Mmm']) for j in range(9)]
-    ms = M._pchip_slopes([p[0] for p in pts], [p[1] for p in pts])   # monotone: no overshoot between points
-    d = f'M{pts[0][0]},{pts[0][1]:.2f}'
-    for k in range(8):
-        (xa, ya), (xb, yb), h = pts[k], pts[k+1], 20/3
-        d += f' C{xa+h:.2f},{ya+ms[k]*h:.2f} {xb-h:.2f},{yb-ms[k+1]*h:.2f} {xb},{yb:.2f}'
-    ymin = max(p[1] for p in pts); jmin = min(range(9), key=lambda j: C.MP[j]['Mmm'])
-    out = [f'<svg class="mpg" viewBox="0 0 206 118" role="img" aria-label="Բերված մոմենտի գրաֆիկը">',
-           f'<line class="ax" x1="{x0-6}" y1="{y0}" x2="{x0+170}" y2="{y0}"/><line class="ax" x1="{x0}" y1="{y0+86}" x2="{x0}" y2="6"/>',
-           f'<path class="ar" d="M{x0+170},{y0} l-3,-1.2 v2.4z M{x0},6 l-1.2,3 h2.4z"/>',
-           f'<text x="{x0+3}" y="8" class="lb">M<tspan class="sb" dy="1">P</tspan></text><text x="{x0+168}" y="{y0-3}" class="lb">φ</text>']
-    for j, (x, y) in enumerate(pts):
-        out.append(f'<line class="gr" x1="{x}" y1="{y0}" x2="{x}" y2="{y:.2f}"/>' if abs(y - y0) > 1 else '')
-        out.append(f'<text x="{x}" y="{y0-2.5}" class="tk">{j}</text><circle class="dt" cx="{x}" cy="{y:.2f}" r="1.1"/>')
-    out.append(f'<path class="cv" d="{d}"/>')
-    xm = pts[jmin][0]
-    out.append(f'<line class="dm" x1="{xm+6}" y1="{y0}" x2="{xm+6}" y2="{ymin:.2f}"/><text class="dmt" x="{xm+8}" y="{(y0+ymin)/2:.1f}">{n(-C.MP[jmin]["Mmm"],0)} մմ</text>')
-    out.append(f'<line class="dm" x1="{x0}" y1="{y0+92}" x2="{x0+160}" y2="{y0+92}"/><text class="dmt c" x="{x0+80}" y="{y0+90}">8 × 20 մմ = 160 մմ</text>')
-    out.append('</svg>')
-    return ''.join(out)
+from mpgraph import mp_graph, PROJ_SVG
 
-PROJ_SVG = '''<svg class="projg" viewBox="0 0 200 92" role="img" aria-label="ps₂-ի պրոյեկցիան ուղղաձիգի վրա">
-<g transform="translate(14,0)"><text x="0" y="10" class="cap">սուր անկյուն → «+»</text>
-<line class="ax" x1="24" y1="18" x2="24" y2="88"/><circle class="dt" cx="24" cy="24" r="1.4"/><text x="16" y="27" class="lb">p</text>
-<line class="vc" x1="24" y1="24" x2="58" y2="70"/><text x="60" y="73" class="lb">s₂</text>
-<line class="pj" x1="58" y1="70" x2="24" y2="70"/><line class="hl" x1="24" y1="24" x2="24" y2="70"/>
-<text x="27" y="50" class="hlt" transform="rotate(90 27 50)">ps₂·cos α₂</text>
-<path class="g2" d="M70,24 v18"/><path class="ar2" d="M70,44 l-1.6,-4 h3.2z"/><text x="73" y="36" class="lb">G₂</text></g>
-<g transform="translate(110,0)"><text x="0" y="10" class="cap">բութ անկյուն → «−»</text>
-<line class="ax" x1="24" y1="18" x2="24" y2="88"/><circle class="dt" cx="24" cy="70" r="1.4"/><text x="16" y="73" class="lb">p</text>
-<line class="vc" x1="24" y1="70" x2="60" y2="30"/><text x="62" y="30" class="lb">s₂</text>
-<line class="pj" x1="60" y1="30" x2="24" y2="30"/><line class="hl" x1="24" y1="30" x2="24" y2="70"/>
-<text x="27" y="40" class="hlt" transform="rotate(90 27 40)">−(ps₂·cos α₂)</text>
-<path class="g2" d="M72,52 v18"/><path class="ar2" d="M72,72 l-1.6,-4 h3.2z"/><text x="75" y="64" class="lb">G₂</text></g>
-</svg>'''
+
 
 KMT = n(C.KM, 7); m2 = C.MP[2]
 def _sg(x): return ('+' if x > 0 else '') + n(x)
@@ -734,7 +700,7 @@ fre_sec = f'''
     <thead><tr><th scope="col">Դիրք</th><th scope="col">Ընթացք</th><th scope="col">S<sub>F</sub>*, մմ</th><th scope="col">S<sub>F</sub>, մ</th><th scope="col">S<sub>F</sub>/H<sub>F</sub></th><th scope="col">F<sub>re</sub>, Ն</th><th scope="col">F<sub>re</sub>*, մմ</th><th scope="col">կորի կետ x</th><th scope="col">y</th></tr></thead>
     <tbody>{fre_rows}</tbody>
   </table></div>
-  <p class="note prose">F<sub>re</sub>-ի արժեքները մոտավոր են. կորի ձևը թվայնացված է առաջադրանքի թերթի փոքր նկարից (F<sub>re</sub> = 0, երբ S<sub>F</sub> &lt; 0,28·H<sub>F</sub>, առավելագույնը՝ ≈ 0,85·H<sub>F</sub>-ում)։ Ճշգրիտ արժեքները կարդացեք ձեր գծած գրաֆիկից։ Կինեմատիկայի համար դրանք պետք չեն, պետք կգան ուժային հաշվարկում։</p>
+  <p class="note prose">F<sub>re</sub>-ի արժեքները մոտավոր են. կորի ձևը թվայնացված է առաջադրանքի թերթի փոքր նկարից (F<sub>re</sub> = 0, երբ S<sub>F</sub> &lt; 0,28·H<sub>F</sub>, առավելագույնը՝ ≈ 0,85·H<sub>F</sub>-ում)։ Ճշգրիտ արժեքները կարդացեք ձեր գծած գրաֆիկից։ Կինեմատիկայի համար դրանք պետք չեն, բայց 2, 3, 4 դիրքերի F<sub>r</sub>-ը պետք է <a href="#s4">բերված մոմենտի</a> համար (F<sub>r</sub> = y<sub>j</sub>·μ<sub>F</sub>)։</p>
 </div>'''
 
 tables_sec = f'''
@@ -771,7 +737,7 @@ next_sec = f'''
 <div class="secbody">
   <h3 class="bh">Հաջորդ բաժինները</h3>
   <div class="prose">
-    <p>Այս էջը ընդգրկում է A3 թերթը և տետրի §1–§3 բաժինները։ Մնացած տվյալները՝ <i>G</i><sub>2</sub> = {D_['G2']} Ն, <i>G</i><sub>5</sub> = {D_['G5']} Ն, <i>I</i><sub>S₂</sub> = {n(D_['IS2']/1000,2)} կգ·մ², F<sub>re</sub>, <i>M</i><sub>m</sub> = const, <i>δ</i> = 0,05, պետք են ուժային (կինետոստատիկ) հաշվարկի և թափանիվի հաշվարկի համար։ Ձեր լուսանկարներում այդ բաժինների օրինակ չկար, ուստի դրանք այստեղ չեն ներառվել։</p>
+    <p>Այս էջը ընդգրկում է A3 թերթերը և տետրի §1–§4 բաժինները (§4՝ բերված մոմենտը և M<sub>P</sub>(φ) գրաֆիկը)։ Հաջորդը մեթոդականի 1.8 կետն է՝ աշխատանքների գրաֆիկը, որը կավելացվի, երբ դասախոսը բացատրի գրաֆիկների կառուցումը։ <i>I</i><sub>S₂</sub> = {n(D_['IS2']/1000,2)} կգ·մ², <i>M</i><sub>m</sub> = const, <i>δ</i> = 0,05 մեծությունները պետք կգան թափանիվի հաշվարկում։</p>
     <p class="note">Բոլոր թվերը հաշվված են ծրագրով և ստուգված թվային ածանցմամբ։ Ձեր գծագրում չափված երկարությունները կարող են տարբերվել ±0,5 մմ-ով. դա նորմալ է։</p>
   </div>
 </div>'''
