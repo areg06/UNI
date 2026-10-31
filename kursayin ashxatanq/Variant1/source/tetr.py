@@ -1,4 +1,4 @@
-"""Builds ../tetr.html: what to write in the copybook, page by page (pages 10–16 from notebook.py + tips)."""
+"""Builds ../tetr.html: what to write in the copybook, page by page (pages 10–18 from notebook.py + tips)."""
 import os
 import model as M
 import calc as C
@@ -55,6 +55,18 @@ PAGES = [
       'Շոշափող արագացումները a<sup>t</sup>',
       'ε₂, ε₃, ε₄ և նրանց ուղղությունները'],
      'πc, πf, πs₂, n₂c, n₃c, n₄f հատվածները <b>չափեք թերթ 1-ի</b> արագացումների պլանից։ n₃c-ն և n₄f-ը գրեթե զրո են. սա սխալ չէ։'),
+    ('p17', NB.p17, 'Էջ 17', '§4. բերված մոմենտի բանաձևը',
+     ['§4 վերնագիրը և հզորությունների հավասարությունը',
+      '1) M<sub>P</sub>-ի բանաձևը G₂, G₅, F<sub>r</sub> ուժերով',
+      '2) μ<sub>F</sub> և F<sub>r</sub> = y<sub>j</sub>·μ<sub>F</sub>',
+      '3) V = հատված·μ<sub>V</sub>, μ<sub>V</sub>/ω₁ և (5) բանաձևը'],
+     'G₂, G₅՝ առաջադրանքի աղյուսակից։ α₅ = 0° 1–4 դիրքերում, 180°՝ 5–7-ում։ F<sub>r</sub> ≠ 0 միայն 2, 3, 4 դիրքերում (1-ում ուժը դեռ չի սկսվել)։'),
+    ('p18', NB.p18, 'Էջ 18', '§4. աղյուսակը և մասշտաբները',
+     ['Դիրք 2-ի հաշվարկը՝ օրինակ',
+      'Աղյուսակը 0–8 դիրքերի համար',
+      '4) μ<sub>M</sub> և μ<sub>φ</sub>',
+      '5) գծագրական չափերը (M<sub>P</sub>)<sup>գծ</sup>'],
+     'ps₂·cos α₂-ը <b>չափեք թերթ 2-ի պլաններից</b>. s₂-ից իջեցրեք ուղղահայաց p-ով անցնող ուղղաձիգին (p-ից ներքև՝ +, վերև՝ −)։ pf-ը՝ նույն պլաններից, y<sub>j</sub>-ն՝ թերթ 1-ի F<sub>re</sub> գրաֆիկից։ Ստուգում. 2–4 դիրքերում M<sub>P</sub> &lt; 0, մեծագույնը՝ 2-րդ կամ 3-րդ դիրքում։'),
 ]
 
 def page_sec(pid, body, title, sub, items, src):
@@ -81,7 +93,7 @@ body = ''.join(page_sec(*p) for p in PAGES)
 
 intro = f'''
 <section class="intro" id="top">
-  <p class="kicker">Տետր · էջ 10–16</p>
+  <p class="kicker">Տետր · էջ 10–18</p>
   <h1>Ինչ գրել տետրում</h1>
   <p class="lede">Ստորև յուրաքանչյուր տետրի էջն է՝ լրացված ձեր տարբերակի թվերով, ճիշտ այն հերթականությամբ և նշանակումներով, ինչ օրինակում։ Կողքին գրված է, թե ինչ կա էջում և որտեղից վերցնել չափվող թվերը։ Արտագրելուց հետո նշեք «Գրված է»։</p>
   <div class="rules">
@@ -219,7 +231,7 @@ html = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Տետրում գրելու · տարբերակ {VAR}</title>
-<meta name="description" content="ՄՄՏ, առաջադրանք 2, տարբերակ {VAR}. ինչ գրել տետրում՝ էջ 10–16, տող առ տող">
+<meta name="description" content="ՄՄՏ, առաջադրանք 2, տարբերակ {VAR}. ինչ գրել տետրում՝ էջ 10–18, տող առ տող">
 {FONTS}
 <script>try{{var t=localStorage.getItem('tmm-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}}catch(e){{}}</script>
 <style>{CSS}{NB.CSS}</style>

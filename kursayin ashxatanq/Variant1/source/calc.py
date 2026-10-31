@@ -51,6 +51,28 @@ def achain(i):
                 e2s=rot_sym(K['e2'], 1e-3), e3s=rot_sym(K['e3'], 1e-3), e4s=rot_sym(K['e4'], 1e-3),
                 aFs=('↓' if K['aF'][1] < 0 else '↑'))
 
+# ---------------- §4: reduced moment on the crank (power balance, teacher's projection method) ----------------
+# M_P = G2·V_S2·cos α2/ω1 + G5·V_F·cos α5/ω1 − F_r·V_F/ω1, with V = segment·μ_V, so every term is (N·mm)·μ_V/ω1.
+# ps2·cos α2 is not measured as an angle: project ps2 on the vertical of the velocity plan (down from p = +, up = −).
+G2, G5 = M.DATA['G2'], M.DATA['G5']
+KM = r(M.MUV/W1, 7)                       # μ_V/ω1, m/mm: turns N·mm of the plan into N·m
+FRE_MAX_MM = r(M.FMAX/M.MUF)              # y_max of the F_re diagram, mm (μ_F = F_max / y_max)
+def mchain(j):
+    i = j % 8; v = M.vplan(i); c = vchain(i); q = M.POS[i]
+    ys2 = r(-v['s2'][1])                                 # ps2·cos α2, mm, signed (down = +)
+    pf = c['pf']; down = q['K']['VF'][1] < 0 or pf == 0
+    work = 1 <= i <= 4                                   # slider goes down: working stroke
+    yF = r(M.FMAX/M.MUF*M.fre_shape(q['sF']/M.H)) if work else 0.0   # F_re ordinate at this position, mm
+    Fr = r(yF*M.MUF, 0)
+    t2 = r(G2*ys2*KM, 2); t5 = r((1 if down else -1)*G5*pf*KM, 2); tr = r(Fr*pf*KM, 2)
+    return dict(ys2=ys2, ps2=c['ps2'], pf=pf, a5=0 if down else 180, yF=yF, Fr=Fr, t2=t2, t5=t5, tr=tr, M=r(t2+t5-tr, 1))
+MP = [mchain(j) for j in range(9)]
+MP_MAX = max(abs(x['M']) for x in MP)
+MP_YMAX = 80                                             # mm for |M_P|max (teacher: 70…80 mm)
+MU_M = r(MP_MAX/MP_YMAX, 2)                              # (N·m)/mm
+MU_PHI = r(2*3.14/160, 3)                                # rad/mm, one crank turn = 160 mm
+for x in MP: x['Mmm'] = r(x['M']/MU_M, 1)
+
 if __name__ == '__main__':
     print('AC0', AC0, 'AC0p', AC0P, 'BC', BC, 'AB', AB, 'lAB', LAB, 'lBC', LBC, 'lBS2', LBS2, 'BS2*', BS2S)
     print('W1', W1, 'VB4', VB4, 'VB', VB, 'PB', PB, 'aB', AB_ACC, 'PIB', PIB, 'CE*', round(CE_S, 2))

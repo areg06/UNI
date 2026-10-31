@@ -190,6 +190,39 @@ p16 = page(16, f'''
 <p class="nnote">{q('a','S<sub>2</sub>')}-ի տողը օրինակում չկա, բայց պետք կգա ուժային հաշվարկում (իներցիայի ուժ)։ n<sub>3</sub>c-ն և n<sub>4</sub>f-ը գրեթե զրո են, որովհետև 2-րդ դիրքում {w[3]}-ը մոտ է իր առավելագույնին. սա սխալ չէ։</p>
 ''')
 
+# ---------------- §4: reduced moment (pages 17–18) ----------------
+KMT = n(C.KM, 7); W1T = n(C.W1, 2)
+def sgn(x, nd=1): return ('+' if x > 0 else '') + n(x, nd)
+p17 = page(17, f"""
+<h4 class="nsec">§4. Բերված մոմենտի որոշումը և նրա գրաֆիկի կառուցումը</h4>
+<p class="ntext">Բերման օղակը՝ 1 շուռտվիկը։ Բերված մոմենտի հզորությունը հավասար է արտաքին ուժերի հզորությունների գումարին.</p>
+{L(f"{q('M','P')}·{w[1]} = Σ {q('F','i')}·{q('V','i')}·cos {q('α','i')}")}
+{L(f"{num(1)} {q('M','P')}<sub>j</sub> = {q('G','2')}·{fr(q('V','S<sub>2</sub>')+'·cos '+q('α','2'), w[1])} + {q('G','5')}·{fr(q('V','F')+'·cos '+q('α','5'), w[1])} − {q('F','r')}·{fr(q('V','F'), w[1])}")}
+{L(f"{q('G','2')} = {C.G2} Ն; &nbsp;{q('G','5')} = {C.G5} Ն; &nbsp;{w[1]} = {W1T} {INV1}", 'ind')}
+{L(f"{q('α','5')} = 0° (1–4 դիրքեր, սողնակն իջնում է), {q('α','5')} = 180° (5–7 դիրքեր)", 'ind sm')}
+{L(f"{num(2)} {q('F','r')} = {q('y','j')}·{q('μ','F')}; &nbsp;{q('μ','F')} = {fr(q('F','re')+'<sup>max</sup>', q('y','max'))} = {fr(str(int(M.FMAX)), n(C.FRE_MAX_MM,0))} = {big(n(M.MUF,0))} Ն/մմ")}
+{L(f"{q('F','r')} ≠ 0 միայն 2, 3, 4 դիրքերում. ուղղված է վեր, {q('V','F')}-ը՝ ներքև (cos 180° = −1)", 'ind sm')}
+{L(f"{num(3)} {q('V','S<sub>2</sub>')}·cos {q('α','2')} = (ps<sub>2</sub>·cos {q('α','2')})·{muv}; &nbsp;{q('V','F')} = (pf)·{muv}")}
+{L(f"ps<sub>2</sub>·cos {q('α','2')}՝ ps<sub>2</sub>-ի պրոյեկցիան ուղղաձիգի վրա (p-ից ներքև՝ +, վերև՝ −), մմ", 'ind sm')}
+{L(f"{fr(muv, w[1])} = {fr(MUV, W1T)} = {big(KMT)} մ/մմ", 'ind')}
+{L(f"{q('M','P')}<sub>j</sub> = {KMT}·[{C.G2}·(ps<sub>2</sub>cos {q('α','2')}) ± {C.G5}·(pf) − {q('F','r')}·(pf)] &nbsp;(5)", 'ind')}
+""", 'r')
+
+m2 = C.MP[2]
+mrows = ''.join(
+    f'<tr{" class=wk" if j == 2 else ""}><th>{j}</th><td>{sgn(x["ys2"])}</td><td>{n(x["pf"])}</td><td>{x["a5"]}°</td>'
+    f'<td>{n(x["yF"])}</td><td>{n(x["Fr"],0)}</td><td>{n(x["M"])}</td><td>{n(x["Mmm"])}</td></tr>' for j, x in enumerate(C.MP))
+p18 = page(18, f"""
+{L(f"Դիրք 2. {q('M','P')}<sub>2</sub> = {KMT}·[{C.G2}·({n(m2['ys2'])}) + {C.G5}·{n(m2['pf'])} − {n(m2['Fr'],0)}·{n(m2['pf'])}] = {big(n(m2['M']))} Ն·մ", 'sm')}
+<table class="ntbl"><thead>
+<tr><th><i>j</i></th><th>ps<sub>2</sub>cos {q('α','2')}</th><th>pf</th><th>{q('α','5')}</th><th>{q('y','j')}</th><th>{q('F','r')}</th><th>{q('M','P')}<sub>j</sub></th><th>({q('M','P')})<sub>j</sub><sup>գծ</sup></th></tr>
+<tr><th></th><th>մմ</th><th>մմ</th><th></th><th>մմ</th><th>Ն</th><th>Ն·մ</th><th>մմ</th></tr></thead><tbody>{mrows}</tbody></table>
+{L(f"{num(4)} {q('μ','M')} = {fr('|'+q('M','P')+'|<sub>max</sub>', '80 մմ')} = {fr(n(C.MP_MAX), '80')} = {big(n(C.MU_M,2))} Ն·մ/մմ")}
+{L(f"{q('μ','φ')} = {fr('2π', '160 մմ')} = {fr('2·3,14', '160')} = {big(n(C.MU_PHI,3))} ռադ/մմ", 'ind')}
+{L(f"{num(5)} ({q('M','P')})<sub>j</sub><sup>գծ</sup> = {fr(q('M','P')+'<sub>j</sub>', q('μ','M'))} &nbsp;(իր նշանով)")}
+<p class="nnote">Ընդգծված տողը՝ |{q('M','P')}|<sub>max</sub>։ Գրաֆիկում φ առանցքը՝ 8 × 20 մմ = 160 մմ, {q('M','P')}-ի առավելագույնը՝ 80 մմ։</p>
+""")
+
 SECTION = f'''
 <section class="wide-sec sec" id="copybook">
   <div class="wrap">

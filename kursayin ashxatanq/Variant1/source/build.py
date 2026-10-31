@@ -161,6 +161,7 @@ PANELS = [  # (id, group, nav label, kicker shown above the panel title)
     ('s1', 'Տետրի հաշվարկը', '§1 Սինթեզ և դիրքեր', 'Տետրի հաշվարկը'),
     ('s2', 'Տետրի հաշվարկը', '§2 Արագություններ', 'Տետրի հաշվարկը'),
     ('s3', 'Տետրի հաշվարկը', '§3 Արագացումներ', 'Տետրի հաշվարկը'),
+    ('s4', 'Տետրի հաշվարկը', '§4 Բերված մոմենտ', 'Տետրի հաշվարկը'),
     ('sheet1', 'A3 գծագրեր', 'Թերթ 1. դիրքերի պլան', 'A3 գծագրեր'),
     ('sheet2', 'A3 գծագրեր', 'Թերթ 2. արագություններ', 'A3 գծագրեր'),
     ('fre', 'A3 գծագրեր', 'F<sub>re</sub> գրաֆիկ', 'A3 գծագրեր'),
@@ -302,12 +303,13 @@ road = [
     ('Կառուցեք 8 արագությունների պլանները', '<a href="#sheet2">Թերթ 2</a>, բանաձևերը՝ <a href="#s2">§2</a>, տետրի էջ 11–13'),
     ('Կառուցեք 2-րդ դիրքի արագացումների պլանը', '<a href="#sheet1">Թերթ 1</a>-ի աջ ներքևում, <a href="#s3">§3</a>, տետրի էջ 14–16'),
     ('Գծեք F<sub>re</sub> գրաֆիկը և լրացրեք մակագրությունները', '<a href="#fre">F<sub>re</sub> գրաֆիկ</a>'),
+    ('Հաշվեք բերված մոմենտը և կառուցեք M<sub>P</sub>(φ) գրաֆիկը', '<a href="#s4">§4</a>, տետրի էջ 17–18'),
 ]
 overview_head = f'''
 <h2 class="ptitle">Ինչ պետք է հանձնել</h2>
 <p class="lede">Աշխատանքը երեք մասից է. տետրի հաշվարկը և երկու A3 միլիմետրական թերթ։ Թվերը բոլորն արդեն հաշված են. այս էջում ամեն բաժին ցույց է տալիս՝ ինչ և ինչու է արվում, իսկ «Տետրում գրելու» էջում՝ ինչ գրել տետրում, տող առ տող։</p>
 <div class="deliv">
-  <a class="dcard dc-tetr" href="tetr.html"><span class="dk">Տետր</span><b>Էջ 10–16</b><span>§1–§3 հաշվարկները՝ ճիշտ այնպես, ինչպես պետք է գրել</span><em>Բացել →</em></a>
+  <a class="dcard dc-tetr" href="tetr.html"><span class="dk">Տետր</span><b>Էջ 10–18</b><span>§1–§4 հաշվարկները՝ ճիշտ այնպես, ինչպես պետք է գրել</span><em>Բացել →</em></a>
   <a class="dcard" href="#sheet1"><span class="dk">A3 · թերթ 1</span><b>Դիրքերի պլան</b><span>8 դիրք, F<sub>re</sub> գրաֆիկ, 2-րդ դիրքի արագացումների պլան</span><em>Բացել →</em></a>
   <a class="dcard" href="#sheet2"><span class="dk">A3 · թերթ 2</span><b>Արագությունների պլաններ</b><span>8 պլան՝ 0–7 դիրքերի համար, 4 × 2 վանդակում</span><em>Բացել →</em></a>
 </div>
@@ -617,6 +619,108 @@ s3 = f'''
       <p>2-րդ դիրքում {w3}-ը մոտ է իր առավելագույնին (1-ին դիրքում {n(om3_1,2)}, 2-րդում {n(om3_2,2)}, 3-րդում {n(om3_3,2)} ռադ/վ), ուստի {e3} ≈ 0 և {e4} ≈ 0, իսկ n₃c = {n(ac2['n3c'])} մմ, n₄f = {n(ac2['n4f'])} մմ։ Սա կառուցման սխալ չէ։ Եթե դասախոսը այլ դիրք պահանջի, բոլոր դիրքերի արժեքները <a href="#tables">աղյուսակներում</a> են։</p>
     </aside>
   </div>
+</div>'''
+
+# ---------------- §4: reduced moment on the crank ----------------
+def mp_graph():
+    """M_P(φ) as drawn on paper: φ axis 8 × 20 mm, |M_P|max = 80 mm (1 svg unit = 1 mm)."""
+    x0, y0 = 26, 22
+    pts = [(x0 + 20*j, y0 - C.MP[j]['Mmm']) for j in range(9)]
+    ms = M._pchip_slopes([p[0] for p in pts], [p[1] for p in pts])   # monotone: no overshoot between points
+    d = f'M{pts[0][0]},{pts[0][1]:.2f}'
+    for k in range(8):
+        (xa, ya), (xb, yb), h = pts[k], pts[k+1], 20/3
+        d += f' C{xa+h:.2f},{ya+ms[k]*h:.2f} {xb-h:.2f},{yb-ms[k+1]*h:.2f} {xb},{yb:.2f}'
+    ymin = max(p[1] for p in pts); jmin = min(range(9), key=lambda j: C.MP[j]['Mmm'])
+    out = [f'<svg class="mpg" viewBox="0 0 206 118" role="img" aria-label="Բերված մոմենտի գրաֆիկը">',
+           f'<line class="ax" x1="{x0-6}" y1="{y0}" x2="{x0+170}" y2="{y0}"/><line class="ax" x1="{x0}" y1="{y0+86}" x2="{x0}" y2="6"/>',
+           f'<path class="ar" d="M{x0+170},{y0} l-3,-1.2 v2.4z M{x0},6 l-1.2,3 h2.4z"/>',
+           f'<text x="{x0+3}" y="8" class="lb">M<tspan class="sb" dy="1">P</tspan></text><text x="{x0+168}" y="{y0-3}" class="lb">φ</text>']
+    for j, (x, y) in enumerate(pts):
+        out.append(f'<line class="gr" x1="{x}" y1="{y0}" x2="{x}" y2="{y:.2f}"/>' if abs(y - y0) > 1 else '')
+        out.append(f'<text x="{x}" y="{y0-2.5}" class="tk">{j}</text><circle class="dt" cx="{x}" cy="{y:.2f}" r="1.1"/>')
+    out.append(f'<path class="cv" d="{d}"/>')
+    xm = pts[jmin][0]
+    out.append(f'<line class="dm" x1="{xm+6}" y1="{y0}" x2="{xm+6}" y2="{ymin:.2f}"/><text class="dmt" x="{xm+8}" y="{(y0+ymin)/2:.1f}">{n(-C.MP[jmin]["Mmm"],0)} մմ</text>')
+    out.append(f'<line class="dm" x1="{x0}" y1="{y0+92}" x2="{x0+160}" y2="{y0+92}"/><text class="dmt c" x="{x0+80}" y="{y0+90}">8 × 20 մմ = 160 մմ</text>')
+    out.append('</svg>')
+    return ''.join(out)
+
+PROJ_SVG = '''<svg class="projg" viewBox="0 0 200 92" role="img" aria-label="ps₂-ի պրոյեկցիան ուղղաձիգի վրա">
+<g transform="translate(14,0)"><text x="0" y="10" class="cap">սուր անկյուն → «+»</text>
+<line class="ax" x1="24" y1="18" x2="24" y2="88"/><circle class="dt" cx="24" cy="24" r="1.4"/><text x="16" y="27" class="lb">p</text>
+<line class="vc" x1="24" y1="24" x2="58" y2="70"/><text x="60" y="73" class="lb">s₂</text>
+<line class="pj" x1="58" y1="70" x2="24" y2="70"/><line class="hl" x1="24" y1="24" x2="24" y2="70"/>
+<text x="27" y="50" class="hlt" transform="rotate(90 27 50)">ps₂·cos α₂</text>
+<path class="g2" d="M70,24 v18"/><path class="ar2" d="M70,44 l-1.6,-4 h3.2z"/><text x="73" y="36" class="lb">G₂</text></g>
+<g transform="translate(110,0)"><text x="0" y="10" class="cap">բութ անկյուն → «−»</text>
+<line class="ax" x1="24" y1="18" x2="24" y2="88"/><circle class="dt" cx="24" cy="70" r="1.4"/><text x="16" y="73" class="lb">p</text>
+<line class="vc" x1="24" y1="70" x2="60" y2="30"/><text x="62" y="30" class="lb">s₂</text>
+<line class="pj" x1="60" y1="30" x2="24" y2="30"/><line class="hl" x1="24" y1="30" x2="24" y2="70"/>
+<text x="27" y="40" class="hlt" transform="rotate(90 27 40)">−(ps₂·cos α₂)</text>
+<path class="g2" d="M72,52 v18"/><path class="ar2" d="M72,72 l-1.6,-4 h3.2z"/><text x="75" y="64" class="lb">G₂</text></g>
+</svg>'''
+
+KMT = n(C.KM, 7); m2 = C.MP[2]
+def _sg(x): return ('+' if x > 0 else '') + n(x)
+def _sg2(x): return ('+' if x > 0 else '') + n(x, 2)
+mp_rows = ''.join(
+    f'<tr{WK if j == 2 else ""}><th scope="row">{j}</th><td class="n">{_sg(x["ys2"])}</td><td class="n">{n(x["pf"])}</td><td class="n">{x["a5"]}°</td>'
+    f'<td class="n">{n(x["yF"])}</td><td class="n">{n(x["Fr"],0)}</td><td class="n">{n(x["t2"],2)}</td><td class="n">{_sg2(x["t5"]) if x["t5"] else "0"}</td>'
+    f'<td class="n">{n(-x["tr"],2) if x["tr"] else "0"}</td><td class="n"><b>{n(x["M"])}</b></td><td class="n">{n(x["Mmm"])}</td></tr>' for j, x in enumerate(C.MP))
+s4 = f'''
+<div class="secbody">
+  <h2 class="ptitle"><span class="secno">§4</span> Բերված մոմենտ և նրա գրաֆիկը</h2>
+  <p class="tetr-link">✍ Տետրում՝ <a href="tetr.html#p17">էջ 17–18</a>։ Մեթոդականում՝ էջ 35–38 (1.7 կետ)։</p>
+  <div class="prose">
+    <h3>1) Ինչ է բերված մոմենտը</h3>
+    <p><b>Բերված մոմենտը</b> բերման օղակի (մեզ մոտ՝ 1 շուռտվիկի) վրա կիրառված պայմանական մոմենտ է, որի հզորությունը ցանկացած պահի հավասար է մեխանիզմի օղակների վրա ազդող արտաքին ուժերի հզորությունների հանրահաշվական գումարին։ Աշխատանքի փոխարեն վերցնում ենք <b>հզորությունը</b> (ուժ × արագություն), որովհետև արագությունների պլաններն արդեն կառուցված են։ M<sub>P</sub>-ն ուղղում ենք {w1}-ի ուղղությամբ, ուստի նրա հզորությունը M<sub>P</sub>·{w1} է։</p>
+    {eq(f"<i>M</i><sub>P</sub>·{w1} = Σ <i>F</i><sub>i</sub>·<i>V</i><sub>i</sub>·cos <i>α</i><sub>i</sub>")}
+    <p>Արտաքին ուժերը երեքն են՝ <i>G</i><sub>2</sub> = {C.G2} Ն, <i>G</i><sub>5</sub> = {C.G5} Ն և <i>F</i><sub>r</sub>։ Ամեն j դիրքի համար՝</p>
+    {eq(f"<i>M</i><sub>P j</sub> = <i>G</i><sub>2</sub>·{fr(VS2+'·cos <i>α</i><sub>2</sub>', w1)} + <i>G</i><sub>5</sub>·{fr(VF+'·cos <i>α</i><sub>5</sub>', w1)} − <i>F</i><sub>r</sub>·{fr(VF, w1)}")}
+
+    <h3>2) Սողնակի ծանրության ուժը G<sub>5</sub></h3>
+    <p>Մեզ մոտ սողնակը շարժվում է <b>ուղղաձիգ</b>, ուստի G<sub>5</sub>-ի և V<sub>F</sub>-ի անկյունը կամ 0° է, կամ 180°. աշխատանքային դիրքերում (1–4, սողնակն իջնում է) <b>α<sub>5</sub> = 0°</b>, պարապ ընթացքում (5–7) <b>α<sub>5</sub> = 180°</b>։ Մեթոդականի օրինակում այս անդամը չկա, որովհետև այնտեղ սողնակը հորիզոնական է շարժվում (cos 90° = 0). <b>մեզ մոտ այն պետք է գրել</b>։</p>
+
+    <h3>3) Օգտակար դիմադրության ուժը F<sub>r</sub></h3>
+    <p>F<sub>r</sub>-ը որոշում ենք թերթ 1-ի <a href="#fre">F<sub>re</sub> գրաֆիկից</a>. չափում ենք յուրաքանչյուր դիրքի օրդինատը y<sub>j</sub> (մմ) և բազմապատկում մասշտաբով.</p>
+    {eq(f"{mu_F} = {fr(v('F','re')+'<sup>max</sup>', v('y','max'))} = {fr(str(int(M.FMAX)), n(C.FRE_MAX_MM))} = {res(n(M.MUF,0)+' Ն/մմ')},&nbsp;&nbsp; <i>F</i><sub>r j</sub> = <i>y</i><sub>j</sub>·{mu_F}")}
+    <p>Ուժն ազդում է միայն աշխատանքային ընթացքում, բայց <b>1-ին դիրքում այն դեռ չի սկսվել</b> (S<sub>F</sub> = {n(M.POS[1]['sF']/M.H, 2)}·H<sub>F</sub>, իսկ գրաֆիկը սկսվում է ≈ 0,28·H<sub>F</sub>-ից). F<sub>r</sub> ≠ 0 միայն <b>2, 3, 4</b> դիրքերում։ Այն ուղղված է վեր (շարժմանը հակառակ), իսկ V<sub>F</sub>-ը՝ ներքև. cos 180° = −1, դրա համար բանաձևում վերջին անդամը մինուսով է։</p>
+
+    <h3>4) V<sub>S₂</sub>·cos α<sub>2</sub>՝ առանց անկյունը չափելու</h3>
+    <p>Կարելի է յուրաքանչյուր պլանում անկյունաչափով չափել α<sub>2</sub>-ը և հաշվել կոսինուսը, բայց դասախոսը խորհուրդ է տալիս ավելի պարզ ձևը. s<sub>2</sub> կետից իջեցնել ուղղահայաց p-ով անցնող ուղղաձիգին։ Ստացված ուղղանկյուն եռանկյան կից էջը հենց <b>ps<sub>2</sub>·cos α<sub>2</sub></b>-ն է՝ միլիմետրերով։</p>
+  </div>
+  <figure class="fig projfig">{PROJ_SVG}<figcaption>Եթե պրոյեկցիան p-ից <b>ներքև</b> է (անկյունը սուր է), գրում ենք «+», եթե <b>վերև</b> (անկյունը բութ է)՝ «−»։</figcaption></figure>
+  <div class="prose">
+    <p>Նույն կերպ V<sub>F</sub> = pf·{mu_V}։ Տեղադրելով V = հատված·{mu_V}՝ բոլոր անդամները ունեն նույն {fr(mu_V, w1)} արտադրիչը.</p>
+    {eq(f"{fr(mu_V, w1)} = {fr(MUVT, n(C.W1,2))} = {res(KMT+' մ/մմ')}")}
+    {eq(f"<i>M</i><sub>P j</sub> = {KMT}·[{C.G2}·(ps<sub>2</sub>·cos <i>α</i><sub>2</sub>) ± {C.G5}·pf − <i>F</i><sub>r j</sub>·pf]", '«+»՝ 1–4, «−»՝ 5–7 դիրքեր')}
+    <p><b>Օրինակ՝ դիրք 2.</b></p>
+    {eq(f"<i>M</i><sub>P 2</sub> = {KMT}·[{C.G2}·({n(m2['ys2'])}) + {C.G5}·{n(m2['pf'])} − {n(m2['Fr'],0)}·{n(m2['pf'])}] = {n(m2['t2'],2)} + {n(m2['t5'],2)} − {n(m2['tr'],2)} = {res(n(m2['M'])+' Ն·մ')}")}
+  </div>
+
+  <h3 class="bh">5) Աղյուսակը</h3>
+  <p class="hint">Հատվածները՝ թերթ 2-ի պլաններից, y<sub>j</sub>-ն՝ թերթ 1-ի F<sub>re</sub> գրաֆիկից, մմ։ Անդամները և M<sub>P</sub>-ն՝ Ն·մ։ 8-րդ դիրքը նույնն է, ինչ 0-ն։</p>
+  <div class="tscroll"><table class="coords wide">
+    <thead><tr><th scope="col">j</th><th scope="col">ps₂·cos α₂</th><th scope="col">pf</th><th scope="col">α₅</th><th scope="col">y<sub>j</sub></th><th scope="col">F<sub>r</sub>, Ն</th><th scope="col">G₂ անդամ</th><th scope="col">G₅ անդամ</th><th scope="col">F<sub>r</sub> անդամ</th><th scope="col">M<sub>P</sub></th><th scope="col">M<sub>P</sub><sup>գծ</sup>, մմ</th></tr></thead>
+    <tbody>{mp_rows}</tbody>
+  </table></div>
+  <aside class="aside">
+    <p class="aside-h">Ինքնաստուգում (դասախոսի խոսքերով)</p>
+    <p>2, 3, 4 դիրքերում M<sub>P</sub>-ն պետք է բացասական լինի, իսկ մոդուլով առավելագույնը՝ 2-րդ կամ 3-րդ դիրքում։ Մյուս դիրքերում այն փոքր է՝ դրական կամ բացասական։ Մեզ մոտ՝ առավելագույնը 2-րդ դիրքում է ({n(m2['M'])} Ն·մ). 4-րդ դիրքում M<sub>P</sub>-ն փոքր է ({n(C.MP[4]['M'])}), որովհետև այնտեղ սողնակը գրեթե կանգնած է (pf = {n(C.MP[4]['pf'])} մմ)։</p>
+  </aside>
+
+  <div class="prose">
+    <h3>6) Գրաֆիկի մասշտաբները և գծագրական չափերը</h3>
+    <p>|M<sub>P</sub>|<sub>max</sub>-ը գրաֆիկում ներկայացնում ենք 70–80 մմ հատվածով (վերցնում ենք 80 մմ), իսկ շուռտվիկի լրիվ պտույտը (2π)՝ 160 մմ-ով.</p>
+    {eq(f"{v('μ','M')} = {fr('|<i>M</i><sub>P</sub>|<sub>max</sub>', '80 մմ')} = {fr(n(C.MP_MAX), '80')} = {res(n(C.MU_M,2)+' Ն·մ/մմ')},&nbsp;&nbsp; {v('μ','φ')} = {fr('2π', '160 մմ')} = {fr('2·3,14', '160')} = {res(n(C.MU_PHI,3)+' ռադ/մմ')}")}
+    {eq(f"(<i>M</i><sub>P</sub>)<sub>j</sub><sup>գծ</sup> = {fr('<i>M</i><sub>P j</sub>', v('μ','M'))}", 'իր նշանով՝ բացասականը ներքև')}
+  </div>
+  <figure class="fig mpfig">{mp_graph()}<figcaption>M<sub>P</sub>(φ) գրաֆիկը ձեր թվերով, 1 միավոր = 1 մմ թղթի վրա։ Ինչպես և որտեղ կառուցել այն թղթի վրա, դասախոսը կբացատրի հաջորդ դասին։</figcaption></figure>
+  <aside class="aside">
+    <p class="aside-h">Ուշադրություն</p>
+    <p>F<sub>r</sub>-ի արժեքները մոտավոր են. F<sub>re</sub> կորը թվայնացված է առաջադրանքի թերթի փոքր նկարից։ Չափեք y<sub>j</sub>-ն <b>ձեր գծած</b> գրաֆիկից և վերահաշվեք 2–4 տողերը։ Մեթոդականի 37-րդ էջի աղյուսակում F<sub>r</sub>·V<sub>F</sub>/ω₁ սյունակը մեկ տողով շեղված է, իսկ 7-րդ տողը սխալ է. մի արտագրեք այն։ Հաջորդ քայլը (1.8, աշխատանքների գրաֆիկը) կավելացվի, երբ դասախոսը բացատրի։</p>
+  </aside>
 </div>'''
 
 fre_sec = f'''
@@ -969,6 +1073,15 @@ ol.mini{padding-left:1.3em;display:grid;gap:5px;margin:0 0 10px}
 .calc-more{margin-top:22px;border:1px solid var(--rule);border-radius:10px;padding:12px 16px;background:var(--surface)}
 .calc-more[open]{padding-bottom:16px}
 .calc-more summary{font-weight:650}
+.projfig svg{max-width:460px}.mpfig svg{max-width:640px}
+.fig svg.projg,.fig svg.mpg{display:block;width:100%;height:auto;font-family:var(--f-math);background:var(--surface)}
+.mpg .ax,.projg .ax{stroke:var(--ink-2);stroke-width:.35;fill:none}.mpg .ar{fill:var(--ink-2)}
+.mpg .gr{stroke:var(--rule);stroke-width:.3;stroke-dasharray:1.2 1}.mpg .cv{fill:none;stroke:var(--pen);stroke-width:.8}
+.mpg .dt,.projg .dt{fill:var(--pen)}.mpg .tk{font-size:4px;text-anchor:middle;fill:var(--ink-2)}
+.mpg .lb,.projg .lb{font-size:5px;fill:var(--ink);font-style:italic}.mpg .sb{font-size:3.4px}
+.mpg .dm{stroke:var(--mm);stroke-width:.3}.mpg .dmt{font-size:3.8px;fill:var(--mm-ink)}.mpg .dmt.c{text-anchor:middle}
+.projg .cap{font-size:5px;fill:var(--ink-2)}.projg .vc{stroke:var(--pen);stroke-width:1}.projg .pj{stroke:var(--ink-3);stroke-width:.4;stroke-dasharray:1.5 1}
+.projg .hl{stroke:var(--mm);stroke-width:1.6}.projg .hlt{font-size:4.2px;fill:var(--mm-ink)}.projg .g2{stroke:var(--verd);stroke-width:.9}.projg .ar2{fill:var(--verd)}
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:56px;padding-top:20px;border-top:1px solid var(--rule)}
 .pager a{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border:1px solid var(--rule);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600}
 .pager a:hover{border-color:var(--ink-2)}
@@ -1031,7 +1144,7 @@ html = (f'<title>Առաջադրանք 2, տարբերակ {VAR}</title>\n<meta n
         + FONTS + '\n<style>' + CSS + FRAME_CSS + SH.SHEET_CSS + '</style>\n'
         + header + '<div class="shell">' + side_nav() + '<main id="main">'
         + panel('overview', overview_head + results_sec + data_sec)
-        + panel('s1', s1) + panel('s2', s2) + panel('s3', s3)
+        + panel('s1', s1) + panel('s2', s2) + panel('s3', s3) + panel('s4', s4)
         + panel('sheet1', sheet1_sec) + panel('sheet2', sheet2_sec) + panel('fre', fre_sec)
         + panel('tables', tables_sec + next_sec) + '</main></div>'
         + '<script>' + JS + FRAME_JS + '</script>\n')
