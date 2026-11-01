@@ -101,7 +101,9 @@ for k in range(3600):
     EF_INC_MAX = max(EF_INC_MAX, math.degrees(math.asin(abs(P['E'][0])/EF)))
 
 # ---------------- F_re diagram (shape digitised from the task sheet) ----------------
-FRE_PTS = [(0.0, 0.0), (0.28, 0.0), (0.44, 0.49), (0.63, 0.83), (0.79, 0.99), (0.87, 1.0), (0.94, 0.96), (1.0, 0.89)]
+# F_re(S_F)/F_max traced column by column from the 10 × 10 grid on the task sheet (source/task_sheet.jpg)
+FRE_PTS = [(0.0, 0.0), (0.39, 0.0), (0.42, 0.2), (0.47, 0.4), (0.5, 0.5), (0.55, 0.645), (0.6, 0.76), (0.65, 0.86),
+           (0.7, 0.925), (0.75, 0.977), (0.84, 1.0), (0.9, 0.965), (0.95, 0.91), (1.0, 0.84)]
 def _pchip_slopes(xs, ys):
     n = len(xs); h = [xs[i+1]-xs[i] for i in range(n-1)]; dl = [(ys[i+1]-ys[i])/h[i] for i in range(n-1)]
     m = [0.0]*n; m[0] = dl[0]; m[-1] = dl[-1]
