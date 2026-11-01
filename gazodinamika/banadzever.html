@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Գազադինամիկա · բանաձևեր</title>
+<meta name="description" content="Միջանկյալ 1-ի 24 հարցերի հիմնական բանաձևերը մեկ էջում՝ կրկնելու և տպելու համար">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>try{var t=localStorage.getItem('gaz-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+:root{--bg:#f6f7f7;--card:#fff;--fg:#1b2127;--muted:#5d6870;--line:#dde2e4;--accent:#2a4c9c;--hi:#eef2fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121619;--card:#1a2025;--fg:#e6eaec;--muted:#98a4ac;--line:#2c363c;--accent:#8fa9f2;--hi:#1e2633}}
+:root[data-theme="dark"]{--bg:#121619;--card:#1a2025;--fg:#e6eaec;--muted:#98a4ac;--line:#2c363c;--accent:#8fa9f2;--hi:#1e2633}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 "Noto Sans Armenian",system-ui,sans-serif;padding:24px 16px 60px}
+.top{max-width:1180px;margin:0 auto 16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.top h1{font-size:1.45rem;margin:0;flex:1 1 auto}
+.top a{color:var(--muted);font-size:.92rem}
+a{color:var(--accent)}
+.btn{font:inherit;font-size:.9rem;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.note{max-width:1180px;margin:0 auto 18px;color:var(--muted);font-size:.9rem}
+.sheet{max-width:1180px;margin:0 auto;columns:3 330px;column-gap:14px}
+.g{break-inside:avoid;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px 8px;margin:0 0 12px}
+.g h2{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.q{margin:0 0 7px}
+.q:last-child{margin-bottom:0}
+.q b{font-size:.86rem}
+.q b .n{font-style:normal;color:var(--muted);font-weight:600;margin-right:5px}
+.q p{margin:2px 0 0;font-size:.88rem}
+.q .m{display:block;background:var(--hi);border-radius:6px;padding:3px 8px;margin:3px 0 0;overflow-x:auto}
+.c{color:var(--muted);font-size:.8rem}
+@page{size:A4 portrait;margin:7mm}
+@media print{
+  :root{--bg:#fff;--card:#fff;--fg:#000;--muted:#333;--line:#999;--accent:#000;--hi:#fff}
+  body{padding:0;font-size:10.2pt;line-height:1.32}
+  .top,.note{display:none}
+  .sheet{max-width:none;columns:3;column-gap:3mm;column-rule:.3pt solid #aaa}
+  .g{border:0;border-radius:0;padding:0;margin:0 0 3mm;break-inside:auto}
+  .q{break-inside:avoid}
+  .g h2{break-after:avoid}
+  .g h2{font-size:9pt;margin:0 0 .6mm;border-bottom:.4pt solid #000}
+  .q{margin:0 0 1.8mm}
+  .q b{font-size:9.6pt}
+  .q p{font-size:9.4pt;margin:0}
+  .q .m{padding:0;margin:.3mm 0 0}
+  .c{font-size:8.8pt}
+  .katex{font-size:1.02em}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Գազադինամիկա · բանաձևեր</h1>
+  <a href="./">← Գազադինամիկա</a>
+  <a href="Գազադինամիկա_միջանկյալ_1.html#questions">Հարցերը</a>
+  <button class="btn" type="button" onclick="print()">🖨 Տպել (1 էջ A4)</button>
+  <button class="btn" type="button" id="theme" data-theme-toggle></button>
+</div>
+<p class="note">Միջանկյալ 1-ի 24 հարցերի հիմնական բանաձևերը՝ հարցերի համարներով։ Ամբողջական պատասխանները՝ <a href="Գազադինամիկա_միջանկյալ_1.html#questions">հարցերի բաժնում</a>։ Տպելիս ամեն ինչ տեղավորվում է մեկ A4 էջում։</p>
+
+<div class="sheet">
+
+<section class="g"><h2>Վիճակի պարամետրեր և իդեալական գազ</h2>
+<div class="q"><b><em class="n">1</em>Պարամետրեր</b>
+<span class="m">\(\upsilon=\frac{V}{m}\ \left[\frac{\text{մ}^3}{\text{կգ}}\right],\ \ \rho=\frac1\upsilon,\ \ p_{\text{բաց}}=p_{\text{մթն}}+p_{\text{ավել}},\ \ T=t+273{,}15\)</span>
+<span class="m">\(\frac{m\bar w^2}{2}=\frac32k_BT,\quad F(p,\upsilon,T)=0\)</span></div>
+<div class="q"><b><em class="n">2</em>Իդեալական գազի օրենքներ</b>
+<span class="m">\(T{=}\text{const}:\ p\upsilon=\text{const};\ \ p{=}\text{const}:\ \frac{\upsilon_1}{\upsilon_2}=\frac{T_1}{T_2};\ \ \upsilon{=}\text{const}:\ \frac{p_1}{p_2}=\frac{T_1}{T_2}\)</span>
+<span class="m">\(\frac{p_1\upsilon_1}{T_1}=\frac{p_2\upsilon_2}{T_2},\ \ \upsilon_\mu=22{,}414\ \tfrac{\text{մ}^3}{\text{կմոլ}},\ \ p=\sum p_i\)</span></div>
+<div class="q"><b><em class="n">3</em>Վիճակի հավասարում</b>
+<span class="m">\(p\upsilon=RT,\ \ pV=mRT,\ \ p\upsilon_\mu=R_\mu T,\ \ R=\frac{R_\mu}{\mu},\ \ R_\mu=8314\) <span class=\"c\">Ջ/(կմոլ·Կ)</span></span>
+<span class="m">\(R_{\text{օդ}}=287\) <span class="c">Ջ/(կգ·Կ)</span>, \(\left(p+\frac{a}{\upsilon^2}\right)(\upsilon-b)=RT\)</span></div>
+</section>
+
+<section class="g"><h2>Առաջին օրենք, աշխատանք, ջերմունակություն</h2>
+<div class="q"><b><em class="n">4</em>I օրենք (ներքին էներգիա)</b>
+<span class="m">\(q=\Delta u+\ell,\ \ dq=du+p\,d\upsilon,\ \ du=c_\upsilon dT,\ \ \oint du=0\)</span></div>
+<div class="q"><b><em class="n">5</em>I օրենք (էնթալպիա)</b>
+<span class="m">\(i=u+p\upsilon,\ \ dq=di-\upsilon\,dp=c_pdT-\upsilon\,dp\)</span>
+<p class="c">\(-\upsilon\,dp\)՝ տնօրինելի աշխատանք</p></div>
+<div class="q"><b><em class="n">6</em>Դեֆորմացիայի աշխատանք</b>
+<span class="m">\(d\ell=p\,d\upsilon,\ \ \ell=\int_{\upsilon_1}^{\upsilon_2}p\,d\upsilon\) <span class="c">(մակերես \(p\)–\(\upsilon\)-ում)</span></span>
+<span class="m">\(\ell_{p}=R(T_2-T_1),\ \ell_T=RT\ln\frac{\upsilon_2}{\upsilon_1},\ \ell_{\text{ադ}}=\frac{R}{k-1}(T_1-T_2)\)</span></div>
+<div class="q"><b><em class="n">7</em>Ջերմունակություն</b>
+<span class="m">\(c=\frac{dq}{dT},\ \ c_m=\frac{q}{T_2-T_1},\ \ c_\mu=\mu c,\ \ c_n=c_\upsilon\frac{n-k}{n-1}\)</span>
+<span class="m">\(c_{\upsilon\mu}=\frac y2R_\mu,\ \ c_{p\mu}=\left(1+\frac y2\right)R_\mu\) <span class="c">(y = 3, 5, 6)</span></span></div>
+<div class="q"><b><em class="n">8</em>Մայերի հավասարում</b>
+<span class="m">\(c_p-c_\upsilon=R,\ \ k=\frac{c_p}{c_\upsilon},\ \ c_\upsilon=\frac{R}{k-1},\ \ c_p=\frac{kR}{k-1}\)</span>
+<p class="c">օդ՝ \(c_p\approx1005,\ c_\upsilon\approx718\) Ջ/(կգ·Կ)</p></div>
+<div class="q"><b><em class="n">9</em>Էնթալպիա</b>
+<span class="m">\(i=u+p\upsilon,\ \ \Delta i=c_p(T_2-T_1),\ \ q_p=i_2-i_1,\ \ i^*=i+\frac{c^2}{2}\)</span></div>
+</section>
+
+<section class="g"><h2>Պրոցեսներ</h2>
+<div class="q"><b><em class="n">10</em>Իզոխոր \(\upsilon=\text{const}\)</b>
+<span class="m">\(\frac{p_2}{p_1}=\frac{T_2}{T_1},\ \ \ell=0,\ \ q=\Delta u=c_\upsilon(T_2-T_1),\ \ \Delta s=c_\upsilon\ln\frac{T_2}{T_1}\)</span></div>
+<div class="q"><b><em class="n">11</em>Իզոբար \(p=\text{const}\)</b>
+<span class="m">\(\frac{\upsilon_2}{\upsilon_1}=\frac{T_2}{T_1},\ \ \ell=R(T_2-T_1),\ \ q=c_p(T_2-T_1)=i_2-i_1,\ \ \Delta s=c_p\ln\frac{T_2}{T_1}\)</span></div>
+<div class="q"><b><em class="n">12</em>Իզոթերմ \(T=\text{const}\)</b>
+<span class="m">\(\frac{p_2}{p_1}=\frac{\upsilon_1}{\upsilon_2},\ \ \Delta u=0,\ \ q=\ell=RT\ln\frac{\upsilon_2}{\upsilon_1}=RT\ln\frac{p_1}{p_2}\)</span>
+<span class="m">\(\Delta s=R\ln\frac{\upsilon_2}{\upsilon_1},\ \ c=\pm\infty\)</span></div>
+<div class="q"><b><em class="n">13</em>Ադիաբատ \(dq=0\)</b>
+<span class="m">\(p\upsilon^k=\text{const},\ \ \frac{T_2}{T_1}=\left(\frac{\upsilon_1}{\upsilon_2}\right)^{k-1}=\left(\frac{p_2}{p_1}\right)^{\frac{k-1}{k}}\)</span>
+<span class="m">\(\ell=-\Delta u=\frac{R}{k-1}(T_1-T_2)=\frac{p_1\upsilon_1-p_2\upsilon_2}{k-1},\ \ c=0\)</span>
+<p class="c">\(k\)՝ միատոմ 1,67, երկատոմ 1,40, եռատոմ 1,33</p></div>
+</section>
+
+<section class="g"><h2>Հոսքի հավասարումներ (ԳՏՇ)</h2>
+<div class="q"><b><em class="n">14</em>Անխզելիություն</b>
+<span class="m">\(G=c\rho F=\text{const},\ \ \frac{dc}{c}+\frac{d\rho}{\rho}+\frac{dF}{F}=0\)</span></div>
+<div class="q"><b><em class="n">15</em>Էներգիա. մուտքային սարք, փողրակ</b>
+<span class="m">\(q_{\text{արտ}}-\ell_{\text{արտ}}=i_2-i_1+\frac{c_2^2-c_1^2}{2}\)</span>
+<span class="m">\(i_1+\frac{c_1^2}{2}=i_2+\frac{c_2^2}{2},\ \ i^*=\text{const},\ \ c_2=\sqrt{2(i_1^*-i_2)}\)</span>
+<span class="m">\(c_{\text{սահմ}}=\sqrt{\frac{2k}{k-1}RT^*}\)</span></div>
+<div class="q"><b><em class="n">16</em>Կոմպրեսոր</b>
+<span class="m">\(\ell_{\text{կ}}=i_2^*-i_1^*=c_pT_1^*\left(\pi_{\text{կ}}^{*\frac{k-1}{k}}-1\right),\ \ \pi_{\text{կ}}^*=\frac{p_2^*}{p_1^*},\ \ N_{\text{կ}}=G\ell_{\text{կ}}\)</span></div>
+<div class="q"><b><em class="n">17</em>Այրման խցիկ</b>
+<span class="m">\(\ell_{\text{արտ}}=0,\ \ q_{\text{արտ}}=i_2^*-i_1^*=c_p(T_2^*-T_1^*),\ \ p\approx\text{const}\)</span></div>
+<div class="q"><b><em class="n">18</em>Տուրբին</b>
+<span class="m">\(\ell_{\text{տ}}=i_1^*-i_2^*=c_pT_1^*\left(1-\pi_{\text{տ}}^{*-\frac{k-1}{k}}\right),\ \ \pi_{\text{տ}}^*=\frac{p_1^*}{p_2^*},\ \ N_{\text{տ}}=G\ell_{\text{տ}}\)</span></div>
+<div class="q"><b><em class="n">19</em>Արգելակված հոսք</b>
+<span class="m">\(T^*=T+\frac{c^2}{2c_p},\ \ \frac{T^*}{T}=1+\frac{k-1}{2}M^2,\ \ \frac{p^*}{p}=\left(\frac{T^*}{T}\right)^{\frac{k}{k-1}}\)</span></div>
+<div class="q"><b><em class="n">20</em>Բեռնուլի. մուտքային սարք, փողրակ</b>
+<span class="m">\(-\ell_{\text{արտ}}=\int_1^2\upsilon\,dp+\frac{c_2^2-c_1^2}{2}+\ell_r,\ \ -\upsilon\,dp=c\,dc\ (\ell_r=0)\)</span>
+<p class="c">փողրակ՝ \(dp<0,\ dc>0\); դիֆուզոր՝ \(dp>0,\ dc<0\); \(\int\upsilon\,dp=\frac{n}{n-1}R(T_2-T_1)\)</p></div>
+<div class="q"><b><em class="n">21</em>Բեռնուլի. կոմպրեսոր, տուրբին</b>
+<span class="m">\(\ell_{\text{կ}}=\int_1^2\upsilon\,dp+\frac{c_2^2-c_1^2}{2}+\ell_r\)</span>
+<span class="m">\(-\int_1^2\upsilon\,dp=\ell_{\text{տ}}+\frac{c_2^2-c_1^2}{2}+\ell_r\)</span></div>
+</section>
+
+<section class="g"><h2>Ձայն, Մախ, գազադինամիկական ֆունկցիաներ</h2>
+<div class="q"><b><em class="n">22</em>Ձայնի արագություն</b>
+<span class="m">\(a^2=\left(\frac{\partial p}{\partial\rho}\right)_s,\ \ a=\sqrt{k\frac p\rho}=\sqrt{kRT},\ \ a_{\text{օդ}}\approx20{,}05\sqrt T\)</span>
+<span class="m">\(a_{\text{կր}}=\sqrt{\frac{2k}{k+1}RT^*}\)</span></div>
+<div class="q"><b><em class="n">23</em>Մախի թիվ, λ</b>
+<span class="m">\(M=\frac ca=\frac{c}{\sqrt{kRT}},\ \ \lambda=\frac{c}{a_{\text{կր}}},\ \ \lambda^2=\frac{\frac{k+1}{2}M^2}{1+\frac{k-1}{2}M^2},\ \ \lambda_{\text{սահմ}}=\sqrt{\frac{k+1}{k-1}}\)</span>
+<p class="c">\(M<1\) ենթաձայնային, \(M=1\) ձայնային, \(M>1\) գերձայնային</p></div>
+<div class="q"><b><em class="n">24</em>Գազադինամիկական ֆունկցիաներ</b>
+<span class="m">\(\tau(\lambda)=\frac{T}{T^*}=1-\frac{k-1}{k+1}\lambda^2,\ \ \pi(\lambda)=\tau^{\frac{k}{k-1}},\ \ \varepsilon(\lambda)=\tau^{\frac{1}{k-1}}\)</span>
+<span class="m">\(q(\lambda)=\lambda\left(\frac{k+1}{2}\right)^{\frac{1}{k-1}}\varepsilon(\lambda),\ \ q_{\max}=q(1)=1\)</span>
+<span class="m">\(G=m\frac{p^*}{\sqrt{T^*}}q(\lambda)F=m\frac{p}{\sqrt{T^*}}y(\lambda)F,\ \ y=\frac{q}{\pi},\ \ m_{\text{օդ}}=0{,}0404\)</span></div>
+</section>
+
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.renderMathInElement) renderMathInElement(document.body, {delimiters: [{left: '\\(', right: '\\)', display: false}], throwOnError: false});
+});
+(() => {
+  const ROOT = document.documentElement, KEY = 'gaz-theme', btn = document.getElementById('theme');
+  const isDark = () => (ROOT.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+  const label = () => { btn.textContent = isDark() ? '☀ Լուսավոր' : '☾ Մութ'; };
+  btn.addEventListener('click', () => { const t = isDark() ? 'light' : 'dark'; ROOT.setAttribute('data-theme', t); try { localStorage.setItem(KEY, t); } catch (e) {} label(); });
+  label();
+})();
+</script>
+</body>
+</html>
