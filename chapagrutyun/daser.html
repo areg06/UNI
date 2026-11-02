@@ -33,6 +33,8 @@ p{margin:0}
 ul,ol{margin:0;padding-left:22px}
 li{margin:3px 0}
 .u{text-decoration:underline dotted var(--warn);text-decoration-thickness:2px;text-underline-offset:3px;cursor:help}
+.t{background:linear-gradient(transparent 60%,var(--accent-soft) 60%);box-decoration-break:clone;-webkit-box-decoration-break:clone}
+p.t{background:none;border-left:3px solid var(--accent);padding-left:10px}
 .x{display:inline-block;background:var(--warn-soft);color:var(--warn);border-radius:4px;padding:0 6px;font-size:13px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .f{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:17px;background:var(--sunk);border-radius:8px;padding:8px 14px;line-height:1.9}
 .f sub{font-family:var(--f-body);font-size:.68em}
@@ -75,7 +77,8 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
   <b>Ինչպես կարդալ</b>
   <span>Բանաձևերը, գծագրերը, թվերը և վերնագրերը վերցված են տետրից։ Ձեռագրի մի մասը դժվար էր կարդալ.</span>
   <span><span class="u" title="անվստահ ընթերցում">կետագծով ընդգծված բառը</span>՝ կարդացել եմ, բայց վստահ չեմ,</span>
-  <span><span class="x">…չընթերցվեց…</span>՝ հատվածը չհաջողվեց կարդալ։</span>
+  <span><span class="t">կապույտ ընդգծումով</span> կամ <span style="border-left:3px solid var(--accent);padding-left:8px">ձախից կապույտ գծով</span> տեքստը տետրում չընթերցվեց և <b>լրացված է դասագրքային նյութով</b> (ISO 286 / ЕСДП). իմաստը նույնն է, բառերը կարող են տարբերվել դասախոսի ձևակերպումից,</span>
+  <span><span class="x">…չընթերցվեց…</span>՝ հատվածը չհաջողվեց կարդալ և վստահ լրացնել։</span>
   <span>Յուրաքանչյուր բաժնի տակ կա տետրի էջի <b>լուսանկարը</b>։ Ուղղումներն ուղարկեք, և տեքստը կթարմացվի։</span>
   <button class="btn" type="button" onclick="window.print()">🖨 Տպել (A4)</button>
 </div>
@@ -92,24 +95,24 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
 
 <!-- 1 · photo 01 -->
 <section class="sec" id="s1">
-  <h2><span class="n">1</span>Փոխարինելիություն (Հ.)</h2>
+  <h2><span class="n">1</span>Փոխարինելիություն (Փ.)</h2>
   <h3>Հիմնական հասկացություններ</h3>
-  <p>Հ-ն <span class="u">միևնույն</span> <span class="u">անվան</span> <span class="u">պատրաստվածքների</span> <span class="x">…չընթերցվեց…</span> հատկությունն է <span class="x">…</span>։</p>
-  <p>Հ-ն լինում է <b>լրիվ</b>, <b>ոչ լրիվ</b> և <b>ֆունկցիոնալ</b>։</p>
+  <p>Փ-ն միևնույն անվան պատրաստվածքների (դետալների) հատկությունն է՝ <span class="t">առանց լրացուցիչ մշակման կամ հարմարեցման տեղադրվելու արտադրանքի մեջ (հավաքվելու) և ապահովելու նրա նորմալ աշխատանքը</span>։</p>
+  <p>Փ-ն լինում է <b>լրիվ</b>, <b>ոչ լրիվ</b> և <b>ֆունկցիոնալ</b>։</p>
   <ul>
-    <li><b>Լրիվ Հ.</b>՝ <span class="u">առանց</span> <span class="x">…չընթերցվեց…</span></li>
-    <li><b>Ոչ լրիվ Հ.</b>՝ <span class="x">…չընթերցվեց…</span></li>
-    <li><b>Ֆունկցիոնալ Հ.</b>՝ <span class="x">…չընթերցվեց…</span></li>
+    <li><b>Լրիվ Փ.</b>՝ <span class="t">դետալները հավաքվում են առանց ընտրության, լրացուցիչ մշակման և հարմարեցման</span>։</li>
+    <li><b>Ոչ լրիվ Փ.</b>՝ <span class="t">հավաքման ժամանակ թույլատրվում է դետալների ընտրություն (ըստ չափային խմբերի), կարգավորում կամ հարմարեցում</span>։</li>
+    <li><b>Ֆունկցիոնալ Փ.</b>՝ <span class="t">ապահովվում են արտադրանքի շահագործման (ֆունկցիոնալ) պարամետրերը՝ ոչ միայն չափերով, այլև ֆիզիկամեխանիկական հատկություններով</span>։</li>
   </ul>
-  <p><span class="x">…</span> <span class="u">բաժանվում</span> են 2 հիմն. <span class="u">խմբի</span>՝ <b>անցքեր</b> և <b>լիսեռներ</b>։ →</p>
+  <p>Մակերևույթները <span class="u">բաժանվում</span> են 2 հիմն. խմբի՝ <b>անցքեր</b> և <b>լիսեռներ</b>։ →</p>
   <details class="photo"><summary>📷 Տետրի էջը</summary><div class="imgs"><img src="img/01.webp" alt="Տետրի էջ՝ Փոխարինելիություն" loading="lazy"></div></details>
 </section>
 
 <!-- 2 · photos 03, 02a -->
 <section class="sec" id="s2">
   <h2><span class="n">2</span>Անցքեր և լիսեռներ</h2>
-  <p><span class="u">Գլանային</span> <span class="x">…չընթերցվեց…</span>, որոնք <span class="x">…</span> (<span class="u">լիսեռ</span>)։</p>
-  <p><span class="u">Ընդգրկող</span> <span class="x">…չընթերցվեց…</span>, իսկ <span class="x">…</span> լիսեռ <span class="x">…</span>։</p>
+  <p>Պայմանականորեն բոլոր <b>ընդգրկող</b> (ներքին) մակերևույթները կոչվում են <b>անցքեր</b>, իսկ <b>ընդգրկվող</b> (արտաքին) մակերևույթները՝ <b>լիսեռներ</b> <span class="t">(անկախ նրանից՝ գլանային են, թե հարթ)</span>։</p>
+  <p>Անցքին վերաբերող նշանակումները գրվում են <b>մեծատառով</b> <span class="t">(D, ES, EI, T<sub>D</sub>)</span>, իսկ լիսեռինը՝ <b>փոքրատառով</b> <span class="t">(d, es, ei, T<sub>d</sub>)</span>։</p>
   <p><b>Միացում</b>. <b>ընդգրկող մակերևույթ</b>՝ <b>անցք (A)</b>, <b>ընդգրկվող մակերևույթ</b>՝ <b>լիսեռ (B)</b>։</p>
   <svg class="dg" viewBox="0 0 520 230" role="img" aria-label="Լիսեռ անցքի մեջ">
     <rect x="200" y="20" width="120" height="70" rx="10" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ink)"/>
@@ -122,7 +125,6 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
     <text x="60" y="190">ընդգրկող</text><text x="60" y="208">մակերևույթ</text>
     <path d="M140 196 L200 150" style="stroke:var(--muted)" fill="none"/><path d="M335 112 L300 96" style="stroke:var(--muted)" fill="none"/>
   </svg>
-  <p><span class="u">Պայմանականորեն</span> <span class="x">…</span> անցքեր, <span class="x">…</span> լիսեռ <span class="x">…չընթերցվեց…</span>։</p>
   <details class="photo"><summary>📷 Տետրի էջերը</summary><div class="imgs"><img src="img/03.webp" alt="Տետրի էջ" loading="lazy"><img src="img/02a.webp" alt="Տետրի էջ՝ լիսեռ և անցք" loading="lazy"></div></details>
 </section>
 
@@ -130,12 +132,12 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
 <section class="sec" id="s3">
   <h2><span class="n">3</span>Հիմնական հասկացություններ և սահմանումներ</h2>
   <ol>
-    <li><b><span class="u">Անվանական</span> չափ</b> d/D՝ <span class="u">հաշվարկված</span> և <span class="u">կլորացված</span> չափը։</li>
-    <li><b><span class="u">Իրական</span> չափ</b>՝ <span class="x">…չընթերցվեց…</span></li>
-    <li><b><span class="x">…</span> չափ</b>՝ <span class="x">…</span> <span class="u">սխալանքով</span> <span class="x">…</span>։</li>
-    <li><b>Սահմանային չափեր</b>՝ չափեր, <span class="u">որոնց միջև</span> <span class="x">…</span>։ <b>maximum</b>, <b>minimum</b> (d<sub>max</sub>, d<sub>min</sub>) (<span class="u">լիսեռի համար</span>)։</li>
-    <li><b>Թույլտվածք</b> (допуск)՝ սահմանային չափերի <span class="u">տարբերությունն</span> է, նշ.՝ <b>T</b>։ Օր.՝ T<sub>D</sub>՝ անցքի, T<sub>d</sub>՝ լիսեռի համար։</li>
-    <li><b>Թույլտվածքի դաշտի</b> <span class="u">գրաֆիկ</span>.</li>
+    <li><b>Անվանական չափ</b> (D, d)՝ հաշվարկով ստացված և <span class="t">ստանդարտ շարքով</span> կլորացված չափը, <span class="t">որի նկատմամբ որոշվում են շեղումները</span>։</li>
+    <li><b>Իսկական չափ</b>՝ <span class="t">դետալի ճշգրիտ չափը. այն անհայտ է, քանի որ ցանկացած չափում ունի սխալանք</span>։</li>
+    <li><b>Իրական չափ</b>՝ <span class="t">չափումով որոշված չափը՝</span> թույլատրելի սխալանքով։</li>
+    <li><b>Սահմանային չափեր</b>՝ <span class="t">երկու ծայրային թույլատրելի չափեր, որոնց միջև պետք է լինի (կամ որոնց հավասար լինի) իրական չափը</span>. <b>maximum</b>, <b>minimum</b> (d<sub>max</sub>, d<sub>min</sub>՝ լիսեռի համար)։</li>
+    <li><b>Թույլտվածք</b> (допуск)՝ սահմանային չափերի տարբերությունն է, նշ.՝ <b>T</b>։ Օր.՝ T<sub>D</sub>՝ անցքի, T<sub>d</sub>՝ լիսեռի համար։ <span class="t">T<sub>D</sub> = D<sub>max</sub> − D<sub>min</sub> = ES − EI, թույլտվածքը միշտ դրական է</span>։</li>
+    <li><b>Թույլտվածքի դաշտի</b> գրաֆիկ. <span class="t">զրոյական գիծը համապատասխանում է անվանական չափին, դրանից վեր՝ դրական շեղումներ, ներքև՝ բացասական</span>։</li>
   </ol>
   <svg class="dg" viewBox="0 0 520 170" role="img" aria-label="Թույլտվածքի դաշտեր T_D և T_d">
     <line x1="70" y1="85" x2="460" y2="85" style="stroke:var(--ink)" stroke-width="2"/>
@@ -145,7 +147,7 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
     <line x1="170" y1="160" x2="170" y2="88" style="stroke:var(--ink)"/><path d="M170 85 l-5 10 h10z" style="fill:var(--ink)"/><text x="140" y="150">D</text><text x="150" y="80">0</text>
   </svg>
   <ol start="7">
-    <li><b>Շեղում</b>՝ <span class="u">սահմանային</span> և <span class="u">անվանական</span> չափերի <span class="u">տարբերությունն</span> է <span class="x">…</span> (<span class="u">վերին</span> և <span class="u">ստորին</span>)։</li>
+    <li><b>Շեղում</b>՝ սահմանային (<span class="t">կամ իրական</span>) և անվանական չափերի <span class="t">հանրահաշվական</span> տարբերությունն է. լինում է <b>վերին</b> և <b>ստորին</b>։</li>
   </ol>
   <table>
     <tr><th>Անցք (A)</th><td>EI՝ max,&nbsp; ES՝ min</td></tr>
@@ -159,24 +161,25 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
 <section class="sec" id="s4">
   <h2><span class="n">4</span>Սահմանային չափեր, ճեղք, ձգվածք</h2>
   <div class="f">D<sub>max</sub> = D<sub>ն</sub> + EI &nbsp;&nbsp;&nbsp;&nbsp; d<sub>max</sub> = d<sub>ն</sub> + ei<br>D<sub>min</sub> = D<sub>ն</sub> + ES &nbsp;&nbsp;&nbsp;&nbsp; d<sub>min</sub> = d<sub>ն</sub> + es</div>
-  <p><b>Ճեղք</b> (зазор)՝ անցքի և լիսեռի <span class="u">տրամագծային</span> չափերի <span class="x">…</span> <span class="u">տարբերությունը</span>։ Նշ.՝ <b>S</b>։</p>
-  <div class="f">S<sub>max</sub> = D<sub>max</sub> − d<sub>min</sub> &nbsp;(+)<br>S<sub>min</sub> = D<sub>min</sub> − d<sub>max</sub> &nbsp;(+) &nbsp;&nbsp;<span style="font:14px var(--f-body)"><span class="u">միշտ դրական</span></span></div>
-  <p><b>Ձգվածք</b> (натяг)</p>
+  <p><b>Ճեղք</b> (зазор)՝ անցքի և լիսեռի չափերի տարբերությունը, <span class="t">երբ անցքի չափը մեծ է լիսեռի չափից</span>։ Նշ.՝ <b>S</b>։</p>
+  <div class="f">S<sub>max</sub> = D<sub>max</sub> − d<sub>min</sub> &nbsp;(+)<br>S<sub>min</sub> = D<sub>min</sub> − d<sub>max</sub> &nbsp;(+)</div>
+  <p><b>Ձգվածք</b> (натяг)՝ <span class="t">լիսեռի և անցքի չափերի տարբերությունը հավաքումից առաջ, երբ լիսեռի չափը մեծ է անցքի չափից</span>։ <span class="t">Նշ.՝ <b>N</b></span>։</p>
   <div class="f">N<sub>max</sub> = D<sub>max</sub> − d<sub>min</sub> &nbsp;(−)<br>N<sub>min</sub> = D<sub>min</sub> − d<sub>max</sub> &nbsp;(−)</div>
-  <p class="note"><b>Ստուգեք.</b> ձգվածքի բանաձևերը տետրում գրված են ճեղքի բանաձևերի նման՝ (−) նշանով։ Սովորաբար գրում են N<sub>max</sub> = d<sub>max</sub> − D<sub>min</sub>, N<sub>min</sub> = d<sub>min</sub> − D<sub>max</sub>։</p>
+  <p class="note"><b>Ստուգեք.</b> ձգվածքի բանաձևերը տետրում գրված են ճեղքի բանաձևերի նման՝ (−) նշանով։ Սովորաբար գրում են N<sub>max</sub> = d<sub>max</sub> − D<sub>min</sub>, N<sub>min</sub> = d<sub>min</sub> − D<sub>max</sub> (դրական թվեր)։</p>
   <details class="photo"><summary>📷 Տետրի էջը</summary><div class="imgs"><img src="img/04a.webp" alt="Տետրի էջ՝ բանաձևեր" loading="lazy"></div></details>
 </section>
 
 <!-- 5 · photos 04a, 04b -->
 <section class="sec" id="s5">
   <h2><span class="n">5</span>Նստվածքներ (посадка)</h2>
-  <p>Երկու <span class="u">դետալների</span> <span class="u">միացման</span> <span class="u">բնույթը</span> <span class="x">…</span> <span class="u">բնորոշվում</span> է անցքի և լիսեռի <span class="u">չափերով</span>։ <span class="x">…</span> հիմն. <span class="u">խմբի</span>՝ <b>ճեղքով</b> և <b>ձգվածքով</b>։ <span class="x">…չընթերցվեց…</span></p>
-  <p><span class="x">…չընթերցվեց…</span> լիսեռը։ <span class="x">…</span></p>
+  <p>Երկու դետալների միացման բնույթը կոչվում է <b>նստվածք</b>. այն <span class="t">որոշվում է հավաքումից առաջ անցքի և լիսեռի չափերի տարբերությամբ՝ ճեղքի կամ ձգվածքի մեծությամբ</span>։</p>
+  <p class="t">Նստվածքները լինում են 3 խմբի՝ <b>ճեղքով</b> (միացման մեջ միշտ ճեղք է), <b>ձգվածքով</b> (միշտ ձգվածք է) և <b>անցումային</b> (կարող է լինել և՛ ճեղք, և՛ ձգվածք)։ Ճեղքով նստվածքները թույլ են տալիս դետալների փոխադարձ շարժում, ձգվածքովները ստեղծում են անշարժ միացում։</p>
+  <p>Թույլտվածքի դաշտի դիրքը զրոյական գծի նկատմամբ նշվում է <b>տառով</b>՝ <span class="t">հիմնական շեղում</span> (անցքի համար՝ մեծատառ, լիսեռի համար՝ փոքրատառ).</p>
   <div class="key">
-    <p><b>A, B, C, D, E, F, G, H…</b> → <span class="u">ճեղքով</span> <span class="x">…</span></p>
-    <p>Հիմնականը՝ <b>H</b>։</p>
+    <p><b>A, B, C, D, E, F, G, H…</b> → <span class="t">ճեղքով նստվածքներ (ճեղքը A-ից H նվազում է)</span></p>
+    <p>Հիմնականը՝ <b>H</b> <span class="t">(ստորին շեղումը 0 է)</span>։</p>
     <p><b>J, K, N, M</b>՝ <b>անցումային</b></p>
-    <p><b>P, R, S, T … Z</b>՝ <span class="u">ձգվածքային</span></p>
+    <p><b>P, R, S, T … Z</b>՝ <b>ձգվածքով</b></p>
   </div>
   <details class="photo"><summary>📷 Տետրի էջերը</summary><div class="imgs"><img src="img/04a.webp" alt="Տետրի էջ" loading="lazy"><img src="img/04b.webp" alt="Տետրի էջ՝ տառային նշանակումներ" loading="lazy"></div></details>
 </section>
@@ -184,24 +187,24 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
 <!-- 6 · photos 04b, 05a, 05b, 06a, 06b -->
 <section class="sec" id="s6">
   <h2><span class="n">6</span>Թույլտվածքների և նստվածքների ISO սիստեմը</h2>
-  <p><span class="x">…չընթերցվեց…</span> թույլտվածքների և նստվածքների <span class="x">…</span> <span class="u">հիմնական տարրերը</span> 7-ն են.</p>
+  <p><span class="t">Ստանդարտացման միջազգային կազմակերպության (ISO) կողմից մշակված</span> թույլտվածքների և նստվածքների <span class="t">միասնական սիստեմի</span> հիմնական տարրերը 7-ն են.</p>
   <ol>
-    <li>Սիստեմի <span class="u">ձևը</span> (անցքի սիստեմ, լիսեռի սիստեմ)</li>
+    <li>Սիստեմի ձևը (անցքի սիստեմ, լիսեռի սիստեմ)</li>
     <li>Թույլտվածքի դաշտի դասավորության սխեման</li>
     <li>Թույլտվածքի միավոր</li>
-    <li><span class="u">Ճշտության</span> <span class="u">դասեր</span> և կվալիտետներ</li>
-    <li><span class="u">Անվանական</span> չափերի <span class="u">միջակայքեր</span></li>
+    <li>Ճշտության դասեր և կվալիտետներ</li>
+    <li>Անվանական չափերի միջակայքեր</li>
     <li>Ջերմաստիճանային ռեժիմ</li>
-    <li><span class="u">Նստվածքների</span> <span class="x">…</span></li>
+    <li>Նստվածքներ <span class="t">(նախընտրելի նստվածքներ)</span></li>
   </ol>
 
-  <h3>1. Սիստեմի <span class="u">ձևը</span></h3>
+  <h3>1. Սիստեմի ձևը</h3>
   <ul>
-    <li><b>Անցքի սիստեմ</b>՝ <span class="x">…</span> <b>հաստատուն (H)</b> են մնում անցքի <span class="u">սահմանային շեղերը</span>, <span class="u">փոփոխվում</span> է միայն <b>լիսեռի</b> <span class="u">սահմանային շեղերը</span>։ <span class="x">…չընթերցվեց…</span></li>
+    <li><b>Անցքի սիստեմ</b>՝ հաստատուն են մնում անցքի սահմանային շեղերը, փոփոխվում են միայն <b>լիսեռի</b> սահմանային շեղերը. <span class="t">տարբեր նստվածքներ ստացվում են մեկ (հիմնական) անցքը միացնելով տարբեր լիսեռների հետ</span>։</li>
     <li><b>Հիմնական անցք</b>՝ նշ. <span class="box">H (h)</span> (հիմն. լիսեռ)</li>
     <li><b>Լիսեռի սիստեմ</b>՝ հաստատուն են մնում հիմն. <b>լիսեռի (h)</b> սահմանային շեղերը, փոփոխվում են <b>անցքի</b> սահմ. շեղերը։</li>
   </ul>
-  <p><span class="x">…այս էջի շարունակությունը դժվար ընթեռնելի է, տե՛ս լուսանկարը…</span></p>
+  <p class="t">Ավելի տարածված է <b>անցքի սիստեմը</b>. անցքերը մշակվում և ստուգվում են թանկ, չափային (մասնագիտացված) գործիքներով՝ զենկեր, ռազվյորտկա, պրոտյաժկա, կալիբր-խցան, իսկ լիսեռները՝ ունիվերսալ կտրիչներով և ավելի էժան են։ <b>Լիսեռի սիստեմը</b> կիրառվում է, երբ մեկ ողորկ լիսեռի վրա տարբեր նստվածքներով տեղադրվում են մի քանի դետալներ, և ստանդարտ դետալների համար (օր.՝ գլորման առանցքակալի արտաքին օղակ)։</p>
 
   <h3>2. Թույլտվածքի դաշտի դասավորության սխեման</h3>
   <svg class="dg" viewBox="0 0 520 230" role="img" aria-label="H և h թույլտվածքի դաշտերը">
@@ -215,30 +218,33 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
     <text x="390" y="55">Ø50H { +… ; 0 }</text>
     <text x="390" y="185">h { 0 ; −25 }</text>
   </svg>
+  <p><span class="t">Հիմնական անցքի (H) դաշտը զրոյական գծից վեր է՝ ստորին շեղումը EI = 0, հիմնական լիսեռինը (h)՝ ներքև, վերին շեղումը es = 0</span>։</p>
   <p style="font-size:14.5px;color:var(--muted)">Ø50H-ի վերին շեղումը տետրում ամբողջական գրված չէ («+0»)։</p>
 
   <h3>3. Թույլտվածքի միավոր</h3>
-  <p>1–500 մմ չափերի համար <span class="x">…</span> ISO <span class="x">…չընթերցվեց…</span>։ Նշ.՝ <b>i</b>։</p>
+  <p>1–500 մմ չափերի համար ISO-ով <span class="t">սահմանված</span> թույլտվածքի միավորը. նշ.՝ <b>i</b>։</p>
   <div class="f">i = 0,45 · ∛D<sub>միջ</sub> + 0,001 · D<sub>միջ</sub></div>
-  <p>D<sub>միջ</sub>՝ <span class="u">միջակայքի</span> <span class="u">միջին</span> <span class="u">տրամագիծը</span>, մմ. &nbsp; i՝ թույլտվածքի միավոր, մկմ։</p>
+  <p>D<sub>միջ</sub>՝ <span class="t">չափերի միջակայքի ծայրային արժեքների երկրաչափական միջինը</span>, մմ. &nbsp; i՝ թույլտվածքի միավոր, մկմ։</p>
+  <p class="t">Թույլտվածքը որոշվում է՝ IT = a · i, որտեղ a-ն թույլտվածքի միավորների թիվն է, որը կախված է կվալիտետից (օր.՝ IT7-ում a = 16, IT8-ում՝ 25, IT9-ում՝ 40)։</p>
 
-  <h3>4. <span class="u">Ճշտության</span> <span class="u">դասեր</span> և կվալիտետներ</h3>
-  <p><b>00, 01, 1, 2 … 17 (19)</b>. <span class="x">…</span> <span class="u">սահմանված</span> է <b>19 (21) կվալիտետ</b>։</p>
-  <p><b>4–12</b> կվալիտետները <span class="u">օգտագործվում</span> են <span class="x">…չընթերցվեց…</span>։ <b>5–16</b>-ը <span class="x">…</span>։ <b>15</b>-ից <span class="x">…</span> չափերի։</p>
+  <h3>4. Ճշտության դասեր և կվալիտետներ</h3>
+  <p><span class="t"><b>Կվալիտետ</b>՝ ճշտության աստիճան, որի դեպքում բոլոր անվանական չափերի համար թույլտվածքները ունեն միևնույն ճշտությունը։</span> <b>00, 01, 1, 2 … 17 (19)</b>. սահմանված է <b>19 (21) կվալիտետ</b>։</p>
+  <p><b>4–12</b> կվալիտետներն օգտագործվում են <span class="t">նստվածքների (միացվող մակերևույթների) համար</span>։ <b>5–16</b>-ը <span class="x">…չընթերցվեց…</span>։ <b>15</b>-ից <span class="t">սկսած՝ ազատ (չմիացվող) չափերի համար</span>։ <span class="t">01–4 (5)՝ չափիչ գործիքներ, կալիբրներ</span>։</p>
 
-  <h3>5. <span class="u">Անվանական</span> չափերի <span class="u">միջակայքեր</span></h3>
-  <p>Չափերը <span class="u">բաժանված</span> են <span class="x">…</span>.</p>
+  <h3>5. Անվանական չափերի միջակայքեր</h3>
+  <p>Չափերը բաժանված են <span class="t">երեք խմբի</span>.</p>
   <ol>
     <li><b>Փոքր</b> չափեր (մինչև 1 մմ)</li>
     <li><b>Միջին</b> չափեր (1–500 մմ)</li>
     <li><b>Մեծ</b> չափեր (500–3150 մմ)</li>
   </ol>
+  <p class="t">Յուրաքանչյուր խումբ բաժանված է միջակայքերի (օր.՝ 1–3, 3–6, 6–10, 10–18, 18–30, 30–50 մմ…). միջակայքի ներսում բոլոր չափերի համար թույլտվածքը նույնն է։</p>
 
   <h3>6. Ջերմաստիճանային ռեժիմ</h3>
-  <p><span class="x">…չընթերցվեց…</span> <b>20 °C</b>։</p>
+  <p><span class="t">Թույլտվածքները և նստվածքները սահմանված են այն պայմանով, որ դետալների և չափիչ միջոցների ջերմաստիճանը չափման ժամանակ լինի</span> <b>20 °C</b> <span class="t">(նորմալ ջերմաստիճան)</span>։</p>
 
-  <h3>7. <span class="u">Նստվածքների</span> <span class="x">…</span></h3>
-  <p><span class="x">…չընթերցվեց…</span></p>
+  <h3>7. Նստվածքներ</h3>
+  <p class="t">Նստվածքը կազմվում է անցքի և լիսեռի թույլտվածքի դաշտերից (օր.՝ H7/f7)։ Ստանդարտը տալիս է <b>նախընտրելի նստվածքներ</b>, որոնք կիրառվում են առաջին հերթին՝ գործիքների և կալիբրների քանակը կրճատելու համար։</p>
 
   <details class="photo"><summary>📷 Տետրի էջերը</summary><div class="imgs"><img src="img/04b.webp" alt="Տետրի էջ՝ ISO" loading="lazy"><img src="img/05a.webp" alt="Տետրի էջ՝ ISO տարրեր 2–7, անցքի և լիսեռի սիստեմ" loading="lazy"><img src="img/05b.webp" alt="Տետրի էջ՝ դաշտերի սխեմա" loading="lazy"><img src="img/06a.webp" alt="Տետրի էջ՝ թույլտվածքի միավոր, կվալիտետներ" loading="lazy"><img src="img/06b.webp" alt="Տետրի էջ՝ չափերի միջակայքեր, ջերմաստիճան" loading="lazy"></div></details>
 </section>
@@ -246,26 +252,26 @@ td,th{padding:3px 12px 3px 0;text-align:left;vertical-align:top}
 <!-- 7 · photos 07a, 07b -->
 <section class="sec" id="s7">
   <h2><span class="n">7</span>ОСТ սիստեմը, կոմբինացված նստվածքներ</h2>
-  <p><b>ОСТ</b>.</p>
+  <p><b>ОСТ</b> <span class="t">(նախկին խորհրդային ստանդարտների սիստեմ)</span>.</p>
   <ol>
-    <li>Սիստեմի <span class="u">ձևը</span> (անցքի սիստեմ, լիսեռի սիստեմ)</li>
-    <li>Թույլտվածքների դաշտերի դասավորության <span class="u">սխեման</span></li>
+    <li>Սիստեմի ձևը (անցքի սիստեմ, լիսեռի սիստեմ)</li>
+    <li>Թույլտվածքների դաշտերի դասավորության սխեման</li>
     <li>Թույլտվածքի միավոր</li>
-    <li><span class="u">Ճշտության</span> դասեր (1, 2, 2ա, 3, 3ա, 4, 5, 7, 8, 9, 10)</li>
+    <li>Ճշտության դասեր (1, 2, 2ա, 3, 3ա, 4, 5, 7, 8, 9, 10)</li>
   </ol>
-  <p><span class="x">…չընթերցվեց…</span></p>
-  <h3><span class="u">Նստվածքների</span> <span class="x">…</span></h3>
-  <p><span class="x">…</span> լինում են <span class="x">…</span> և <span class="x">…</span>։</p>
-  <p><span class="x">…</span> <span class="u">նշանակումը</span>.
+  <p class="t">ОСТ-ում ճշտությունը տրվում էր <b>դասերով</b> (ISO-ի կվալիտետների փոխարեն). որքան փոքր է դասի համարը, այնքան ճշգրիտ է չափը։</p>
+  <h3>Նստվածքների նշանակում</h3>
+  <p class="t">Նստվածքը նշվում է կոտորակով՝ համարիչում անցքի թույլտվածքի դաշտն է, հայտարարում՝ լիսեռինը, անվանական չափից հետո, օր.՝ Ø50 H7/e8։</p>
+  <p>Նշանակման օրինակներ.
     <span class="fit"><span>H7</span><span>e8</span></span>,
     <span class="fit"><span>H9</span><span>d9</span></span></p>
-  <p><span class="x">…չընթերցվեց…</span> անցքի և լիսեռի <span class="x">…</span>։</p>
-  <h3><span class="u">Կոմբինացված</span> նստվածքներ</h3>
-  <p><span class="x">…</span> <span class="u">լինում</span> են <b>3 խումբ</b>.</p>
+  <h3>Կոմբինացված նստվածքներ</h3>
+  <p class="t"><b>Կոմբինացված</b> են կոչվում նստվածքները, որոնք կազմված են ոչ հիմնական անցքից և ոչ հիմնական լիսեռից (ոչ H, ոչ h), օր.՝ E7/f7։</p>
+  <p>Նստվածքները ըստ սիստեմի լինում են <b>3 խումբ</b>.</p>
   <ol>
-    <li><span class="x">…</span>, օր.՝ <span class="fit"><span>E7</span><span>f7</span></span></li>
-    <li><span class="x">…</span> <span class="fit"><span>G7</span><span>n5</span></span> <span class="u">(նշանակումը ստուգեք)</span></li>
-    <li><span class="u">Անցքը</span> և <span class="u">լիսեռը</span> <span class="x">…</span>. <span class="fit"><span>H7</span><span>e8</span></span>, <span class="fit"><span>E8</span><span>h6</span></span></li>
+    <li><span class="t">Կոմբինացված</span>, օր.՝ <span class="fit"><span>E7</span><span>f7</span></span></li>
+    <li><span class="x">…չընթերցվեց…</span> <span class="fit"><span>G7</span><span>n5</span></span> <span class="u">(նշանակումը ստուգեք)</span></li>
+    <li><span class="t">Անցքի կամ լիսեռի սիստեմում</span>, օր.՝ <span class="fit"><span>H7</span><span>e8</span></span> (անցքի սիստեմ), <span class="fit"><span>E8</span><span>h6</span></span> (լիսեռի սիստեմ)</li>
   </ol>
   <details class="photo"><summary>📷 Տետրի էջերը</summary><div class="imgs"><img src="img/07a.webp" alt="Տետրի էջ՝ ОСТ" loading="lazy"><img src="img/07b.webp" alt="Տետրի էջ՝ կոմբինացված նստվածքներ" loading="lazy"></div></details>
 </section>
