@@ -31,6 +31,7 @@ All user-facing text is in **Armenian**; keep it Armenian.
 | `nyutagitutyun/` | Նյութագիտություն: lectures 1–7 and the midterm-1 study platform | https://areg06.github.io/UNI/nyutagitutyun/ |
 | `gazodinamika/` | Գազադինամիկա: Armenian translation of the textbook (`translation/`) and the midterm-1 study platform (built by `midterm1/build.py`) | https://areg06.github.io/UNI/gazodinamika/ |
 | `jermatexnika/` | Ջերմատեխնիկա: practical work, ideal-gas cycle calculation (variant 10: p=const, dq=0, v=const, T=const); constants cp=1, cv=0.71, R=287, k=1.4 | https://areg06.github.io/UNI/jermatexnika/ |
+| `chapagrutyun/` | Չափագրություն: lecture notes typed from notebook photos (`daser.html`, photos in `img/`); doubtful words marked `.u`, unread passages `.x` | https://areg06.github.io/UNI/chapagrutyun/ |
 
 ## Deliberately not in git
 
