@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Հիդրավլիկա · լաբորատոր աշխատանքներ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400..700&family=Noto+Serif+Armenian:wght@600;700&display=swap">
+<style>
+/* Lab texts typed from the printed manual (photos in img/); the calculators apply the manual's own formulas. */
+:root{--bg:#EDF0F0;--surface:#FAFBFB;--sunk:#E3E8E9;--ink:#162027;--muted:#56636C;--line:#CDD5D8;--accent:#2A4C9C;--accent-soft:#DCE4F5;--heat:#B4530F;--heat-soft:#F6E2D2;--good:#2C7A4B;--bad:#B0302A;
+  --f-display:"Noto Serif Armenian",Georgia,serif;--f-body:"Noto Sans Armenian",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#11161A;--surface:#182026;--sunk:#0D1215;--ink:#E3E8EB;--muted:#93A1AA;--line:#2A353C;--accent:#8FA9F2;--accent-soft:#1F2A46;--heat:#F0A060;--heat-soft:#3A2618;--good:#6CC98F;--bad:#F08A82;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--f-body)}
+main{max-width:880px;margin:0 auto;padding:32px 20px 64px;display:flex;flex-direction:column;gap:26px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.25;margin:0}
+h1{font-size:28px} h2{font-size:22px} h3{font-size:17px;margin-top:8px}
+a{color:var(--accent)}
+.back{color:var(--muted);font-size:15px;text-decoration:none}
+.sub{color:var(--muted);margin:6px 0 0}
+.panel,section.lab{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+section.lab{display:flex;flex-direction:column;gap:12px;scroll-margin-top:12px}
+.eyebrow{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+p{margin:0} ol,ul{margin:0;padding-left:22px} li{margin:3px 0}
+.f{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:18px;background:var(--sunk);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.f .no{font:14px var(--f-body);color:var(--muted)}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.15;margin:0 2px}
+.fr>span:first-child{border-bottom:1.3px solid currentColor;padding:0 2px}
+i.v{font-family:"Cambria Math","Times New Roman",serif}
+figure{margin:4px 0;display:flex;flex-direction:column;align-items:center;gap:6px}
+figure img{max-width:100%;height:auto;border-radius:6px;background:#fff}
+figcaption{font-size:14px;color:var(--muted);text-align:center}
+svg.dg{width:100%;max-width:460px;height:auto}
+svg.dg text{fill:var(--ink);font:13px var(--f-body)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;font-size:14.5px;min-width:100%}
+th,td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:middle}
+th{background:var(--sunk);font-weight:600}
+td.c{text-align:center;font-family:ui-monospace,Menlo,monospace;font-size:13.5px}
+td input{width:5.2em;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 5px}
+td.out{background:var(--accent-soft)}
+.calc{border:1px dashed var(--accent);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.calc h3{margin:0;color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.row label{display:flex;gap:6px;align-items:center;font-size:14.5px}
+.row input{width:6.5em;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 6px}
+.note{font-size:14px;color:var(--muted)}
+.btn{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 14px;cursor:pointer}
+details.photo{border:1px dashed var(--line);border-radius:8px}
+details.photo>summary{cursor:pointer;padding:8px 12px;color:var(--accent);font-size:14.5px}
+details.photo .imgs{display:flex;flex-wrap:wrap;gap:8px;padding:0 10px 10px}
+details.photo img{width:100%;max-width:380px;height:auto;border-radius:6px;flex:1 1 240px}
+.toc{display:flex;flex-direction:column;gap:2px}
+@media (max-width:600px){main{padding:20px 14px 48px} section.lab{padding:14px} h1{font-size:24px} h2{font-size:20px}}
+@media print{
+  @page{size:A4;margin:14mm 15mm 16mm}
+  :root{--bg:#fff;--surface:#fff;--sunk:#EEF1F2;--ink:#162027;--muted:#56636C;--line:#B9C2C6;--accent:#2A4C9C;--accent-soft:#EEF2FA;color-scheme:light}
+  body{font-size:10.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  main{padding:0;gap:12px;max-width:none}
+  .back,.btn,.toc-panel,details.photo,.calc .row{display:none!important}
+  section.lab{border:0;padding:0;break-before:page} section.lab:first-of-type{break-before:auto}
+  h3{break-after:avoid} figure,.f,table{break-inside:avoid}
+  td input{border:0;background:none;padding:0}
+}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="./">← Հիդրավլիկա</a>
+<header>
+  <h1>Լաբորատոր աշխատանքներ</h1>
+  <p class="sub">Տեքստը՝ մեթոդական ձեռնարկից (լուսանկարները՝ ամեն աշխատանքի վերջում)։ Աղյուսակները կարելի է լրացնել այստեղ՝ հաշվարկները կատարվում են ձեռնարկի բանաձևերով։</p>
+</header>
+<nav class="panel toc-panel"><div class="toc">
+  <a href="#lab3">Փորձ 3 · Բեռնուլիի հավասարման ցուցադրումը</a>
+  <a href="#lab4">Լաբորատոր աշխատանք 4 · Ջրի գոլորշացման ջերմաստիճանի կախումը ճնշումից</a>
+  <button class="btn" type="button" onclick="window.print()" style="align-self:flex-start;margin-top:8px">🖨 Տպել (A4)</button>
+</div></nav>
+
+<!-- ================= LAB 3 ================= -->
+<section class="lab" id="lab3">
+  <span class="eyebrow">Փորձ 3</span>
+  <h2>Բեռնուլիի հավասարման ցուցադրումը</h2>
+  <p>Բեռնուլիի հավասարումը հիդրոդինամիկայի հիմնական հավասարումն է և իդեալական հեղուկի ամբողջ հոսքի համար ունի հետևյալ տեսքը.</p>
+  <div class="f"><span><i class="v">z</i> + <span class="fr"><span><i class="v">p</i></span><span><i class="v">ρg</i></span></span> + <span class="fr"><span><i class="v">αv</i>²</span><span>2<i class="v">g</i></span></span> = const,</span><span class="no">(3.1)</span></div>
+  <p>որտեղ՝ <i class="v">z</i>-ը երկրաչափական բարձրությունն է, որը կտրվածքի ծանրության կենտրոնի ուղղաձիգ հեռավորությունն է նախապես ընտրված համեմատական հարթությունից, <i class="v">p</i>-ն ճնշումն է տվյալ կտրվածքում, <i class="v">v</i>-ն՝ հեղուկի շարժման միջին արագությունը կտրվածքում, <i class="v">α</i>-ն՝ արագությունների բաշխման անհավասարաչափության գործակիցը, <i class="v">p/ρg</i>-ն պյեզոմետրական բարձրությունն է, որը և ցույց է տալիս տվյալ կտրվածքում հեղուկի ճնշումը՝ արտահայտված հեղուկի սյան բարձրությամբ, <i class="v">αv²/2g</i>-ն արագության բարձրությունը կամ էջքն է և ցույց է տալիս, թե կտրվածքում արագությունից կախված ինչպիսի լրացուցիչ ճնշում է առաջանում (նկ. 3.1)։</p>
+  <p>Նշված երեք բարձրությունների գումարը ըստ Բեռնուլիի հավասարման մնում է հաստատուն տվյալ կտրվածքի համար։</p>
+  <figure>
+    <svg class="dg" viewBox="0 0 460 300" role="img" aria-label="Նկ. 3.1">
+      <defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" style="stroke:var(--ink)" stroke-width="1.5"/></pattern></defs>
+      <rect x="20" y="268" width="420" height="10" fill="url(#hatch)"/><line x1="20" y1="268" x2="440" y2="268" style="stroke:var(--ink)" stroke-width="2"/>
+      <path d="M60 150 L420 205 M60 180 L420 235" fill="none" style="stroke:var(--ink)" stroke-width="2.2"/>
+      <path d="M40 160 L440 222" fill="none" style="stroke:var(--muted)" stroke-dasharray="10 4 2 4"/>
+      <ellipse cx="60" cy="165" rx="8" ry="15" fill="none" style="stroke:var(--ink)" stroke-width="1.6"/>
+      <path d="M205 60 V172 M217 60 V174" style="stroke:var(--ink)" stroke-width="2" fill="none"/>
+      <path d="M226 30 V186 h14 V30" style="stroke:var(--ink)" stroke-width="2" fill="none"/>
+      <rect x="227" y="62" width="12" height="122" style="fill:var(--accent-soft)"/><rect x="206" y="100" width="10" height="72" style="fill:var(--accent-soft)"/>
+      <line x1="150" y1="100" x2="216" y2="100" style="stroke:var(--ink)"/><line x1="226" y1="62" x2="300" y2="62" style="stroke:var(--ink)"/><line x1="240" y1="100" x2="300" y2="100" style="stroke:var(--ink)"/>
+      <circle cx="222" cy="182" r="4" style="fill:var(--ink)"/>
+      <line x1="150" y1="182" x2="222" y2="182" style="stroke:var(--ink)"/>
+      <path d="M160 104 V178 M160 186 V264" style="stroke:var(--ink)" stroke-width="1.4"/>
+      <path d="M160 100 l-4 9 h8z M160 182 l-4 -9 h8z M160 182 l-4 9 h8z M160 268 l-4 -9 h8z" style="fill:var(--ink)"/>
+      <path d="M290 66 V96" style="stroke:var(--ink)" stroke-width="1.4"/><path d="M290 62 l-4 9 h8z M290 100 l-4 -9 h8z" style="fill:var(--ink)"/>
+      <text x="168" y="135">p</text><line x1="166" y1="140" x2="184" y2="140" style="stroke:var(--ink)"/><text x="166" y="154">ρg</text>
+      <text x="168" y="230" font-size="15">z</text>
+      <text x="300" y="78">αv²</text><line x1="298" y1="83" x2="324" y2="83" style="stroke:var(--ink)"/><text x="302" y="98">2g</text>
+      <text x="96" y="52">Պյեզոմետր</text><path d="M150 56 L205 68" style="stroke:var(--muted)" fill="none"/>
+      <text x="262" y="22">Պիտոյի խողովակ</text><path d="M262 26 L240 36" style="stroke:var(--muted)" fill="none"/>
+      <text x="230" y="292">Համեմատական հարթություն</text>
+    </svg>
+    <figcaption>Նկ. 3.1</figcaption>
+  </figure>
+  <p><b>Էներգետիկ տեսակետից</b> Բեռնուլիի հավասարումը ցույց է տալիս, որ միավոր կշռով հեղուկի դիրքի (<i class="v">z</i>), ճնշման (<i class="v">p/ρg</i>), պոտենցիալ ու կինետիկ (<i class="v">αv²/2g</i>) էներգիաների գումարը, այսինքն՝ կտրվածքի լրիվ տեսակարար էներգիան բոլոր կտրվածքների համար հաստատուն մեծություն է։ Այսինքն՝ Բեռնուլիի հավասարումը էներգիայի պահպանման օրենքն է միավոր կշռով հեղուկի համար։</p>
+  <p>Հեղուկի իրական հոսքի երկու կտրվածքների համար Բեռնուլիի հավասարումն ունի հետևյալ տեսքը.</p>
+  <div class="f"><span><i class="v">z</i>₁ + <span class="fr"><span><i class="v">p</i>₁</span><span><i class="v">ρg</i></span></span> + <span class="fr"><span><i class="v">αv</i>₁²</span><span>2<i class="v">g</i></span></span> = <i class="v">z</i>₂ + <span class="fr"><span><i class="v">p</i>₂</span><span><i class="v">ρg</i></span></span> + <span class="fr"><span><i class="v">αv</i>₂²</span><span>2<i class="v">g</i></span></span> + Σ<i class="v">h</i><sub>w</sub>,</span><span class="no">(3.2)</span></div>
+  <p>որտեղ Σ<i class="v">h</i><sub>w</sub>-ն էներգիայի կորուստների գումարն է երկու կտրվածքների միջև (կորուստները լինում են տեղական և երկայնական, որոնց մանրամասն ուսումնասիրությունը կտրվի 7 և 8 փորձերում)։</p>
+  <p>Կտրվածքներում պյեզոմետրերի ցուցմունքները միացնող գիծը կոչվում է <b>պյեզոմետրական գիծ</b>, իսկ Պիտոյի խողովակների ցուցմունքները (տեսակարար էներգիային համապատասխանող մակարդակները) միացնող գիծը՝ <b>էներգիայի գիծ</b>։</p>
+
+  <h3>Փորձի նպատակը</h3>
+  <p>Փոփոխական կտրվածքով խողովակի տարբեր կտրվածքներում չափել Բեռնուլիի հավասարման անդամները և կառուցել էներգիայի ու պյեզոմետրական գծերը։</p>
+
+  <h3>Փորձասարքի նկարագրությունը</h3>
+  <p>Փորձասարքը (նկ. 3.2) կազմված է միմյանց հաջորդաբար միացված տարբեր տրամագծի երեք խողովակներից, որոնց տարբեր կտրվածքներում տեղադրված են պյեզոմետրեր և Պիտոյի խողովակներ։ Ճնշումային A ավազանում ազատ թափքի շնորհիվ պահպանվում է ջրի հաստատուն մակարդակ։ Խողովակով անցնող ջրի ելքը որոշվում է ծավալային եղանակով՝ B չափիչ ավազանի, M սանդղակի և C վայրկենաչափի միջոցով։</p>
+  <figure><img src="img/nk3_2.webp" alt="Նկ. 3.2 Բեռնուլիի հավասարման ցուցադրման փորձասարքի սխեմա" loading="lazy" width="620" height="690"><figcaption>Նկ. 3.2. Բեռնուլիի հավասարման ցուցադրման փորձասարքի սխեմա (ձեռնարկից)</figcaption></figure>
+
+  <h3>Փորձի ընթացքը</h3>
+  <p>Բացել K₁ փականը (K₂-ը փակ է) և A ավազանը լցնել ջրով։ Երբ ջուրը պյեզոմետրերում հասնի ճնշումային մակարդակի (սկզբնական էներգիայի մակարդակ), բացել K₂ փականը, խողովակում ապահովել ջրի շարժման հաստատուն ռեժիմ, որից հետո կատարել հետևյալ չափումները.</p>
+  <ol>
+    <li>Պյեզոմետրական բարձրությունները՝ ըստ պյեզոմետրերի ցուցմունքների։</li>
+    <li>Լրիվ էներգիայի բարձրությունները՝ ըստ Պիտոյի խողովակի ցուցմունքների։</li>
+    <li>Ելքը ծավալային եղանակով, որի համար M շրջադարձային թիակն ուղղել B չափիչ ավազանի մեջ (K₃ փականը փակ է), L սանդղակի որոշակի ցուցմունքի դեպքում միացնել վայրկենաչափը։ Որոշակի t ժամանակամիջոցից հետո նորից գրանցել սանդղակի ցուցմունքը, հաշվել ջրի W ծավալը և որոշել ելքը՝ <i class="v">Q</i> = <span class="fr"><span><i class="v">W</i></span><span><i class="v">t</i></span></span> հարաբերությամբ։</li>
+  </ol>
+  <p>Փորձի և հաշվարկների արդյունքները գրանցել աղյուսակ 3.1-ում և դրանց հիման վրա կառուցել էներգիայի ու պյեզոմետրական գծերը։</p>
+
+  <h3>Աղյուսակ 3.1. Փորձի արդյունքների գրանցման աղյուսակ</h3>
+  <div class="calc">
+    <p class="note">Լրացրեք սպիտակ դաշտերը. կապույտ վանդակները հաշվվում են ինքնաշխատ՝ ձեռնարկի բանաձևերով (g = 981 սմ/վրկ²)։ Ցուցմունքները (∇) կարդացվում են վահանակի սանդղակից, որի 0-ն վերևում է։</p>
+    <div class="tw"><table id="t31">
+      <thead><tr><th>Հ/հ</th><th>Մեծությունների անվանումը</th><th>Միավոր</th><th class="c">1</th><th class="c">2</th><th class="c">3</th><th class="c">4</th><th class="c">5</th><th class="c">6</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="row"><button class="btn" type="button" id="t31clear">Մաքրել</button><span class="note">Տվյալները պահվում են այս դիտարկիչում։</span></div>
+  </div>
+  <figure><svg class="dg" id="t31plot" viewBox="0 0 460 220" role="img" aria-label="Էներգիայի և պյեզոմետրական գծեր"></svg>
+    <figcaption>Էներգիայի (կապույտ) և պյեզոմետրական (նարնջագույն) գծերը՝ ըստ լրացված ցուցմունքների</figcaption></figure>
+
+  <details class="photo"><summary>📷 Ձեռնարկի էջերը (10–13)</summary><div class="imgs">
+    <img src="img/l3_p10.webp" alt="էջ 10" loading="lazy"><img src="img/l3_p11.webp" alt="էջ 11" loading="lazy"><img src="img/l3_p12.webp" alt="էջ 12" loading="lazy"><img src="img/l3_p13.webp" alt="էջ 13" loading="lazy"></div></details>
+</section>
+
+<!-- ================= LAB 4 ================= -->
+<section class="lab" id="lab4">
+  <span class="eyebrow">Լաբորատոր աշխատանք 4</span>
+  <h2>Ջրի գոլորշացման ջերմաստիճանի կախումը ճնշումից</h2>
+  <h3>Առաջադրանք</h3>
+  <ol>
+    <li>Ծանոթանալ դասընթացի ջրային գոլորշի բաժնին։</li>
+    <li>Փորձնական եղանակով որոշել ջրի գոլորշացման ջերմաստիճանի կախումը ճնշումից։</li>
+    <li>Փորձի արդյունքները մշակել և տալ համապատասխան եզրակացություն։</li>
+  </ol>
+  <h3>Հիմնական հասկացություն</h3>
+  <p>Հեղուկի եռման պրոցեսը, որն ուղեկցվում է շոգեգոյացմամբ նրա ողջ ծավալով, սկսում է ինչ-որ ջերմաստիճանում, որը կոչվում է <b>գոլորշացման</b> կամ <b>հագեցման ջերմաստիճան</b>։ Փորձը ցույց է տալիս, որ հեղուկի գոլորշացման ջերմաստիճանը կախված է այն միջավայրի ճնշումից, որտեղ ընթանում է եռման պրոցեսը։</p>
+  <h3>Փորձնական տեղակայանք</h3>
+  <p>Փորձնական տեղակայանքի սխեման ցույց է տրված նկ. 1-ում։ Տեղակայանքը կազմված է (1) ապակյա անոթից, ուր տեղադրված է (2) էլեկտրատաքացուցիչը։ (3) փականով անոթը հաղորդակցվում է շրջապատող միջավայրի հետ։ Անոթում ճնշումը փոփոխվում է (5) պոմպի օգնությամբ։ Ճնշումը չափվում է (6) նոսրաչափով, ջերմաստիճանը՝ (4) ջերմաչափով։</p>
+  <figure><img src="img/nk4_1.webp" alt="Նկ. 1 Փորձնական տեղակայանքի սխեմա" loading="lazy" width="470" height="230">
+    <figcaption>Նկ. 1. 1՝ ապակյա անոթ, 2՝ էլեկտրատաքացուցիչ, 3՝ փական, 4՝ ջերմաչափ, 5՝ պոմպ, 6՝ նոսրաչափ</figcaption></figure>
+  <h3>Փորձի կատարման կարգը</h3>
+  <p>(3) փականի բաց դիրքում միացվում է էլեկտրատաքացուցիչը և ջուրն անոթում հասցվում է եռման ջերմաստիճանին՝ մթնոլորտային ճնշման պայմաններում։ Չափվում է գոլորշացման ջերմաստիճանը։ Անջատվում է էլեկտրատաքացուցիչը և (3) փականի փակ դիրքում պոմպի փականի բռնակի դանդաղ պտտմամբ անոթում ստեղծում են եռման մի քանի ռեժիմներ՝ նոսրացման պայմաններում։</p>
+  <p>Յուրաքանչյուր ռեժիմի համար չափվում է T<sub>հ</sub> գոլորշացման ջերմաստիճանը և P<sub>ն</sub> նոսրացումը անոթում։ Փորձը շարունակվում է մինչև պոմպի ստեղծած առավելագույն նոսրացումը։ Չափման արդյունքները, ինչպես նաև գոլորշացման ջերմաստիճանին համապատասխանող ճնշումների աղյուսակային արժեքները՝ P<sub>աղ</sub>, գրանցվում են հետևյալ աղյուսակում.</p>
+  <div class="calc">
+    <div class="row"><label>B (մթնոլորտային ճնշում) <input type="number" id="l4B" step="0.001" value="1.033"> կգ/սմ²</label></div>
+    <div class="tw"><table id="t4">
+      <thead><tr><th>N</th><th>T<sub>հ</sub>, Կ</th><th>P<sub>ն</sub>, կգ/սմ²</th><th>P<sub>հ</sub>, Ն/մ²</th><th>P<sub>աղ</sub>, Ն/մ²</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="row"><button class="btn" type="button" id="t4add">+ Տող</button><button class="btn" type="button" id="t4clear">Մաքրել</button></div>
+    <p class="note">P<sub>հ</sub>-ն հաշվվում է բանաձև (1)-ով։ P<sub>աղ</sub>-ը գրեք ջրային գոլորշու աղյուսակից՝ տվյալ T<sub>հ</sub>-ի համար։ Ձեռնարկի աղյուսակում P<sub>հ</sub> սյունը տպված է երկու անգամ. այստեղ թողել եմ մեկը։</p>
+  </div>
+  <p>Հագեցման (գոլորշացման) ջերմաստիճանին համապատասխանող P<sub>հ</sub> ճնշումը որոշվում է՝</p>
+  <div class="f"><span><i class="v">P</i><sub>հ</sub> = 0,98·10⁵·(<i class="v">B</i> − <i class="v">P</i><sub>ն</sub>), Ն/մ²,</span><span class="no">(1)</span></div>
+  <p>որտեղ <i class="v">B</i>-ն մթնոլորտային ճնշումն է, կգ/սմ², <i class="v">P</i><sub>ն</sub>-ն նոսրացումն է անոթում, կգ/սմ²։</p>
+  <p>Կառուցվում է գրաֆիկական կապ հագեցման ջերմաստիճանի և ճնշման միջև ըստ աղյուսակային տվյալների, ապա նույն գրաֆիկի վրա ցույց է տրվում փորձնական տվյալներով ստացված կախումը։</p>
+  <figure><svg class="dg" id="t4plot" viewBox="0 0 460 230" role="img" aria-label="T_հ(P) գրաֆիկ"></svg>
+    <figcaption>T<sub>հ</sub>-ի կախումը ճնշումից. ● փորձնական (P<sub>հ</sub>), ○ աղյուսակային (P<sub>աղ</sub>)՝ ըստ լրացված տվյալների</figcaption></figure>
+  <h3>Փորձի հաշվետվության ձևակերպումը</h3>
+  <p>Հաշվետվությունը պետք է պարունակի.</p>
+  <ol>
+    <li>աշխատանքի համառոտ նկարագրությունը,</li>
+    <li>փորձնական տեղակայանքի սկզբունքային սխեման,</li>
+    <li>չափումների արձանագրությունը,</li>
+    <li>պատկերել ջրի գոլորշացման ջերմաստիճանի կախումը ճնշումից գրաֆիկական եղանակով (ըստ փորձնական և աղյուսակային տվյալների),</li>
+    <li>եզրակացություններ աշխատանքի արդյունքների մասին։</li>
+  </ol>
+  <details class="photo"><summary>📷 Ձեռնարկի էջերը</summary><div class="imgs">
+    <img src="img/l4_p18.webp" alt="էջ" loading="lazy"><img src="img/l4_p19.webp" alt="էջ 19" loading="lazy"><img src="img/l4_p20.webp" alt="էջ 20" loading="lazy"></div></details>
+</section>
+</main>
+
+<script>
+(function(){
+'use strict';
+const $ = s => document.querySelector(s), g = 981, N = 6, KEY = 'hidr-lab-v1';
+let S = {}; try { S = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} };
+const num = v => (v === '' || v == null || isNaN(+v)) ? null : +v;
+const fmt = (v, d) => v == null || !isFinite(v) ? '' : (+v.toFixed(d)).toString().replace('.', ',');
+const NS = 'http://www.w3.org/2000/svg';
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) k === 'text' ? e.textContent = a[k] : (k === 'fill' || k === 'stroke') && String(a[k]).startsWith('var(') ? e.style.setProperty(k, a[k]) : e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
+
+/* ---------- table 3.1 ---------- */
+// rows: [key, name, unit, kind]  kind: 'in' per section, 'in1' one value, 'out' per section, 'out1' one value
+const R31 = [
+  ['n1', 'Պյեզոմետրերի ցուցմունքները, ∇<sub>1</sub>', 'սմ', 'in'],
+  ['n1p', 'Պիտոյի խողովակների ցուցմունքները, ∇<sub>1</sub><sup>Պ</sup>', 'սմ', 'in'],
+  ['n2', 'Խողովակի առանցքի նիշերը, ∇<sub>2</sub>', 'սմ', 'in'],
+  ['n3', 'Համեմատականության հարթությունը, ∇<sub>3</sub>', 'սմ', 'in1'],
+  ['z', 'Երկրաչափական բարձրությունը, z = ∇<sub>3</sub> − ∇<sub>2</sub>', 'սմ', 'out'],
+  ['pz', 'Պյեզոմետրական բարձրությունը, p/ρg = ∇<sub>2</sub> − ∇<sub>1</sub>', 'սմ', 'out'],
+  ['u2', 'Արագության իրական էջքը, u²/2g = ∇<sub>1</sub> − ∇<sub>1</sub><sup>Պ</sup>', 'սմ', 'out'],
+  ['E', 'Լրիվ էներգիան, E = z + p/ρg + u²/2g = ∇<sub>3</sub> − ∇<sub>1</sub><sup>Պ</sup>', 'սմ', 'out'],
+  ['W', 'Ջրի ծավալը չափիչ ավազանում, W', 'սմ³', 'in1'],
+  ['t', 'Լցման ժամանակը, t', 'վրկ', 'in1'],
+  ['Q', 'Ելքը, Q = W/t', 'սմ³/վրկ', 'out1'],
+  ['d', 'Խողովակի տրամագիծը, d', 'սմ', 'in'],
+  ['w', 'Կտրվածքի մակերեսը, ω = πd²/4', 'սմ²', 'out'],
+  ['v', 'Ջրի շարժման միջին արագությունը, v = Q/ω', 'սմ/վրկ', 'out'],
+  ['v2', 'Արագության պայմանական էջքը, v²/2g', 'սմ', 'out'],
+  ['a', 'Արագությունների բաշխման անհավասարաչափության գործակիցը, α = (u²/2g)/(v²/2g)', '—', 'out']];
+const tb = $('#t31 tbody');
+R31.forEach(([k, n, u, kind], i) => {
+  const tr = document.createElement('tr');
+  let cells = `<td class="c">${i + 1}</td><td>${n}</td><td class="c">${u}</td>`;
+  if (kind === 'in1' || kind === 'out1') cells += `<td colspan="${N}" class="${kind === 'out1' ? 'c out' : 'c'}">${kind === 'in1' ? `<input inputmode="decimal" data-k="${k}">` : `<span data-o="${k}"></span>`}</td>`;
+  else for (let j = 0; j < N; j++) cells += kind === 'in' ? `<td class="c"><input inputmode="decimal" data-k="${k}" data-j="${j}"></td>` : `<td class="c out"><span data-o="${k}" data-j="${j}"></span></td>`;
+  tr.innerHTML = cells; tb.appendChild(tr);
+});
+const key = (k, j) => j == null ? k : k + j;
+tb.querySelectorAll('input').forEach(inp => {
+  const id = key(inp.dataset.k, inp.dataset.j); if (S[id] != null) inp.value = S[id];
+  inp.addEventListener('input', () => { S[id] = inp.value.replace(',', '.'); save(); calc31(); });
+});
+function calc31(){
+  const V = (k, j) => num(S[key(k, j)]);
+  const n3 = V('n3'), Q = V('W') != null && V('t') ? V('W') / V('t') : null, out = {Q};
+  const pts = [];
+  for (let j = 0; j < N; j++){
+    const n1 = V('n1', j), n1p = V('n1p', j), n2 = V('n2', j), d = V('d', j);
+    const z = n3 != null && n2 != null ? n3 - n2 : null, pz = n2 != null && n1 != null ? n2 - n1 : null, u2 = n1 != null && n1p != null ? n1 - n1p : null, E = n3 != null && n1p != null ? n3 - n1p : null;
+    const w = d ? Math.PI * d * d / 4 : null, v = Q != null && w ? Q / w : null, v2 = v != null ? v * v / (2 * g) : null, a = u2 != null && v2 ? u2 / v2 : null;
+    Object.assign(out, {['z' + j]:z, ['pz' + j]:pz, ['u2' + j]:u2, ['E' + j]:E, ['w' + j]:w, ['v' + j]:v, ['v2' + j]:v2, ['a' + j]:a});
+    pts.push({n1, n1p});
+  }
+  tb.querySelectorAll('[data-o]').forEach(s => { const k = key(s.dataset.o, s.dataset.j); const d = s.dataset.o === 'a' ? 2 : s.dataset.o === 'v2' ? 2 : 1; s.textContent = fmt(out[k], d); });
+  plot31(pts);
+}
+function plot31(pts){
+  const s = $('#t31plot'); s.innerHTML = '';
+  const vals = pts.flatMap(p => [p.n1, p.n1p]).filter(v => v != null);
+  el('line', {x1:40, y1:20, x2:40, y2:190, stroke:'var(--muted)'}, s); el('line', {x1:40, y1:190, x2:440, y2:190, stroke:'var(--muted)'}, s);
+  for (let j = 0; j < N; j++) el('text', {x:40 + (j + .5) * 400 / N - 4, y:208, text:String(j + 1)}, s);
+  el('text', {x:46, y:16, text:'∇, սմ (0՝ վերևում)'}, s);
+  if (!vals.length){ el('text', {x:150, y:110, text:'Լրացրեք ∇₁ և ∇₁ᴾ ցուցմունքները', fill:'var(--muted)'}, s); return; }
+  const lo = Math.min(0, ...vals), hi = Math.max(...vals) * 1.05 || 1, Y = v => 24 + (v - lo) / (hi - lo) * 160, X = j => 40 + (j + .5) * 400 / N;
+  [[0, lo], [1, hi]].forEach(([_, v]) => el('text', {x:6, y:Y(v) + 4, text:fmt(v, 0)}, s));
+  [['n1p', 'var(--accent)'], ['n1', 'var(--heat)']].forEach(([k, c]) => {
+    const P = pts.map((p, j) => [X(j), p[k]]).filter(q => q[1] != null);
+    if (P.length > 1) el('path', {d:P.map((q, i) => (i ? 'L' : 'M') + q[0] + ' ' + Y(q[1])).join(''), fill:'none', stroke:c, 'stroke-width':2.5}, s);
+    P.forEach(q => el('circle', {cx:q[0], cy:Y(q[1]), r:4, fill:c}, s));
+  });
+}
+$('#t31clear').onclick = () => { Object.keys(S).forEach(k => { if (!k.startsWith('l4')) delete S[k]; }); save(); tb.querySelectorAll('input').forEach(i => i.value = ''); calc31(); };
+calc31();
+
+/* ---------- lab 4 ---------- */
+const t4 = $('#t4 tbody'), B = $('#l4B');
+S.l4rows = S.l4rows || [{}, {}, {}]; if (S.l4B) B.value = S.l4B;
+function rows4(){
+  t4.innerHTML = '';
+  S.l4rows.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="c">${i + 1}</td><td><input inputmode="decimal" data-f="T" value="${r.T || ''}"></td><td><input inputmode="decimal" data-f="Pn" value="${r.Pn || ''}"></td><td class="c out" data-ph></td><td><input inputmode="decimal" data-f="Pa" value="${r.Pa || ''}"></td>`;
+    tr.querySelectorAll('input').forEach(inp => inp.addEventListener('input', () => { r[inp.dataset.f] = inp.value.replace(',', '.'); save(); calc4(); }));
+    t4.appendChild(tr);
+  });
+  calc4();
+}
+function calc4(){
+  const b = num(B.value.replace(',', '.'));
+  const pts = [];
+  [...t4.rows].forEach((tr, i) => { const r = S.l4rows[i], pn = num(r.Pn), ph = b != null && pn != null ? 0.98e5 * (b - pn) : null;
+    tr.querySelector('[data-ph]').textContent = ph == null ? '' : Math.round(ph).toLocaleString('ru-RU');
+    pts.push({T:num(r.T), ph, pa:num(r.Pa)}); });
+  plot4(pts);
+}
+function plot4(pts){
+  const s = $('#t4plot'); s.innerHTML = '';
+  el('line', {x1:50, y1:20, x2:50, y2:195, stroke:'var(--muted)'}, s); el('line', {x1:50, y1:195, x2:440, y2:195, stroke:'var(--muted)'}, s);
+  el('text', {x:56, y:16, text:'Tհ, Կ'}, s); el('text', {x:380, y:222, text:'P, Ն/մ²'}, s);
+  const P = pts.filter(p => p.T != null && (p.ph != null || p.pa != null));
+  if (!P.length){ el('text', {x:150, y:110, text:'Լրացրեք Tհ և Pն', fill:'var(--muted)'}, s); return; }
+  const ps = P.flatMap(p => [p.ph, p.pa]).filter(v => v != null), ts = P.map(p => p.T);
+  const p0 = 0, p1 = Math.max(...ps) * 1.08 || 1, t0 = Math.min(...ts) - 5, t1 = Math.max(...ts) + 5;
+  const X = v => 50 + (v - p0) / (p1 - p0) * 380, Y = v => 190 - (v - t0) / (t1 - t0) * 165;
+  el('text', {x:46, y:Y(t0) + 4, text:fmt(t0, 0), 'text-anchor':'end'}, s); el('text', {x:46, y:Y(t1) + 4, text:fmt(t1, 0), 'text-anchor':'end'}, s);
+  el('text', {x:X(p1), y:210, text:Math.round(p1).toLocaleString('ru-RU'), 'text-anchor':'end'}, s);
+  [['ph', 'var(--accent)', true], ['pa', 'var(--heat)', false]].forEach(([k, c, fill]) => {
+    const Q = P.filter(p => p[k] != null).sort((a, b) => a[k] - b[k]);
+    if (Q.length > 1) el('path', {d:Q.map((q, i) => (i ? 'L' : 'M') + X(q[k]) + ' ' + Y(q.T)).join(''), fill:'none', stroke:c, 'stroke-width':2}, s);
+    Q.forEach(q => el('circle', {cx:X(q[k]), cy:Y(q.T), r:4.5, fill:fill ? c : 'var(--surface)', stroke:c, 'stroke-width':2}, s));
+  });
+}
+B.addEventListener('input', () => { S.l4B = B.value; save(); calc4(); });
+$('#t4add').onclick = () => { S.l4rows.push({}); save(); rows4(); };
+$('#t4clear').onclick = () => { S.l4rows = [{}, {}, {}]; save(); rows4(); };
+rows4();
+})();
+</script>
+</body>
+</html>

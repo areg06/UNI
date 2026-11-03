@@ -32,6 +32,7 @@ All user-facing text is in **Armenian**; keep it Armenian.
 | `gazodinamika/` | Գազադինամիկա: Armenian translation of the textbook (`translation/`) and the midterm-1 study platform (built by `midterm1/build.py`) | https://areg06.github.io/UNI/gazodinamika/ |
 | `jermatexnika/` | Ջերմատեխնիկա: practical work, ideal-gas cycle calculation (variant 10: p=const, dq=0, v=const, T=const); constants cp=1, cv=0.71, R=287, k=1.4 | https://areg06.github.io/UNI/jermatexnika/ |
 | `chapagrutyun/` | Չափագրություն: lecture notes typed from notebook photos (`daser.html`, photos in `img/`); doubtful words marked `.u`, passages filled from standard textbook material (ISO 286 / ЕСДП) `.t`, still-unread `.x` | https://areg06.github.io/UNI/chapagrutyun/ |
+| `hidravlika/` | Հիդրավլիկա: lab works typed from the manual (`laboratorner.html`, lab 3 Bernoulli demo and lab 4 boiling point vs pressure, with fill-in tables that compute by the manual's formulas); `mijankyal1.html` is a placeholder until the midterm content arrives | https://areg06.github.io/UNI/hidravlika/ |
 
 ## Deliberately not in git
 
