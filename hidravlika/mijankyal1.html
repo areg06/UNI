@@ -36,6 +36,9 @@ a{color:var(--accent)}
 article.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:10px}
 article.q.known{border-color:var(--good)}
 .ans{display:flex;flex-direction:column;gap:8px}
+.ans-full p,.ans-full ul,.ans-full ol{margin:0}
+.ans-full ul,.ans-full ol{padding-left:22px}
+.ans-full h4{margin:6px 0 0;font-size:15px;color:var(--accent)}
 .ans p,.ans ul,.ans ol{margin:0}
 .ans ul,.ans ol{padding-left:22px}
 .ans li{margin:2px 0}
@@ -43,7 +46,8 @@ article.q.known{border-color:var(--good)}
 .fm{background:var(--sunk);border-radius:8px;padding:4px 12px;overflow-x:auto}
 .fm .katex-display{margin:6px 0;overflow-x:auto;overflow-y:hidden}
 .ans p,.ans li{overflow-wrap:anywhere}
-.ans li,.ans p{overflow-x:auto;overflow-y:hidden}
+.ans p{overflow-x:auto;overflow-y:hidden}
+.ans li{overflow-wrap:anywhere}
 .key{background:var(--accent-soft);border-radius:8px;padding:8px 12px}
 svg.dg{width:100%;max-width:420px;height:auto;display:block;margin:2px auto}
 svg.dg text{fill:var(--ink);font:13px var(--f-body)}
@@ -54,6 +58,17 @@ svg.dg text{fill:var(--ink);font:13px var(--f-body)}
 .figrow .lf{flex:1 1 200px}
 .src{font-size:13.5px;color:var(--muted);margin-top:4px!important}
 .src.warn{color:var(--heat)}
+.cb{background:var(--surface);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:100% 26px,26px 100%;background-position:0 -1px;border:1px solid var(--line);border-left:3px solid var(--heat);border-radius:8px;padding:10px 14px;display:flex;flex-direction:column;gap:6px;line-height:1.65}
+@media (prefers-color-scheme:dark){.cb{background-image:linear-gradient(#222b31 1px,transparent 1px),linear-gradient(90deg,#222b31 1px,transparent 1px)}}
+.cb p,.cb ol,.cb ul{margin:0}
+.cb ol,.cb ul{padding-left:22px}
+.cb .fm{background:color-mix(in srgb,var(--surface) 85%,transparent)}
+.draw{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin-top:4px}
+.draw span{font-size:13.5px;color:var(--heat);font-weight:600}
+.draw img{max-width:min(100%,300px);height:auto;background:#fff;border-radius:6px;padding:4px}
+details.full{border:1px dashed var(--line);border-radius:8px;margin-top:4px}
+details.full>summary{cursor:pointer;padding:8px 12px;color:var(--accent);font-size:14.5px;font-weight:600}
+.ans-full{display:flex;flex-direction:column;gap:8px;padding:0 12px 12px}
 .qfoot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px;font-size:14px}
 .qfoot label{display:flex;gap:6px;align-items:center;cursor:pointer}
 .qfoot input{accent-color:var(--good);width:16px;height:16px}
@@ -70,6 +85,7 @@ body.check .reveal{display:inline-flex}
   .back,.toc-panel,.qfoot,.ctrl{display:none!important}
   body.check .ans{display:flex!important}
   article.q{border:0;padding:0;break-inside:auto}
+  details.full{display:none!important} .cb{background:#fff!important;border:0;border-left:2px solid #B4530F;padding:2px 10px} .draw img{max-height:40mm;width:auto}
   h3{break-after:avoid} .fm,.key,svg.dg,.lf{break-inside:avoid} .lf img{max-height:60mm;width:auto} .src{display:none}
 }
 </style>
@@ -83,7 +99,7 @@ body.check .reveal{display:inline-flex}
 </header>
 
 <div class="panel ctrl">
-  <p>Հարցերը՝ հարցաշարից, <b>պատասխանները՝ դասախոսի նյութերից</b> (Թեմա 1–9). նույն ձևակերպումները, նշանակումները, բանաձևերի համարները և նկարները։ Ամեն պատասխանի տակ հղում կա դասախոսության PDF-ին։</p>
+  <p>Ամեն հարցի տակ՝ <b>կարճ պատասխան, որ գրում եք տետրում</b>. սահմանում → բանաձևեր → ✏ ինչ գծել → եզրակացություն։ Ամբողջական պատասխանը դասախոսությունից (արտածումներով) բացվում է ներքևում։ Ամեն ինչ՝ դասախոսի նյութերից (Թեմա 1–9)։</p>
   <div class="row">
     <button class="btn" type="button" id="mStudy" aria-pressed="true">📖 Սովորել (պատասխանները բաց են)</button>
     <button class="btn" type="button" id="mCheck" aria-pressed="false">✍ Ստուգել ինձ (պատասխանները փակ են)</button>
@@ -96,7 +112,19 @@ body.check .reveal{display:inline-flex}
 
 <h2>1. ՀԻԴՐՈՍՏԱՏԻԿԱ</h2>
 
-<article class="q" id="q1-1"><h3><span class="n">1.1</span>Ներածություն։ Հեղուկի ֆիզիկական հատկությունները։</h3><div class="ans">
+<article class="q" id="q1-1"><h3><span class="n">1.1</span>Ներածություն։ Հեղուկի ֆիզիկական հատկությունները։</h3><div class="ans"><div class="cb">
+<p><b>Հիդրավլիկա</b>՝ գիտություն հեղուկների հավասարակշռության և շարժման օրենքների ու դրանց ինժեներական կիրառությունների մասին։</p>
+<p><b>Հեղուկ</b>՝ ֆիզիկական մարմին, որը չունի որոշակի ձև, հոսուն է, մեծ դիմադրություն է ցուցաբերում ծավալի և թույլ՝ ձևի փոփոխմանը։</p>
+<p><b>Իդեալական</b>՝ անսեղմելի, առանց մածուցիկության, շփում չկա։ <b>Իրական</b>՝ մածուցիկ, շերտերի միջև շփում կա։</p>
+<p><b>Հատկությունները.</b></p>
+<ol>
+<li>Խտություն՝ \(\rho=\dfrac MW\), կգ/մ³ (ջուր՝ 1000)</li>
+<li>Տեսակարար կշիռ՝ \(\gamma=\dfrac GW=\rho g\), Ն/մ³ (ջուր՝ 9810)</li>
+<li>Սեղմման գործակից՝ \(\beta_W=-\dfrac1W\dfrac{dW}{dp}\), &nbsp;\(E=\dfrac1{\beta_W}\approx2\cdot10^9\) Պա</li>
+<li>Ջերմային ընդարձակում՝ \(\beta_t=\dfrac{dW}{W\,dt}\approx\dfrac1{10000}\) °C⁻¹</li>
+<li>Մածուցիկություն (Նյուտոն)՝ \(\tau=\pm\mu\dfrac{du}{dy}\), &nbsp;\(\nu=\dfrac\mu\rho\)</li>
+<li>Կապիլյարականություն՝ բարակ խողովակներում հեղուկի բարձրանալը</li>
+</ol><div class="draw"><span>✏ Գծել՝ Նկ. 1 (Նյուտոնի փորձը)</span><img src="img/m1/nk1.webp" alt="Նկ. 1 (Նյուտոնի փորձը)" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p><b>Հիդրավլիկա</b> գիտությունն ուսումնասիրում է հեղուկների հավասարակշռության և շարժման օրենքները ու մշակում մեթոդներ այդ օրենքների ինժեներական կիրառությունների համար։ Հիդրավլիկան հեղուկների տեսական մեխանիկան է։ Անվանումը հունական «հյուդոր»՝ ջուր և «աուլոս»՝ խողովակ բառերից է։ Կիրառվում է հիդրոտեխնիկայում, մելիորացիայում, ջրամատակարարման և կոյուղու, հիդրոէներգետիկայի, ջրային տրանսպորտի, ավիացիայի, մեքենաշինության մեջ։</p>
   <p>Առաջին ձևակերպված օրենքը <b>Արքիմեդի</b> (մ.թ.ա. 287–212 թթ.) օրենքն է լողացող մարմինների վերաբերյալ։ Զարգացման մեջ իրենց դերն են ունեցել Լեոնարդո դա Վինչին, Գալիլեյը, Պասկալը, Տորիչելլին, Նյուտոնը, Բեռնուլին, Լոմոնոսովը, Էյլերը, Լագրանժը, Նավեն, Ստոքսը, Ռեյնոլդսը, Ժուկովսկին և ուրիշներ։ Կիրառվում են տեսական և փորձնական մեթոդներ. տեսական արդյունքները ստուգվում են լաբորատոր և բնօրինակային փորձարկումներով։</p>
   <h4>Հեղուկը</h4>
@@ -121,9 +149,14 @@ body.check .reveal{display:inline-flex}
       <figure class="lf"><img src="img/m1/nk_kap.webp" alt="Կապիլյարականություն" loading="lazy"><figcaption>Կապիլյարականություն</figcaption></figure></li>
   </ol>
 <p class="src">📄 Աղբյուր՝ <a href="daser/Tema_1.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 1</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-1"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-1"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-2"><h3><span class="n">1.2</span>Հիդրոստատիկական ճնշումը և նրա հատկությունները։</h3><div class="ans">
+<article class="q" id="q1-2"><h3><span class="n">1.2</span>Հիդրոստատիկական ճնշումը և նրա հատկությունները։</h3><div class="ans"><div class="cb">
+<p><b>Հիդրոստատիկ ճնշում</b>՝ հանգստի վիճակում գտնվող հեղուկի կետում կիրառված սեղմող լարումը.</p>
+<div class="fm">\[p=\lim_{\Delta\omega\to0}\frac{\Delta P}{\Delta\omega}\]</div>
+<p><b>Հատկություն 1.</b> Ուղղված է ազդման մակերևույթի <b>ներքին նորմալով</b>. շոշափող բաղադրիչ չկա (\(p_\tau=0\), հեղուկը սահքին չի դիմադրում), դեպի դուրս չի կարող լինել (ձգման չի դիմադրում)։</p>
+<p><b>Հատկություն 2.</b> Կետում ճնշումը <b>բոլոր ուղղություններով նույնն է</b>։ Էլեմենտար բուրգի հավասարակշռությունից.</p>
+<div class="fm">\[\begin{gathered}\tfrac12p_x\,dy\,dz-p_n\tfrac12dy\,dz\\ +\tfrac16\rho F_x\,dx\,dy\,dz=0\\ \Rightarrow\;p_x=p_y=p_z=p_n\end{gathered}\]</div><div class="draw"><span>✏ Գծել՝ Նկ. 4 (բուրգ)</span><img src="img/m1/nk04.webp" alt="Նկ. 4 (բուրգ)" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p><b>Հիդրոստատիկան</b> հիդրոմեխանիկայի այն բաժինն է, որն ուսումնասիրում է հեղուկների հավասարակշռության օրենքները։ Հիմնական հարցն է պարզել \(p=p(x,y,z)\) և \(\rho=\rho(x,y,z)\) ֆունկցիաների տեսքը։ Հեղուկի վրա ազդում են <b>ծավալային</b> (ծանրության, իներցիոն, կենտրոնախույս՝ համեմատական են ծավալին) և <b>մակերևութային</b> (կախված չեն ծավալից) ուժեր։</p>
   <p><b>Հիդրոստատիկ ճնշումը</b> կետային ճնշում է՝ հանգստի վիճակում գտնվող հեղուկի ներսի որևէ կետում կիրառված սեղմող լարումը։ \(\Delta\omega\) մակերեսի վրա ազդում է \(\Delta P\) ուժ, \(\Delta P/\Delta\omega\)-ն միջին հիդրոստատիկական ճնշումն է, իսկ սահմանում՝</p>
   <div class="fm">\[p=\lim_{\Delta\omega\to0}\frac{\Delta P}{\Delta\omega}\quad\text{(1.1)}\]</div>
@@ -138,9 +171,14 @@ body.check .reveal{display:inline-flex}
   <p>(\(\omega_n\cos(nx)=\tfrac12dy\,dz\)՝ թեք նիստի պրոյեկցիան)։ Վերջին անդամը ավելի բարձր կարգի փոքր է և անտեսվում է.</p>
   <div class="fm">\[p_x-p_n=0,\quad p_y-p_n=0,\quad p_z-p_n=0\;\Rightarrow\;p_x=p_y=p_z=p_n\quad\text{(1.7)}\]</div>
   <figure class="lf"><img src="img/m1/nk04.webp" alt="Նկ. 4" loading="lazy"></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_2.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 2</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-2"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-2"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-3"><h3><span class="n">1.3</span>Հեղուկի հավասարակշռության դիֆերենցիալ հավասարումները։</h3><div class="ans">
+<article class="q" id="q1-3"><h3><span class="n">1.3</span>Հեղուկի հավասարակշռության դիֆերենցիալ հավասարումները։</h3><div class="ans"><div class="cb">
+<p>Հեղուկից անջատում ենք \(dx,dy,dz\) կողերով զուգահեռանիստ։ Հանդիպակաց նիստերի ճնշումները՝ \(p\) և \(p+\frac{\partial p}{\partial x}dx\)։</p>
+<p>Ուժերը x-ով՝ ճնշման \(p\,dy\,dz\), \(\big(p+\frac{\partial p}{\partial x}dx\big)dy\,dz\), ծավալային \(\rho F_x\,dx\,dy\,dz\).</p>
+<div class="fm">\[\begin{gathered}p\,dy\,dz-\Big(p+\frac{\partial p}{\partial x}dx\Big)dy\,dz\\ +\,\rho F_x\,dx\,dy\,dz=0\end{gathered}\]</div>
+<p>Բաժանելով \(\rho\,dx\,dy\,dz\)-ի՝ <b>Էյլերի հավասարումները</b> (1755).</p>
+<div class="fm">\[\begin{gathered}F_x-\frac1\rho\frac{\partial p}{\partial x}=0\\ F_y-\frac1\rho\frac{\partial p}{\partial y}=0\\ F_z-\frac1\rho\frac{\partial p}{\partial z}=0\end{gathered}\]</div><div class="draw"><span>✏ Գծել՝ Նկ. 5 (զուգահեռանիստ)</span><img src="img/m1/nk05.webp" alt="Նկ. 5 (զուգահեռանիստ)" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p>Հեղուկից անջատենք \(dx,\,dy,\,dz\) կողերով էլեմենտար զուգահեռանիստ։ O կենտրոնով անցնող նիստերի վրա ճնշումը p է, հանդիպակաց նիստերի վրա՝</p>
   <div class="fm">\[p+\frac{\partial p}{\partial x}dx;\quad p+\frac{\partial p}{\partial y}dy;\quad p+\frac{\partial p}{\partial z}dz\quad\text{(1.8)}\]</div>
   <p>որտեղ \(\partial p/\partial x,\ \partial p/\partial y,\ \partial p/\partial z\)՝ ճնշման գրադիենտներն են։</p>
@@ -152,9 +190,16 @@ body.check .reveal{display:inline-flex}
   <div class="fm">\[\begin{cases}F_x-\dfrac1\rho\dfrac{\partial p}{\partial x}=0\\  F_y-\dfrac1\rho\dfrac{\partial p}{\partial y}=0\\  F_z-\dfrac1\rho\dfrac{\partial p}{\partial z}=0\end{cases}\quad\text{(1.13)}\]</div>
   <p class="key">Սրանք <b>հեղուկների հավասարակշռության էյլերյան հավասարումներն</b> են։ Տվել է Լեոնարդ Էյլերը 1755 թ., և դրանք տեսական հիդրոմեխանիկայի հիմնաքարն են։</p>
 <p class="src">📄 Աղբյուր՝ <a href="daser/Tema_3.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 3</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-3"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-3"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-4"><h3><span class="n">1.4</span>Հավասարակշռության դիֆերենցիալ հավասարումների ինտեգրումը։ Հիդրոստատիկայի հիմնական հավասարումը։</h3><div class="ans">
+<article class="q" id="q1-4"><h3><span class="n">1.4</span>Հավասարակշռության դիֆերենցիալ հավասարումների ինտեգրումը։ Հիդրոստատիկայի հիմնական հավասարումը։</h3><div class="ans"><div class="cb">
+<p>Էյլերի հավասարումները բազմապատկում ենք \(dx,dy,dz\)-ով և գումարում.</p>
+<div class="fm">\[dp=\rho\,(F_xdx+F_ydy+F_zdz)\]</div>
+<p>Միայն ծանրության ուժ՝ \(F_x=F_y=0,\ F_z=-g\).</p>
+<div class="fm">\[dp=-\rho g\,dz\;\Rightarrow\;p=-\rho gz+C\]</div>
+<p>Եզրային պայման՝ \(z=z_0\) դեպքում \(p=p_0\) → \(C=p_0+\rho gz_0\).</p>
+<div class="fm">\[p=p_0+\rho g(z_0-z)\qquad\boxed{p=p_0+\rho gh}\]</div>
+<p>Սա <b>հիդրոստատիկայի հիմնական հավասարումն</b> է։</p><div class="draw"><span>✏ Գծել՝ Նկ. 6</span><img src="img/m1/nk06.webp" alt="Նկ. 6" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p>Էյլերյան հավասարումները (1.14) բազմապատկենք համապատասխանաբար \(dx,\,dy,\,dz\)-ով և գումարենք.</p>
   <div class="fm">\[F_xdx+F_ydy+F_zdz-\frac1\rho\Big(\frac{\partial p}{\partial x}dx+\frac{\partial p}{\partial y}dy+\frac{\partial p}{\partial z}dz\Big)=0\quad\text{(1.15)}\]</div>
   <p>Փակագծի արտահայտությունը p(x,y,z)-ի լրիվ դիֆերենցիալն է՝ dp.</p>
@@ -170,9 +215,16 @@ body.check .reveal{display:inline-flex}
   <figure class="lf"><img src="img/m1/nk06.webp" alt="Նկ. 6" loading="lazy"></figure>
   <p class="key">(1.26)-ը կոչվում է <b>հիդրոստատիկայի հիմնական հավասարում</b> կամ ծանրության ուժի դաշտում գտնվող հավասարակշռված հեղուկում ճնշումների բաշխման օրենք։</p>
 <p class="src">📄 Աղբյուր՝ <a href="daser/Tema_3.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 3</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-4"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-4"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-5"><h3><span class="n">1.5</span>Հիդրոստատիկ ճնշման տեսակները։ Ճնշման չափման սարքեր։</h3><div class="ans">
+<article class="q" id="q1-5"><h3><span class="n">1.5</span>Հիդրոստատիկ ճնշման տեսակները։ Ճնշման չափման սարքեր։</h3><div class="ans"><div class="cb">
+<ol>
+<li><b>Բացարձակ</b>՝ \(p_բ=p_0+\rho gh\) (չափվում է բարոմետրով)</li>
+<li><b>Ավելցուկային</b>՝ \(p_{ավ}=p_բ-p_{մթն}=\rho gh\), &nbsp;\(h=\dfrac{p_{ավ}}{\rho g}\)՝ պյեզոմետրական բարձրություն</li>
+<li><b>Վակուումային</b>՝ \(p_{վակ}=p_{մթն}-p_բ=\rho gh_{վակ}\)</li>
+</ol>
+<p><b>Միավորներ.</b> 1 Պա = 1 Ն/մ², &nbsp;1 մթն = 1 կգուժ/սմ² = 98100 Պա ≈ 100 կՊա = 10 մ ջրի սյուն = 735 մմ սնդ. սյուն։</p>
+<p><b>Սարքեր.</b> պյեզոմետրեր (մանոմետր, վակուումմետր)։ Պյեզոմետր՝ անոթին միացված բարակ ապակե խողովակ. ճնշումը որոշվում է հեղուկի սյան բարձրությամբ։</p><div class="draw"><span>✏ Գծել՝ Նկ. 8 (պյեզոմետր)</span><img src="img/m1/nk08.webp" alt="Նկ. 8 (պյեզոմետր)" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p>Գոյություն ունեն հիդրոստատիկ ճնշման երեք տեսակ.</p>
   <ol>
     <li><b>Բացարձակ</b>՝ \(p_բ=p_0+\rho gh\) (1.27), որտեղ \(p_0\)՝ արտաքին ճնշումը ազատ մակերևույթին, h՝ կետի խորասուզման չափը։ Չափվում է <b>բարոմետրով</b>։ Բաց ավազանի համար՝ \(p_բ=p_{մթն}+\rho gh\) (1.28)։</li>
@@ -194,9 +246,15 @@ body.check .reveal{display:inline-flex}
   <p>Սարքերը կոչվում են <b>պյեզոմետրեր</b> (վակուումմետրեր և մանոմետրեր). դրանց աշխատանքի հիմքում ճնշման արտահայտումն է հեղուկի սյան բարձրությամբ։ <b>Պյեզոմետրը</b> անոթին միացված բարակ ապակե խողովակ է, որում կանգնած հեղուկի սյան բարձրությամբ որոշվում է ավելցուկային կամ վակուումային ճնշումը (նկ. 8).</p>
   <div class="fm">\[\begin{gathered}p_0=p_{մթն}+\rho gh,\quad h=\frac{p_0-p_{մթն}}{\rho g};\\ p_{վակ}=p_{մթն}-p_0=\rho gh_{վակ}\end{gathered}\]</div>
   <figure class="lf"><img src="img/m1/nk08.webp" alt="Նկ. 8. ձախում՝ p₀ > p<sub>մթն</sub>, աջում՝ p₀ < p<sub>մթն</sub>" loading="lazy"><figcaption>Նկ. 8. ձախում՝ p₀ > p<sub>մթն</sub>, աջում՝ p₀ < p<sub>մթն</sub></figcaption></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_4.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 4</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-5"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-5"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-6"><h3><span class="n">1.6</span>Ճնշման էպյուրները։</h3><div class="ans">
+<article class="q" id="q1-6"><h3><span class="n">1.6</span>Ճնշման էպյուրները։</h3><div class="ans"><div class="cb">
+<p><b>Էպյուր</b>՝ ըստ խորության ճնշման բաշխման գրաֆիկ։ \(p=\rho gh\) գծային է, ուստի բավական է ճնշումը պատի ծայրերում։ Սլաքները՝ պատին նորմալ։</p>
+<ul>
+<li><b>Ավելցուկային</b> (h = 1 մ)՝ \(p_A=0,\ p_B=\rho gh\approx10\) կՊա → <b>եռանկյուն</b></li>
+<li><b>Բացարձակ</b> (p₀ = 15 կՊա)՝ \(p_A=15,\ p_B=15+10=25\) կՊա → <b>սեղան</b></li>
+<li><b>Վակուումային</b>՝ \(p_A=15,\ p_B=15-10=5\) կՊա</li>
+</ul><div class="draw"><span>✏ Գծել՝ Նկ. 9</span><img src="img/m1/nk09.webp" alt="Նկ. 9" loading="lazy"></div><div class="draw"><span>✏ Գծել՝ Նկ. 10</span><img src="img/m1/nk10.webp" alt="Նկ. 10" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p>Ըստ խորության ճնշման բաշխման գրաֆիկական պատկերումը կոչվում է <b>էպյուր</b>։</p>
   <h4>Ավելցուկային ճնշման էպյուր (նկ. 9)</h4>
   <p>h = 1 մ խորությամբ ավազանի ուղղաձիգ պատի համար՝ \(p_{ավ}=\rho gh\)։ Սա ուղիղ գծի հավասարում է (y = ax), ուստի բավական է ունենալ ճնշումը պատի A և B ծայրակետերում.</p>
@@ -210,9 +268,15 @@ body.check .reveal{display:inline-flex}
   <h4>Վակուումային ճնշման էպյուր (նկ. 11)</h4>
   <div class="fm">\[\begin{gathered}p_A=p_վ=15\,\text{կՊա},\\ p_B=p_վ-\rho gh=15-10=5\,\text{կՊա}\end{gathered}\]</div>
   <figure class="lf"><img src="img/m1/nk11.webp" alt="Նկ. 11" loading="lazy"></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_4.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 4</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-6"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-6"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-7"><h3><span class="n">1.7</span>Պասկալի օրենքը և նրա կիրառությունը։</h3><div class="ans">
+<article class="q" id="q1-7"><h3><span class="n">1.7</span>Պասկալի օրենքը և նրա կիրառությունը։</h3><div class="ans"><div class="cb">
+<p><b>Պասկալի օրենք.</b> հեղուկի մակերևույթին հաղորդված ճնշումը <b>առանց փոփոխության</b> փոխանցվում է նրա բոլոր կետերին։</p>
+<div class="fm">\[p_A=p_0+\rho gh_A,\qquad p_B=p_0+\rho gh_B\]</div>
+<p><b>Հաղորդակից անոթներ.</b> \(\rho_1gh_1=\rho_2gh_2\;\Rightarrow\;\dfrac{h_1}{h_2}=\dfrac{\rho_2}{\rho_1}\)</p>
+<p><b>Հիդրավլիկական մամլիչ.</b> \(p_1=\dfrac{F_1}{\omega}\) փոխանցվում է մեծ մխոցին.</p>
+<div class="fm">\[F_2=\frac{F_1}{\omega}\,\Omega\qquad\frac{F_2}{F_1}=\frac\Omega\omega\]</div>
+<p>Ուժը մեծանում է այնքան անգամ, որքան Ω &gt; ω։</p><div class="draw"><span>✏ Գծել՝ Նկ. 14 (մամլիչ)</span><img src="img/m1/nk14.webp" alt="Նկ. 14 (մամլիչ)" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p>Ավազանում հեղուկը հավասարակշռության մեջ է, ազատ մակերևույթին ճնշումը \(p_0\) է (նկ. 12)։ Հիմնական հավասարումը \(h_A\) և \(h_B\) խորություններում գտնվող երկու կետերի համար.</p>
   <div class="fm">\[\begin{gathered}p^A_{բաց}=p_0+\rho gh_A,\\ p^B_{բաց}=p_0+\rho gh_B\quad\text{(1.33)}\end{gathered}\]</div>
   <p class="key"><b>Պասկալի օրենքը.</b> հեղուկի մակերևույթին հաղորդված ճնշումն առանց փոփոխության փոխանցվում է նրա բոլոր կետերին։</p>
@@ -226,9 +290,16 @@ body.check .reveal{display:inline-flex}
   <div class="fm">\[\begin{gathered}F_2=p_1\cdot\Omega=\frac{F_1}{\omega}\cdot\Omega\quad \text{կամ}\\ \frac{F_2}{F_1}=\frac{\Omega}{\omega}\quad\text{(1.36)}\end{gathered}\]</div>
   <p>Մամլիչում ստացվող \(F_2\) ուժն այնքան անգամ է մեծ կիրառվող \(F_1\) ուժից, որքան անգամ Ω &gt; ω։</p>
   <figure class="lf"><img src="img/m1/nk14.webp" alt="Նկ. 14" loading="lazy"></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_4.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 4</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-7"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-7"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-8"><h3><span class="n">1.8</span>Հեղուկի հարաբերական հանգիստը։</h3><div class="ans">
+<article class="q" id="q1-8"><h3><span class="n">1.8</span>Հեղուկի հարաբերական հանգիստը։</h3><div class="ans"><div class="cb">
+<p><b>Հարաբերական հանգիստ</b>՝ հեղուկը անշարժ է շարժվող անոթի նկատմամբ։ Դալամբերի սկզբունքով ավելացնում ենք իներցիոն ուժերը. \(dp=\rho(F_xdx+F_ydy+F_zdz)\)։</p>
+<p><b>1) Հորիզոնական a արագացում.</b> \(F_x=-a,\ F_z=-g\)</p>
+<div class="fm">\[p=p_0-\rho(ax+gz),\qquad z=-\frac agx,\qquad \text{tg}\beta=\frac ag\]</div>
+<p>Ազատ մակերևույթը <b>թեք հարթություն</b> է։</p>
+<p><b>2) Պտտում ω արագությամբ.</b> \(F_x=\omega^2x,\ F_y=\omega^2y,\ F_z=-g\)</p>
+<div class="fm">\[\begin{gathered}p=p_0+\frac{\rho\omega^2r^2}{2}+\rho g(z_0-z)\\ z=z_0+\frac{\omega^2r^2}{2g},\qquad H'=\frac{\omega^2R^2}{2g}\end{gathered}\]</div>
+<p>Ազատ մակերևույթը <b>պտտման պարաբոլոիդ</b> է։</p><div class="draw"><span>✏ Գծել՝ Նկ. 15</span><img src="img/m1/nk15.webp" alt="Նկ. 15" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p>Երբ հեղուկը հանգստի վիճակում է մի համակարգի նկատմամբ, որը ինքը շարժման մեջ է, հանգիստը կոչվում է <b>հարաբերական</b> (օր.՝ անոթը կատարում է հաստատուն շարժում, իսկ հեղուկը շարժվում է նրա հետ որպես պինդ մարմին)։ Հավասարումը ստանում ենք հավասարակշռության հավասարումներից՝ <b>Դալամբերի սկզբունքով</b> ազդող ուժերին ավելացնելով իներցիոն ուժերը.</p>
   <div class="fm">\[dp=\rho\,(F_xdx+F_ydy+F_zdz)\quad\text{(1.37)}\]</div>
   <h4>1) Ավտոցիստեռնը շարժվում է հորիզոնական a արագացումով (նկ. 15)</h4>
@@ -247,9 +318,18 @@ body.check .reveal{display:inline-flex}
   <div class="fm">\[\begin{gathered}z=z_0+\frac{\omega^2r^2}{2g}\quad\text{(1.59)}\\ z_0=h-\frac{H'}{2},\quad H'=\frac{\omega^2R^2}{2g}\quad\text{(1.60)}\end{gathered}\]</div>
   <p>H′՝ պարաբոլոիդի բարձրությունը, R՝ անոթի շառավիղը, z₀՝ պարաբոլոիդի գագաթի կոորդինատը։</p>
   <figure class="lf"><img src="img/m1/nk16.webp" alt="Նկ. 16" loading="lazy"></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_5.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 5</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-8"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-8"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-9"><h3><span class="n">1.9</span>Հիդրոստատիկական ճնշման ուժի մեծության և կիրառման կետի որոշումը հարթ և կոր մակերևույթների վրա։</h3><div class="ans">
+<article class="q" id="q1-9"><h3><span class="n">1.9</span>Հիդրոստատիկական ճնշման ուժի մեծության և կիրառման կետի որոշումը հարթ և կոր մակերևույթների վրա։</h3><div class="ans"><div class="cb">
+<p><b>Հարթ մակերևույթ.</b> \(dP=(p_0+\rho gh)\,d\omega\), ինտեգրելով՝</p>
+<div class="fm">\[P=(p_0+\rho gh_c)\,\omega\qquad(\text{բաց ավազան՝ }P=\rho gh_c\,\omega)\]</div>
+<p>Ուժը = ծանրության կենտրոնի ճնշում × մակերես։</p>
+<p><b>Ճնշման կենտրոն</b> (Վարինյոնի թեորեմ).</p>
+<div class="fm">\[\ell_p=\ell_c+\frac{J_c}{\omega\ell_c},\qquad h_p=h_c+\frac{J_c}{h_c\,\omega}\ (\alpha=90^\circ)\]</div>
+<p>Ուղղանկյուն պատ՝ \(P=\dfrac{\rho gbH^2}{2\sin\alpha}\), կիրառված \(\tfrac23H\) խորության վրա։</p>
+<p><b>Կոր մակերևույթ.</b></p>
+<div class="fm">\[\begin{gathered}P_x=\rho gh_c\,\omega_{yoz},\qquad P_z=\rho gW\\ P=\sqrt{P_x^2+P_z^2},\qquad \text{tg}\alpha=\frac{P_z}{P_x}\end{gathered}\]</div>
+<p>W՝ <b>ճնշման մարմնի ծավալ</b>։</p><div class="draw"><span>✏ Գծել՝ Նկ. 17</span><img src="img/m1/nk17.webp" alt="Նկ. 17" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <h4>Հարթ մակերևույթ</h4>
   <p>Ավազանի AB պատի վրա ω մակերեսով պատկերի dω էլեմենտար մակերեսի վրա, որի խորությունը h է (նկ. 17).</p>
   <div class="fm">\[\begin{gathered}dP=(p_0+\rho gh)\,d\omega\quad\text{(1.61)}\\ P=\int_\omega(p_0+\rho gh)\,d\omega=p_0\omega+\rho g\int_\omega h\,d\omega\quad\text{(1.62)}\end{gathered}\]</div>
@@ -279,9 +359,19 @@ body.check .reveal{display:inline-flex}
   <p>\(P_x\)-ի կիրառման կետը՝ \(\ell_p=\ell_c+\dfrac{J_0}{\ell_c\omega_{yoz}}\) կամ \(h_p=h_c+\dfrac{J_0}{h_c\omega_{yoz}}\)։ Համազորի անկյունը որոշվում է ուժային եռանկյունուց (նկ. 21).</p>
   <div class="fm">\[\text{tg}\,\alpha=\frac{P_z}{P_x}\quad\text{կամ}\quad\alpha=\text{arctg}\frac{P_z}{P_x}\quad\text{(1.89)}\]</div>
   <figure class="lf"><img src="img/m1/nk21.webp" alt="Նկ. 21" loading="lazy"></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_6.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 6</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-9"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-9"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q1-10"><h3><span class="n">1.10</span>Արքիմեդի օրենքը։ Մարմինների լողալու պայմանները։</h3><div class="ans">
+<article class="q" id="q1-10"><h3><span class="n">1.10</span>Արքիմեդի օրենքը։ Մարմինների լողալու պայմանները։</h3><div class="ans"><div class="cb">
+<p><b>Արքիմեդի օրենք.</b> հեղուկի մեջ խորասուզված մարմնի վրա ազդում է <b>վերամբարձ ուժ</b>, որը հավասար է խորասուզված մասի ծավալով հեղուկի կշռին։</p>
+<p>Գլանի վրա՝ \(P_x=0\), &nbsp;\(P_z=\rho g(h_2-h_1)\omega\).</p>
+<div class="fm">\[A=\rho gW_խ\]</div>
+<p><b>Լողալու պայմանները</b> (\(G=\gamma_մW,\ A=\gamma_հW\)).</p>
+<ol>
+<li>G &gt; A՝ <b>խորասուզվում</b> է</li>
+<li>G = A՝ <b>անտարբեր</b>, մնում է ցանկացած տեղում</li>
+<li>G &lt; A՝ <b>լողում</b> է. \(W_1=\dfrac{\gamma_մ}{\gamma}W\)</li>
+</ol>
+<p><b>Կայունություն.</b> \(r_M=\dfrac{J_x}{W}\)՝ մետակենտրոնի շառավիղ. \(r_M&gt;r\)՝ կայուն, \(r_M=r\)՝ անտարբեր, \(r_M&lt;r\)՝ անկայուն։</p><div class="draw"><span>✏ Գծել՝ Նկ. 22</span><img src="img/m1/nk22.webp" alt="Նկ. 22" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <h4>Արքիմեդի օրենքը</h4>
   <p>Հեղուկի մեջ ընկղմված գլանաձև մարմնի կողմնային մակերևույթի վրա ազդող ուժերը սիմետրիկ են, հավասար և հակադիր ուղղված (նկ. 22).</p>
   <div class="fm">\[\begin{gathered}P_x=P_{x\,ձախ}+P_{x\,աջ}=P_x-P_x=0\quad\text{(1.90)}\\ P_y=0\quad\text{(1.91)}\end{gathered}\]</div>
@@ -307,11 +397,17 @@ body.check .reveal{display:inline-flex}
   <p>\(J_x\)՝ ջրագծով պարփակված մակերեսի իներցիայի մոմենտը նավի x-x երկայնական առանցքի նկատմամբ, r՝ ծանրության կենտրոնի C և D-ի հեռավորությունը.</p>
   <ol><li>\(r_M&gt;r\)՝ մետակենտրոնը բարձր է ծանրության կենտրոնից, նավը կանգնուն է (<b>կայուն</b>),</li><li>\(r_M=r\)՝ <b>անտարբեր</b>,</li><li>\(r_M&lt;r\)՝ <b>անկայուն</b>։</li></ol>
   <div class="figrow"><figure class="lf"><img src="img/m1/nk25.webp" alt="Նկ. 25" loading="lazy"></figure><figure class="lf"><img src="img/m1/nk26.webp" alt="Նկ. 26" loading="lazy"></figure></div><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_7.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 7</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="1-10"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="1-10"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
 <h2>2. ՀԵՂՈՒԿՆԵՐԻ ԿԻՆԵՄԱՏԻԿԱ</h2>
 
-<article class="q" id="q2-1"><h3><span class="n">2.1</span>Շարժման ուսումնասիրության շիթային մոդելը։</h3><div class="ans">
+<article class="q" id="q2-1"><h3><span class="n">2.1</span>Շարժման ուսումնասիրության շիթային մոդելը։</h3><div class="ans"><div class="cb">
+<p><b>Կինեմատիկա</b>՝ ուսումնասիրում է հեղուկի շարժման ձևերը՝ առանց շարժումն առաջ բերող ուժերի։</p>
+<p><b>Հոսքի գիծ</b>՝ գիծ, որի յուրաքանչյուր կետում արագությունն ուղղված է շոշափողով.</p>
+<div class="fm">\[\frac{U_x}{dx}=\frac{U_y}{dy}=\frac{U_z}{dz}\]</div>
+<p><b>Տարրական շիթ</b>՝ dω մակերեսի կետերով անցնող հոսքի գծերի փունջ։ Ամբողջ հոսքը՝ տարրական շիթերի գումար (<b>շիթային մոդել</b>)։</p>
+<p><b>Հատկությունները</b> (հաստատված շարժում).</p>
+<ol><li>շիթը չի փոխում ձևը,</li><li>պատերն անթափանց են,</li><li>կտրվածքում \(u\) և \(p\) նույնն են։</li></ol><div class="draw"><span>✏ Գծել՝ Նկ. 2.2</span><img src="img/m1/nk2_2.webp" alt="Նկ. 2.2" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p><b>Կինեմատիկա</b>՝ հիդրավլիկայի այն բաժինը, որն ուսումնասիրում է հեղուկների շարժման հնարավոր ձևերն ու տեսակները՝ առանց հաշվի առնելու շարժումն առաջ բերող ուժերը։ Հեղուկը դիտվում է որպես <b>համասեռ հոծ միջավայր</b>՝ կազմված մասնիկներից, որոնք դիրքը փոխում են ամեն պահի։ Շարժումը համարվում է տրված, եթե հայտնի է մասնիկների դիրքը՝ որպես ֆունկցիա կոորդինատներից և ժամանակից։</p>
   <h4>Շիթային մոդելը</h4>
   <p>Շարժվող հեղուկում վերցնենք A կետ և կառուցենք մասնիկի \(\bar U_A\) արագության վեկտորը։ dt ժամանակից հետո մասնիկը կտեղափոխվի \(dS_1\)-ով B կետ՝ \(\bar U_B\) արագությամբ, հետո՝ C, և այլն (նկ. 2.1)։ Երբ \(dS_1,dS_2\ldots\) անվերջ փոքր են, բեկյալը դառնում է կոր գիծ՝ <b>հոսքի գիծ</b>. երևակայական գիծ, որի յուրաքանչյուր կետում արագությունն ուղղված է շոշափողով։</p>
@@ -327,9 +423,17 @@ body.check .reveal{display:inline-flex}
     <li>շիթի կտրվածքի մակերեսի փոքրության պատճառով ճնշումը և արագությունը բոլոր կետերի համար ընդունվում են հավասար։</li>
   </ol>
 <p class="src">📄 Աղբյուր՝ <a href="daser/Tema_8.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 8</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="2-1"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="2-1"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q2-2"><h3><span class="n">2.2</span>Հոսքի հիդրավլիկական տարրերը։</h3><div class="ans">
+<article class="q" id="q2-2"><h3><span class="n">2.2</span>Հոսքի հիդրավլիկական տարրերը։</h3><div class="ans"><div class="cb">
+<ol>
+<li><b>Կենդանի կտրվածք ω</b>, մ²՝ արագություններին նորմալ կտրվածք</li>
+<li><b>Թրջված պարագիծ χ</b>, մ՝ հեղուկի և պատերի հպման գիծը</li>
+<li><b>Հիդրավլիկական շառավիղ</b>՝ \(R=\dfrac\omega\chi\)</li>
+<li><b>Ելք</b>՝ \(Q=\dfrac Wt=\int u\,d\omega\), մ³/վ</li>
+<li><b>Միջին արագություն</b>՝ \(v=\dfrac Q\omega\)</li>
+</ol>
+<p><b>Օրինակներ.</b> ուղղանկյուն՝ \(\omega=bh,\ \chi=b+2h\). &nbsp;լրիվ շրջանային՝ \(\omega=\dfrac{\pi d^2}4,\ \chi=\pi d,\ R=\dfrac d4\)։</p><div class="draw"><span>✏ Գծել՝ Նկ. 2.4</span><img src="img/m1/nk2_4.webp" alt="Նկ. 2.4" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <p>Հեղուկի հոսքը բնութագրվում է հետևյալ հիդրավլիկական տարրերով.</p>
   <ol>
     <li><b>Կենդանի կտրվածքի մակերես ω (մ²)</b>՝ այն կտրվածքը, որի յուրաքանչյուր կետում արագությունն ունի այդ կտրվածքի նորմալի ուղղությունը (նկ. 2.4). կենդանի է կոչվում, որովհետև յուրաքանչյուր կետում տեղի ունի մասնիկների շարժում։</li>
@@ -351,9 +455,14 @@ body.check .reveal{display:inline-flex}
     <li><b>Մասամբ լցված շրջանային</b>՝ \(\omega=\dfrac{d^2}{8}(\varphi-\sin\varphi),\ \chi=\dfrac d2\varphi,\ R=\dfrac d4\Big(1-\dfrac{\sin\varphi}{\varphi}\Big)\), φ՝ կենտրոնական անկյունը ռադիաններով։</li>
   </ul>
   <figure class="lf"><img src="img/m1/nk2_5.webp" alt="Նկ. 2.5" loading="lazy"></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_9.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 9</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="2-2"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="2-2"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
-<article class="q" id="q2-3"><h3><span class="n">2.3</span>Անխզելիության հավասարումը տարրական շիթի և ամբողջ հոսքի համար։</h3><div class="ans">
+<article class="q" id="q2-3"><h3><span class="n">2.3</span>Անխզելիության հավասարումը տարրական շիթի և ամբողջ հոսքի համար։</h3><div class="ans"><div class="cb">
+<p><b>Տարրական շիթ.</b> 1-1 և 2-2 կտրվածքներով dt-ում անցնող զանգվածները հավասար են (պատերն անթափանց են).</p>
+<div class="fm">\[\begin{gathered}\rho u_1d\omega_1dt=\rho u_2d\omega_2dt\\ \Rightarrow\;u_1d\omega_1=u_2d\omega_2=dQ=\text{const}\end{gathered}\]</div>
+<p><b>Ամբողջ հոսք.</b> ինտեգրելով՝ \(Q=\int u\,d\omega=v\omega\).</p>
+<div class="fm">\[Q=v_1\omega_1=v_2\omega_2=\text{const}\]</div>
+<p><b>Եզրակացություն.</b> արագությունը հակադարձ համեմատական է կտրվածքին. նեղ տեղում արագությունը մեծ է։</p><div class="draw"><span>✏ Գծել՝ Նկ. 2.6</span><img src="img/m1/nk2_6.webp" alt="Նկ. 2.6" loading="lazy"></div></div><details class="full"><summary>Ամբողջական պատասխան՝ դասախոսությունից (արտածումներ, բոլոր նկարները)</summary><div class="ans-full">
   <h4>Տարրական շիթի համար</h4>
   <p>Տարրական շիթի վրա վերցնենք 1-1 և 2-2 կտրվածքներ՝ \(d\omega_1\) և \(d\omega_2\) մակերեսներով (նկ. 2.6)։ dt ժամանակահատվածում կտրվածքներով անցնող հեղուկի զանգվածները.</p>
   <div class="fm">\[\begin{gathered}\delta M_1=\rho u_1d\omega_1dt\quad\text{(2.8)}\\ dM_2=\rho u_2d\omega_2dt\quad\text{(2.9)}\end{gathered}\]</div>
@@ -369,7 +478,7 @@ body.check .reveal{display:inline-flex}
   <div class="fm">\[Q=v_1\omega_1=v_2\omega_2=\ldots=v_n\omega_n=\text{const}\quad\text{(2.15)}\]</div>
   <p class="key">Սա <b>անխզելիության հավասարումն է ամբողջ հոսքի համար</b>. կտրվածքի մակերեսի և միջին արագության արտադրյալը հաստատուն է և հավասար է այդ կտրվածքով անցնող ելքին (նկ. 2.7)։ Նեղ կտրվածքում արագությունը մեծ է։</p>
   <figure class="lf"><img src="img/m1/nk2_7.webp" alt="Նկ. 2.7" loading="lazy"></figure><p class="src">📄 Աղբյուր՝ <a href="daser/Tema_9.pdf" target="_blank" rel="noopener">դասախոսություն, Tema 9</a></p>
-</div><div class="qfoot"><label><input type="checkbox" data-k="2-3"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
+</div></details></div><div class="qfoot"><label><input type="checkbox" data-k="2-3"> Գիտեմ</label><button class="btn reveal" type="button">Ցույց տալ պատասխանը</button></div></article>
 
 </main>
 
