@@ -61,6 +61,9 @@ details.photo img{width:100%;max-width:380px;height:auto;border-radius:6px;flex:
 .def details>*:not(summary){margin:4px 0 6px 14px}
 .ex{color:var(--muted)}
 .def .btn{align-self:flex-start}
+.fx{font-family:"Cambria Math","Times New Roman",serif;font-size:17px}
+p.fx{background:var(--sunk);border-radius:8px;padding:6px 12px;display:inline-block}
+table.pr{min-width:0} table.pr td,table.pr th{font-size:14px}
 .toc{display:flex;flex-direction:column;gap:2px}
 @media (max-width:600px){main{padding:20px 14px 48px} section.lab{padding:14px} h1{font-size:24px} h2{font-size:20px}}
 @media print{
@@ -88,6 +91,8 @@ details.photo img{width:100%;max-width:380px;height:auto;border-radius:6px;flex:
   <a href="#lab4">Լաբորատոր աշխատանք 4 · Ջրի գոլորշացման ջերմաստիճանի կախումը ճնշումից</a>
   <a href="#def3">🎓 Պաշտպանություն՝ Փորձ 3</a>
   <a href="#def4">🎓 Պաշտպանություն՝ Աշխ. 4</a>
+  <a href="#labc">🎓 Օդի միջին ծավալային ջերմունակության որոշումը (հարցեր)</a>
+  <a href="#labk">🎓 Ադիաբատի ցուցչի հավասարումը (հարցեր)</a>
   <button class="btn" type="button" onclick="window.print()" style="align-self:flex-start;margin-top:8px">🖨 Տպել (A4)</button>
 </div></nav>
 
@@ -243,6 +248,83 @@ details.photo img{width:100%;max-width:380px;height:auto;border-radius:6px;flex:
   </div>
   <details class="photo"><summary>📷 Ձեռնարկի էջերը</summary><div class="imgs">
     <img src="img/l4_p18.webp" alt="էջ" loading="lazy"><img src="img/l4_p19.webp" alt="էջ 19" loading="lazy"><img src="img/l4_p20.webp" alt="էջ 20" loading="lazy"></div></details>
+</section>
+<!-- ================= Heat capacity, adiabatic index: defense questions only ================= -->
+<section class="lab" id="labc">
+  <span class="eyebrow">Լաբորատոր աշխատանք</span>
+  <h2>Հաստատուն ճնշման պայմաններում օդի միջին ծավալային ջերմունակության որոշումը</h2>
+  <p class="note">Ձեռնարկի տեքստը դեռ չունենք, միայն պաշտպանության հարցերը։ Պատասխանները թերմոդինամիկայի դասագրքային նյութից են։ Ուղարկեք ձեռնարկի էջերը, և կավելացնեմ աշխատանքի նկարագրությունն ու աղյուսակը։</p>
+  <div class="def" id="defc">
+    <h3>🎓 Պաշտպանության հարցեր</h3>
+    <button class="btn" type="button" data-openall="defc">Բացել բոլոր պատասխանները</button>
+    <details><summary>1.1 Տալ ջերմունակության սահմանումը։</summary>
+      <p><b>Ջերմունակություն</b>՝ ջերմության այն քանակը, որն անհրաժեշտ է մարմնի ջերմաստիճանը 1 աստիճանով փոխելու համար.</p>
+      <p class="fx">C = dQ / dT</p>
+      <p><b>Տեսակարար ջերմունակություն</b>՝ նույնը միավոր քանակով նյութի համար (1 կգ, 1 մ³ կամ 1 կմոլ). <span class="fx">c = dq / dT</span></p></details>
+    <details><summary>1.2 Ինչպիսի՞ միավորներով է չափվում ջերմունակությունը։</summary>
+      <ul>
+        <li><b>Զանգվածային</b> c՝ Ջ/(կգ·Կ) (կՋ/(կգ·Կ))</li>
+        <li><b>Ծավալային</b> c′՝ Ջ/(մ³·Կ). 1 մ³ գազը վերցվում է նորմալ պայմաններում (0 °C, 760 մմ սնդ. սյուն)</li>
+        <li><b>Մոլային</b> μc՝ Ջ/(կմոլ·Կ)</li>
+      </ul>
+      <p>Կապը՝ <span class="fx">c = μc / μ,&nbsp;&nbsp; c′ = μc / 22,4 = c·ρ<sub>ն</sub></span> (22,4 մ³/կմոլ՝ 1 կմոլի ծավալը նորմալ պայմաններում)։</p></details>
+    <details><summary>1.3 Տալ իսկական և միջին ջերմունակությունների գաղափարը։</summary>
+      <p><b>Իսկական</b>՝ ջերմունակությունը տվյալ ջերմաստիճանում (անվերջ փոքր փոփոխության համար). <span class="fx">c = dq / dt</span></p>
+      <p><b>Միջին</b>՝ t₁…t₂ միջակայքում հաղորդված ջերմության և ջերմաստիճանի փոփոխության հարաբերությունը. <span class="fx">c<sub>մ</sub> = q / (t₂ − t₁)</span></p>
+      <p>Ջերմությունը՝ <span class="fx">q = c<sub>մ</sub>(t₂ − t₁)</span>, իսկ 0 °C-ից տրված աղյուսակային միջին ջերմունակություններով՝ <span class="fx">q = c<sub>մ2</sub>t₂ − c<sub>մ1</sub>t₁</span></p>
+      <p>Իսկականը կորի կետում շոշափողի թեքությունն է, միջինը՝ q(t) կորի հատվածը միացնող ուղղի թեքությունը։</p></details>
+    <details><summary>1.4 Ինչպիսի՞ գործոններից են կախված իդեալական և իրական գազերի ջերմունակությունները։</summary>
+      <ul>
+        <li><b>Գազի բնույթից</b>՝ մոլեկուլի ատոմների թվից (միատոմ, երկատոմ, եռատոմ),</li>
+        <li><b>պրոցեսի բնույթից</b>՝ c<sub>p</sub> (p = const) &gt; c<sub>v</sub> (v = const), քանի որ p = const-ում ջերմության մի մասը ծախսվում է ընդարձակման աշխատանքի վրա. Մայերի հավասարումը՝ <span class="fx">c<sub>p</sub> − c<sub>v</sub> = R</span>,</li>
+        <li><b>ջերմաստիճանից</b>՝ ջերմաստիճանի աճով ջերմունակությունն աճում է։</li>
+      </ul>
+      <p><b>Իդեալական գազ</b>՝ կախված է միայն գազի տեսակից, պրոցեսից և ջերմաստիճանից։ <b>Իրական գազ</b>՝ նաև <b>ճնշումից</b>։</p></details>
+  </div>
+</section>
+
+<section class="lab" id="labk">
+  <span class="eyebrow">Լաբորատոր աշխատանք</span>
+  <h2>Ադիաբատի ցուցչի հավասարումը</h2>
+  <p class="note">Ձեռնարկի տեքստը դեռ չունենք, միայն պաշտպանության հարցերը։ Պատասխանները թերմոդինամիկայի դասագրքային նյութից են։</p>
+  <div class="def" id="defk">
+    <h3>🎓 Պաշտպանության հարցեր</h3>
+    <button class="btn" type="button" data-openall="defk">Բացել բոլոր պատասխանները</button>
+    <details><summary>2.1 Տալ հիմնական թերմոդինամիկական պրոցեսների բնորոշումը և գրել դրանց հավասարումները։</summary>
+      <div class="tw"><table class="pr">
+        <tr><th>Պրոցես</th><th>Պայման</th><th>Հավասարում</th></tr>
+        <tr><td><b>Իզոխոր</b></td><td>v = const</td><td>p/T = const</td></tr>
+        <tr><td><b>Իզոբար</b></td><td>p = const</td><td>v/T = const</td></tr>
+        <tr><td><b>Իզոթերմ</b></td><td>T = const</td><td>pv = const</td></tr>
+        <tr><td><b>Ադիաբատ</b></td><td>q = 0</td><td>pv<sup>k</sup> = const</td></tr>
+        <tr><td><b>Պոլիտրոպ</b></td><td>c = const</td><td>pv<sup>n</sup> = const</td></tr>
+      </table></div>
+      <p>Ադիաբատում ջերմափոխանակություն չկա։ Պոլիտրոպը ընդհանուր դեպքն է. n = 0՝ իզոբար, n = 1՝ իզոթերմ, n = k՝ ադիաբատ, n = ±∞՝ իզոխոր։</p></details>
+    <details><summary>2.2 Բացատրել p-v դիագրամում միևնույն կետից տարված ադիաբատ և իզոթերմ պրոցեսների փոխադարձ դասավորումը։</summary>
+      <svg class="dg" viewBox="0 0 420 230" role="img" aria-label="Ադիաբատ և իզոթերմ p-v դիագրամում">
+        <path d="M50 200 H400 M50 200 V15" style="stroke:var(--ink)" stroke-width="1.5" fill="none"/>
+        <path d="M400 200 l-8 -4 v8z M50 15 l-4 8 h8z" style="fill:var(--ink)"/>
+        <text x="392" y="220">v</text><text x="32" y="22">p</text>
+        <path d="M95 30 Q150 70 190 100 T380 172" fill="none" style="stroke:var(--good)" stroke-width="2.4" stroke-dasharray="7 4"/>
+        <path d="M118 22 Q160 72 190 100 T380 188" fill="none" style="stroke:var(--bad)" stroke-width="2.6"/>
+        <circle cx="190" cy="100" r="5" style="fill:var(--ink)"/><text x="196" y="94">1</text>
+        <text x="300" y="142" style="fill:var(--good)">իզոթերմ</text><text x="300" y="196" style="fill:var(--bad)">ադիաբատ</text>
+        <text x="62" y="58">սեղմում ←</text><text x="250" y="78">→ ընդարձակում</text>
+      </svg>
+      <p><b>Ադիաբատն ավելի զառիթափ է</b>, քանի որ k &gt; 1. թեքությունները՝</p>
+      <p class="fx">իզոթերմ՝ dp/dv = −p/v,&nbsp;&nbsp; ադիաբատ՝ dp/dv = −k·p/v</p>
+      <ul>
+        <li><b>Սեղմման դեպքում</b> (կետից ձախ) ադիաբատն անցնում է <b>իզոթերմից վեր</b>. ջերմություն չի հեռացվում, գազը տաքանում է, և ճնշումն աճում է ավելի արագ։</li>
+        <li><b>Ընդարձակման դեպքում</b> (կետից աջ) ադիաբատն անցնում է <b>իզոթերմից ներքև</b>. աշխատանքը կատարվում է ներքին էներգիայի հաշվին, գազը սառչում է, և ճնշումն ընկնում է ավելի արագ։</li>
+      </ul></details>
+    <details><summary>2.3 Ինչի՞ց է կախված ադիաբատի ցուցչի թվային արժեքը։</summary>
+      <p class="fx">k = c<sub>p</sub> / c<sub>v</sub></p>
+      <ul>
+        <li><b>Գազի ատոմայնությունից</b> (մոլեկուլի ազատության աստիճաններից). միատոմ՝ k = 1,67, երկատոմ՝ k = 1,4 (օդ), եռատոմ և բազմատոմ՝ k ≈ 1,29–1,33,</li>
+        <li><b>ջերմաստիճանից</b>՝ ջերմաստիճանի աճով ջերմունակություններն աճում են, և k-ն <b>նվազում</b> է (k = 1 + R/c<sub>v</sub>)։</li>
+      </ul>
+      <p>Միշտ k &gt; 1, քանի որ c<sub>p</sub> = c<sub>v</sub> + R &gt; c<sub>v</sub>։</p></details>
+  </div>
 </section>
 </main>
 
