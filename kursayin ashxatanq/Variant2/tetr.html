@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Տետրում գրելու · տարբերակ 2</title>
+<meta name="description" content="ՄՄՏ, առաջադրանք 2, տարբերակ 2. ինչ գրել տետրում՝ էջ 10–18, տող առ տող">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wdth,wght@62.5..100,400..700&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">
+<script>try{var t=localStorage.getItem('tmm-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+:root{
+  --ground:#EDF0EF;--surface:#F9FBFA;--surface-2:#E3E8E7;--ink:#1B2225;--ink-2:#53616A;--ink-3:#77848B;
+  --rule:#CAD3D2;--rule-2:#DCE3E2;--mm:#C45F3B;--mm-ink:#9C4424;--pen:#21539D;--verd:#206E57;--verd-soft:#D8ECE4;--hi:#F3DE5B;--hi-ink:#1B2225;
+  --f-sans:"Noto Sans Armenian",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-math:"STIX Two Text","Noto Sans Armenian","Times New Roman",serif;--toph:56px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#101416;--surface:#161B1E;--surface-2:#1D2326;--ink:#E1E6E7;--ink-2:#9BA7AD;--ink-3:#75828A;
+  --rule:#2B3438;--rule-2:#232A2E;--mm:#EA8A62;--mm-ink:#F2A688;--pen:#8FB4EA;--verd:#74C7AB;--verd-soft:#15291F;--hi:#6E6118;--hi-ink:#F4EBC0;
+}}
+:root[data-theme="dark"]{
+  --ground:#101416;--surface:#161B1E;--surface-2:#1D2326;--ink:#E1E6E7;--ink-2:#9BA7AD;--ink-3:#75828A;
+  --rule:#2B3438;--rule-2:#232A2E;--mm:#EA8A62;--mm-ink:#F2A688;--pen:#8FB4EA;--verd:#74C7AB;--verd-soft:#15291F;--hi:#6E6118;--hi-ink:#F4EBC0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.6}
+a{color:var(--pen)}
+mark{background:var(--hi);color:var(--hi-ink);padding:0 .28em;border-radius:2px}
+sub,sup{font-size:.72em;line-height:0}
+.top{position:sticky;top:0;z-index:30;height:var(--toph);display:flex;align-items:center;gap:14px;padding:0 20px;background:var(--surface);border-bottom:1px solid var(--rule)}
+.back{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--rule);border-radius:8px;color:var(--ink);text-decoration:none;flex:none}
+.top-t{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.top-t b{font-size:1rem;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-t span{font-size:.8rem;color:var(--ink-3)}
+.top-work{flex:none;padding:7px 14px;border-radius:8px;border:1px solid var(--rule);color:var(--ink);text-decoration:none;font-size:.9rem;font-weight:600}
+.theme-btn{flex:none;width:36px;height:36px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);color:var(--ink);font-size:1.05rem;cursor:pointer}
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);max-width:1480px;margin:0 auto}
+.side{position:sticky;top:var(--toph);align-self:start;max-height:calc(100vh - var(--toph));overflow:auto;padding:20px 12px 30px 18px;border-right:1px solid var(--rule)}
+.side h4{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px 10px;font-weight:600}
+.side a{display:grid;grid-template-columns:20px 1fr;column-gap:8px;padding:7px 10px;border-radius:7px;color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;line-height:1.3}
+.side a small{grid-column:2;font-weight:400;font-size:.78rem;color:var(--ink-3)}
+.side a:hover{background:var(--surface-2)}
+.side a[aria-current="true"]{background:var(--surface-2)}
+.ck{grid-row:span 2;width:18px;height:18px;margin-top:1px;border:1.5px solid var(--rule);border-radius:50%}
+.side a.is-done .ck{background:var(--verd);border-color:var(--verd);box-shadow:inset 0 0 0 3px var(--surface)}
+main{padding:30px 36px 90px;min-width:0}
+.kicker{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--verd);font-weight:600;margin:0 0 6px}
+h1{font-size:clamp(1.6rem,3vw,2.3rem);margin:0 0 10px;line-height:1.15}
+.lede{color:var(--ink-2);font-size:1.03rem;max-width:74ch;margin:0 0 18px}
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 14px}
+.rules>div{padding:14px 16px;border:1px solid var(--rule);border-radius:10px;background:var(--surface);font-size:.9rem;display:flex;flex-direction:column;gap:4px}
+.rules span{color:var(--ink-2)}
+.prog{font-weight:600;color:var(--verd);margin:0}
+.tp{margin-top:44px;padding-top:22px;border-top:1px solid var(--rule);scroll-margin-top:calc(var(--toph) + 8px)}
+.tp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:14px}
+.tp-head h2{font-size:1.6rem;margin:0;line-height:1.2}
+.tp-head p{margin:2px 0 0;color:var(--ink-2)}
+.done{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--rule);border-radius:999px;background:var(--surface);cursor:pointer;font-weight:600;font-size:.92rem;flex:none;user-select:none}
+.done input{width:18px;height:18px;margin:0;accent-color:var(--verd)}
+.done:has(input:checked){background:var(--verd-soft);border-color:var(--verd);color:var(--verd)}
+.tp-grid{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:24px;align-items:start}
+.tp-page .npage{min-height:0;grid-column:auto}
+.tp-tips{position:sticky;top:calc(var(--toph) + 16px);padding:16px 18px;border:1px solid var(--rule);border-left:3px solid var(--verd);border-radius:10px;background:var(--surface);font-size:.92rem}
+.tp-tips h3{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+.tp-tips h3+ol{margin-bottom:14px}
+.tp-tips ol{padding-left:1.2em;margin:0;display:grid;gap:4px}
+.tp-tips p{margin:0;color:var(--ink-2)}
+.endnav{margin-top:50px;padding-top:20px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:12px}
+.endnav a{padding:10px 16px;border:1px solid var(--rule);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600}
+@media (max-width:1100px){.rules{grid-template-columns:1fr 1fr}.tp-grid{grid-template-columns:minmax(0,1fr)}.tp-tips{position:static;order:-1}}
+@media (max-width:900px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{min-width:0;top:var(--toph);z-index:25;max-height:none;display:flex;gap:4px;overflow-x:auto;padding:8px 12px;border-right:0;border-bottom:1px solid var(--rule);background:var(--ground);scrollbar-width:none}
+  .side::-webkit-scrollbar{display:none}
+  .side h4,.side a small{display:none}
+  .side a{flex:none;white-space:nowrap;display:flex;align-items:center;gap:6px;padding:6px 11px;font-size:.88rem}
+  .ck{width:14px;height:14px}
+  main{padding:22px 16px 70px}
+  .tp{scroll-margin-top:calc(var(--toph) + 52px)}
+}
+@media (max-width:560px){.rules{grid-template-columns:1fr}.top{padding:0 12px;gap:10px}.top-work{padding:7px 10px;font-size:.82rem}.tp-head{flex-direction:column;align-items:flex-start}}
+@media print{.top,.side,.tp-tips,.done,.intro,.endnav{display:none}.shell{display:block}main{padding:0}.tp{border:0;margin:0;break-after:page}.tp-head{display:none}}
+
+.nbook{max-width:1240px;margin:22px auto 0;padding-inline:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,540px),1fr));gap:22px;align-items:start}
+.npage{position:relative;background-color:#FBFAF3;background-image:linear-gradient(#C9CCE6 1px,transparent 1px),linear-gradient(90deg,#C9CCE6 1px,transparent 1px);background-size:20px 20px;background-position:-1px -1px;
+  color:#22388A;font-family:var(--f-math);font-size:17px;line-height:1.5;padding:46px 30px 34px 62px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 6px 18px rgba(0,0,0,.08);border-radius:2px 6px 6px 2px;min-height:560px;overflow-x:auto}
+.npage::before{content:"";position:absolute;top:0;bottom:0;left:46px;width:1.5px;background:#E07B7B}
+.npage.r{padding:46px 62px 34px 30px;border-radius:6px 2px 2px 6px}
+.npage.r::before{left:auto;right:46px}
+.npage.wide{grid-column:1/-1}
+.npno{position:absolute;top:12px;left:12px;width:30px;height:30px;border:1.5px solid currentColor;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600}
+.npage.r .npno{left:auto;right:12px}
+.npage sub,.npage sup{font-size:.68em}
+.nbox{border:1.5px solid currentColor;padding:4px 14px;text-align:center;font-family:var(--f-sans);font-size:1.15rem;margin:0 auto 12px;width:max-content;max-width:100%}
+.nvar{font-size:.8rem;opacity:.75}
+.ndata{border-collapse:collapse;margin:0 0 12px;font-size:.92rem;background:rgba(251,250,243,.7)}
+.ndata th,.ndata td{border:1.3px solid currentColor;padding:2px 7px;text-align:center;font-weight:400;white-space:nowrap}
+.ndata tr.v td{font-weight:600}
+.ncond{margin:0 0 6px;padding-left:1.6em;display:grid;gap:1px}
+.nrule{border:0;border-top:1.3px solid currentColor;margin:12px -10px}
+.nsec{font-family:var(--f-sans);font-size:1.02rem;font-weight:600;text-align:center;margin:4px 0 10px;color:#22388A}
+.nl{padding:4px 0;min-height:40px;line-height:2.05}.nl::after{content:"";display:block;clear:both}
+.nl.ind{padding-left:1.6em}
+.nl.sm{font-size:.9rem;min-height:30px}
+.nl.opt{opacity:.8}
+.nn{display:inline-block;min-width:1.6em;font-weight:600}
+.nr{font-weight:700;color:#14246B;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.nf{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .1em}
+.nf>span{padding:0 .2em}.nf>span:last-child{border-top:1.2px solid currentColor}
+.ov{text-decoration:overline;text-decoration-thickness:1.2px}
+.nsys{display:inline-flex;align-items:center;gap:4px;vertical-align:middle;margin-right:10px}
+.nbr{display:inline-flex;flex-direction:column;border-left:1.5px solid currentColor;border-radius:8px 0 0 8px;padding-left:.45em;line-height:1.4}
+.nbr.p{border-right:1.5px solid currentColor;border-radius:8px;padding-right:.45em}
+.nside{float:right;margin-left:14px;font-size:.95rem;line-height:1.45;text-align:left}
+.nsign{border-collapse:collapse;margin:2px 0 8px 1.6em;font-size:.92rem}
+.nsign th,.nsign td{border:1.3px solid currentColor;padding:1px 12px;text-align:center;font-weight:400;white-space:nowrap}
+.nsign thead th:first-child{border-top-color:transparent;border-left-color:transparent}
+.nsign tbody th{font-family:var(--f-sans);font-size:.8rem}
+.ncap{font-family:var(--f-sans);font-size:.85rem;margin:8px 0 2px}
+.ntext{font-family:var(--f-sans);font-size:.95rem;margin:0 0 6px}
+.rot{font-family:system-ui,-apple-system,"Segoe UI Symbol",sans-serif;font-size:.95em}
+.nnote{font-family:var(--f-sans);font-size:.8rem;margin:10px 0 0;opacity:.85}
+.ntbl{border-collapse:collapse;margin:14px 0 0;font-size:.9rem;background:rgba(251,250,243,.7)}
+.ntbl th,.ntbl td{border:1.3px solid currentColor;padding:3px 8px;text-align:center;white-space:nowrap;font-weight:400}
+.ntbl tbody th{font-weight:600}
+.ntbl tr.wk td,.ntbl tr.wk th{background:rgba(243,222,91,.35);font-weight:700}
+.nposg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 22px}
+.npos{padding:4px 0 8px}
+.npos h5{font-family:var(--f-sans);font-size:.92rem;margin:0 0 2px;font-weight:650}
+.npos p{margin:0;font-size:.95rem;line-height:1.55}
+.npos.wk h5{background:rgba(243,222,91,.45);display:inline-block;padding:0 6px}
+@media (max-width:600px){.npage,.npage.r{padding:44px 14px 24px 40px;font-size:15px}.npage::before{left:30px}.npage.r::before{left:30px;right:auto}.npage.r .npno{left:6px;right:auto}.npno{left:6px}.nside{float:none;display:block;margin:2px 0 0 1.6em}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="back" href="./" aria-label="Կուրսային աշխատանքի գլխավոր էջ">←</a>
+  <div class="top-t"><b>Տետրում գրելու</b><span>ՄՄՏ · առաջադրանք 2 · տարբերակ <mark>2</mark></span></div>
+  <a class="top-work" href="TMM_Variant2.html">Աշխատանքը</a>
+  <button class="theme-btn" type="button" data-theme-toggle aria-label="Փոխել լուսավոր/մութ ռեժիմը"></button>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Տետրի էջեր"><h4>Տետրի էջեր</h4><a href="#p10" data-nav="p10"><span class="ck" aria-hidden="true"></span>Էջ 10<small>Առաջադրանքը և §1-ի սկիզբը</small></a><a href="#p11" data-nav="p11"><span class="ck" aria-hidden="true"></span>Էջ 11<small>§1-ի շարունակությունը և §2-ի սկիզբը</small></a><a href="#p12" data-nav="p12"><span class="ck" aria-hidden="true"></span>Էջ 12<small>§2. նմանություն, V<sub>F</sub>, մասշտաբ, դիրք 2</small></a><a href="#p13" data-nav="p13"><span class="ck" aria-hidden="true"></span>Էջ 13<small>§2. ω₃, ω₄ և 8 դիրքերի աղյուսակը</small></a><a href="#p13a" data-nav="p13a"><span class="ck" aria-hidden="true"></span>Էջ 13ա<small>Ներդիր. 7-րդ կետը բոլոր դիրքերի համար</small></a><a href="#p14" data-nav="p14"><span class="ck" aria-hidden="true"></span>Էջ 14<small>§3. արագացումների պլանի սկիզբը</small></a><a href="#p15" data-nav="p15"><span class="ck" aria-hidden="true"></span>Էջ 15<small>§3. մասշտաբը և պլանի կառուցումը</small></a><a href="#p16" data-nav="p16"><span class="ck" aria-hidden="true"></span>Էջ 16<small>§3. արագացումները և անկյունային արագացումները</small></a><a href="#p17" data-nav="p17"><span class="ck" aria-hidden="true"></span>Էջ 17<small>§4. բերված մոմենտի բանաձևը</small></a><a href="#p18" data-nav="p18"><span class="ck" aria-hidden="true"></span>Էջ 18<small>§4. աղյուսակը և մասշտաբները</small></a></nav>
+<main>
+
+<section class="intro" id="top">
+  <p class="kicker">Տետր · էջ 10–18</p>
+  <h1>Ինչ գրել տետրում</h1>
+  <p class="lede">Ստորև յուրաքանչյուր տետրի էջն է՝ լրացված ձեր տարբերակի թվերով, ճիշտ այն հերթականությամբ և նշանակումներով, ինչ օրինակում։ Կողքին գրված է, թե ինչ կա էջում և որտեղից վերցնել չափվող թվերը։ Արտագրելուց հետո նշեք «Գրված է»։</p>
+  <div class="rules">
+    <div><b>Թավ և ընդգծված</b><span>վերջնական արդյունքն է. տետրում նույնպես ընդգծեք։</span></div>
+    <div><b>Չափվող հատվածներ</b><span>(pc, bc, pf, πc…) վերցվում են A3 թերթերից. ձեր չափումը կարող է տարբերվել ±0,5 մմ-ով, այդ դեպքում վերահաշվեք նույն բանաձևով։</span></div>
+    <div><b>Հաշվվող հատվածներ</b><span>pe, πe, bn₂, πn₃, en₄՝ բանաձևով, չեն չափվում։</span></div>
+    <div><b>Հերթականություն</b><span>§1-ի կետ 2-ից առաջ գծեք թերթ 1-ի դիրքերը, §2-ի կետ 7-ից առաջ՝ թերթ 2-ը, §4-ից առաջ՝ F<sub>re</sub> գրաֆիկը։</span></div>
+  </div>
+  <p class="prog" aria-live="polite"></p>
+</section>
+
+<section class="tp" id="p10" aria-labelledby="p10-h">
+  <div class="tp-head">
+    <div><h2 id="p10-h">Էջ 10</h2><p>Առաջադրանքը և §1-ի սկիզբը</p></div>
+    <label class="done"><input type="checkbox" data-page="p10"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage l" aria-label="Տետրի էջ 10"><span class="npno">10</span>
+<div class="nbox">Առաջադրանք N 2 <span class="nvar">(տարբերակ 2)</span></div>
+<table class="ndata"><thead><tr><th><i>H<sub>F</sub></i></th><th><i>L<sub>1</sub></i></th><th><i>L<sub>2</sub></i></th><th><i>l<sub>EF</sub></i></th><th><i>l<sub>ED</sub></i></th><th><i>n<sub>1</sub></i></th><th><i>G<sub>2</sub></i></th><th><i>G<sub>5</sub></i></th><th><i>F<sub>re</sub><sup>max</sup></i></th><th><i>I<sub>S2</sub></i></th></tr></thead>
+<tbody><tr><td colspan="5">·10<sup>−3</sup> մ</td><td>պտ/ր</td><td>Ն</td><td>Ն</td><td>Ն</td><td>·10<sup>−3</sup></td></tr>
+<tr class="v"><td>60</td><td>340</td><td>140</td><td>190</td><td>180</td><td>200</td><td>40</td><td>165</td><td>9000</td><td>320</td></tr></tbody></table>
+<ol class="ncond">
+<li><i>l</i><sub>CD</sub> = 0,9·<i>l</i><sub>ED</sub> = 0,9·0,180 = 0,162 մ</li>
+<li><i>l</i><sub>BS<sub>2</sub></sub> = 0,5·<i>l</i><sub>BC</sub></li>
+<li><i>M</i><sub>m</sub> = const</li>
+<li><i>δ</i> = 0,05</li>
+<li><i>β</i> = 3°÷5°, ընդ. <i>β</i> = 3°</li>
+<li><i>α</i> = 50°</li>
+</ol>
+<hr class="nrule">
+<h4 class="nsec">§1. Մեխանիզմի սինթեզ և դիրքերի պլանի կառուցում</h4>
+<div class="nl "><span class="nn">1)</span> <i>μ</i><sub>l</sub> = <span class="nf"><span><i>L</i><sub>1</sub></span><span><i>L</i><sub>1</sub>*</span></span> = <span class="nf"><span>0,34</span><span>200</span></span> = <b class="nr">0,00170</b> մ/մմ</div>
+<div class="nl ind"><i>H</i><sub>F</sub>* = <span class="nf"><span><i>H</i><sub>F</sub></span><span><i>μ</i><sub>l</sub></span></span> = <span class="nf"><span>0,06</span><span>0,00170</span></span> = <b class="nr">35,29</b> մմ</div>
+<div class="nl ind"><i>L</i><sub>2</sub>* = <span class="nf"><span><i>L</i><sub>2</sub></span><span><i>μ</i><sub>l</sub></span></span> = <span class="nf"><span>0,14</span><span>0,00170</span></span> = <b class="nr">82,35</b> մմ</div>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>«Առաջադրանք N 2» վերնագիրը՝ շրջանակի մեջ</li><li>Տվյալների աղյուսակը՝ միայն ձեր տարբերակի տողը</li><li>Լրացուցիչ պայմանները 1–6</li><li>§1 վերնագիրը, 1) μ<sub>l</sub>, H<sub>F</sub>*, L<sub>2</sub>*</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>Թվերը առաջադրանքի աղյուսակից են։ μ<sub>l</sub>-ը ընտրված է այնպես, որ մեխանիզմը տեղավորվի A3 թերթում։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p11" aria-labelledby="p11-h">
+  <div class="tp-head">
+    <div><h2 id="p11-h">Էջ 11</h2><p>§1-ի շարունակությունը և §2-ի սկիզբը</p></div>
+    <label class="done"><input type="checkbox" data-page="p11"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage r" aria-label="Տետրի էջ 11"><span class="npno">11</span>
+<div class="nl ind">EF = <span class="nf"><span><i>l</i><sub>EF</sub></span><span><i>μ</i><sub>l</sub></span></span> = <span class="nf"><span>0,19</span><span>0,00170</span></span> = <b class="nr">111,76</b> մմ</div>
+<div class="nl ind">ED = <span class="nf"><span><i>l</i><sub>ED</sub></span><span><i>μ</i><sub>l</sub></span></span> = <span class="nf"><span>0,18</span><span>0,00170</span></span> = <b class="nr">105,88</b> մմ</div>
+<div class="nl ind">CD = <span class="nf"><span><i>l</i><sub>CD</sub></span><span><i>μ</i><sub>l</sub></span></span> = <span class="nf"><span>0,162</span><span>0,00170</span></span> = <b class="nr">95,29</b> մմ</div>
+<div class="nl "><span class="nn">2)</span> <span class="nsys">± <span class="nbr"><span>AB<sub>0</sub> + B<sub>0</sub>C<sub>0</sub> = AC<sub>0</sub></span><span>B<sub>0</sub>′C<sub>0</sub>′ − AB<sub>0</sub>′ = AC<sub>0</sub>′</span></span></span>
+   <span class="nsys"><span class="nbr p"><span>AB<sub>0</sub> = AB<sub>0</sub>′</span><span>B<sub>0</sub>C<sub>0</sub> = B<sub>0</sub>′C<sub>0</sub>′</span></span></span></div>
+<div class="nl ind"><span class="nsys">± <span class="nbr"><span>AB + BC = 174,4</span><span>BC − AB = 131,5</span></span></span>
+   <span class="nside">2·BC = 305,9; BC = <b class="nr">152,95</b> մմ<br>AB = 174,4 − 152,95 = <b class="nr">21,45</b> մմ</span></div>
+<div class="nl ind"><i>l</i><sub>AB</sub> = AB·<i>μ</i><sub>l</sub> = 21,45·0,00170 = <b class="nr">0,0365</b> մ</div>
+<div class="nl ind"><i>l</i><sub>BC</sub> = BC·<i>μ</i><sub>l</sub> = 152,95·0,00170 = <b class="nr">0,2600</b> մ</div>
+<hr class="nrule">
+<h4 class="nsec">§2. Արագությունների պլանների կառուցում</h4>
+<div class="nl "><span class="nn">1)</span> <i>V</i><sub>B</sub> = <i>ω</i><sub>1</sub>·<i>l</i><sub>AB</sub> = <span class="nf"><span>π·<i>n</i><sub>1</sub></span><span>30</span></span>·<i>l</i><sub>AB</sub> = <span class="nf"><span>3,14·200</span><span>30</span></span>·0,0365 = 20,94·0,0365 = <b class="nr">0,764</b> մ/վ</div>
+<div class="nl ind"><span class="ov"><i>V</i></span><sub>B</sub> ⊥ AB (<i>ω</i><sub>1</sub>-ի ուղղությամբ, ժամ. սլաքի ուղղությամբ)</div>
+<div class="nl "><span class="nn">2)</span> <span class="ov"><i>V</i></span><sub>C</sub> = <span class="ov"><i>V</i></span><sub>B</sub> + <span class="ov"><i>V</i></span><sub>CB</sub> &nbsp;(1)<span class='nside'><span class="ov"><i>V</i></span><sub>CB</sub> ⊥ BC<br><span class="ov"><i>V</i></span><sub>C</sub> ⊥ CD</span></div>
+<table class="nsign"><thead><tr><th></th><th><span class="ov"><i>V</i></span><sub>C</sub></th><th><span class="ov"><i>V</i></span><sub>B</sub></th><th><span class="ov"><i>V</i></span><sub>CB</sub></th></tr></thead><tbody><tr><th>Մեծ.</th><td>−</td><td>+</td><td>−</td></tr><tr><th>ուղղ.</th><td>+ (⊥CD)</td><td>+ (⊥AB)</td><td>+ (⊥BC)</td></tr></tbody></table>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>EF, ED, CD գծագրային երկարությունները</li><li>2) AB և BC համակարգը և լուծումը</li><li>l<sub>AB</sub>, l<sub>BC</sub> իրական երկարությունները</li><li>§2 վերնագիրը, 1) V<sub>B</sub>, 2) (1) հավասարումը նշանների աղյուսակով</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>AC₀ = 174,4 մմ և AC₀′ = 131,5 մմ <b>չափեք թերթ 1-ից</b> (թերթ 1-ի 8-րդ քայլը), նոր միայն գրեք համակարգը։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p12" aria-labelledby="p12-h">
+  <div class="tp-head">
+    <div><h2 id="p12-h">Էջ 12</h2><p>§2. նմանություն, V<sub>F</sub>, մասշտաբ, դիրք 2</p></div>
+    <label class="done"><input type="checkbox" data-page="p12"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage l" aria-label="Տետրի էջ 12"><span class="npno">12</span>
+<div class="nl "><span class="nn">3)</span> <span class="nf"><span><i>V</i><sub>C</sub></span><span><i>l</i><sub>CD</sub></span></span> = <span class="nf"><span><i>V</i><sub>E</sub></span><span><i>l</i><sub>DE</sub></span></span>; &nbsp; <span class="nf"><span>(pc)·<i>μ</i><sub>v</sub></span><span>CD·<i>μ</i><sub>l</sub></span></span> = <span class="nf"><span>(pe)·<i>μ</i><sub>v</sub></span><span>DE·<i>μ</i><sub>l</sub></span></span></div>
+<div class="nl ind">pe = (pc)·<span class="nf"><span>DE</span><span>CD</span></span> &nbsp;(3) &nbsp;[մմ], &nbsp; <span class="nf"><span>DE</span><span>CD</span></span> = <span class="nf"><span>105,88</span><span>95,29</span></span> = 1,111</div>
+<div class="nl ind sm">∠cpe = <i>α</i> = 50°, &nbsp; c → p → e (ժամ. սլաքի ուղղությամբ, ինչպես C → D → E)</div>
+<div class="nl "><span class="nn">4)</span> <span class="ov"><i>V</i></span><sub>F</sub> = <span class="ov"><i>V</i></span><sub>E</sub> + <span class="ov"><i>V</i></span><sub>FE</sub> &nbsp;(4)<span class='nside'><span class="ov"><i>V</i></span><sub>FE</sub> ⊥ EF<br><span class="ov"><i>V</i></span><sub>F</sub> ∥ yy</span></div>
+<table class="nsign"><thead><tr><th></th><th><span class="ov"><i>V</i></span><sub>F</sub></th><th><span class="ov"><i>V</i></span><sub>E</sub></th><th><span class="ov"><i>V</i></span><sub>FE</sub></th></tr></thead><tbody><tr><th>Մեծ.</th><td>−</td><td>+</td><td>−</td></tr><tr><th>ուղղ.</th><td>+ (∥yy)</td><td>+</td><td>+ (⊥EF)</td></tr></tbody></table>
+<div class="nl "><span class="nn">5)</span> bs<sub>2</sub> = cs<sub>2</sub></div>
+<div class="nl "><span class="nn">6)</span> <i>μ</i><sub>v</sub> = <span class="nf"><span><i>V</i><sub>B</sub></span><span>pb</span></span> = <span class="nf"><span><i>ω</i><sub>1</sub>·<i>l</i><sub>AB</sub></span><span>pb</span></span> = <span class="nf"><span>0,764</span><span>50</span></span> = <b class="nr">0,01528</b> [<span class="nf"><span>մ·վ<sup>−1</sup></span><span>մմ</span></span>]; &nbsp; ընդ. <u>pb = 50 մմ</u></div>
+<p class="ncap"><span class="nn">7)</span> դիրք 2 (հաստ դիրքը). մյուս դիրքերը՝ էջ 13-ի աղյուսակում և ներդիրում</p>
+<div class="nl ind"><i>V</i><sub>C</sub> = (pc)·<i>μ</i><sub>v</sub> = 53,6·0,01528 = <b class="nr">0,819</b> [մ/վ]</div>
+<div class="nl ind">pe = 53,6·1,111 = 59,6 մմ; &nbsp; <i>V</i><sub>E</sub> = (pe)·<i>μ</i><sub>v</sub> = 59,6·0,01528 = <b class="nr">0,911</b> մ/վ</div>
+<div class="nl ind"><i>V</i><sub>F</sub> = (pf)·<i>μ</i><sub>v</sub> = 39,8·0,01528 = <b class="nr">0,608</b> մ/վ</div>
+<div class="nl ind"><i>V</i><sub>S<sub>2</sub></sub> = (ps<sub>2</sub>)·<i>μ</i><sub>v</sub> = 50,4·0,01528 = <b class="nr">0,770</b> մ/վ</div>
+<div class="nl ind"><i>V</i><sub>CB</sub> = (bc)·<i>μ</i><sub>v</sub> = 24,3·0,01528 = <b class="nr">0,371</b> մ/վ</div>
+<div class="nl ind"><i>V</i><sub>FE</sub> = (ef)·<i>μ</i><sub>v</sub> = 59,2·0,01528 = <b class="nr">0,905</b> մ/վ</div>
+<div class="nl ind"><i>ω</i><sub>2</sub> = <i>V</i><sub>CB</sub>/<i>l</i><sub>BC</sub> = 0,371/0,2600 = <b class="nr">1,43</b> [վ<sup>−1</sup>] <span class="rot">↻</span></div>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>3) pe-ի բանաձևը նմանությամբ, DE/CD = 1,111</li><li>4) (4) հավասարումը V<sub>F</sub>-ի համար՝ աղյուսակով</li><li>5) bs₂ = cs₂, 6) μ<sub>V</sub>, pb = 50 մմ</li><li>7) դիրք 2-ի բոլոր արագությունները և ω₂</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>pc, pf, ps₂, bc, ef հատվածները <b>չափեք թերթ 2-ի</b> «Դիրք 2» պլանից։ pe-ն չի չափվում, հաշվվում է pc·1,111։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p13" aria-labelledby="p13-h">
+  <div class="tp-head">
+    <div><h2 id="p13-h">Էջ 13</h2><p>§2. ω₃, ω₄ և 8 դիրքերի աղյուսակը</p></div>
+    <label class="done"><input type="checkbox" data-page="p13"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage r" aria-label="Տետրի էջ 13"><span class="npno">13</span>
+<div class="nl ind"><i>ω</i><sub>3</sub> = <span class="nf"><span><i>V</i><sub>C</sub></span><span><i>l</i><sub>CD</sub></span></span> = <span class="nf"><span>0,819</span><span>0,162</span></span> = <b class="nr">5,06</b> վ<sup>−1</sup> <span class="rot">↺</span></div>
+<div class="nl ind"><i>ω</i><sub>4</sub> = <span class="nf"><span><i>V</i><sub>FE</sub></span><span><i>l</i><sub>EF</sub></span></span> = <span class="nf"><span>0,905</span><span>0,2</span></span> = <b class="nr">4,76</b> վ<sup>−1</sup> <span class="rot">↻</span></div>
+<table class="ntbl"><thead>
+<tr><th rowspan="2"><i>i</i></th><th><i>V</i><sub>C</sub></th><th><i>V</i><sub>E</sub></th><th><i>V</i><sub>F</sub></th><th><i>V</i><sub>CB</sub></th><th><i>V</i><sub>FE</sub></th><th><i>V</i><sub>S<sub>2</sub></sub></th><th><i>ω</i><sub>2</sub></th><th><i>ω</i><sub>3</sub></th><th><i>ω</i><sub>4</sub></th></tr>
+<tr><th colspan="6">մ/վ</th><th colspan="3">վ<sup>−1</sup></th></tr></thead><tbody><tr><th>0 (8)</th><td>0,000</td><td>0,000</td><td>0,000</td><td>0,764</td><td>0,000</td><td>0,382</td><td>2,94</td><td>0,00</td><td>0,00</td></tr><tr><th>1</th><td>0,599</td><td>0,666</td><td>0,642</td><td>0,367</td><td>0,654</td><td>0,662</td><td>1,41</td><td>3,70</td><td>3,44</td></tr><tr class=wk><th>2</th><td>0,819</td><td>0,911</td><td>0,608</td><td>0,371</td><td>0,905</td><td>0,770</td><td>1,43</td><td>5,06</td><td>4,76</td></tr><tr><th>3</th><td>0,692</td><td>0,769</td><td>0,254</td><td>0,958</td><td>0,769</td><td>0,550</td><td>3,68</td><td>4,27</td><td>4,05</td></tr><tr><th>4</th><td>0,197</td><td>0,219</td><td>0,024</td><td>0,912</td><td>0,219</td><td>0,322</td><td>3,51</td><td>1,22</td><td>1,15</td></tr><tr><th>5</th><td>0,677</td><td>0,752</td><td>0,167</td><td>0,104</td><td>0,752</td><td>0,720</td><td>0,40</td><td>4,18</td><td>3,96</td></tr><tr><th>6</th><td>0,978</td><td>1,086</td><td>0,668</td><td>0,477</td><td>1,082</td><td>0,845</td><td>1,83</td><td>6,04</td><td>5,69</td></tr><tr><th>7</th><td>0,652</td><td>0,724</td><td>0,694</td><td>0,738</td><td>0,712</td><td>0,607</td><td>2,84</td><td>4,02</td><td>3,75</td></tr></tbody></table>
+<p class="nnote">Ընդգծված տողը՝ հաստ (2-րդ) դիրքը։ Պտտման ուղղությունները (<span class="rot">↻</span> ժամ. սլաքի ուղղությամբ, <span class="rot">↺</span> հակառակ). <i>ω</i><sub>2</sub>: <span class="rot">↺</span> <span class="rot">↺</span> <span class="rot">↻</span> <span class="rot">↻</span> <span class="rot">↻</span> <span class="rot">↻</span> <span class="rot">↺</span> <span class="rot">↺</span>; <i>ω</i><sub>3</sub>: — <span class="rot">↺</span> <span class="rot">↺</span> <span class="rot">↺</span> <span class="rot">↺</span> <span class="rot">↻</span> <span class="rot">↻</span> <span class="rot">↻</span>; <i>ω</i><sub>4</sub>: — <span class="rot">↻</span> <span class="rot">↻</span> <span class="rot">↻</span> <span class="rot">↻</span> <span class="rot">↺</span> <span class="rot">↺</span> <span class="rot">↺</span> (0…7 դիրքեր)։</p>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>ω₃ և ω₄՝ դիրք 2-ի համար</li><li>Աղյուսակը՝ 0–7 դիրքերի արագություններով և ω-ներով</li><li>Պտտման ուղղությունները (↻ / ↺)</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>Աղյուսակի տողերը ներդիրի (13ա) հաշվարկներից են։ Ընդգծված տողը՝ աշխատանքային (2-րդ) դիրքն է։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p13a" aria-labelledby="p13a-h">
+  <div class="tp-head">
+    <div><h2 id="p13a-h">Էջ 13ա</h2><p>Ներդիր. 7-րդ կետը բոլոր դիրքերի համար</p></div>
+    <label class="done"><input type="checkbox" data-page="p13a"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage l wide" aria-label="Տետրի էջ 13ա"><span class="npno">13ա</span>
+<p class="ncap">Ներդիր. 7-րդ կետը բոլոր դիրքերի համար (հատվածները՝ մմ, պլաններից չափված, արագությունները՝ մ/վ, ω-ն՝ վ<sup>−1</sup>, <i>μ</i><sub>v</sub> = 0,01528)</p>
+<div class="nposg"><div class="npos"><h5>Դիրք 0 (8)</h5><p>A, B, C մեկ ուղղի վրա են ⇒ c ≡ p, e ≡ p, f ≡ p</p><p><i>V</i><sub>C</sub> = <i>V</i><sub>E</sub> = <i>V</i><sub>F</sub> = <i>V</i><sub>FE</sub> = 0</p><p>bc = pb = 50 մմ; <i>V</i><sub>CB</sub> = 50·0,01528 = <b class="nr">0,764</b></p><p>ps<sub>2</sub> = 25,0; <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,382</b></p><p><i>ω</i><sub>2</sub> = 0,764/0,2600 = <b class="nr">2,94</b> <span class="rot">↺</span>; <i>ω</i><sub>3</sub> = <i>ω</i><sub>4</sub> = 0</p></div><div class="npos"><h5>Դիրք 1</h5><p>pc = 39,2 → <i>V</i><sub>C</sub> = <b class="nr">0,599</b></p><p>pe = 39,2·1,111 = 43,6 → <i>V</i><sub>E</sub> = <b class="nr">0,666</b></p><p>pf = 42,0 → <i>V</i><sub>F</sub> = <b class="nr">0,642</b> ↓</p><p>ps<sub>2</sub> = 43,3 → <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,662</b></p><p>bc = 24,0 → <i>V</i><sub>CB</sub> = <b class="nr">0,367</b></p><p>ef = 42,8 → <i>V</i><sub>FE</sub> = <b class="nr">0,654</b></p><p><i>ω</i><sub>2</sub> = 0,367/0,2600 = <b class="nr">1,41</b> <span class="rot">↺</span></p><p><i>ω</i><sub>3</sub> = 0,599/0,162 = <b class="nr">3,70</b> <span class="rot">↺</span></p><p><i>ω</i><sub>4</sub> = 0,654/0,2 = <b class="nr">3,44</b> <span class="rot">↻</span></p></div><div class="npos wk"><h5>Դիրք 2</h5><p>pc = 53,6 → <i>V</i><sub>C</sub> = <b class="nr">0,819</b></p><p>pe = 53,6·1,111 = 59,6 → <i>V</i><sub>E</sub> = <b class="nr">0,911</b></p><p>pf = 39,8 → <i>V</i><sub>F</sub> = <b class="nr">0,608</b> ↓</p><p>ps<sub>2</sub> = 50,4 → <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,770</b></p><p>bc = 24,3 → <i>V</i><sub>CB</sub> = <b class="nr">0,371</b></p><p>ef = 59,2 → <i>V</i><sub>FE</sub> = <b class="nr">0,905</b></p><p><i>ω</i><sub>2</sub> = 0,371/0,2600 = <b class="nr">1,43</b> <span class="rot">↻</span></p><p><i>ω</i><sub>3</sub> = 0,819/0,162 = <b class="nr">5,06</b> <span class="rot">↺</span></p><p><i>ω</i><sub>4</sub> = 0,905/0,2 = <b class="nr">4,76</b> <span class="rot">↻</span></p></div><div class="npos"><h5>Դիրք 3</h5><p>pc = 45,3 → <i>V</i><sub>C</sub> = <b class="nr">0,692</b></p><p>pe = 45,3·1,111 = 50,3 → <i>V</i><sub>E</sub> = <b class="nr">0,769</b></p><p>pf = 16,6 → <i>V</i><sub>F</sub> = <b class="nr">0,254</b> ↓</p><p>ps<sub>2</sub> = 36,0 → <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,550</b></p><p>bc = 62,7 → <i>V</i><sub>CB</sub> = <b class="nr">0,958</b></p><p>ef = 50,3 → <i>V</i><sub>FE</sub> = <b class="nr">0,769</b></p><p><i>ω</i><sub>2</sub> = 0,958/0,2600 = <b class="nr">3,68</b> <span class="rot">↻</span></p><p><i>ω</i><sub>3</sub> = 0,692/0,162 = <b class="nr">4,27</b> <span class="rot">↺</span></p><p><i>ω</i><sub>4</sub> = 0,769/0,2 = <b class="nr">4,05</b> <span class="rot">↻</span></p></div><div class="npos"><h5>Դիրք 4</h5><p>pc = 12,9 → <i>V</i><sub>C</sub> = <b class="nr">0,197</b></p><p>pe = 12,9·1,111 = 14,3 → <i>V</i><sub>E</sub> = <b class="nr">0,219</b></p><p>pf = 1,6 → <i>V</i><sub>F</sub> = <b class="nr">0,024</b> ↓</p><p>ps<sub>2</sub> = 21,1 → <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,322</b></p><p>bc = 59,7 → <i>V</i><sub>CB</sub> = <b class="nr">0,912</b></p><p>ef = 14,3 → <i>V</i><sub>FE</sub> = <b class="nr">0,219</b></p><p><i>ω</i><sub>2</sub> = 0,912/0,2600 = <b class="nr">3,51</b> <span class="rot">↻</span></p><p><i>ω</i><sub>3</sub> = 0,197/0,162 = <b class="nr">1,22</b> <span class="rot">↺</span></p><p><i>ω</i><sub>4</sub> = 0,219/0,2 = <b class="nr">1,15</b> <span class="rot">↻</span></p></div><div class="npos"><h5>Դիրք 5</h5><p>pc = 44,3 → <i>V</i><sub>C</sub> = <b class="nr">0,677</b></p><p>pe = 44,3·1,111 = 49,2 → <i>V</i><sub>E</sub> = <b class="nr">0,752</b></p><p>pf = 10,9 → <i>V</i><sub>F</sub> = <b class="nr">0,167</b> ↑</p><p>ps<sub>2</sub> = 47,1 → <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,720</b></p><p>bc = 6,8 → <i>V</i><sub>CB</sub> = <b class="nr">0,104</b></p><p>ef = 49,2 → <i>V</i><sub>FE</sub> = <b class="nr">0,752</b></p><p><i>ω</i><sub>2</sub> = 0,104/0,2600 = <b class="nr">0,40</b> <span class="rot">↻</span></p><p><i>ω</i><sub>3</sub> = 0,677/0,162 = <b class="nr">4,18</b> <span class="rot">↻</span></p><p><i>ω</i><sub>4</sub> = 0,752/0,2 = <b class="nr">3,96</b> <span class="rot">↺</span></p></div><div class="npos"><h5>Դիրք 6</h5><p>pc = 64,0 → <i>V</i><sub>C</sub> = <b class="nr">0,978</b></p><p>pe = 64,0·1,111 = 71,1 → <i>V</i><sub>E</sub> = <b class="nr">1,086</b></p><p>pf = 43,7 → <i>V</i><sub>F</sub> = <b class="nr">0,668</b> ↑</p><p>ps<sub>2</sub> = 55,3 → <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,845</b></p><p>bc = 31,2 → <i>V</i><sub>CB</sub> = <b class="nr">0,477</b></p><p>ef = 70,8 → <i>V</i><sub>FE</sub> = <b class="nr">1,082</b></p><p><i>ω</i><sub>2</sub> = 0,477/0,2600 = <b class="nr">1,83</b> <span class="rot">↺</span></p><p><i>ω</i><sub>3</sub> = 0,978/0,162 = <b class="nr">6,04</b> <span class="rot">↻</span></p><p><i>ω</i><sub>4</sub> = 1,082/0,2 = <b class="nr">5,69</b> <span class="rot">↺</span></p></div><div class="npos"><h5>Դիրք 7</h5><p>pc = 42,7 → <i>V</i><sub>C</sub> = <b class="nr">0,652</b></p><p>pe = 42,7·1,111 = 47,4 → <i>V</i><sub>E</sub> = <b class="nr">0,724</b></p><p>pf = 45,4 → <i>V</i><sub>F</sub> = <b class="nr">0,694</b> ↑</p><p>ps<sub>2</sub> = 39,7 → <i>V</i><sub>S<sub>2</sub></sub> = <b class="nr">0,607</b></p><p>bc = 48,3 → <i>V</i><sub>CB</sub> = <b class="nr">0,738</b></p><p>ef = 46,6 → <i>V</i><sub>FE</sub> = <b class="nr">0,712</b></p><p><i>ω</i><sub>2</sub> = 0,738/0,2600 = <b class="nr">2,84</b> <span class="rot">↺</span></p><p><i>ω</i><sub>3</sub> = 0,652/0,162 = <b class="nr">4,02</b> <span class="rot">↻</span></p><p><i>ω</i><sub>4</sub> = 0,712/0,2 = <b class="nr">3,75</b> <span class="rot">↺</span></p></div></div>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>Յուրաքանչյուր դիրքի համար՝ չափված հատվածները և արագությունները</li><li>ω₂, ω₃, ω₄ և նրանց ուղղությունները</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>Սա էջ 13-ի աղյուսակի հաշվարկն է։ Եթե դասախոսը չի պահանջում բոլոր դիրքերի մանրամասն հաշվարկը, կարող եք այն անել սևագրում և տետրում գրել միայն աղյուսակը։ Հատվածները չափեք թերթ 2-ի համապատասխան պլանից։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p14" aria-labelledby="p14-h">
+  <div class="tp-head">
+    <div><h2 id="p14-h">Էջ 14</h2><p>§3. արագացումների պլանի սկիզբը</p></div>
+    <label class="done"><input type="checkbox" data-page="p14"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage l" aria-label="Տետրի էջ 14"><span class="npno">14</span>
+<h4 class="nsec">§3. Արագացումների պլանի կառուցում</h4>
+<p class="ntext">Այս կառուցումը կատարում ենք 2-րդ դիրքի համար (աշխատանքային դիրք)։</p>
+<div class="nl "><span class="nn">1)</span> <span class="ov"><i>a</i></span><sub>B</sub> = <span class="ov"><i>a</i></span><sub>B</sub><sup>n</sup> + <span class="ov"><i>a</i></span><sub>B</sub><sup>t</sup></div>
+<div class="nl ind"><i>a</i><sub>B</sub><sup>n</sup> = <i>ω</i><sub>1</sub><sup>2</sup>·<i>l</i><sub>AB</sub> = 20,94<sup>2</sup>·0,0365 = <b class="nr">16,00</b> մ/վ<sup>2</sup>; &nbsp; <span class="ov"><i>a</i></span><sub>B</sub><sup>n</sup> (B → A)</div>
+<div class="nl ind"><i>a</i><sub>B</sub><sup>t</sup> = <i>ε</i><sub>1</sub>·<i>l</i><sub>AB</sub> = <span class="nf"><span>d<i>ω</i><sub>1</sub></span><span>dt</span></span>·<i>l</i><sub>AB</sub> = 0 &nbsp; (քանի որ <i>ω</i><sub>1</sub> = const)</div>
+<div class="nl ind"><span class="ov"><i>a</i></span><sub>B</sub> = <span class="ov"><i>a</i></span><sub>B</sub><sup>n</sup></div>
+<div class="nl "><span class="nn">2)</span> <span class="ov"><i>a</i></span><sub>C</sub> = <span class="ov"><i>a</i></span><sub>B</sub> + <span class="ov"><i>a</i></span><sub>CB</sub><sup>n</sup> + <span class="ov"><i>a</i></span><sub>CB</sub><sup>t</sup> &nbsp;(1)</div>
+<table class="nsign"><thead><tr><th></th><th><span class="ov"><i>a</i></span><sub>C</sub></th><th><span class="ov"><i>a</i></span><sub>B</sub></th><th><span class="ov"><i>a</i></span><sub>CB</sub><sup>n</sup></th><th><span class="ov"><i>a</i></span><sub>CB</sub><sup>t</sup></th></tr></thead><tbody><tr><th>Մեծ.</th><td>−</td><td>+</td><td>+</td><td>−</td></tr><tr><th>ուղղ.</th><td>−</td><td>B→A</td><td>C→B</td><td>⊥BC</td></tr></tbody></table>
+<div class="nl ind"><i>a</i><sub>CB</sub><sup>n</sup> = <i>ω</i><sub>2</sub><sup>2</sup>·<i>l</i><sub>BC</sub> = 1,43<sup>2</sup>·0,2600 = <b class="nr">0,53</b> մ/վ<sup>2</sup></div>
+<div class="nl "><span class="ov"><i>a</i></span><sub>C</sub> = <span class="ov"><i>a</i></span><sub>D</sub> + <span class="ov"><i>a</i></span><sub>CD</sub><sup>n</sup> + <span class="ov"><i>a</i></span><sub>CD</sub><sup>t</sup> &nbsp;(2)</div>
+<table class="nsign"><thead><tr><th></th><th><span class="ov"><i>a</i></span><sub>C</sub></th><th><span class="ov"><i>a</i></span><sub>D</sub></th><th><span class="ov"><i>a</i></span><sub>CD</sub><sup>n</sup></th><th><span class="ov"><i>a</i></span><sub>CD</sub><sup>t</sup></th></tr></thead><tbody><tr><th>Մեծ.</th><td>−</td><td>0</td><td>+</td><td>−</td></tr><tr><th>ուղղ.</th><td>−</td><td>(−)</td><td>C→D</td><td>⊥CD</td></tr></tbody></table>
+<div class="nl ind"><i>a</i><sub>CD</sub><sup>n</sup> = <i>ω</i><sub>3</sub><sup>2</sup>·<i>l</i><sub>CD</sub> = 5,06<sup>2</sup>·0,162 = <b class="nr">4,15</b> մ/վ<sup>2</sup></div>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>§3 վերնագիրը, «դիրք 2-ի համար»</li><li>1) a<sub>B</sub>, ինչու է a<sub>B</sub><sup>t</sup> = 0</li><li>2) C կետի երկու վեկտորական հավասարումը՝ նշանների աղյուսակներով</li><li>a<sub>CB</sub><sup>n</sup> և a<sub>CD</sub><sup>n</sup></li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>ω₂ և ω₃ արժեքները վերցրեք էջ 12–13-ից (դիրք 2)։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p15" aria-labelledby="p15-h">
+  <div class="tp-head">
+    <div><h2 id="p15-h">Էջ 15</h2><p>§3. մասշտաբը և պլանի կառուցումը</p></div>
+    <label class="done"><input type="checkbox" data-page="p15"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage r" aria-label="Տետրի էջ 15"><span class="npno">15</span>
+<div class="nl "><span class="ov"><i>a</i></span><sub>B</sub> + <span class="ov"><i>a</i></span><sub>CB</sub><sup>n</sup> + <span class="ov"><i>a</i></span><sub>CB</sub><sup>t</sup> = <span class="ov"><i>a</i></span><sub>CD</sub><sup>n</sup> + <span class="ov"><i>a</i></span><sub>CD</sub><sup>t</sup> &nbsp;(3)</div>
+<div class="nl "><span class="nn">3)</span> <i>μ</i><sub>a</sub> = <span class="nf"><span><i>a</i><sub>B</sub></span><span>πb</span></span> = <span class="nf"><span><i>a</i><sub>B</sub><sup>n</sup></span><span>πb</span></span> = <span class="nf"><span>16,00</span><span>70</span></span> = <b class="nr">0,2286</b> [<span class="nf"><span>մ·վ<sup>−2</sup></span><span>մմ</span></span>]; &nbsp; ընդ. <u>πb = 70 մմ</u></div>
+<div class="nl ind">bn<sub>2</sub> = <span class="nf"><span><i>a</i><sub>CB</sub><sup>n</sup></span><span><i>μ</i><sub>a</sub></span></span> = <span class="nf"><span>0,53</span><span>0,2286</span></span> = <b class="nr">2,3</b> [մմ]</div>
+<div class="nl ind">πn<sub>3</sub> = <span class="nf"><span><i>a</i><sub>CD</sub><sup>n</sup></span><span><i>μ</i><sub>a</sub></span></span> = <span class="nf"><span>4,15</span><span>0,2286</span></span> = <b class="nr">18,2</b> [մմ]</div>
+<div class="nl "><span class="nn">4)</span> <span class="nf"><span><i>a</i><sub>C</sub></span><span><i>l</i><sub>CD</sub></span></span> = <span class="nf"><span><i>a</i><sub>E</sub></span><span><i>l</i><sub>DE</sub></span></span>; &nbsp; <span class="nf"><span>πc</span><span>CD</span></span> = <span class="nf"><span>πe</span><span>DE</span></span> ⇒</div>
+<div class="nl ind">πe = (πc)·<span class="nf"><span>DE</span><span>CD</span></span> = 18,4·1,111 = <b class="nr">20,4</b> մմ &nbsp;(4)</div>
+<div class="nl "><span class="nn">5)</span> ∠cπe = <i>α</i> = 50° &nbsp; (c → π → e, ժամ. սլաքի ուղղությամբ)</div>
+<div class="nl "><span class="nn">6)</span> <span class="ov"><i>a</i></span><sub>F</sub> = <span class="ov"><i>a</i></span><sub>E</sub> + <span class="ov"><i>a</i></span><sub>FE</sub><sup>n</sup> + <span class="ov"><i>a</i></span><sub>FE</sub><sup>t</sup></div>
+<table class="nsign"><thead><tr><th></th><th><span class="ov"><i>a</i></span><sub>F</sub></th><th><span class="ov"><i>a</i></span><sub>E</sub></th><th><span class="ov"><i>a</i></span><sub>FE</sub><sup>n</sup></th><th><span class="ov"><i>a</i></span><sub>FE</sub><sup>t</sup></th></tr></thead><tbody><tr><th>Մեծ.</th><td>−</td><td>+</td><td>+</td><td>−</td></tr><tr><th>ուղղ.</th><td>∥yy</td><td>+</td><td>F→E</td><td>⊥EF</td></tr></tbody></table>
+<div class="nl ind"><i>a</i><sub>FE</sub><sup>n</sup> = <i>ω</i><sub>4</sub><sup>2</sup>·<i>l</i><sub>EF</sub> = 4,76<sup>2</sup>·0,2 = <b class="nr">4,30</b> մ/վ<sup>2</sup></div>
+<div class="nl ind">en<sub>4</sub> = <span class="nf"><span><i>a</i><sub>FE</sub><sup>n</sup></span><span><i>μ</i><sub>a</sub></span></span> = <span class="nf"><span>4,30</span><span>0,2286</span></span> = <b class="nr">18,8</b> [մմ]</div>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>(3) հավասարումը, 3) μ<sub>a</sub>, πb = 70 մմ</li><li>bn₂ և πn₃ հատվածները (մմ)</li><li>4) πe՝ նմանությամբ, 5) ∠cπe = 50°</li><li>6) a<sub>F</sub>-ի հավասարումը, a<sub>FE</sub><sup>n</sup>, en₄</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>bn₂, πn₃, en₄ հատվածները <b>հաշվվում են</b> (չեն չափվում). դրանցով կառուցեք արագացումների պլանը թերթ 1-ի աջ ներքևում։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p16" aria-labelledby="p16-h">
+  <div class="tp-head">
+    <div><h2 id="p16-h">Էջ 16</h2><p>§3. արագացումները և անկյունային արագացումները</p></div>
+    <label class="done"><input type="checkbox" data-page="p16"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage l" aria-label="Տետրի էջ 16"><span class="npno">16</span>
+<div class="nl "><i>a</i><sub>C</sub> = (πc)·<i>μ</i><sub>a</sub> = 18,4·0,2286 = <b class="nr">4,21</b> մ/վ<sup>2</sup></div>
+<div class="nl "><i>a</i><sub>E</sub> = (πe)·<i>μ</i><sub>a</sub> = 20,4·0,2286 = <b class="nr">4,66</b> մ/վ<sup>2</sup></div>
+<div class="nl "><i>a</i><sub>F</sub> = (πf)·<i>μ</i><sub>a</sub> = 34,2·0,2286 = <b class="nr">7,82</b> մ/վ<sup>2</sup> ↑</div>
+<div class="nl "><i>a</i><sub>CB</sub><sup>t</sup> = (n<sub>2</sub>c)·<i>μ</i><sub>a</sub> = 87,7·0,2286 = <b class="nr">20,05</b> մ/վ<sup>2</sup></div>
+<div class="nl "><i>a</i><sub>CD</sub><sup>t</sup> = (n<sub>3</sub>c)·<i>μ</i><sub>a</sub> = 3,0·0,2286 = <b class="nr">0,69</b> մ/վ<sup>2</sup></div>
+<div class="nl "><i>a</i><sub>FE</sub><sup>t</sup> = (n<sub>4</sub>f)·<i>μ</i><sub>a</sub> = 4,2·0,2286 = <b class="nr">0,96</b> մ/վ<sup>2</sup></div>
+<div class="nl opt"><i>a</i><sub>S<sub>2</sub></sub> = (πs<sub>2</sub>)·<i>μ</i><sub>a</sub> = 26,4·0,2286 = <b class="nr">6,04</b> մ/վ<sup>2</sup></div>
+<div class="nl "><i>ε</i><sub>2</sub> = <span class="nf"><span><i>a</i><sub>CB</sub><sup>t</sup></span><span><i>l</i><sub>BC</sub></span></span> = <span class="nf"><span>20,05</span><span>0,2600</span></span> = <b class="nr">77,1</b> վ<sup>−2</sup> <span class="rot">↻</span>; &nbsp; <i>ε</i><sub>3</sub> = <span class="nf"><span><i>a</i><sub>CD</sub><sup>t</sup></span><span><i>l</i><sub>CD</sub></span></span> = <span class="nf"><span>0,69</span><span>0,162</span></span> = <b class="nr">4,3</b> վ<sup>−2</sup></div>
+<div class="nl "><i>ε</i><sub>4</sub> = <span class="nf"><span><i>a</i><sub>FE</sub><sup>t</sup></span><span><i>l</i><sub>EF</sub></span></span> = <span class="nf"><span>0,96</span><span>0,2</span></span> = <b class="nr">5,1</b> վ<sup>−2</sup> <span class="rot">↻</span></div>
+<p class="nnote"><i>a</i><sub>S<sub>2</sub></sub>-ի տողը օրինակում չկա, բայց պետք կգա ուժային հաշվարկում (իներցիայի ուժ)։ n<sub>3</sub>c-ն և n<sub>4</sub>f-ը գրեթե զրո են, որովհետև 2-րդ դիրքում <i>ω</i><sub>3</sub>-ը մոտ է իր առավելագույնին. սա սխալ չէ։</p>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>a<sub>C</sub>, a<sub>E</sub>, a<sub>F</sub>, a<sub>S₂</sub></li><li>Շոշափող արագացումները a<sup>t</sup></li><li>ε₂, ε₃, ε₄ և նրանց ուղղությունները</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>πc, πf, πs₂, n₂c, n₃c, n₄f հատվածները <b>չափեք թերթ 1-ի</b> արագացումների պլանից։ n₃c-ն և n₄f-ը գրեթե զրո են. սա սխալ չէ։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p17" aria-labelledby="p17-h">
+  <div class="tp-head">
+    <div><h2 id="p17-h">Էջ 17</h2><p>§4. բերված մոմենտի բանաձևը</p></div>
+    <label class="done"><input type="checkbox" data-page="p17"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage r" aria-label="Տետրի էջ 17"><span class="npno">17</span>
+<h4 class="nsec">§4. Բերված մոմենտի որոշումը և նրա գրաֆիկի կառուցումը</h4>
+<p class="ntext">Բերման օղակը՝ 1 շուռտվիկը։ Բերված մոմենտի հզորությունը հավասար է արտաքին ուժերի հզորությունների գումարին.</p>
+<div class="nl "><i>M</i><sub>P</sub>·<i>ω</i><sub>1</sub> = Σ <i>F</i><sub>i</sub>·<i>V</i><sub>i</sub>·cos <i>α</i><sub>i</sub></div>
+<div class="nl "><span class="nn">1)</span> <i>M</i><sub>P</sub><sub>j</sub> = <i>G</i><sub>2</sub>·<span class="nf"><span><i>V</i><sub>S<sub>2</sub></sub>·cos <i>α</i><sub>2</sub></span><span><i>ω</i><sub>1</sub></span></span> + <i>G</i><sub>5</sub>·<span class="nf"><span><i>V</i><sub>F</sub>·cos <i>α</i><sub>5</sub></span><span><i>ω</i><sub>1</sub></span></span> − <i>F</i><sub>r</sub>·<span class="nf"><span><i>V</i><sub>F</sub></span><span><i>ω</i><sub>1</sub></span></span></div>
+<div class="nl ind"><i>G</i><sub>2</sub> = 40 Ն; &nbsp;<i>G</i><sub>5</sub> = 165 Ն; &nbsp;<i>ω</i><sub>1</sub> = 20,94 վ<sup>−1</sup></div>
+<div class="nl ind sm"><i>α</i><sub>5</sub> = 0° (1–4 դիրքեր, սողնակն իջնում է), <i>α</i><sub>5</sub> = 180° (5–7 դիրքեր)</div>
+<div class="nl "><span class="nn">2)</span> <i>F</i><sub>r</sub> = <i>y</i><sub>j</sub>·<i>μ</i><sub>F</sub>; &nbsp;<i>μ</i><sub>F</sub> = <span class="nf"><span><i>F</i><sub>re</sub><sup>max</sup></span><span><i>y</i><sub>max</sub></span></span> = <span class="nf"><span>9000</span><span>45</span></span> = <b class="nr">200</b> Ն/մմ</div>
+<div class="nl ind sm"><i>F</i><sub>r</sub> ≠ 0 միայն 2, 3, 4 դիրքերում. ուղղված է վեր, <i>V</i><sub>F</sub>-ը՝ ներքև (cos 180° = −1)</div>
+<div class="nl "><span class="nn">3)</span> <i>V</i><sub>S<sub>2</sub></sub>·cos <i>α</i><sub>2</sub> = (ps<sub>2</sub>·cos <i>α</i><sub>2</sub>)·<i>μ</i><sub>v</sub>; &nbsp;<i>V</i><sub>F</sub> = (pf)·<i>μ</i><sub>v</sub></div>
+<div class="nl ind sm">ps<sub>2</sub>·cos <i>α</i><sub>2</sub>՝ ps<sub>2</sub>-ի պրոյեկցիան ուղղաձիգի վրա (p-ից ներքև՝ +, վերև՝ −), մմ</div>
+<div class="nl ind"><span class="nf"><span><i>μ</i><sub>v</sub></span><span><i>ω</i><sub>1</sub></span></span> = <span class="nf"><span>0,01528</span><span>20,94</span></span> = <b class="nr">0,0007297</b> մ/մմ</div>
+<div class="nl ind"><i>M</i><sub>P</sub><sub>j</sub> = 0,0007297·[40·(ps<sub>2</sub>cos <i>α</i><sub>2</sub>) ± 165·(pf) − <i>F</i><sub>r</sub>·(pf)] &nbsp;(5)</div>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>§4 վերնագիրը և հզորությունների հավասարությունը</li><li>1) M<sub>P</sub>-ի բանաձևը G₂, G₅, F<sub>r</sub> ուժերով</li><li>2) μ<sub>F</sub> և F<sub>r</sub> = y<sub>j</sub>·μ<sub>F</sub></li><li>3) V = հատված·μ<sub>V</sub>, μ<sub>V</sub>/ω₁ և (5) բանաձևը</li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>G₂, G₅՝ առաջադրանքի աղյուսակից։ α₅ = 0° 1–4 դիրքերում, 180°՝ 5–7-ում։ F<sub>r</sub> ≠ 0 միայն 2, 3, 4 դիրքերում (1-ում ուժը դեռ չի սկսվել)։</p>
+    </aside>
+  </div>
+</section>
+<section class="tp" id="p18" aria-labelledby="p18-h">
+  <div class="tp-head">
+    <div><h2 id="p18-h">Էջ 18</h2><p>§4. աղյուսակը և մասշտաբները</p></div>
+    <label class="done"><input type="checkbox" data-page="p18"><span>Գրված է</span></label>
+  </div>
+  <div class="tp-grid">
+    <div class="tp-page"><article class="npage l" aria-label="Տետրի էջ 18"><span class="npno">18</span>
+<div class="nl sm">Դիրք 2. <i>M</i><sub>P</sub><sub>2</sub> = 0,0007297·[40·(−14,7) + 165·39,8 − 7760·39,8] = <b class="nr">−221,0</b> Ն·մ</div>
+<table class="ntbl"><thead>
+<tr><th><i>j</i></th><th>ps<sub>2</sub>cos <i>α</i><sub>2</sub></th><th>pf</th><th><i>α</i><sub>5</sub></th><th><i>y</i><sub>j</sub></th><th><i>F</i><sub>r</sub></th><th><i>M</i><sub>P</sub><sub>j</sub></th><th>(<i>M</i><sub>P</sub>)<sub>j</sub><sup>գծ</sup></th></tr>
+<tr><th></th><th>մմ</th><th>մմ</th><th></th><th>մմ</th><th>Ն</th><th>Ն·մ</th><th>մմ</th></tr></thead><tbody><tr><th>0</th><td>−25,0</td><td>0,0</td><td>0°</td><td>0,0</td><td>0</td><td>−0,7</td><td>−0,3</td></tr><tr><th>1</th><td>−25,3</td><td>42,0</td><td>0°</td><td>0,0</td><td>0</td><td>4,3</td><td>1,6</td></tr><tr class=wk><th>2</th><td>−14,7</td><td>39,8</td><td>0°</td><td>38,8</td><td>7760</td><td>−221,0</td><td>−80,1</td></tr><tr><th>3</th><td>+2,1</td><td>16,6</td><td>0°</td><td>42,4</td><td>8480</td><td>−100,7</td><td>−36,5</td></tr><tr><th>4</th><td>+20,3</td><td>1,6</td><td>0°</td><td>37,9</td><td>7580</td><td>−8,1</td><td>−2,9</td></tr><tr><th>5</th><td>+33,9</td><td>10,9</td><td>180°</td><td>0,0</td><td>0</td><td>−0,3</td><td>−0,1</td></tr><tr><th>6</th><td>+18,1</td><td>43,7</td><td>180°</td><td>0,0</td><td>0</td><td>−4,7</td><td>−1,7</td></tr><tr><th>7</th><td>−9,3</td><td>45,4</td><td>180°</td><td>0,0</td><td>0</td><td>−5,7</td><td>−2,1</td></tr><tr><th>8</th><td>−25,0</td><td>0,0</td><td>0°</td><td>0,0</td><td>0</td><td>−0,7</td><td>−0,3</td></tr></tbody></table>
+<div class="nl "><span class="nn">4)</span> <i>μ</i><sub>M</sub> = <span class="nf"><span>|<i>M</i><sub>P</sub>|<sub>max</sub></span><span>80 մմ</span></span> = <span class="nf"><span>221,0</span><span>80</span></span> = <b class="nr">2,76</b> Ն·մ/մմ</div>
+<div class="nl ind"><i>μ</i><sub>φ</sub> = <span class="nf"><span>2π</span><span>160 մմ</span></span> = <span class="nf"><span>2·3,14</span><span>160</span></span> = <b class="nr">0,039</b> ռադ/մմ</div>
+<div class="nl "><span class="nn">5)</span> (<i>M</i><sub>P</sub>)<sub>j</sub><sup>գծ</sup> = <span class="nf"><span><i>M</i><sub>P</sub><sub>j</sub></span><span><i>μ</i><sub>M</sub></span></span> &nbsp;(իր նշանով)</div>
+<p class="nnote">Ընդգծված տողը՝ |<i>M</i><sub>P</sub>|<sub>max</sub>։ Գրաֆիկում φ առանցքը՝ 8 × 20 մմ = 160 մմ, <i>M</i><sub>P</sub>-ի առավելագույնը՝ 80 մմ։</p>
+</article></div>
+    <aside class="tp-tips">
+      <h3>Այս էջում</h3>
+      <ol><li>Դիրք 2-ի հաշվարկը՝ օրինակ</li><li>Աղյուսակը 0–8 դիրքերի համար</li><li>4) μ<sub>M</sub> և μ<sub>φ</sub></li><li>5) գծագրական չափերը (M<sub>P</sub>)<sup>գծ</sup></li></ol>
+      <h3>Որտեղից են թվերը</h3>
+      <p>ps₂·cos α₂-ը <b>չափեք թերթ 2-ի պլաններից</b>. s₂-ից իջեցրեք ուղղահայաց p-ով անցնող ուղղաձիգին (p-ից ներքև՝ +, վերև՝ −)։ pf-ը՝ նույն պլաններից, y<sub>j</sub>-ն՝ թերթ 1-ի F<sub>re</sub> գրաֆիկից։ Ստուգում. 2–4 դիրքերում M<sub>P</sub> &lt; 0, մեծագույնը՝ 2-րդ կամ 3-րդ դիրքում։</p>
+    </aside>
+  </div>
+</section>
+<nav class="endnav" aria-label="Այլ էջեր"><a href="TMM_Variant2.html#sheet1">A3 թերթ 1</a><a href="TMM_Variant2.html#sheet2">A3 թերթ 2</a><a href="bacatrutyun.html">Բացատրություն</a><a href="#top">↑ Վերև</a></nav>
+</main>
+</div>
+<script>
+(() => {
+  const ROOT = document.documentElement, TKEY = 'tmm-theme';
+  const isDark = () => (ROOT.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+  const label = () => document.querySelectorAll('[data-theme-toggle]').forEach(b => { b.textContent = isDark() ? '☀' : '☾'; b.title = isDark() ? 'Լուսավոր ռեժիմ' : 'Մութ ռեժիմ'; });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('[data-theme-toggle]')) return;
+    const t = isDark() ? 'light' : 'dark'; ROOT.setAttribute('data-theme', t);
+    try { localStorage.setItem(TKEY, t); } catch (err) {}
+    label();
+  });
+  label();
+
+  const KEY = 'tmm-variant1-tetr';
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { done = {}; }
+  const boxes = [...document.querySelectorAll('input[data-page]')], prog = document.querySelector('.prog');
+  const paint = () => {
+    boxes.forEach(b => { const a = document.querySelector('[data-nav="' + b.dataset.page + '"]'); if (a) a.classList.toggle('is-done', b.checked); });
+    const k = boxes.filter(b => b.checked).length;
+    if (prog) prog.textContent = k === boxes.length ? '✓ Բոլոր ' + k + ' էջերը գրված են' : 'Գրված է ' + k + ' / ' + boxes.length + ' էջ';
+  };
+  boxes.forEach(b => {
+    b.checked = !!done[b.dataset.page];
+    b.addEventListener('change', () => { if (b.checked) done[b.dataset.page] = 1; else delete done[b.dataset.page]; try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} paint(); });
+  });
+  paint();
+
+  const links = [...document.querySelectorAll('[data-nav]')], side = document.querySelector('.side');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      links.forEach(a => a.setAttribute('aria-current', String(a.dataset.nav === en.target.id)));
+      const cur = links.find(a => a.dataset.nav === en.target.id);
+      if (cur && side && innerWidth <= 900) side.scrollLeft = cur.offsetLeft - (side.clientWidth - cur.offsetWidth) / 2;
+    }), { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('.tp').forEach(s => io.observe(s));
+  }
+})();
+</script>
+</body>
+</html>

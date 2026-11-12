@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Արեն</title>
+<style>
+:root{--bg:#fafafa;--card:#fff;--fg:#1d1d1f;--muted:#666;--line:#e3e3e3;--accent:#1a4fa0}
+@media (prefers-color-scheme:dark){:root{--bg:#141416;--card:#1e1e21;--fg:#eee;--muted:#a0a0a8;--line:#333;--accent:#8ab4f8}}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{display:flex;flex-direction:column;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,sans-serif}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--card)}
+header a.back{color:var(--accent);text-decoration:none;font-size:1.2rem}
+header h1{font-size:1.1rem;margin:0 8px 0 0}
+nav[role=tablist]{display:flex;gap:6px}
+nav button{font:inherit;font-weight:600;padding:7px 16px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);cursor:pointer}
+nav button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){nav button[aria-selected=true]{color:#111}}
+section{flex:1;display:none;min-height:0}
+section.on{display:flex;flex-direction:column}
+iframe{flex:1;width:100%;border:0;background:#fff;min-height:80vh}
+.wrap{max-width:860px;width:100%;margin:0 auto;padding:24px 16px}
+.wrap p{color:var(--muted);margin:0 0 20px}
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+a.card{display:block;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:inherit;text-decoration:none}
+a.card:hover,a.card:focus-visible{border-color:var(--accent);outline:none}
+a.card b{display:block;color:var(--accent);margin-bottom:4px}
+a.card span{color:var(--muted);font-size:.93rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="./" aria-label="Մեքենամասերի տեսություն">←</a>
+  <h1>Արեն</h1>
+  <nav role="tablist">
+    <button role="tab" id="t-meqenamaser" aria-controls="meqenamaser">Մեքենամասեր</button>
+    <button role="tab" id="t-kursayin" aria-controls="kursayin">Կուրսային</button>
+  </nav>
+</header>
+
+<section id="meqenamaser" role="tabpanel" aria-labelledby="t-meqenamaser">
+  <iframe src="aren_hashvark.html" title="Ռեդուկտորի հաշվարկ, Արեն" loading="lazy"></iframe>
+</section>
+
+<section id="kursayin" role="tabpanel" aria-labelledby="t-kursayin">
+  <div class="wrap">
+    <p>ՄՄՏ, առաջադրանք 2, տարբերակ 2 (աղյուսակի 2-րդ տող՝ H<sub>F</sub> = 60 մմ, L<sub>1</sub> = 340 մմ, L<sub>2</sub> = 140 մմ, l<sub>EF</sub> = 190 մմ, l<sub>ED</sub> = 180 մմ, n<sub>1</sub> = 200 պտ/ր, G<sub>2</sub> = 40 Ն, G<sub>5</sub> = 165 Ն, I<sub>S2</sub> = 320·10⁻³ կգ·մ², F<sub>re</sub><sup>max</sup> = 90·10² Ն)</p>
+    <div class="cards">
+      <a class="card" href="../kursayin%20ashxatanq/Variant2/TMM_Variant2.html"><b>Աշխատանքը</b><span>Սինթեզ, արագությունների և արագացումների պլաններ, բերված մոմենտ</span></a>
+      <a class="card" href="../kursayin%20ashxatanq/Variant2/tetr.html"><b>Տետրում գրելու</b><span>Էջ 10–18, տող առ տող, լրացված այս թվերով</span></a>
+      <a class="card" href="../kursayin%20ashxatanq/Variant2/bacatrutyun.html"><b>Բացատրություն</b><span>Քայլ առ քայլ՝ ինչ և ինչու է արվում</span></a>
+      <a class="card" href="../kursayin%20ashxatanq/Variant2/chertej_A3_1.svg"><b>A3 թերթ 1</b><span>Դիրքերի պլան, F<sub>re</sub> գրաֆիկ, արագացումների պլան</span></a>
+      <a class="card" href="../kursayin%20ashxatanq/Variant2/chertej_A3_2.svg"><b>A3 թերթ 2</b><span>8 արագությունների պլան</span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+const tabs = ['meqenamaser', 'kursayin'];
+function show(id) {
+  if (!tabs.includes(id)) id = tabs[0];
+  for (const t of tabs) {
+    document.getElementById(t).classList.toggle('on', t === id);
+    document.getElementById('t-' + t).setAttribute('aria-selected', t === id);
+  }
+}
+for (const t of tabs) document.getElementById('t-' + t).addEventListener('click', () => { history.replaceState(null, '', '#' + t); show(t); });
+addEventListener('hashchange', () => show(location.hash.slice(1)));
+show(location.hash.slice(1));
+</script>
+</body>
+</html>
