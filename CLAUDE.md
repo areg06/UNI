@@ -28,6 +28,7 @@ All user-facing text is in **Armenian**; keep it Armenian.
 |---|---|---|
 | `meqenamaseri tesutyun/` | Մեքենամասերի տեսություն: gear reducer calculation and explanation | https://areg06.github.io/UNI/meqenamaseri%20tesutyun/ |
 | `kursayin ashxatanq/Variant1/` | Կուրսային աշխատանք (ՄՄՏ), variant 1; has its own `CLAUDE.md` with build steps | https://areg06.github.io/UNI/kursayin%20ashxatanq/Variant1/ |
+| `kursayin ashxatanq/Variant2/` | Կուրսային աշխատանք (ՄՄՏ), variant 2 (row 2 of the table) for Aren; same generator as Variant1, see its `CLAUDE.md` | https://areg06.github.io/UNI/kursayin%20ashxatanq/Variant2/ |
 | `nyutagitutyun/` | Նյութագիտություն: lectures 1–7 and the midterm-1 study platform | https://areg06.github.io/UNI/nyutagitutyun/ |
 | `gazodinamika/` | Գազադինամիկա: Armenian translation of the textbook (`translation/`) and the midterm-1 study platform (built by `midterm1/build.py`) | https://areg06.github.io/UNI/gazodinamika/ |
 | `jermatexnika/` | Ջերմատեխնիկա: practical work, ideal-gas cycle calculation (variant 10: p=const, dq=0, v=const, T=const); constants cp=1, cv=0.71, R=287, k=1.4 | https://areg06.github.io/UNI/jermatexnika/ |
@@ -39,5 +40,6 @@ All user-facing text is in **Armenian**; keep it Armenian.
 Listed in the root `.gitignore`:
 - `kursayin ashxatanq/Variant13/`, `Variant13.zip`, and `kursayin ashxatanq/source/` (the variant 7
   generator): other variants, kept only locally.
-- The meqenamaser pages for other students (Yuri, Hovhannes, Aren) were removed from the site
-  on purpose. Don't add them back.
+- The meqenamaser pages for Yuri and Hovhannes were removed from the site on purpose. Don't add them
+  back. Aren's page was restored at the owner's request: `meqenamaseri tesutyun/aren.html` has two tabs,
+  «Մեքենամասեր» (`aren_hashvark.html`, reducer row 5) and «Կուրսային» (links to `kursayin ashxatanq/Variant2/`).
