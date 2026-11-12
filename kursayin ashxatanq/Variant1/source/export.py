@@ -17,7 +17,7 @@ def chrome(args):
 for no, raw in ((1, SH.build('sh')), (2, SH.build2('sh2'))):
     name = f'chertej_A3_{no}'
     svg = raw.replace('<svg class="sheet"', '<svg class="sheet" width="404mm" height="290mm"', 1)
-    svg = svg.replace('<defs>', '<style>' + FONTS + SH.SHEET_CSS.replace('width:100%;height:auto;', '') + '</style><defs>', 1)
+    svg = svg.replace('<defs>', '<style><![CDATA[' + FONTS + SH.SHEET_CSS.replace('width:100%;height:auto;', '') + ']]></style><defs>', 1)
     open(os.path.join(OUT, name + '.svg'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n' + svg)
     png_html = os.path.join(tmp, f'png{no}.html'); pdf_html = os.path.join(tmp, f'pdf{no}.html')
     open(png_html, 'w').write('<!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:#FFFDF8}svg{display:block}</style>'
