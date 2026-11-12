@@ -50,3 +50,7 @@ python3 export.py     # -> ../chertej_A3_{1,2}.svg (+ .png/.pdf only on the owne
   the SVGs get regenerated — say so, and tell the owner to run `python3 export.py` on the Mac
   to refresh the PNG/PDF.
 - Numbers shown to the reader use a comma decimal separator (Armenian convention) via `calc.n()`.
+
+Note (Variant2): `export.py` falls back to the bundled Chromium (`/opt/pw-browsers/...`) in a cloud
+session. There the PDFs come out fine, but Chrome's `--screenshot` does not; the PNGs were made with a
+Playwright screenshot of the same SVG (1600 × 1149 viewport, device scale 3.75 → 6000 px wide).

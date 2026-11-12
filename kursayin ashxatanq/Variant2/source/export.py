@@ -3,13 +3,14 @@ Run:  python3 export.py      (needs Google Chrome for PNG/PDF)"""
 import os, subprocess, tempfile, shutil
 import sheet as SH
 HERE = os.path.dirname(os.path.abspath(__file__)); OUT = os.path.abspath(os.path.join(HERE, '..'))
-CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+CHROME = next((c for c in ('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+                           '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome') if os.path.exists(c)), '')
 FONTS = "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Noto+Sans+Armenian:wdth,wght@62.5..100,400..700&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');"
 tmp = tempfile.mkdtemp(prefix='chertej_')
 def chrome(args):
     ud = os.path.join(tmp, 'profile')
     try:
-        subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', f'--user-data-dir={ud}',
+        subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-sandbox', f'--user-data-dir={ud}',
                         '--virtual-time-budget=8000'] + args, timeout=60, capture_output=True)
     except subprocess.TimeoutExpired:
         pass   # headless Chrome sometimes writes the file and then does not exit
