@@ -313,7 +313,8 @@ R.update(KM=t(C.KM, 7), ys2=t(_m2['ys2']), pf2=t(_m2['pf']), Fr2=t(_m2['Fr'], 0)
          M2=t(_m2['M']), MMAX=t(C.MP_MAX), MUM=t(C.MU_M, 2), MUPHI=t(C.MU_PHI, 3))
 TXT.update(hsF1=h(M.POS[1]['sF']/M.H, 2), hys2=h(_m2['ys2']), hpf2=h(_m2['pf']), hFr2=h(_m2['Fr'], 0), hM2=h(_m2['M']), hM4=h(_m4['M']), hpf4=h(_m4['pf']))
 from graf import a4_sheet, A4_CSS
-R.update(A4CSS=A4_CSS, K20=t(20/C.OP, 2), OP=str(C.OP), MUA=t(C.MU_A, 2), AR8=t(C.AR[8]), AR8P=t(-C.AR[8]), ACYC=t(C.A_CYCLE, 0), AOV=t(C.A_CYCLE/(2*3.14)),
+import sheet as SH
+R.update(A4CSS=SH.SHEET_CSS + A4_CSS, K20=t(20/C.OP, 2), OP=str(C.OP), MUA=t(C.MU_A, 2), AR8=t(C.AR[8]), AR8P=t(-C.AR[8]), ACYC=t(C.A_CYCLE, 0), AOV=t(C.A_CYCLE/(2*3.14)),
          YMM=t(C.YMM), MM=t(C.M_M), DEMAX=t(C.DE_MAX*C.MU_A), DEMIN=t(C.DE_MIN*C.MU_A), DERANGE=t(C.DE_RANGE))
 TXT.update(YMIDTXT=', '.join(f'{k}–{k+1}: {h(C.YMID[k])}' for k in range(8)), AM3=h(C.AM[3]), DE3=h(C.DE[3]), JMAX=str(C.J_MAX), JMIN=str(C.J_MIN),
            AR3S=('+ ' if C.AR[3] > 0 else '− ') + h(abs(C.AR[3])))

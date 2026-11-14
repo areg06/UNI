@@ -693,8 +693,35 @@ s4 = f'''
 </div>'''
 
 # ---------------- §5 (1.8–1.9): work graphs and kinetic-energy increment, A4 sheet ----------------
-from graf import a4_sheet, A4_CSS
-mu_A = v('μ', 'A'); OPT = str(C.OP); K20 = n(20/C.OP, 2)
+from graf import a4_sheet, A4_CSS, XS as GXS, YM as GYM, YA as GYA, XP as GXP, X0 as GX0
+jm = max(range(9), key=lambda j: abs(C.MP[j]['Mmm'])); km = max(range(8), key=lambda k: abs(C.YMID[k]))
+key3_rows = [
+    ('P', (GXP, GYM), 'P', f'ինտեգրման բևեռ. φ առանցքի վրա, 0-ից {C.OP} մմ ձախ'),
+    ('0', (GXS[0], GYM + C.MP[0]['Mmm']), 'm0', 'M<sub>P</sub>(φ)-ի սկզբնակետը (j = 0)'),
+    (f'{jm}', (GXS[jm], GYM + C.MP[jm]['Mmm']), f'm{jm}', f'|M<sub>P</sub>|<sub>max</sub> = {n(C.MP_MAX)} Ն·մ ({n(C.MP[jm]["Mmm"])} մմ)'),
+    (f'{km}–{km+1} մ', (50 + 20*km, GYM + C.YMID[km]), f'k{km+1}', f'միջնակետ կորի վրա, y<sub>մ</sub> = {n(C.YMID[km])} մմ (հորիզոնականով՝ M առանցքին, ճառագայթ P-ին)'),
+    ('1′', (GXS[1], GYA + C.AR[1]), 'r1', 'A<sub>r</sub>-ի առաջին կետ. 0-ից I ճառագայթին զուգահեռ'),
+    ('8′', (GXS[8], GYA + C.AR[8]), 'r8', f'A<sub>r</sub>-ի վերջը, y<sub>8′</sub> = {n(C.AR[8])} մմ'),
+    ('8″', (GXS[8], GYA + C.AM[8]), 'a8', f'8-ից վեր {n(-C.AR[8])} մմ. A<sub>m</sub>-ի ուղիղը 0 → 8″'),
+    (f'ΔE<sub>max</sub> ({C.J_MAX})', (GXS[C.J_MAX], GYA + C.DE[C.J_MAX]), f'e{C.J_MAX}', f'ΔE-ի առավելագույնը, {n(C.DE_MAX*C.MU_A)} Ջ'),
+    (f'ΔE<sub>min</sub> ({C.J_MIN})', (GXS[C.J_MIN], GYA + C.DE[C.J_MIN]), f'e{C.J_MIN}', f'ΔE-ի նվազագույնը, {n(C.DE_MIN*C.MU_A)} Ջ'),
+    ('M<sub>m</sub>', (GX0, GYM + C.YMM), 'Mm', f'M առանցքի հատումը P-ից A<sub>m</sub>-ին զուգահեռ ճառագայթով, y<sub>Mm</sub> = {n(C.YMM)} մմ'),
+]
+key3_tbl = ''.join(f'<tr data-pt="{k}"><th scope="row">{lab}</th>{pt_sheet(p)}<td class="t">{note}</td></tr>' for lab, p, k, note in key3_rows)
+order3_items = [
+    f'Թերթը դրեք ուղղաձիգ (A4). O(0; 0)՝ ցանցի ներքևի ձախ անկյունը, ցանցը 200 × 280 մմ։ Ներքևի աջ անկյունում թողեք տեղ հիմնական մակագրության համար (Թերթ 3, A4)։',
+    f'M<sub>P</sub>-ի φ առանցքը՝ հորիզոնական y = {n(GYM,0)}, x = 0-ից 200։ M առանցքը՝ ուղղաձիգ x = {n(GX0,0)}. վերև՝ +, ներքև՝ −։ Նշեք <b>P({n(GXP,0)}; {n(GYM,0)})</b>։',
+    f'φ առանցքի վրա նշեք 0…8 կետերը x = {n(GXS[0],0)}, {n(GXS[1],0)}, … {n(GXS[8],0)} (20 մմ-ը մեկ) և տարեք ուղղահայացներ։',
+    f'Նշեք M<sub>P</sub>(φ)-ի կետերը՝ (x<sub>j</sub>; {n(GYM,0)} + y<sub>j</sub>), y<sub>j</sub> = M<sub>j</sub>/{n(C.MU_M,2)} (§4-ի աղյուսակի վերջին սյունակ). օր.՝ j = {jm}՝ ({n(GXS[jm],0)}; {n(GYM + C.MP[jm]["Mmm"])})։ Միացրեք հարթ կորով։',
+    f'Միջակայքերի միջնակետերում (x = {n(50,0)}, {n(70,0)}, … {n(190,0)}) կորից կարդացեք y<sub>մ</sub>, տարեք հորիզոնական մինչև M առանցքը և այդ կետերը միացրեք P-ի հետ՝ I…VIII ճառագայթները։',
+    f'A առանցքի φ-ն՝ y = {n(GYA,0)} ({C.A_GAP} մմ ցածր), նույն x<sub>j</sub>-երով ուղղահայացներ։ A առանցքը M առանցքի շարունակությունն է (x = {n(GX0,0)})։',
+    f'0({n(GXS[0],0)}; {n(GYA,0)})-ից տարեք I-ին զուգահեռ մինչև x = {n(GXS[1],0)}՝ <b>1′({n(GXS[1],0)}; {n(GYA + C.AR[1])})</b>. 1′-ից՝ II-ին զուգահեռ և այլն մինչև <b>8′({n(GXS[8],0)}; {n(GYA + C.AR[8])})</b>։ Միացրեք հարթ կորով՝ A<sub>r</sub>(φ)։',
+    f'8-ից վեր դրեք {n(-C.AR[8])} մմ՝ <b>8″({n(GXS[8],0)}; {n(GYA + C.AM[8])})</b>։ 0-ն 8″-ի հետ միացրեք ուղիղով՝ A<sub>m</sub>(φ)։',
+    f'ΔE-ի կետերը՝ (x<sub>j</sub>; {n(GYA,0)} + y<sub>ΔE</sub>), y<sub>ΔE</sub> = y<sub>Am</sub> + y<sub>Ar</sub> (աղյուսակը վերևում). օր.՝ j = {C.J_MIN}՝ ({n(GXS[C.J_MIN],0)}; {n(GYA + C.DE[C.J_MIN])})։ Միացրեք հարթ կորով՝ ΔE(φ)։',
+    f'P-ից տարեք ճառագայթ A<sub>m</sub>-ին զուգահեռ. M առանցքի հետ հատումը <b>({n(GX0,0)}; {n(GYM + C.YMM)})</b> է (y<sub>Mm</sub> = {n(C.YMM)} մմ)։ Դրանով տարեք հորիզոնական գիծ՝ M<sub>m</sub> = {n(C.M_M)} Ն·մ։',
+    f'Գրեք մասշտաբները ({v("μ","M")} = {n(C.MU_M,2)}, {v("μ","φ")} = {n(C.MU_PHI,3)}, {v("μ","A")} = {n(C.MU_A,2)} Ջ/մմ), կորերի անունները և լրացրեք հիմնական մակագրությունը (Թերթ 3, A4)։',
+]
+mu_A =v('μ', 'A'); OPT = str(C.OP); K20 = n(20/C.OP, 2)
 a_rows = ''.join(
     f'<tr><th scope="row">{j}</th><td class="n">{n(C.YMID[j-1]) if j else ""}</td><td class="n">{n(C.AR[j])}</td><td class="n">{n(C.AM[j])}</td>'
     f'<td class="n">{n(C.DE[j])}</td><td class="n"><b>{n(C.DE[j]*C.MU_A)}</b></td></tr>' for j in range(9))
@@ -729,8 +756,24 @@ s5 = f'''
     <thead><tr><th scope="col">j</th><th scope="col">y<sub>մ</sub></th><th scope="col">y<sub>j′</sub> (A<sub>r</sub>)</th><th scope="col">y<sub>Am</sub></th><th scope="col">y<sub>ΔE</sub></th><th scope="col">ΔE, Ջ</th></tr></thead>
     <tbody>{a_rows}</tbody>
   </table></div>
-  <figure class="fig a4fig">{a4_sheet()}<figcaption>A4 թերթը՝ 1 մմ = 1 մմ (թղթի վրա տպելիս)։ Կապույտ՝ M<sub>P</sub>(φ) և A<sub>r</sub>(φ), կարմիր՝ A<sub>m</sub>(φ), կանաչ կետագծով՝ ΔE(φ)։</figcaption></figure>
-  <p class="sheet-bar"><a href="chertej_A4_graf.pdf">Ներբեռնել PDF (A4)</a> · <a href="chertej_A4_graf.png">PNG</a> · <a href="chertej_A4_graf.svg">SVG</a></p>
+  <h3 class="bh">5) A4 թերթը</h3>
+  <p class="hint">1 մմ = 1 մմ թղթի վրա։ Սև՝ M<sub>P</sub>(φ), A<sub>r</sub>(φ), A<sub>m</sub>(φ), կապույտ՝ ΔE(φ), մոխրագույն կետագծեր՝ կառուցում, կետ-գծիկ՝ M<sub>m</sub>։ O(0; 0)՝ ցանցի ներքևի ձախ անկյունը։</p>
+  <div class="sheet-bar"><span class="dl"><a href="chertej_A4_graf.pdf">PDF (A4)</a> · <a href="chertej_A4_graf.png">PNG</a> · <a href="chertej_A4_graf.svg">SVG</a></span>{zoom(3)}</div>
+  <div class="a4frame">{frame(3, a4_sheet())}</div>
+  <div class="split">
+    <div>
+      <h3 class="bh">Գծելու հերթականությունը</h3>
+      {order_list(3, order3_items)}
+    </div>
+    <div>
+      <h3 class="bh">Հիմնական կետերը</h3>
+      <p class="hint">Տողի վրա մկնիկը պահելիս կետը նշվում է թերթի վրա։</p>
+      <div class="tscroll"><table class="coords">
+        <thead><tr><th scope="col">Կետ</th><th scope="col">x, մմ</th><th scope="col">y, մմ</th><th scope="col">Ինչ է</th></tr></thead>
+        <tbody>{key3_tbl}</tbody>
+      </table></div>
+    </div>
+  </div>
   <aside class="aside">
     <p class="aside-h">Ուշադրություն</p>
     <p>Միջնակետերի օրդինատները y<sub>մ</sub> վերցված են հաշվարկով գծված կորից. ձեր թերթի վրա դրանք չափելիս կարող եք ստանալ ±1 մմ տարբերություն։ Այդ դեպքում y<sub>j′</sub> շղթան (4-րդ կետի բանաձևով) և դրանից հետո A<sub>m</sub>, ΔE, A, M<sub>m</sub> արժեքները վերահաշվեք։ Ստուգեք՝ M<sub>m</sub>-ը պետք է մոտ լինի A/2π-ին։</p>
@@ -991,8 +1034,8 @@ JS = r'''
       const m = svg.getScreenCTM(); if (!m) return;
       pt.x = e.clientX; pt.y = e.clientY;
       const p = pt.matrixTransform(m.inverse());
-      const x = p.x, y = 270 - p.y;
-      ro.textContent = (x >= 0 && x <= 380 && y >= 0 && y <= 270) ? 'x = ' + fmt(x) + ',  y = ' + fmt(y) + ' մմ' : 'Կուրսորը ցանցից դուրս է';
+      const gw = +svg.dataset.gw || 380, gh = +svg.dataset.gh || 270, x = p.x, y = gh - p.y;
+      ro.textContent = (x >= 0 && x <= gw && y >= 0 && y <= gh) ? 'x = ' + fmt(x) + ',  y = ' + fmt(y) + ' մմ' : 'Կուրսորը ցանցից դուրս է';
     });
   });
   let rings = [];
@@ -1001,7 +1044,7 @@ JS = r'''
     row.addEventListener('pointerenter', () => {
       clear();
       row.dataset.pt.split(' ').forEach(id => {
-        const el = document.getElementById('sh-pt-' + id) || document.getElementById('sh2-pt-' + id); if (!el) return;
+        const el = document.getElementById('sh-pt-' + id) || document.getElementById('sh2-pt-' + id) || document.getElementById('sh3-pt-' + id); if (!el) return;
         const c = document.createElementNS(NS, 'circle');
         c.setAttribute('class', 'ring'); c.setAttribute('r', '2.8');
         c.setAttribute('cx', el.getAttribute('cx')); c.setAttribute('cy', el.getAttribute('cy'));
@@ -1155,7 +1198,7 @@ FRAME_JS = r'''
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Noto+Sans+Armenian:wdth,wght@62.5..100,400..700&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">'
 
 html = (f'<title>Առաջադրանք 2, տարբերակ {VAR}</title>\n<meta name="description" content="ՄՄՏ, առաջադրանք 2, տարբերակ {VAR}. սինթեզ, արագությունների և արագացումների պլաններ, A3 թերթի գծագիր՝ կոորդինատներով">\n'
-        + FONTS + '\n<style>' + CSS + FRAME_CSS + SH.SHEET_CSS + A4_CSS + '.a4fig svg{max-width:640px;margin:0 auto}</style>\n'
+        + FONTS + '\n<style>' + CSS + FRAME_CSS + SH.SHEET_CSS + A4_CSS + '.a4frame{max-width:760px;margin-inline:auto}.a4frame .sheet-frame{padding-inline:0}.dl{font-size:.9rem}</style>\n'
         + header + '<div class="shell">' + side_nav() + '<main id="main">'
         + panel('overview', overview_head + results_sec + data_sec)
         + panel('s1', s1) + panel('s2', s2) + panel('s3', s3) + panel('s4', s4) + panel('s5', s5)
