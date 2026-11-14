@@ -268,6 +268,7 @@ html = f'''<!doctype html>
 </html>
 '''
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-open(os.path.join(HERE, '..', 'tetr.html'), 'w').write(html)
-print('written tetr.html', len(html), 'bytes')
+if __name__ == '__main__':
+    HERE = os.path.dirname(os.path.abspath(__file__))
+    open(os.path.join(HERE, '..', 'tetr.html'), 'w').write(html)
+    print('written tetr.html', len(html), 'bytes')

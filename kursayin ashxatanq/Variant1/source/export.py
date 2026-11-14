@@ -39,5 +39,10 @@ if os.path.exists(CHROME):
     png = os.path.join(tmp, 'a4png.html')
     open(png, 'w').write('<!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:#FFFDF8}svg{display:block}</style>' + svg.replace('width="210mm" height="297mm"', 'width="1050" height="1485"', 1))
     chrome(['--window-size=1050,1485', '--force-device-scale-factor=4', '--screenshot=' + os.path.join(OUT, 'chertej_A4_graf.png'), 'file://' + png])
+# small previews for the overview cards (macOS sips): thumb_A3_1.jpg, thumb_A3_2.jpg, thumb_A4_graf.jpg
+if shutil.which('sips'):
+    for src, dst in (('chertej_A3_1.png', 'thumb_A3_1.jpg'), ('chertej_A3_2.png', 'thumb_A3_2.jpg'), ('chertej_A4_graf.png', 'thumb_A4_graf.jpg')):
+        if os.path.exists(os.path.join(OUT, src)):
+            subprocess.run(['sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', '70', '-Z', '900', os.path.join(OUT, src), '--out', os.path.join(OUT, dst)], capture_output=True)
 shutil.rmtree(tmp, ignore_errors=True)
 print('exported to', OUT)
