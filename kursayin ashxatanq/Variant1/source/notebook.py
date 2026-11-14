@@ -264,8 +264,8 @@ p21 = page(21, f"""
 <h4 class="nsec">1.10. Բերված իներցիայի մոմենտը</h4>
 <p class="ntext">{q('I','P')}՝ բերման օղակի (1 շուռտվիկի) պայմանական իներցիայի մոմենտն է. նրա կինետիկ էներգիան ամեն պահի հավասար է ամբողջ մեխանիզմի կինետիկ էներգիային։ Օղակ 2՝ հարթ շարժում (պտույտ + համընթաց), օղակ 5՝ համընթաց.</p>
 {L(f"{q('I','P')}·{fr(w[1]+'<sup>2</sup>', '2')} = {q('m','2')}·{fr(q('V','S<sub>2</sub>')+'<sup>2</sup>', '2')} + {q('I','S<sub>2</sub>')}·{fr(w[2]+'<sup>2</sup>', '2')} + {q('m','5')}·{fr(q('V','F')+'<sup>2</sup>', '2')}")}
-{L(f"{num(6)} {q('I','P')} = {q('m','2')}·({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup> + {q('I','S<sub>2</sub>')}·({fr(w[2], w[1])})<sup>2</sup> + {q('m','5')}·({fr(q('V','F'), w[1])})<sup>2</sup>")}
-{L(f"{q('m','2')} = {fr(q('G','2'), 'g')} = {fr(str(C.G2), str(C.G_ACC))} = {big(n(C.M2,2))} կգ; &nbsp;{q('m','5')} = {fr(q('G','5'), 'g')} = {fr(str(C.G5), str(C.G_ACC))} = {big(n(C.M5,2))} կգ", 'ind')}
+{L(f"{num(1)} {q('I','P')} = {q('m','2')}·({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup> + {q('I','S<sub>2</sub>')}·({fr(w[2], w[1])})<sup>2</sup> + {q('m','5')}·({fr(q('V','F'), w[1])})<sup>2</sup>")}
+{L(f"{num(2)} {q('m','2')} = {fr(q('G','2'), 'g')} = {fr(str(C.G2), str(C.G_ACC))} = {big(n(C.M2,2))} կգ; &nbsp;{q('m','5')} = {fr(q('G','5'), 'g')} = {fr(str(C.G5), str(C.G_ACC))} = {big(n(C.M5,2))} կգ", 'ind')}
 {L(f"g = {C.G_ACC} մ/վ<sup>2</sup>; &nbsp;{q('I','S<sub>2</sub>')} = {D_['IS2']}·10<sup>−3</sup> = {big(n(C.IS2,2))} կգ·մ<sup>2</sup>; &nbsp;{w[1]} = {W1T} {INV1}", 'ind')}
 {L(f"{q('V','S<sub>2</sub>')}, {w[2]}, {q('V','F')}՝ էջ 12–13-ի արժեքները (նոր չափում պետք չէ)", 'ind sm')}
 {L(f"Դիրք 2. {q('V','S<sub>2</sub>')} = {n(j2['VS2'],3)} {MS}, &nbsp;{w[2]} = {n(j2['w2'],2)} {INV1}, &nbsp;{q('V','F')} = {n(j2['VF'],3)} {MS}", 'sm')}
@@ -279,8 +279,8 @@ p22 = page(22, f"""
 <table class="ntbl"><thead>
 <tr><th><i>j</i></th><th>({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup></th><th>({fr(w[2], w[1])})<sup>2</sup></th><th>({fr(q('V','F'), w[1])})<sup>2</sup></th><th>({q('I','P')})<sub>j</sub></th><th>({q('I','P')})<sub>j</sub><sup>գծ</sup></th></tr>
 <tr><th></th><th>մ<sup>2</sup></th><th>—</th><th>մ<sup>2</sup></th><th>կգ·մ<sup>2</sup></th><th>մմ</th></tr></thead><tbody>{irows}</tbody></table>
-{L(f"{q('μ','I')} = {fr(q('I','P')+'<sub>max</sub>', '80 մմ')} = {fr(n(C.IP_MAX,5), '80')} = {big(n(C.MU_I*1e4,3))}·10<sup>−4</sup> կգ·մ<sup>2</sup>/մմ")}
-{L(f"{num(7)} ({q('I','P')})<sub>j</sub><sup>գծ</sup> = {fr(q('I','P')+'<sub>j</sub>', q('μ','I'))}")}
+{L(f"{num(3)} {q('μ','I')} = {fr(q('I','P')+'<sub>max</sub>', '80 մմ')} = {fr(n(C.IP_MAX,5), '80')} = {big(n(C.MU_I*1e4,3))}·10<sup>−4</sup> կգ·մ<sup>2</sup>/մմ")}
+{L(f"{num(4)} ({q('I','P')})<sub>j</sub><sup>գծ</sup> = {fr(q('I','P')+'<sub>j</sub>', q('μ','I'))}")}
 {L(f"{q('μ','φ')} = {n(C.MU_PHI,3)} ռադ/մմ (էջ 18)", 'ind sm')}
 <p class="nnote">Ընդգծված տողը՝ {q('I','P')}<sub>max</sub> (j = {C.J_IMAX}, պարապ ընթացք). 8-րդ դիրքը = 0-ին։ Գրաֆիկը՝ թերթ 4-ի վրա, 90°-ով շրջված. {q('I','P')} առանցքը հորիզոնական, φ-ն՝ ուղղաձիգ ներքև, 8 × 20 մմ = 160 մմ, {q('I','P')}<sub>max</sub> = 80 մմ։</p>
 """)
