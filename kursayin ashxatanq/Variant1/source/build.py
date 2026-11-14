@@ -840,7 +840,7 @@ MUI4 = n(C.MU_I*1e4, 3) + '·10⁻⁴'
 ip_rows = ''.join(
     f'<tr{WK if j == JI else ""}><th scope="row">{j}</th><td class="n">{n(x["VS2"],3)}</td><td class="n">{n(x["w2"],2)}</td><td class="n">{n(x["VF"],3)}</td>'
     f'<td class="n">{n(x["a"],5)}</td><td class="n">{n(x["b"],5)}</td><td class="n">{n(x["f"],5)}</td>'
-    f'<td class="n">{n(x["t2"],5)}</td><td class="n">{n(x["tw"],5)}</td><td class="n">{n(x["t5"],5)}</td>'
+    f'<td class="n">{n(x["t2"],6)}</td><td class="n">{n(x["tw"],6)}</td><td class="n">{n(x["t5"],6)}</td>'
     f'<td class="n"><b>{n(x["I"],5)}</b></td><td class="n">{n(x["Imm"])}</td></tr>' for j, x in enumerate(IP))
 s6 = f'''
 <div class="secbody">
@@ -860,7 +860,7 @@ s6 = f'''
     {eq(f"{I_S2} = {D_['IS2']}·10⁻³ = {res(n(C.IS2,2)+' կգ·մ²')},&nbsp;&nbsp; {w1} = {n(C.W1,2)} վ⁻¹")}
     <p><b>Օրինակ՝ դիրք 2</b> ({VS2} = {n(ip2['VS2'],3)} մ/վ, {w2} = {n(ip2['w2'],2)} վ⁻¹, {VF} = {n(ip2['VF'],3)} մ/վ).</p>
     {eq(f"({fr(VS2, w1)})² = ({fr(n(ip2['VS2'],3), n(C.W1,2))})² = {n(ip2['a'],5)},&nbsp;&nbsp; ({fr(w2, w1)})² = ({fr(n(ip2['w2'],2), n(C.W1,2))})² = {n(ip2['b'],5)},&nbsp;&nbsp; ({fr(VF, w1)})² = ({fr(n(ip2['VF'],3), n(C.W1,2))})² = {n(ip2['f'],5)}")}
-    {eq(f"{I_P}<sub>2</sub> = {n(C.M2,2)}·{n(ip2['a'],5)} + {n(C.IS2,2)}·{n(ip2['b'],5)} + {n(C.M5,2)}·{n(ip2['f'],5)} = {n(ip2['t2'],5)} + {n(ip2['tw'],5)} + {n(ip2['t5'],5)} = {res(n(ip2['I'],5)+' կգ·մ²')}")}
+    {eq(f"{I_P}<sub>2</sub> = {n(C.M2,2)}·{n(ip2['a'],5)} + {n(C.IS2,2)}·{n(ip2['b'],5)} + {n(C.M5,2)}·{n(ip2['f'],5)} = {n(ip2['t2'],6)} + {n(ip2['tw'],6)} + {n(ip2['t5'],6)} ≈ {res(n(ip2['I'],5)+' կգ·մ²')}")}
   </div>
 
   <h3 class="bh">4) Աղյուսակը (մեթոդականի աղյուսակ 4)</h3>

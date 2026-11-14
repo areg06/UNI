@@ -246,7 +246,7 @@ drows = ''.join(
 p20 = page(20, f"""
 {L(f"A<sub>m</sub>-ի ուղիղ. φ առանցքի 8 կետից վեր՝ 8″, |{q('y','8′')}| = {big(n(-C.AR[8]))} մմ։ 0 → 8″ ուղիղ։ &nbsp;{q('y','j','Am')} = |{q('y','8′')}|·{fr('j', '8')}", 'sm')}
 <h4 class="nsec">1.9. Կինետիկ էներգիայի աճը</h4>
-{L(f"{q('y','j','ΔE')} = {q('y','j','Am')} + {q('y','j′')} &nbsp;(օր.՝ j = 3՝ {n(C.AM[3])} {sg(C.AR[3])} = {n(C.DE[3])} մմ)")}
+{L(f"{q('y','j','ΔE')} = {q('y','j','Am')} + {q('y','j′')} &nbsp;(օր.՝ j = 3՝ {n(C.AM[3])} + ({n(C.AR[3])}) = {n(C.DE[3])} մմ)")}
 <table class="ntbl"><thead>
 <tr><th><i>j</i></th><th>{q('y','j','Am')}</th><th>{q('y','j′')}</th><th>{q('y','j','ΔE')}</th><th>ΔE<sub>j</sub></th></tr>
 <tr><th></th><th>մմ</th><th>մմ</th><th>մմ</th><th>Ջ</th></tr></thead><tbody>{drows}</tbody></table>
@@ -270,7 +270,7 @@ p21 = page(21, f"""
 {L(f"{q('V','S<sub>2</sub>')}, {w[2]}, {q('V','F')}՝ էջ 12–13-ի արժեքները (նոր չափում պետք չէ)", 'ind sm')}
 {L(f"Դիրք 2. {q('V','S<sub>2</sub>')} = {n(j2['VS2'],3)} {MS}, &nbsp;{w[2]} = {n(j2['w2'],2)} {INV1}, &nbsp;{q('V','F')} = {n(j2['VF'],3)} {MS}", 'sm')}
 {L(f"({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup> = ({fr(n(j2['VS2'],3), W1T)})<sup>2</sup> = {n(j2['a'],5)}; &nbsp;({fr(w[2], w[1])})<sup>2</sup> = ({fr(n(j2['w2'],2), W1T)})<sup>2</sup> = {n(j2['b'],5)}; &nbsp;({fr(q('V','F'), w[1])})<sup>2</sup> = ({fr(n(j2['VF'],3), W1T)})<sup>2</sup> = {n(j2['f'],5)}", 'ind sm')}
-{L(f"{q('I','P')}<sub>2</sub> = {ip_line(j2)} = {big(n(j2['I'],5))} կգ·մ<sup>2</sup>")}
+{L(f"{q('I','P')}<sub>2</sub> = {ip_line(j2)} = {n(j2['t2'],6)} + {n(j2['tw'],6)} + {n(j2['t5'],6)} ≈ {big(n(j2['I'],5))} կգ·մ<sup>2</sup>")}
 """, 'r')
 
 irows = ''.join(

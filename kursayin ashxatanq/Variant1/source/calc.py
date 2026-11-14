@@ -103,7 +103,7 @@ IS2 = M.DATA['IS2']*1e-3                                 # kg·m²
 def ichain(j):
     c = vchain(j % 8)
     a = r((c['VS2']/W1)**2, 5); b = r((c['w2']/W1)**2, 5); f = r((c['VF']/W1)**2, 5)
-    t2 = r(M2*a, 5); tw = r(IS2*b, 5); t5 = r(M5*f, 5)
+    t2 = r(M2*a, 6); tw = r(IS2*b, 6); t5 = r(M5*f, 6)   # terms to 6 decimals, I_P to 5
     return dict(VS2=c['VS2'], w2=c['w2'], VF=c['VF'], a=a, b=b, f=f, t2=t2, tw=tw, t5=t5, I=r(t2+tw+t5, 5))
 IP = [ichain(j) for j in range(9)]
 IP_MAX = max(x['I'] for x in IP); J_IMAX = [x['I'] for x in IP].index(IP_MAX)

@@ -324,7 +324,7 @@ MPROWS = ''.join(f'<tr{" class=hl" if j == 2 else ""}><td>{j}</td><td>{_sg(x["ys
 from graf4 import a3_sheet4
 _ip = C.IP; _i2 = _ip[2]
 R.update(IM2=t(C.M2, 2), IM5=t(C.M5, 2), IIS2=t(C.IS2, 2), GACC=str(C.G_ACC), IVS2=t(_i2['VS2'], 3), IW2=t(_i2['w2'], 2), IVF=t(_i2['VF'], 3),
-         IA=t(_i2['a'], 5), IB=t(_i2['b'], 5), IFF=t(_i2['f'], 5), IT2=t(_i2['t2'], 5), ITW=t(_i2['tw'], 5), IT5=t(_i2['t5'], 5), II2=t(_i2['I'], 5),
+         IA=t(_i2['a'], 5), IB=t(_i2['b'], 5), IFF=t(_i2['f'], 5), IT2=t(_i2['t2'], 6), ITW=t(_i2['tw'], 6), IT5=t(_i2['t5'], 6), II2=t(_i2['I'], 5),
          IMAX=t(C.IP_MAX, 5), IMUI=t(C.MU_I*1e4, 3), IYMAX=str(C.IP_YMAX))
 TXT.update(hJIMAX=str(C.J_IMAX), hIS2=h(C.IS2, 2))
 IPROWS = ''.join(f'<tr{" class=hl" if j == C.J_IMAX else ""}><td>{j}</td><td>{h(x["a"],5)}</td><td>{h(x["b"],5)}</td><td>{h(x["f"],5)}</td><td>{h(x["I"],5)}</td><td>{h(x["Imm"])}</td></tr>' for j, x in enumerate(_ip))
@@ -801,7 +801,7 @@ HTML = r'''<!doctype html>
     <p>Զանգվածները՝ \(m = G/g\), դասախոսն ասաց վերցնել \(g = @@GACC@@\) մ/վ²; \(I_{S_2}\)՝ աղյուսակի արժեքը ×10⁻³.</p>
     $$m_2 = \frac{38}{@@GACC@@} = @@IM2@@\ \text{կգ},\quad m_5 = \frac{175}{@@GACC@@} = @@IM5@@\ \text{կգ},\quad I_{S_2} = 350\cdot10^{-3} = @@IIS2@@\ \text{կգ·մ}^2,\quad \omega_1 = @@W1@@\ \text{վ}^{-1}$$
     <p><b>Օրինակ՝ դիրք 2</b> (\(V_{S_2} = @@IVS2@@\) մ/վ, \(\omega_2 = @@IW2@@\) վ⁻¹, \(V_F = @@IVF@@\) մ/վ).</p>
-    $$I_{P2} = @@IM2@@\cdot@@IA@@ + @@IIS2@@\cdot@@IB@@ + @@IM5@@\cdot@@IFF@@ = @@IT2@@ + @@ITW@@ + @@IT5@@ = @@II2@@\ \text{կգ·մ}^2$$
+    $$I_{P2} = @@IM2@@\cdot@@IA@@ + @@IIS2@@\cdot@@IB@@ + @@IM5@@\cdot@@IFF@@ = @@IT2@@ + @@ITW@@ + @@IT5@@ \approx @@II2@@\ \text{կգ·մ}^2$$
     <div class="tbl"><table>
       <tr><th>j</th><th>(V<sub>S₂</sub>/ω₁)²</th><th>(ω₂/ω₁)²</th><th>(V<sub>F</sub>/ω₁)²</th><th>I<sub>P</sub>, կգ·մ²</th><th>գծագրում, մմ</th></tr>
       @@IPROWS@@
