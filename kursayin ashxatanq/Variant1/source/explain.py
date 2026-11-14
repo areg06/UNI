@@ -312,6 +312,12 @@ def _sg(x): return ('+' if x > 0 else '') + h(x)
 R.update(KM=t(C.KM, 7), ys2=t(_m2['ys2']), pf2=t(_m2['pf']), Fr2=t(_m2['Fr'], 0), t2=t(_m2['t2'], 2), t5=t(_m2['t5'], 2), tr=t(_m2['tr'], 2),
          M2=t(_m2['M']), MMAX=t(C.MP_MAX), MUM=t(C.MU_M, 2), MUPHI=t(C.MU_PHI, 3))
 TXT.update(hsF1=h(M.POS[1]['sF']/M.H, 2), hys2=h(_m2['ys2']), hpf2=h(_m2['pf']), hFr2=h(_m2['Fr'], 0), hM2=h(_m2['M']), hM4=h(_m4['M']), hpf4=h(_m4['pf']))
+from graf import a4_sheet, A4_CSS
+R.update(A4CSS=A4_CSS, K20=t(20/C.OP, 2), OP=str(C.OP), MUA=t(C.MU_A, 2), AR8=t(C.AR[8]), AR8P=t(-C.AR[8]), ACYC=t(C.A_CYCLE, 0), AOV=t(C.A_CYCLE/(2*3.14)),
+         YMM=t(C.YMM), MM=t(C.M_M), DEMAX=t(C.DE_MAX*C.MU_A), DEMIN=t(C.DE_MIN*C.MU_A), DERANGE=t(C.DE_RANGE))
+TXT.update(YMIDTXT=', '.join(f'{k}–{k+1}: {h(C.YMID[k])}' for k in range(8)), AM3=h(C.AM[3]), DE3=h(C.DE[3]), JMAX=str(C.J_MAX), JMIN=str(C.J_MIN),
+           AR3S=('+ ' if C.AR[3] > 0 else '− ') + h(abs(C.AR[3])))
+AROWS = ''.join(f'<tr{" class=hl" if j in (C.J_MAX, C.J_MIN) else ""}><td>{j}</td><td>{h(C.YMID[j-1]) if j else ""}</td><td>{h(C.AR[j])}</td><td>{h(C.AM[j])}</td><td>{h(C.DE[j])}</td><td>{h(C.DE[j]*C.MU_A)}</td></tr>' for j in range(9))
 MPROWS = ''.join(f'<tr{" class=hl" if j == 2 else ""}><td>{j}</td><td>{_sg(x["ys2"])}</td><td>{h(x["pf"])}</td><td>{x["a5"]}°</td><td>{h(x["Fr"],0)}</td><td>{h(x["M"])}</td><td>{h(x["Mmm"])}</td></tr>' for j, x in enumerate(C.MP))
 
 vel_rows = ''
@@ -362,6 +368,8 @@ HTML = r'''<!doctype html>
   .mpg .ax,.projg .ax{stroke:#444;stroke-width:.35;fill:none}.mpg .ar{fill:#444}.mpg .gr{stroke:#cfd6e3;stroke-width:.3;stroke-dasharray:1.2 1}
   .mpg .cv{fill:none;stroke:var(--pen);stroke-width:.8}.mpg .dt,.projg .dt{fill:var(--pen)}.mpg .tk{font-size:4px;text-anchor:middle;fill:#444}
   .mpg .lb,.projg .lb{font-size:5px;font-style:italic}.mpg .sb{font-size:3.4px}.mpg .dm{stroke:var(--accent);stroke-width:.3}.mpg .dmt{font-size:3.8px;fill:var(--accent)}.mpg .dmt.c{text-anchor:middle}
+  .a4box{max-width:560px;margin:10px auto}.a4box svg{margin:0}
+  @@A4CSS@@
   .projbox{max-width:460px;margin:10px 0}.projbox svg{display:block;width:100%;height:auto}
   .projg .cap{font-size:5px;fill:#444}.projg .vc{stroke:var(--pen);stroke-width:1}.projg .pj{stroke:#777;stroke-width:.4;stroke-dasharray:1.5 1}
   .projg .hl{stroke:var(--accent);stroke-width:1.6}.projg .hlt{font-size:4.2px;fill:var(--accent)}.projg .g2{stroke:var(--ok);stroke-width:.9}.projg .ar2{fill:var(--ok)}
@@ -389,7 +397,7 @@ HTML = r'''<!doctype html>
 <body>
 <div class="page">
   <h1>Առաջադրանք №2 — բացատրություն զրոյից</h1>
-  <p class="lead">Մեխանիզմների և մեքենաների տեսություն, տարբերակ 1: Այս էջը միայն <b>հասկանալու</b> համար է: Տետրում գրվող մաքուր լուծումը, A3 թերթերի կոորդինատները և քայլերի ստուգաթերթը մյուս էջերում են (<a href="TMM_Variant1.html">Աշխատանքը</a> և <a href="tetr.html">Տետրում գրելու</a>՝ էջ 10–18): Կանաչ «✍» դաշտերը ցույց են տալիս, թե բացատրության որ մասը տետրի որ տողին է վերաբերում:</p>
+  <p class="lead">Մեխանիզմների և մեքենաների տեսություն, տարբերակ 1: Այս էջը միայն <b>հասկանալու</b> համար է: Տետրում գրվող մաքուր լուծումը, A3 թերթերի կոորդինատները և քայլերի ստուգաթերթը մյուս էջերում են (<a href="TMM_Variant1.html">Աշխատանքը</a> և <a href="tetr.html">Տետրում գրելու</a>՝ էջ 10–20): Կանաչ «✍» դաշտերը ցույց են տալիս, թե բացատրության որ մասը տետրի որ տողին է վերաբերում:</p>
 
   <div class="card toc">
     <h2>Բովանդակություն</h2>
@@ -406,6 +414,7 @@ HTML = r'''<!doctype html>
       <li><a href="#s6">Քայլ 6 — թվերը, ω-ները և դրանց ուղղությունը</a></li>
       <li><a href="#s7">Քայլ 7 — արագացումների պլանը (դիրք 2)</a></li>
       <li><a href="#s8">Քայլ 8 — բերված մոմենտը և նրա գրաֆիկը</a></li>
+      <li><a href="#s9">Քայլ 9 — աշխատանքների և կինետիկ էներգիայի աճի գրաֆիկները</a></li>
       <li><a href="#fre">F<sub>re</sub> գրաֆիկը և երկու A3 թերթերը</a></li>
       <li><a href="#assume">Ենթադրություններ — ճշտիր դասախոսի մոտ</a></li>
       <li><a href="#check">Ստուգաթերթ և տարածված սխալներ</a></li>
@@ -723,9 +732,41 @@ HTML = r'''<!doctype html>
     $$\mu_M = \frac{|M_P|_{max}}{80} = \frac{@@MMAX@@}{80} = @@MUM@@\ \frac{\text{Ն}\cdot\text{մ}}{\text{մմ}},\qquad \mu_\varphi = \frac{2\pi}{160} = \frac{2\cdot3{,}14}{160} = @@MUPHI@@\ \frac{\text{ռադ}}{\text{մմ}}$$
     $$(M_P)_j^{\text{գծ}} = \frac{M_{Pj}}{\mu_M}\quad(\text{իր նշանով})$$
     <div class="mpbox">@@MPG@@</div>
-    <p class="cap">Գրաֆիկը քո թվերով: Ինչպես և որտեղ կառուցել այն թղթի վրա, դասախոսը կբացատրի հաջորդ դասին, իսկ դրանից հետո՝ աշխատանքների գրաֆիկը (1.8):</p>
+    <p class="cap">Գրաֆիկը քո թվերով: Թղթի վրա այն կառուցվում է A4 միլիմետրական թերթի վրա. տես <a href="#s9">Քայլ 9-ը</a>:</p>
     <div class="warn"><b>Զգույշ.</b> F<sub>re</sub> կորը վերցված է առաջադրանքի թերթի վանդակներից (≈ ±2%): Եթե քո գծած գրաֆիկից չափված \(y_j\)-ն տարբերվի, վերահաշվիր 2–4 տողերը: Մեթոդականի 37-րդ էջի աղյուսակը մի արտագրիր. այնտեղ F<sub>r</sub>·V<sub>F</sub>/ω₁ սյունակը մեկ տողով շեղված է:</div>
     <div class="write">էջ 17–18. §4 վերնագիրը, հզորությունների հավասարությունը, \(M_P\)-ի բանաձևը, \(\alpha_5\)-ի և \(F_r\)-ի բացատրությունը, \(\mu_F\), \(\mu_v/\omega_1\), դիրք 2-ի հաշվարկը, աղյուսակը, \(\mu_M\), \(\mu_\varphi\) և գծագրական չափերը:</div>
+  </div>
+
+  <!-- ============ STEP 9: WORKS AND KINETIC ENERGY INCREMENT ============ -->
+  <div class="card" id="s9">
+    <h2>Քայլ 9 — Աշխատանքների և կինետիկ էներգիայի աճի գրաֆիկները</h2>
+    <h3>Ինչու է սա պետք</h3>
+    <p>Թափանիվը հաշվելու համար պետք է իմանալ, թե կռունկի մեկ պտույտի ընթացքում մեքենայի կինետիկ էներգիան որքանով է տատանվում: Բերված մոմենտը ուժ չէ, մոմենտ է. նրա աշխատանքը ստանալու համար պետք է այն <b>ինտեգրել</b> ըստ պտտման անկյան: Սա անում ենք գրաֆիկորեն (դասախոսի եղանակով):</p>
+    <h3>Ինչու է գրաֆիկական ինտեգրումն աշխատում</h3>
+    <p>Աշխատանքը մոմենտի գրաֆիկի տակ մնացած մակերեսն է. \(A=\int M_P\,d\varphi\): Մեկ միջակայքում (20 մմ) կորը փոխարինում ենք նրա <b>միջնակետի</b> օրդինատով \(y_m\): Բևեռից P մինչև \((0,\,y_m)\) կետը տարված ճառագայթի թեքությունը \(y_m/OP\) է. եթե նրան զուգահեռ անցնենք 20 մմ դեպի աջ, կբարձրանանք \(y_m\cdot 20/OP\)-ով: Հենց դա էլ \(y_m\)-ին համապատասխանող մակերեսն է՝ արտահայտված նոր մասշտաբով: Քանի որ ինտեգրալը <b>գումարում</b> է մակերեսները, յուրաքանչյուր հաջորդ զուգահեռը սկսվում է նախորդի վերջից.</p>
+    $$y_{j'} = y_{(j-1)'} + y_{m}\cdot\frac{20}{OP} = y_{(j-1)'} + y_m\cdot @@K20@@$$
+    <p>Մասշտաբը ստանում ենք «միավորների հաշվարկով». մեկ մմ օրդինատը A գրաֆիկում հավասար է \(\mu_M\)-ին (մոմենտ) × \(\mu_\varphi\)-ին (անկյուն) × \(OP\)-ին (բևեռային հեռավորություն).</p>
+    $$\mu_A = \mu_M\cdot\mu_\varphi\cdot OP = @@MUM@@\cdot@@MUPHI@@\cdot@@OP@@ = @@MUA@@\ \frac{\text{Ջ}}{\text{մմ}}$$
+    <h3>Մեր թվերը</h3>
+    <p>Միջնակետերի օրդինատները (մմ, վեր՝ +) 0–1, … 7–8 միջակայքերի համար. @@YMIDTXT@@: Շղթան \(0 \to 1' \to \dots \to 8'\) տալիս է \(y_{8'} = @@AR8@@\) մմ (A<sub>r</sub> բացասական է. դիմադրության ուժերը աշխատանք են «խլում»): Աշխատանքը ցիկլում՝</p>
+    $$A_r = |y_{8'}|\cdot\mu_A = @@AR8P@@\cdot@@MUA@@ = @@ACYC@@\ \text{Ջ}$$
+    <h3>Ինչու է A<sub>m</sub> ուղիղ և վերջանում 8″-ում</h3>
+    <p>Շարժիչի մոմենտը \(M_m\) հաստատուն է, ուստի \(A_m = M_m\cdot\varphi\) աճում է <b>գծայնորեն</b>: Մեքենան աշխատում է կայուն՝ մեկ ցիկլից հետո նրա արագությունը կրկնվում է, ուստի կինետիկ էներգիան չի փոխվում, այսինքն՝ ցիկլում \(A_m + A_r = 0\): Դրա համար 8-ից <b>վեր</b> դնում ենք \(|y_{8'}|\)՝ ստանում ենք 8″, իսկ 0-ն 8″-ի հետ միացնող ուղիղը A<sub>m</sub>-ն է:</p>
+    <h3>Ինչ է ΔE-ն</h3>
+    <p>\(\Delta E = A_m + A_r\) կինետիկ էներգիայի աճն է ցանկացած դիրքում (մեթոդականում՝ ΔT): Դրական է, երբ շարժիչը տալիս է ավելին, քան «տանում» է դիմադրությունը՝ թափանիվը արագանում է, բացասական է՝ դանդաղում: Գրաֆիկում՝ \(y_{\Delta E}=y_{A_m}+y_{A_r}\) (օր.՝ \(j=3\)՝ @@AM3@@ @@AR3S@@ = @@DE3@@ մմ), իրական արժեքը՝ \(y\cdot\mu_A\):</p>
+    <div class="tbl"><table>
+      <tr><th>j</th><th>y<sub>մ</sub></th><th>y<sub>Ar</sub></th><th>y<sub>Am</sub></th><th>y<sub>ΔE</sub>, մմ</th><th>ΔE, Ջ</th></tr>
+      @@AROWS@@
+    </table></div>
+    <h3>M<sub>m</sub>-ը գրաֆիկից</h3>
+    <p>A<sub>m</sub>-ի ուղիղը բարձրանում է \(|y_{8'}|\) մմ-ով 160 մմ-ի վրա, ուստի նրա թեքությունը \(|y_{8'}|/160\) է: Ճառագայթի կանոնով՝ թեքություն = \(y/OP\). P-ից A<sub>m</sub>-ին զուգահեռ ճառագայթը M առանցքի վրա կտրում է \(y_{M_m}=|y_{8'}|\cdot OP/160\) հատվածը, իսկ հորիզոնական գիծը այդ բարձրության վրա \(M_m\)-ն է (սա ինտեգրման հակադարձ քայլն է): Մեզ մոտ՝</p>
+    $$M_m = y_{M_m}\cdot\mu_M = @@YMM@@\cdot@@MUM@@ = @@MM@@\ \text{Ն·մ}$$
+    <div class="tip"><b>Ինքնաստուգում.</b> \(A/2\pi = @@ACYC@@/6{,}28 = @@AOV@@\) Ն·մ ≈ \(M_m\) ✔: Այսինքն՝ գրաֆիկորեն ստացված մոմենտը համընկնում է ցիկլում կատարված աշխատանքի միջինին:</div>
+    <p><b>Հետագայում.</b> \(\Delta E_{max}-\Delta E_{min} = @@DEMAX@@-(@@DEMIN@@) = @@DERANGE@@\) Ջ (j = @@JMAX@@ և j = @@JMIN@@ դիրքերում) պետք կգա թափանիվի հաշվարկում:</p>
+    <div class="a4box">@@A4G@@</div>
+    <p class="cap">A4 թերթը քո թվերով (1 մմ = 1 մմ): Ֆայլերը՝ <a href="chertej_A4_graf.pdf">PDF</a>, <a href="chertej_A4_graf.png">PNG</a>:</p>
+    <div class="warn"><b>Զգույշ.</b> Միջնակետերի օրդինատները կարդում ես քո գծած կորից, ուստի ±1 մմ տարբերությունը նորմալ է. այդ դեպքում շղթան, A<sub>m</sub>-ը, ΔE-ն և M<sub>m</sub>-ը վերահաշվիր նույն բանաձևերով:</div>
+    <div class="write">էջ 19–20. 1.8 վերնագիրը, թերթի կարգավորումը (φ առանցք, P, OP), \(\mu_A\), միջնակետերի օրդինատները, \(y_{j'}\) շղթան, A<sub>m</sub>-ի ուղիղը, ΔE աղյուսակը, A, \(M_m\), \(\Delta E_{max}-\Delta E_{min}\):</div>
   </div>
 
   <!-- ============ FRE + SHEETS ============ -->
@@ -805,7 +846,7 @@ for k, v_ in R.items(): out = out.replace(f'@@{k}@@', v_)
 for k, v_ in TXT.items(): out = out.replace(f'@@{k}@@', v_)
 out = (out.replace('@@MECH@@', mech_svg()).replace('@@EXTREME@@', extreme_svg())
           .replace('@@VPLAN@@', plan_svg('v')).replace('@@APLAN@@', plan_svg('a')).replace('@@VROWS@@', vel_rows).replace('@@ROTATOR@@', rotator_html())
-          .replace('@@MPROWS@@', MPROWS).replace('@@MPG@@', mp_graph()).replace('@@PROJ@@', '<div class="projbox">' + PROJ_SVG + '</div>'))
+          .replace('@@AROWS@@', AROWS).replace('@@A4G@@', a4_sheet()).replace('@@MPROWS@@', MPROWS).replace('@@MPG@@', mp_graph()).replace('@@PROJ@@', '<div class="projbox">' + PROJ_SVG + '</div>'))
 assert '@@' not in out, out[out.index('@@')-40:out.index('@@')+40]
 HERE = os.path.dirname(os.path.abspath(__file__))
 open(os.path.join(HERE, '..', 'bacatrutyun.html'), 'w').write(out)

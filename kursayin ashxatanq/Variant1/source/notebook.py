@@ -1,4 +1,4 @@
-"""The notebook (copybook) pages 10–18, filled in for this variant, laid out like the teacher's template."""
+"""The notebook (copybook) pages 10–20, filled in for this variant, laid out like the teacher's template."""
 import model as M
 import calc as C
 from calc import n, r
@@ -223,10 +223,44 @@ p18 = page(18, f"""
 <p class="nnote">Ընդգծված տողը՝ |{q('M','P')}|<sub>max</sub>։ Գրաֆիկում φ առանցքը՝ 8 × 20 մմ = 160 մմ, {q('M','P')}-ի առավելագույնը՝ 80 մմ։</p>
 """)
 
+# ---------------- 1.8–1.9: work graphs and kinetic-energy increment (pages 19–20) ----------------
+def sg(x, nd=1): return ('+' if x > 0 else '') + n(x, nd)
+OPT = str(C.OP); KOP = n(20/C.OP, 2)
+ar_lines = ''.join(
+    L(f"{q('y', str(k+1)+'′')} = {q('y', str(k)+'′')} + ({n(C.YMID[k])})·{KOP} = {big(n(C.AR[k+1]))} մմ", 'ind sm')
+    for k in range(8))
+ymid_line = ' &nbsp; '.join(f"{q('y', str(k+1), 'մ')} = {n(C.YMID[k])}" for k in range(8))
+p19 = page(19, f"""
+<h4 class="nsec">1.8. Աշխատանքների գրաֆիկները (գրաֆիկական ինտեգրում)</h4>
+<p class="ntext">A4 միլիմետրական թերթի վրա. M<sub>P</sub>(φ)-ի φ առանցքը վերևից 40 մմ ցածր է, 8 × 20 մմ = 160 մմ։ Բևեռ P՝ φ առանցքի վրա, 0-ից ձախ՝ OP = {C.OP} մմ հեռավորության վրա։</p>
+{L(f"{q('μ','A')} = {q('μ','M')}·{q('μ','φ')}·OP = {n(C.MU_M,2)}·{n(C.MU_PHI,3)}·{C.OP} = {big(n(C.MU_A,2))} Ջ/մմ")}
+<p class="ntext">Միջակայքերի միջնակետերում կորի օրդինատները (կորից չափած, վեր՝ +, ներքև՝ −), մմ.</p>
+{L(ymid_line, 'sm')}
+<p class="ntext">I…VIII ճառագայթներին զուգահեռ՝ 0-ից սկսած, ամեն հաջորդը՝ նախորդ կետից.</p>
+{L(f"{q('y','j′')} = {q('y','(j−1)′')} + {q('y','j','մ')}·{fr('20', 'OP')} = {q('y','(j−1)′')} + {q('y','j','մ')}·{KOP}", 'ind')}
+{ar_lines}
+""", 'r')
+
+drows = ''.join(
+    f'<tr{" class=wk" if j in (C.J_MAX, C.J_MIN) else ""}><th>{j}</th><td>{n(C.AM[j])}</td><td>{n(C.AR[j])}</td><td>{n(C.DE[j])}</td><td>{n(C.DE[j]*C.MU_A)}</td></tr>' for j in range(9))
+p20 = page(20, f"""
+{L(f"A<sub>m</sub>-ի ուղիղ. φ առանցքի 8 կետից վեր՝ 8″, |{q('y','8′')}| = {big(n(-C.AR[8]))} մմ։ 0 → 8″ ուղիղ։ &nbsp;{q('y','j','Am')} = |{q('y','8′')}|·{fr('j', '8')}", 'sm')}
+<h4 class="nsec">1.9. Կինետիկ էներգիայի աճը</h4>
+{L(f"{q('y','j','ΔE')} = {q('y','j','Am')} + {q('y','j′')} &nbsp;(օր.՝ j = 3՝ {n(C.AM[3])} {sg(C.AR[3])} = {n(C.DE[3])} մմ)")}
+<table class="ntbl"><thead>
+<tr><th><i>j</i></th><th>{q('y','j','Am')}</th><th>{q('y','j′')}</th><th>{q('y','j','ΔE')}</th><th>ΔE<sub>j</sub></th></tr>
+<tr><th></th><th>մմ</th><th>մմ</th><th>մմ</th><th>Ջ</th></tr></thead><tbody>{drows}</tbody></table>
+{L(f"ΔE<sub>j</sub> = {q('y','j','ΔE')}·{q('μ','A')}, &nbsp;{q('μ','ΔE')} = {q('μ','A')} = {n(C.MU_A,2)} Ջ/մմ", 'sm')}
+{L(f"A = |{q('y','8′')}|·{q('μ','A')} = {n(-C.AR[8])}·{n(C.MU_A,2)} = {big(n(C.A_CYCLE,0))} Ջ")}
+{L(f"M<sub>m</sub>՝ P-ից A<sub>m</sub>-ի ուղղին զուգահեռ ճառագայթ. {q('y','Mm')} = {n(C.YMM)} մմ, &nbsp;{q('M','m')} = {q('y','Mm')}·{q('μ','M')} = {n(C.YMM)}·{n(C.MU_M,2)} = {big(n(C.M_M))} Ն·մ")}
+{L(f"ΔE<sub>max</sub> − ΔE<sub>min</sub> = {n(C.DE_MAX*C.MU_A)} − ({n(C.DE_MIN*C.MU_A)}) = {big(n(C.DE_RANGE))} Ջ &nbsp;(թափանիվի համար)")}
+<p class="nnote">Ընդգծված տողերը՝ ΔE<sub>max</sub> և ΔE<sub>min</sub>։ Ստուգում. A/2π = {n(C.A_CYCLE/(2*3.14))} Ն·մ ≈ M<sub>m</sub>։</p>
+""")
+
 SECTION = f'''
 <section class="wide-sec sec" id="copybook">
   <div class="wrap">
-    <h2>Տետրը (էջ 10–18)</h2>
+    <h2>Տետրը (էջ 10–20)</h2>
     <div class="prose">
       <p>Ձեր տետրի էջերը՝ լրացված այս տարբերակի թվերով։ Կառուցվածքը, համարակալումը և նշանակումները նույնն են, ինչ լուսանկարներում. «…»-ի տեղում թվերն են։ Թավով գրվածը վերջնական արդյունքն է։ <b>13ա</b> ներդիրը ցույց է տալիս 7-րդ կետը բոլոր 8 դիրքերի համար. էջ 13-ի աղյուսակը լրացվում է դրանից։</p>
       <p class="note">Հատվածները (pc, bc, pf, …) չափված են A3 թերթի պլաններից. ձեր չափումները կարող են տարբերվել ±0,5 մմ-ով, դա նորմալ է. այդ դեպքում արագությունը վերահաշվեք նույն բանաձևով։ pe-ն և πe-ն չեն չափվում, հաշվվում են (3) և (4) բանաձևերով։</p>
