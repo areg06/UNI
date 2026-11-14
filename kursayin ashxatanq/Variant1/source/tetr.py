@@ -1,4 +1,4 @@
-"""Builds ../tetr.html: what to write in the copybook, page by page (pages 10–20 from notebook.py + tips)."""
+"""Builds ../tetr.html: what to write in the copybook, page by page (pages 10–22 from notebook.py + tips)."""
 import os
 import model as M
 import calc as C
@@ -79,6 +79,18 @@ PAGES = [
       'A = |y<sub>8′</sub>|·μ<sub>A</sub> և M<sub>m</sub> = y<sub>Mm</sub>·μ<sub>M</sub>',
       'ΔE<sub>max</sub> − ΔE<sub>min</sub>՝ թափանիվի համար'],
      f'y<sub>8′</sub>-ը և y<sub>Mm</sub>-ը չափեք A4 թերթից. ստուգում. A/2π ≈ M<sub>m</sub> ({n(C.A_CYCLE/(2*3.14))} ≈ {n(C.M_M)} Ն·մ)։ ΔE<sub>max</sub> − ΔE<sub>min</sub> = {n(C.DE_RANGE)} Ջ-ը պետք կգա թափանիվի հաշվարկում։'),
+    ('p21', NB.p21, 'Էջ 21', '1.10. բերված իներցիայի մոմենտի բանաձևը',
+     ['1.10 վերնագիրը և I<sub>P</sub>-ի սահմանումը',
+      'Կինետիկ էներգիաների հավասարությունը և (6) բանաձևը',
+      'm<sub>2</sub>, m<sub>5</sub>, I<sub>S₂</sub>, ω₁',
+      f'Դիրք 2-ի օրինակը՝ բոլոր տեղադրումներով'],
+     f'V<sub>S₂</sub>, ω₂, V<sub>F</sub>-ը <b>նորից չեն չափվում</b>. վերցրեք էջ 12–13-ի աղյուսակից (V<sub>S₂</sub> = ps₂·μ<sub>V</sub>, ω₂ = V<sub>CB</sub>/l<sub>BC</sub>, V<sub>F</sub> = pf·μ<sub>V</sub>)։ m = G/g, g = {C.G_ACC} մ/վ² (դասախոսի ասածով), I<sub>S₂</sub> = {NB.D_['IS2']}·10⁻³ = {n(C.IS2,2)} կգ·մ²։ Մեթոդականի օրինակում g = 9,8 է, մենք վերցնում ենք 10։'),
+    ('p22', NB.p22, 'Էջ 22', '1.10. աղյուսակը և մասշտաբները',
+     ['Աղյուսակ 4՝ 0–8 դիրքերի համար',
+      'μ<sub>I</sub> = I<sub>P max</sub>/80',
+      '(I<sub>P</sub>)<sup>գծ</sup> = I<sub>P</sub>/μ<sub>I</sub>',
+      'Գրաֆիկի չափերը թերթ 4-ի համար'],
+     f'Սյունակները հաշվվում են (6)-ով, ուրիշ չափում պետք չէ։ I<sub>P</sub>-ն մեծ է այնտեղ, որտեղ արագությունները մեծ են՝ սովորաբար պարապ ընթացքում (դիրքեր 5–7). մեզ մոտ առավելագույնը j = {C.J_IMAX}-ում է ({n(C.IP_MAX,5)} կգ·մ²)։ Եթե ձեր արդյունքը փոքր-ինչ տարբերվի, գրեք այն, ինչ ստացել եք։'),
 ]
 
 def page_sec(pid, body, title, sub, items, src):
@@ -105,14 +117,14 @@ body = ''.join(page_sec(*p) for p in PAGES)
 
 intro = f'''
 <section class="intro" id="top">
-  <p class="kicker">Տետր · էջ 10–20</p>
+  <p class="kicker">Տետր · էջ 10–22</p>
   <h1>Ինչ գրել տետրում</h1>
   <p class="lede">Ստորև յուրաքանչյուր տետրի էջն է՝ լրացված ձեր տարբերակի թվերով, ճիշտ այն հերթականությամբ և նշանակումներով, ինչ օրինակում։ Կողքին գրված է, թե ինչ կա էջում և որտեղից վերցնել չափվող թվերը։ Արտագրելուց հետո նշեք «Գրված է»։</p>
   <div class="rules">
     <div><b>Թավ և ընդգծված</b><span>վերջնական արդյունքն է. տետրում նույնպես ընդգծեք։</span></div>
     <div><b>Չափվող հատվածներ</b><span>(pc, bc, pf, πc…) վերցվում են A3 թերթերից. ձեր չափումը կարող է տարբերվել ±0,5 մմ-ով, այդ դեպքում վերահաշվեք նույն բանաձևով։</span></div>
     <div><b>Հաշվվող հատվածներ</b><span>pe, πe, bn₂, πn₃, en₄՝ բանաձևով, չեն չափվում։</span></div>
-    <div><b>Հերթականություն</b><span>§1-ի կետ 2-ից առաջ գծեք թերթ 1-ի դիրքերը, §2-ի կետ 7-ից առաջ՝ թերթ 2-ը, §4-ից առաջ՝ F<sub>re</sub> գրաֆիկը, էջ 19-ից առաջ՝ M<sub>P</sub>(φ)-ն A4 թերթի վրա։</span></div>
+    <div><b>Հերթականություն</b><span>§1-ի կետ 2-ից առաջ գծեք թերթ 1-ի դիրքերը, §2-ի կետ 7-ից առաջ՝ թերթ 2-ը, §4-ից առաջ՝ F<sub>re</sub> գրաֆիկը, էջ 19-ից առաջ՝ M<sub>P</sub>(φ)-ն A4 թերթի վրա, էջ 21–22-ից հետո՝ I<sub>P</sub>(φ)-ն թերթ 4-ի վրա։</span></div>
   </div>
   <p class="prog" aria-live="polite"></p>
 </section>'''
@@ -243,7 +255,7 @@ html = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Տետրում գրելու · տարբերակ {VAR}</title>
-<meta name="description" content="ՄՄՏ, առաջադրանք 2, տարբերակ {VAR}. ինչ գրել տետրում՝ էջ 10–20, տող առ տող">
+<meta name="description" content="ՄՄՏ, առաջադրանք 2, տարբերակ {VAR}. ինչ գրել տետրում՝ էջ 10–22, տող առ տող">
 {FONTS}
 <script>try{{var t=localStorage.getItem('tmm-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}}catch(e){{}}</script>
 <style>{CSS}{NB.CSS}</style>

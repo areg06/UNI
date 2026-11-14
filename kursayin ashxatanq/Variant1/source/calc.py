@@ -94,6 +94,23 @@ M_M = r(YMM*MU_M, 1)                                     # N·m, motor moment
 DE_MAX = max(DE); DE_MIN = min(DE); J_MAX = DE.index(DE_MAX); J_MIN = DE.index(DE_MIN)
 DE_RANGE = r((DE_MAX-DE_MIN)*MU_A, 1)                    # J, ΔE_max − ΔE_min (for the flywheel later)
 
+# ---------------- 1.10: reduced moment of inertia I_P(φ) (teacher's lecture + methodology table 4) ----------------
+# I_P·ω1²/2 = m2·V_S2²/2 + I_S2·ω2²/2 + m5·V_F²/2  →  I_P = m2·(V_S2/ω1)² + I_S2·(ω2/ω1)² + m5·(V_F/ω1)²
+# V_S2, ω2, V_F: the notebook values of §2 (vchain). Teacher: m = G/g with g = 10 m/s², I_S2 from the table × 10⁻³.
+G_ACC = 10
+M2 = r(G2/G_ACC, 2); M5 = r(G5/G_ACC, 2)               # kg
+IS2 = M.DATA['IS2']*1e-3                                 # kg·m²
+def ichain(j):
+    c = vchain(j % 8)
+    a = r((c['VS2']/W1)**2, 5); b = r((c['w2']/W1)**2, 5); f = r((c['VF']/W1)**2, 5)
+    t2 = r(M2*a, 5); tw = r(IS2*b, 5); t5 = r(M5*f, 5)
+    return dict(VS2=c['VS2'], w2=c['w2'], VF=c['VF'], a=a, b=b, f=f, t2=t2, tw=tw, t5=t5, I=r(t2+tw+t5, 5))
+IP = [ichain(j) for j in range(9)]
+IP_MAX = max(x['I'] for x in IP); J_IMAX = [x['I'] for x in IP].index(IP_MAX)
+IP_YMAX = 80                                             # mm for I_P max (teacher: 80 mm)
+MU_I = r(IP_MAX/IP_YMAX, 7)                              # (kg·m²)/mm
+for x in IP: x['Imm'] = r(x['I']/MU_I, 1)
+
 if __name__ == '__main__':
     print('AC0', AC0, 'AC0p', AC0P, 'BC', BC, 'AB', AB, 'lAB', LAB, 'lBC', LBC, 'lBS2', LBS2, 'BS2*', BS2S)
     print('W1', W1, 'VB4', VB4, 'VB', VB, 'PB', PB, 'aB', AB_ACC, 'PIB', PIB, 'CE*', round(CE_S, 2))
@@ -102,3 +119,5 @@ if __name__ == '__main__':
     c = achain(2); print('acc2', {k: (round(v, 4) if isinstance(v, float) else v) for k, v in c.items()})
     print('YMID', YMID); print('AR', AR); print('AM', AM); print('DE', DE)
     print('YMM', YMM, 'MU_A', MU_A, 'A', A_CYCLE, 'M_M', M_M, 'DEmax', DE_MAX, J_MAX, 'DEmin', DE_MIN, J_MIN, 'range J', DE_RANGE)
+    for j, x in enumerate(IP): print('I', j, x)
+    print('M2', M2, 'M5', M5, 'IS2', IS2, 'IPmax', IP_MAX, J_IMAX, 'MU_I', MU_I)

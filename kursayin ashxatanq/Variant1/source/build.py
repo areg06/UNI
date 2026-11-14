@@ -165,9 +165,11 @@ PANELS = [  # (id, group, nav label, kicker shown above the panel title)
     ('s3', 'Տետրի հաշվարկը', '§3 Արագացումներ', 'Տետրի հաշվարկը'),
     ('s4', 'Տետրի հաշվարկը', '§4 Բերված մոմենտ', 'Տետրի հաշվարկը'),
     ('s5', 'Տետրի հաշվարկը', '§5 Աշխատանքներ և ΔE', 'Տետրի հաշվարկը'),
+    ('s6', 'Տետրի հաշվարկը', '§6 Բերված իներցիայի մոմենտ', 'Տետրի հաշվարկը'),
     ('sheet1', 'Թերթեր (գծել)', 'Թերթ 1. դիրքերի պլան (A3)', 'Թերթեր (գծել)'),
     ('sheet2', 'Թերթեր (գծել)', 'Թերթ 2. արագություններ (A3)', 'Թերթեր (գծել)'),
     ('sheet3', 'Թերթեր (գծել)', 'Թերթ 3. գրաֆիկներ (A4)', 'Թերթեր (գծել)'),
+    ('sheet4', 'Թերթեր (գծել)', 'Թերթ 4. իներցիայի մոմենտ (A3)', 'Թերթեր (գծել)'),
     ('fre', 'Թերթեր (գծել)', 'F<sub>re</sub> գրաֆիկ', 'Թերթեր (գծել)'),
     ('tables', 'Թվեր', 'Բոլոր դիրքերի աղյուսակները', 'Թվեր'),
 ]
@@ -239,7 +241,7 @@ data_sec = f'''
       </tbody>
     </table>
   </div>
-  <p class="note">Այս թերթի (կինեմատիկայի) համար պետք են <i>H</i><sub>F</sub>, <i>L</i><sub>1</sub>, <i>L</i><sub>2</sub>, {lEF}, {lED}, {lCD}, <i>n</i><sub>1</sub>, <i>α</i>, <i>β</i> և F<sub>re</sub> գրաֆիկի ձևը։ <i>G</i><sub>2</sub>, <i>G</i><sub>5</sub> և F<sub>re</sub><sup>max</sup>-ը պետք են <a href="#s4">§4</a>-ում (բերված մոմենտ), <i>M</i><sub>m</sub>-ը որոշվում է <a href="#s5">§5</a>-ում, <i>I</i><sub>S₂</sub>, <i>δ</i>-ն՝ հետագա բաժիններում (թափանիվ)։ <i>I</i><sub>S₂</sub>-ի միավորի աստիճանը լուսանկարում վատ է երևում (10⁻³ կամ 10⁻¹). ստուգեք ձեր թերթում, երբ հասնեք ուժային հաշվարկին։</p>
+  <p class="note">Այս թերթի (կինեմատիկայի) համար պետք են <i>H</i><sub>F</sub>, <i>L</i><sub>1</sub>, <i>L</i><sub>2</sub>, {lEF}, {lED}, {lCD}, <i>n</i><sub>1</sub>, <i>α</i>, <i>β</i> և F<sub>re</sub> գրաֆիկի ձևը։ <i>G</i><sub>2</sub>, <i>G</i><sub>5</sub> և F<sub>re</sub><sup>max</sup>-ը պետք են <a href="#s4">§4</a>-ում (բերված մոմենտ), <i>M</i><sub>m</sub>-ը որոշվում է <a href="#s5">§5</a>-ում, <i>I</i><sub>S₂</sub>-ը պետք է <a href="#s6">§6</a>-ում (բերված իներցիայի մոմենտ), <i>δ</i>-ն՝ հետագա բաժիններում (թափանիվ)։ <i>I</i><sub>S₂</sub>-ի միավորի աստիճանը լուսանկարում վատ էր երևում. դասախոսն ասաց՝ ×10⁻³։</p>
 </div>'''
 
 # ---------------- step-by-step derivation of the key results ----------------
@@ -314,10 +316,11 @@ road = [
     ('Գծեք F<sub>re</sub> գրաֆիկը և լրացրեք մակագրությունները', '<a href="#fre">F<sub>re</sub> գրաֆիկ</a>', [_ts(1, 'fre')]),
     ('Հաշվեք բերված մոմենտը և կառուցեք M<sub>P</sub>(φ) գրաֆիկը', '<a href="#s4">§4</a>', [_tg('p17', 'p18'), _ts(3)]),
     ('Ինտեգրեք M<sub>P</sub>(φ)-ն և կառուցեք A<sub>r</sub>, A<sub>m</sub>, ΔE գրաֆիկները', '<a href="#s5">§5</a>', [_tg('p19', 'p20'), _ts(3)]),
+    ('Հաշվեք բերված իներցիայի մոմենտը և կառուցեք I<sub>P</sub>(φ) գրաֆիկը', '<a href="#s6">§6</a>', [_tg('p21', 'p22'), _ts(4)]),
 ]
 _groups = [('§1', 'Սինթեզ և դիրքեր', ['p10', 'p11']), ('§2', 'Արագություններ', ['p12', 'p13', 'p13a']),
            ('§3', 'Արագացումներ', ['p14', 'p15', 'p16']), ('§4', 'Բերված մոմենտ', ['p17', 'p18']),
-           ('§5', 'Աշխատանքներ և ΔE', ['p19', 'p20'])]
+           ('§5', 'Աշխատանքներ և ΔE', ['p19', 'p20']), ('§6', 'Բերված իներցիայի մոմենտ', ['p21', 'p22'])]
 _pg = {x[0]: x for x in T.PAGES}
 assert sorted(sum((g[2] for g in _groups), [])) == sorted(_pg)
 cp_groups = ''.join(
@@ -335,6 +338,9 @@ sheet_cards = [
     ('thumb_A4_graf.jpg', 636, 900, 'Թերթ 3. Գրաֆիկներ', 'A4 · ուղղաձիգ', 'sheet3', 'chertej_A4_graf.pdf',
      'Թերթ 3-ի նախադիտում՝ M<sub>P</sub>(φ), A<sub>r</sub>, A<sub>m</sub> և ΔE գրաֆիկները',
      ['M<sub>P</sub>(φ) գրաֆիկը', 'A<sub>r</sub>, A<sub>m</sub> (գրաֆիկական ինտեգրում)', 'ΔE գրաֆիկը']),
+    ('thumb_A3_4.jpg', 900, 646, 'Թերթ 4. Իներցիայի մոմենտ', 'A3 · հորիզոնական', 'sheet4', 'chertej_A3_4.pdf',
+     'Թերթ 4-ի նախադիտում՝ I<sub>P</sub>(φ) (շրջված 90°-ով) և ΔT(φ) գրաֆիկները',
+     ['I<sub>P</sub>(φ) գրաֆիկը՝ շրջված 90°-ով', 'ΔT(φ) գրաֆիկը (= ΔE)', 'Ազատ տեղ հաջորդ քայլի համար']),
 ]
 sc_html = ''.join(
     f'<article class="sc"><a class="sc-img" href="#{pid}"><img src="{img}" width="{w}" height="{h}" loading="lazy" alt="{alt}"></a>'
@@ -343,10 +349,10 @@ sc_html = ''.join(
     for img, w, h, t, badge, pid, pdf, alt, bl in sheet_cards)
 overview_head = f'''
 <h2 class="ptitle">Ինչ պետք է անել</h2>
-<p class="lede">Աշխատանքը՝ <b>տետրի էջեր 10–20</b> և <b>3 միլիմետրական թերթ</b> (2 × A3, 1 × A4)։ Թվերը բոլորն արդեն հաշված են. ձախում՝ ինչ գրել տետրում, աջում՝ ինչ գծել թղթի վրա։</p>
+<p class="lede">Աշխատանքը՝ <b>տետրի էջեր 10–22</b> և <b>4 միլիմետրական թերթ</b> (3 × A3, 1 × A4)։ Թվերը բոլորն արդեն հաշված են. ձախում՝ ինչ գրել տետրում, աջում՝ ինչ գծել թղթի վրա։</p>
 <div class="ov2">
   <section class="ovb ovb-t" aria-labelledby="ov-t">
-    <h3 id="ov-t">✍ Տետր <small>էջ 10–20</small></h3>
+    <h3 id="ov-t">✍ Տետր <small>էջ 10–22</small></h3>
     <p class="cp-prog" id="cp-prog" aria-live="polite">0 / {len(T.PAGES)} էջ գրված</p>
     <div class="cp-list">{cp_groups}</div>
     <a class="btn btn-t" href="tetr.html">Բացել տետրի էջերը</a>
@@ -824,6 +830,104 @@ s5 = f'''
   </aside>
 </div>'''
 
+# ---------------- §6 (1.10): reduced moment of inertia I_P(φ), A3 sheet 4 ----------------
+import graf4 as G4
+from graf4 import a3_sheet4, XI as G4XI, YI0 as G4YI0, XT0 as G4XT0, YT as G4YT
+IP, JI = C.IP, C.J_IMAX
+I_P = v('I', 'P'); I_S2 = v('I', 'S₂'); m_2 = v('m', '2'); m_5 = v('m', '5'); mu_I = v('μ', 'I'); mu_phi = v('μ', 'φ')
+ip2 = IP[2]
+MUI4 = n(C.MU_I*1e4, 3) + '·10⁻⁴'
+ip_rows = ''.join(
+    f'<tr{WK if j == JI else ""}><th scope="row">{j}</th><td class="n">{n(x["VS2"],3)}</td><td class="n">{n(x["w2"],2)}</td><td class="n">{n(x["VF"],3)}</td>'
+    f'<td class="n">{n(x["a"],5)}</td><td class="n">{n(x["b"],5)}</td><td class="n">{n(x["f"],5)}</td>'
+    f'<td class="n">{n(x["t2"],5)}</td><td class="n">{n(x["tw"],5)}</td><td class="n">{n(x["t5"],5)}</td>'
+    f'<td class="n"><b>{n(x["I"],5)}</b></td><td class="n">{n(x["Imm"])}</td></tr>' for j, x in enumerate(IP))
+s6 = f'''
+<div class="secbody">
+  <h2 class="ptitle"><span class="secno">§6</span> Բերված իներցիայի մոմենտը և նրա գրաֆիկը</h2>
+  <p class="tetr-link">✍ Տետրում՝ <a href="tetr.html#p21">էջ 21–22</a>։ Մեթոդականում՝ 1.10 կետ (աղյուսակ 4, նկ. 14)։</p>
+  <div class="prose">
+    <h3>1) Ինչու է սա պետք և ինչ է</h3>
+    <p>Թափանիվը հաշվելու համար պետք է իմանալ, թե մեքենայի կինետիկ էներգիան ինչպես է կախված կռունկի դիրքից։ Բայց մեխանիզմի օղակները շարժվում են տարբեր արագություններով։ Դրա համար ամբողջ մեխանիզմը փոխարինում ենք <b>մեկ պայմանական օղակով</b>՝ կռունկով (պտտվում է {w1}-ով), որի <b>բերված իներցիայի մոմենտ {I_P}</b>-ն ընտրված է այնպես, որ ամեն պահի <b>նրա կինետիկ էներգիան {I_P}·{w1}²/2 հավասար լինի ամբողջ մեխանիզմի կինետիկ էներգիային</b>։</p>
+    <h3>2) Բանաձևի արտածումը</h3>
+    <p>Օղակ 1-ը (կռունկը) արդեն բերման օղակն է։ Օղակ 2-ը (BC) կատարում է հարթ շարժում՝ պտույտ ω<sub>2</sub>-ով ծանրության կենտրոնի շուրջը և համընթաց շարժում S<sub>2</sub> կետի արագությամբ։ Օղակ 5-ը (սողնակ) համընթաց է շարժվում (մեր տարբերակում՝ F կետով)։</p>
+    {eq(f"{I_P}·{fr(w1+'²', '2')} = {m_2}·{fr(VS2+'²', '2')} + {I_S2}·{fr(w2+'²', '2')} + {m_5}·{fr(VF+'²', '2')}")}
+    <p>Բազմապատկում ենք 2-ով և բաժանում {w1}²-ի վրա.</p>
+    {eq(f"{I_P} = {m_2}·({fr(VS2, w1)})² + {I_S2}·({fr(w2, w1)})² + {m_5}·({fr(VF, w1)})²", 'միակ անհայտը I<sub>P</sub>-ն է')}
+    <p>Արագությունները նոր չափել պետք չէ. {VS2} = ps₂·{mu_V}, {w2} = {VCB}/{lBC}, {VF} = pf·{mu_V}՝ բոլորն արդեն կան <a href="#s2">§2</a>-ի աղյուսակներում։</p>
+    <h3>3) Զանգվածները և իներցիայի մոմենտը</h3>
+    {eq(f"{m_2} = {fr(v('G','2'), 'g')} = {fr(str(C.G2), str(C.G_ACC))} = {res(n(C.M2,2)+' կգ')},&nbsp;&nbsp; {m_5} = {fr(v('G','5'), 'g')} = {fr(str(C.G5), str(C.G_ACC))} = {res(n(C.M5,2)+' կգ')}", f'g = {C.G_ACC} մ/վ² (դասախոսի ասածով)')}
+    {eq(f"{I_S2} = {D_['IS2']}·10⁻³ = {res(n(C.IS2,2)+' կգ·մ²')},&nbsp;&nbsp; {w1} = {n(C.W1,2)} վ⁻¹")}
+    <p><b>Օրինակ՝ դիրք 2</b> ({VS2} = {n(ip2['VS2'],3)} մ/վ, {w2} = {n(ip2['w2'],2)} վ⁻¹, {VF} = {n(ip2['VF'],3)} մ/վ).</p>
+    {eq(f"({fr(VS2, w1)})² = ({fr(n(ip2['VS2'],3), n(C.W1,2))})² = {n(ip2['a'],5)},&nbsp;&nbsp; ({fr(w2, w1)})² = ({fr(n(ip2['w2'],2), n(C.W1,2))})² = {n(ip2['b'],5)},&nbsp;&nbsp; ({fr(VF, w1)})² = ({fr(n(ip2['VF'],3), n(C.W1,2))})² = {n(ip2['f'],5)}")}
+    {eq(f"{I_P}<sub>2</sub> = {n(C.M2,2)}·{n(ip2['a'],5)} + {n(C.IS2,2)}·{n(ip2['b'],5)} + {n(C.M5,2)}·{n(ip2['f'],5)} = {n(ip2['t2'],5)} + {n(ip2['tw'],5)} + {n(ip2['t5'],5)} = {res(n(ip2['I'],5)+' կգ·մ²')}")}
+  </div>
+
+  <h3 class="bh">4) Աղյուսակը (մեթոդականի աղյուսակ 4)</h3>
+  <p class="hint">Արագությունները՝ §2-ից (մ/վ և վ⁻¹), քառակուսի հարաբերությունները՝ {w1}-ի վրա բաժանած, երեք անդամները՝ կգ·մ², վերջին սյունակը՝ գծագրական չափը (մմ)։ 8-րդ դիրքը նույնն է, ինչ 0-ն։</p>
+  <div class="tscroll"><table class="coords wide">
+    <thead><tr><th scope="col">j</th><th scope="col">{VS2}</th><th scope="col">{w2}</th><th scope="col">{VF}</th><th scope="col">({fr(VS2, w1)})²</th><th scope="col">({fr(w2, w1)})²</th><th scope="col">({fr(VF, w1)})²</th><th scope="col">{m_2}·(…)</th><th scope="col">{I_S2}·(…)</th><th scope="col">{m_5}·(…)</th><th scope="col">{I_P}, կգ·մ²</th><th scope="col">{I_P}<sup>գծ</sup>, մմ</th></tr></thead>
+    <tbody>{ip_rows}</tbody>
+  </table></div>
+  <aside class="aside">
+    <p class="aside-h">Ինքնաստուգում</p>
+    <p>{I_P}-ն մեծ է այնտեղ, որտեղ արագությունները մեծ են՝ տրամաբանորեն պարապ ընթացքում (դիրքեր 5–7)։ Մեզ մոտ առավելագույնը <b>j = {JI}</b>-ում է՝ {n(C.IP_MAX,5)} կգ·մ² (պարապ ընթացք)։ Եթե ձեր չափումներից առավելագույնը մի փոքր այլ տեղ ընկնի, գրեք այն, ինչ ստացել եք։</p>
+  </aside>
+
+  <div class="prose">
+    <h3>5) Գրաֆիկի մասշտաբները</h3>
+    <p>{I_P}<sub>max</sub>-ը ներկայացնում ենք 80 մմ հատվածով, φ-ն՝ ինչպես §4-ում (8 × 20 = 160 մմ).</p>
+    {eq(f"{mu_I} = {fr(I_P+'<sub>max</sub>', '80 մմ')} = {fr(n(C.IP_MAX,5), '80')} = {res(MUI4+' կգ·մ²/մմ')},&nbsp;&nbsp; {mu_phi} = {n(C.MU_PHI,3)} ռադ/մմ")}
+    {eq(f"({I_P})<sub>j</sub><sup>գծ</sup> = {fr(I_P+'<sub>j</sub>', mu_I)}")}
+    <p><b>Գրաֆիկը շրջված է 90°-ով</b> (մեթոդականի նկ. 14). {I_P}-ի առանցքը հորիզոնական է, φ-ինը՝ ուղղաձիգ, ներքև, դիրքերի միջև՝ 20 մմ։ Կետերը միացրեք հարթ կորով։ Շրջում ենք, որովհետև հաջորդ քայլում φ-ն «արտաքսվելու» է (էներգիա–զանգված դիագրամ ΔT({I_P})). դա կավելացվի, երբ դասախոսը բացատրի։</p>
+  </div>
+  <p class="tetr-link">📐 <a href="#sheet4">Գծել՝ Թերթ 4 (A3)</a>՝ թերթը, գծելու հերթականությունը և հիմնական կետերը։</p>
+  <aside class="aside">
+    <p class="aside-h">Ուշադրություն</p>
+    <p>Մեթոդականի օրինակում g = 9,8 մ/վ², իսկ դասախոսն ասաց վերցնել <b>g = {C.G_ACC}</b>. մենք վերցրել ենք 10։ {I_S2}-ի միավորը առաջադրանքի լուսանկարում դժվար էր կարդալ. դասախոսն ասաց՝ ×10⁻³, այսինքն՝ {I_S2} = {n(C.IS2,2)} կգ·մ²։ Եթե ձեր V<sub>S₂</sub>, ω₂, V<sub>F</sub> արժեքները (էջ 12–13) մի փոքր տարբերվեն, վերահաշվեք աղյուսակը նույն բանաձևով։</p>
+  </aside>
+</div>'''
+
+sheet4_svg = a3_sheet4('sh4')
+IYS = lambda j: G4YI0 - 20*j
+key4_rows = [(f'I<sub>P</sub> {j}' + (' (max)' if j == JI else ''), (G4XI + IP[j]['Imm'], IYS(j)), f'i{j}',
+              f'I<sub>P</sub>-ի կետ, դիրք {j}. x = {n(G4XI,0)} + {n(IP[j]["Imm"])}, y = {n(G4YI0,0)} − {20*j}') for j in range(9)]
+key4_rows += [(f'ΔT {j}' + (' (max)' if j == C.J_MAX else ' (min)' if j == C.J_MIN else ''), (G4XT0 + 20*j, G4YT + C.DE[j]), f't{j}',
+               f'ΔT-ի կետ, դիրք {j}. x = {n(G4XT0,0)} + {20*j}, y = {n(G4YT,0)} + ({n(C.DE[j])})') for j in range(9)]
+key4_tbl = ''.join(f'<tr data-pt="{k}"><th scope="row">{lab}</th>{pt_sheet(p)}<td class="t">{note}</td></tr>' for lab, p, k, note in key4_rows)
+order4_items = [
+    f'Թերթը դրեք հորիզոնական (A3). O(0; 0)՝ ցանցի ներքևի ձախ անկյունը։ Ներքևի աջ անկյունում (x = 277…377, y = 3…19) թողեք տեղ հիմնական մակագրության համար։',
+    f'<b>I<sub>P</sub>(φ)</b>. I<sub>P</sub> առանցքը՝ հորիզոնական y = {n(G4YI0,0)}, x = {n(G4XI-4,0)}-ից {n(G4XI+96,0)}։ φ առանցքը՝ ուղղաձիգ x = {n(G4XI,0)}, y = {n(G4YI0,0)}-ից <b>ներքև</b> մինչև y = {n(G4YI0-170,0)}։',
+    f'φ առանցքի վրա նշեք դիրքերը 0…8՝ y = {n(IYS(0),0)}, {n(IYS(1),0)}, … {n(IYS(8),0)} (20 մմ-ը մեկ, 0-ն վերևում, ներքև՝ աճող)։',
+    f'I<sub>P</sub>-ի կետերը՝ ({n(G4XI,0)} + (I<sub>P</sub>)<sup>գծ</sup><sub>j</sub>; {n(G4YI0,0)} − 20·j) (աղյուսակը §6-ում). օր.՝ j = {JI}՝ ({n(G4XI + IP[JI]["Imm"],0)}; {n(IYS(JI),0)}), սա I<sub>P max</sub> = {C.IP_YMAX} մմ է։ Յուրաքանչյուր կետից տարեք հորիզոնական օրդինատ մինչև φ առանցքը։',
+    f'Կետերը 0-ից 8 միացրեք <b>հարթ կորով</b>։ 8-րդ դիրքը ունի նույն x-ը, ինչ 0-ն ({n(G4XI + IP[0]["Imm"])}), բայց y = {n(IYS(8),0)}։',
+    f'Չափերը. I<sub>P max</sub> = {C.IP_YMAX} մմ (հորիզոնական), φ-ն՝ 8 × 20 = 160 մմ (ուղղաձիգ)։ Գրեք {mu_I} = {MUI4} կգ·մ²/մմ և {mu_phi} = {n(C.MU_PHI,3)} ռադ/մմ։',
+    f'<b>ΔT(φ)</b> (ձախում). φ առանցքը՝ հորիզոնական y = {n(G4YT,0)}, 0-ն՝ x = {n(G4XT0,0)}-ում, 20 մմ-ը մեկ դիրքի համար (8 դիրք՝ x = {n(G4XT0+160,0)}-ում)։ ΔT առանցքը՝ ուղղաձիգ x = {n(G4XT0,0)}։',
+    f'ΔT-ի կետերը՝ ({n(G4XT0,0)} + 20·j; {n(G4YT,0)} + y<sub>ΔE</sub>), y<sub>ΔE</sub>-ը՝ թերթ 3-ի ΔE (§5 աղյուսակ, μ<sub>ΔT</sub> = μ<sub>A</sub> = {n(C.MU_A,2)} Ջ/մմ). օր.՝ j = {C.J_MIN}՝ ({n(G4XT0 + 20*C.J_MIN,0)}; {n(G4YT + C.DE[C.J_MIN])}). միացրեք հարթ կորով։',
+    f'<b>Ազատ տեղը</b>՝ I<sub>P</sub>(φ)-ի տակ (մոտ x = 250…330, y = 40…90), <b>թողեք դատարկ</b>. հաջորդ քայլում այնտեղ կկառուցվի ΔT(I<sub>P</sub>) էներգիա–զանգված դիագրամը (φ-ի արտաքսում)՝ երբ դասախոսը բացատրի։',
+    f'Գրեք կորերի անունները, մասշտաբները և լրացրեք հիմնական մակագրությունը (Թերթ 4, A3)։',
+]
+sheet4_sec = f'''
+<h2 class="ptitle">Թերթ 4. իներցիայի մոմենտ (A3)</h2>
+<p class="lede">Բերված իներցիայի մոմենտի I<sub>P</sub>(φ) գրաֆիկը (շրջված 90°-ով) և կինետիկ էներգիայի աճի ΔT(φ) գրաֆիկը։ Թերթը դրեք հորիզոնական. <b>O(0; 0)</b>-ն ցանցի ներքևի ձախ անկյունն է։ Հաշվարկը՝ <a href="#s6">§6</a>, տետրում՝ <a href="tetr.html#p21">էջ 21–22</a>։</p>
+<p class="hint">1 մմ = 1 մմ թղթի վրա։ Աջում՝ I<sub>P</sub>(φ), ձախում՝ ΔT(φ) (նույնն է, ինչ ΔE թերթ 3-ում)։ I<sub>P</sub>(φ)-ի տակ ազատ տեղ է մնացել հաջորդ քայլի՝ ΔT(I<sub>P</sub>) էներգիա–զանգված դիագրամի համար։</p>
+<div class="sheet-bar"><span class="dl"><a href="chertej_A3_4.pdf">PDF (A3)</a> · <a href="chertej_A3_4.png">PNG</a> · <a href="chertej_A3_4.svg">SVG</a></span>{zoom(4)}</div>
+{frame(4, sheet4_svg)}
+<div class="split">
+  <div>
+    <h3 class="bh">Գծելու հերթականությունը</h3>
+    {order_list(4, order4_items)}
+  </div>
+  <div>
+    <h3 class="bh">Հիմնական կետերը</h3>
+    <p class="hint">Տողի վրա մկնիկը պահելիս կետը նշվում է թերթի վրա։</p>
+    <div class="tscroll"><table class="coords">
+      <thead><tr><th scope="col">Կետ</th><th scope="col">x, մմ</th><th scope="col">y, մմ</th><th scope="col">Ինչ է</th></tr></thead>
+      <tbody>{key4_tbl}</tbody>
+    </table></div>
+  </div>
+</div>'''
+
 fre_sec = f'''
 <div class="secbody">
   <h2 class="ptitle">Օգտակար դիմադրության ուժի գրաֆիկը</h2>
@@ -872,7 +976,7 @@ next_sec = f'''
 <div class="secbody">
   <h3 class="bh">Հաջորդ բաժինները</h3>
   <div class="prose">
-    <p>Այս էջը ընդգրկում է A3 և A4 թերթերը և տետրի §1–§5 բաժինները (§4՝ բերված մոմենտը, §5՝ աշխատանքների և կինետիկ էներգիայի աճի գրաֆիկները)։ Հաջորդը մեթոդականի 1.10 կետն է՝ բերված իներցիայի մոմենտը և թափանիվը, որը կավելացվի, երբ դասախոսը բացատրի։ ΔE<sub>max</sub> − ΔE<sub>min</sub> = {n(C.DE_RANGE)} Ջ, <i>I</i><sub>S₂</sub> = {n(D_['IS2']/1000,2)} կգ·մ², <i>δ</i> = 0,05 մեծությունները պետք կգան թափանիվի հաշվարկում։</p>
+    <p>Այս էջը ընդգրկում է A3 և A4 թերթերը և տետրի §1–§6 բաժինները (§4՝ բերված մոմենտը, §5՝ աշխատանքների և կինետիկ էներգիայի աճի գրաֆիկները, §6՝ բերված իներցիայի մոմենտը)։ Հաջորդը էներգիա–զանգված դիագրամն է՝ ΔT(<i>I</i><sub>P</sub>), «φ-ի արտաքսումը», ապա թափանիվի հաշվարկը. դրանք կավելացվեն, երբ դասախոսը բացատրի (թերթ 4-ի վրա դրա համար թողնված է ազատ տեղ)։ ΔE<sub>max</sub> − ΔE<sub>min</sub> = {n(C.DE_RANGE)} Ջ, <i>I</i><sub>P max</sub> = {n(C.IP_MAX,5)} կգ·մ², <i>δ</i> = 0,05 մեծությունները պետք կգան թափանիվի հաշվարկում։</p>
     <p class="note">Բոլոր թվերը հաշվված են ծրագրով և ստուգված թվային ածանցմամբ։ Ձեր գծագրում չափված երկարությունները կարող են տարբերվել ±0,5 մմ-ով. դա նորմալ է։</p>
   </div>
 </div>'''
@@ -1088,7 +1192,7 @@ JS = r'''
     row.addEventListener('pointerenter', () => {
       clear();
       row.dataset.pt.split(' ').forEach(id => {
-        const el = document.getElementById('sh-pt-' + id) || document.getElementById('sh2-pt-' + id) || document.getElementById('sh3-pt-' + id); if (!el) return;
+        const el = document.getElementById('sh-pt-' + id) || document.getElementById('sh2-pt-' + id) || document.getElementById('sh3-pt-' + id) || document.getElementById('sh4-pt-' + id); if (!el) return;
         const c = document.createElementNS(NS, 'circle');
         c.setAttribute('class', 'ring'); c.setAttribute('r', '2.8');
         c.setAttribute('cx', el.getAttribute('cx')); c.setAttribute('cy', el.getAttribute('cy'));
@@ -1268,11 +1372,11 @@ FRAME_JS = r'''
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Noto+Sans+Armenian:wdth,wght@62.5..100,400..700&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap">'
 
 html = (f'<title>Առաջադրանք 2, տարբերակ {VAR}</title>\n<meta name="description" content="ՄՄՏ, առաջադրանք 2, տարբերակ {VAR}. սինթեզ, արագությունների և արագացումների պլաններ, A3 թերթի գծագիր՝ կոորդինատներով">\n'
-        + FONTS + '\n<style>' + CSS + FRAME_CSS + SH.SHEET_CSS + A4_CSS + '.a4frame{max-width:760px;margin-inline:auto}.a4frame .sheet-frame{padding-inline:0}.dl{font-size:.9rem}</style>\n'
+        + FONTS + '\n<style>' + CSS + FRAME_CSS + SH.SHEET_CSS + A4_CSS + (G4.A3_4_CSS if G4.A3_4_CSS != A4_CSS else '') + '.a4frame{max-width:760px;margin-inline:auto}.a4frame .sheet-frame{padding-inline:0}.dl{font-size:.9rem}</style>\n'
         + header + '<div class="shell">' + side_nav() + '<main id="main">'
         + panel('overview', overview_head) + panel('data', '<h2 class="ptitle">Տվյալներ և արդյունքներ</h2>' + results_sec + data_sec)
-        + panel('s1', s1) + panel('s2', s2) + panel('s3', s3) + panel('s4', s4) + panel('s5', s5)
-        + panel('sheet1', sheet1_sec) + panel('sheet2', sheet2_sec) + panel('sheet3', sheet3_sec) + panel('fre', fre_sec)
+        + panel('s1', s1) + panel('s2', s2) + panel('s3', s3) + panel('s4', s4) + panel('s5', s5) + panel('s6', s6)
+        + panel('sheet1', sheet1_sec) + panel('sheet2', sheet2_sec) + panel('sheet3', sheet3_sec) + panel('sheet4', sheet4_sec) + panel('fre', fre_sec)
         + panel('tables', tables_sec + next_sec) + '</main></div>'
         + '<script>' + JS + FRAME_JS + '</script>\n')
 import os
