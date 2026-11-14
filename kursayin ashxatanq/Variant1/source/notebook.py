@@ -93,7 +93,7 @@ p12 = page(12, f'''
 {sign([q('V','F',vec=True), q('V','E',vec=True), q('V','FE',vec=True)], ['−', '+', '−'], ['+ (∥yy)', '+', '+ (⊥EF)'])}
 {L(f"{num(5)} bs<sub>2</sub> = cs<sub>2</sub>")}
 {L(f"{num(6)} {muv} = {fr(q('V','B'), 'pb')} = {fr(w[1]+'·'+lAB, 'pb')} = {fr(n(C.VB,3), '50')} = {big(MUV)} [{fr('մ·վ<sup>−1</sup>', 'մմ')}]; &nbsp; ընդ. <u>pb = 50 մմ</u>")}
-<p class="ncap">{num(7)} դիրք {P2} (հաստ դիրքը). մյուս դիրքերը՝ էջ 13-ի աղյուսակում և ներդիրում</p>
+{L(f"{num(7)} Դիրք {P2}")}
 {L(f"{q('V','C')} = (pc)·{muv} = {n(v2['pc'])}·{MUV} = {big(n(v2['VC'],3))} [{MS}]", 'ind')}
 {L(f"pe = {n(v2['pc'])}·1,111 = {n(v2['pe'])} մմ; &nbsp; {q('V','E')} = (pe)·{muv} = {n(v2['pe'])}·{MUV} = {big(n(v2['VE'],3))} {MS}", 'ind')}
 {L(f"{q('V','F')} = (pf)·{muv} = {n(v2['pf'])}·{MUV} = {big(n(v2['VF'],3))} {MS}", 'ind')}
@@ -110,14 +110,13 @@ for i in list(range(8)):
     lab = '0 (8)' if i == 0 else str(i)
     rows += (f'<tr{" class=wk" if i == P2 else ""}><th>{lab}</th>'
              + ''.join(f'<td>{n(c[k],3)}</td>' for k in ('VC', 'VE', 'VF', 'VCB', 'VFE', 'VS2'))
-             + ''.join(f'<td>{n(c[k],2)}</td>' for k in ('w2', 'w3', 'w4')) + '</tr>')
+             + ''.join(f'<td>{n(c[k],2)} {c[k+"s"] if c[k+"s"] != "—" else ""}</td>' for k in ('w2', 'w3', 'w4')) + '</tr>')
 p13 = page(13, f'''
 {L(f"{w[3]} = {fr(q('V','C'), lCD)} = {fr(n(v2['VC'],3), LCD)} = {big(n(v2['w3'],2))} {INV1} {v2['w3s']}", 'ind')}
 {L(f"{w[4]} = {fr(q('V','FE'), lEF)} = {fr(n(v2['VFE'],3), LEF)} = {big(n(v2['w4'],2))} {INV1} {v2['w4s']}", 'ind')}
 <table class="ntbl"><thead>
 <tr><th rowspan="2"><i>i</i></th><th>{q('V','C')}</th><th>{q('V','E')}</th><th>{q('V','F')}</th><th>{q('V','CB')}</th><th>{q('V','FE')}</th><th>{q('V','S<sub>2</sub>')}</th><th>{w[2]}</th><th>{w[3]}</th><th>{w[4]}</th></tr>
 <tr><th colspan="6">մ/վ</th><th colspan="3">{INV1}</th></tr></thead><tbody>{rows}</tbody></table>
-<p class="nnote">Ընդգծված տողը՝ հաստ (2-րդ) դիրքը։ Պտտման ուղղությունները (↻ {CW}, ↺ հակառակ). {w[2]}: {" ".join(vc[i]['w2s'] for i in range(8))}; {w[3]}: {" ".join(vc[i]['w3s'] for i in range(8))}; {w[4]}: {" ".join(vc[i]['w4s'] for i in range(8))} (0…7 դիրքեր)։</p>
 ''', 'r')
 
 # ---------------- insert: step 7 for every position ----------------
@@ -141,14 +140,14 @@ def pos_block(i):
             f'<p>{w[3]} = {n(c["VC"],3)}/{LCD} = {big(n(c["w3"],2))} {c["w3s"]}</p>'
             f'<p>{w[4]} = {n(c["VFE"],3)}/{LEF} = {big(n(c["w4"],2))} {c["w4s"]}</p></div>')
 insert = page('13ա', f'''
-<p class="ncap">Ներդիր. 7-րդ կետը բոլոր դիրքերի համար (հատվածները՝ մմ, պլաններից չափված, արագությունները՝ մ/վ, ω-ն՝ {INV1}, {muv} = {MUV})</p>
+{L(f"{num(7)} Բոլոր դիրքերի համար ({muv} = {MUV})")}
 <div class="nposg">{"".join(pos_block(i) for i in range(8))}</div>
 ''', 'l wide')
 
 # ---------------- page 14 ----------------
 p14 = page(14, f'''
 <h4 class="nsec">§3. Արագացումների պլանի կառուցում</h4>
-<p class="ntext">Այս կառուցումը կատարում ենք 2-րդ դիրքի համար (աշխատանքային դիրք)։</p>
+{L(f"Դիրք {P2}-ի համար")}
 {L(f"{num(1)} {q('a','B',vec=True)} = {q('a','B','n',True)} + {q('a','B','t',True)}")}
 {L(f"{q('a','B','n')} = {w[1]}<sup>2</sup>·{lAB} = {n(C.W1,2)}<sup>2</sup>·{LAB} = {big(n(C.AB_ACC,2))} {MS2}; &nbsp; {q('a','B','n',True)} (B → A)", 'ind')}
 {L(f"{q('a','B','t')} = {e[1]}·{lAB} = {fr('d'+w[1], 'dt')}·{lAB} = 0 &nbsp; (քանի որ {w[1]} = const)", 'ind')}
@@ -187,25 +186,23 @@ p16 = page(16, f'''
 {L(f"{q('a','S<sub>2</sub>')} = (πs<sub>2</sub>)·{mua} = {n(a2['pis2'])}·{MUA} = {big(n(a2['aS2'],2))} {MS2}", 'opt')}
 {L(f"{e[2]} = {fr(q('a','CB','t'), lBC)} = {fr(n(a2['aCBt'],2), LBC)} = {big(n(a2['e2'],1))} {INV2} {a2['e2s']}; &nbsp; {e[3]} = {fr(q('a','CD','t'), lCD)} = {fr(n(a2['aCDt'],2), LCD)} = {big(n(a2['e3'],1))} {INV2}")}
 {L(f"{e[4]} = {fr(q('a','FE','t'), lEF)} = {fr(n(a2['aFEt'],2), LEF)} = {big(n(a2['e4'],1))} {INV2} {a2['e4s']}")}
-<p class="nnote">{q('a','S<sub>2</sub>')}-ի տողը օրինակում չկա, բայց պետք կգա ուժային հաշվարկում (իներցիայի ուժ)։ n<sub>3</sub>c-ն և n<sub>4</sub>f-ը գրեթե զրո են, որովհետև 2-րդ դիրքում {w[3]}-ը մոտ է իր առավելագույնին. սա սխալ չէ։</p>
 ''')
 
 # ---------------- §4: reduced moment (pages 17–18) ----------------
+# Pages 17–22 hold only what is written in the copybook; explanations and checks live in the tips of tetr.py.
+# Every § starts with its heading and numbers its items 1), 2), … across its pages.
 KMT = n(C.KM, 7); W1T = n(C.W1, 2)
 def sgn(x, nd=1): return ('+' if x > 0 else '') + n(x, nd)
 p17 = page(17, f"""
-<h4 class="nsec">§4. Բերված մոմենտի որոշումը և նրա գրաֆիկի կառուցումը</h4>
-<p class="ntext">Բերման օղակը՝ 1 շուռտվիկը։ Բերված մոմենտի հզորությունը հավասար է արտաքին ուժերի հզորությունների գումարին.</p>
-{L(f"{q('M','P')}·{w[1]} = Σ {q('F','i')}·{q('V','i')}·cos {q('α','i')}")}
-{L(f"{num(1)} {q('M','P')}<sub>j</sub> = {q('G','2')}·{fr(q('V','S<sub>2</sub>')+'·cos '+q('α','2'), w[1])} + {q('G','5')}·{fr(q('V','F')+'·cos '+q('α','5'), w[1])} − {q('F','r')}·{fr(q('V','F'), w[1])}")}
+<h4 class="nsec">§4. Բերված մոմենտի որոշումը և գրաֆիկի կառուցումը</h4>
+{L(f"{num(1)} {q('M','P')}·{w[1]} = Σ {q('F','i')}·{q('V','i')}·cos {q('α','i')}")}
+{L(f"{q('M','P')}<sub>j</sub> = {q('G','2')}·{fr(q('V','S<sub>2</sub>')+'·cos '+q('α','2'), w[1])} + {q('G','5')}·{fr(q('V','F')+'·cos '+q('α','5'), w[1])} − {q('F','r')}·{fr(q('V','F'), w[1])}", 'ind')}
 {L(f"{q('G','2')} = {C.G2} Ն; &nbsp;{q('G','5')} = {C.G5} Ն; &nbsp;{w[1]} = {W1T} {INV1}", 'ind')}
-{L(f"{q('α','5')} = 0° (1–4 դիրքեր, սողնակն իջնում է), {q('α','5')} = 180° (5–7 դիրքեր)", 'ind sm')}
-{L(f"{num(2)} {q('F','r')} = {q('y','j')}·{q('μ','F')}; &nbsp;{q('μ','F')} = {fr(q('F','re')+'<sup>max</sup>', q('y','max'))} = {fr(str(int(M.FMAX)), n(C.FRE_MAX_MM,0))} = {big(n(M.MUF,0))} Ն/մմ")}
-{L(f"{q('F','r')} ≠ 0 միայն 2, 3, 4 դիրքերում. ուղղված է վեր, {q('V','F')}-ը՝ ներքև (cos 180° = −1)", 'ind sm')}
+{L(f"{q('α','5')} = 0° (j = 1…4); &nbsp;{q('α','5')} = 180° (j = 5…7)", 'ind')}
+{L(f"{num(2)} {q('μ','F')} = {fr(q('F','re')+'<sup>max</sup>', q('y','max'))} = {fr(str(int(M.FMAX)), n(C.FRE_MAX_MM,0))} = {big(n(M.MUF,0))} Ն/մմ; &nbsp;{q('F','r')} = {q('y','j')}·{q('μ','F')}")}
 {L(f"{num(3)} {q('V','S<sub>2</sub>')}·cos {q('α','2')} = (ps<sub>2</sub>·cos {q('α','2')})·{muv}; &nbsp;{q('V','F')} = (pf)·{muv}")}
-{L(f"ps<sub>2</sub>·cos {q('α','2')}՝ ps<sub>2</sub>-ի պրոյեկցիան ուղղաձիգի վրա (p-ից ներքև՝ +, վերև՝ −), մմ", 'ind sm')}
 {L(f"{fr(muv, w[1])} = {fr(MUV, W1T)} = {big(KMT)} մ/մմ", 'ind')}
-{L(f"{q('M','P')}<sub>j</sub> = {KMT}·[{C.G2}·(ps<sub>2</sub>cos {q('α','2')}) ± {C.G5}·(pf) − {q('F','r')}·(pf)] &nbsp;(5)", 'ind')}
+{L(f"{q('M','P')}<sub>j</sub> = {KMT}·[{C.G2}·(ps<sub>2</sub>cos {q('α','2')}) ± {C.G5}·(pf) − {q('F','r')}·(pf)]", 'ind')}
 """, 'r')
 
 m2 = C.MP[2]
@@ -213,64 +210,54 @@ mrows = ''.join(
     f'<tr{" class=wk" if j == 2 else ""}><th>{j}</th><td>{sgn(x["ys2"])}</td><td>{n(x["pf"])}</td><td>{x["a5"]}°</td>'
     f'<td>{n(x["yF"])}</td><td>{n(x["Fr"],0)}</td><td>{n(x["M"])}</td><td>{n(x["Mmm"])}</td></tr>' for j, x in enumerate(C.MP))
 p18 = page(18, f"""
-{L(f"Դիրք 2. {q('M','P')}<sub>2</sub> = {KMT}·[{C.G2}·({n(m2['ys2'])}) + {C.G5}·{n(m2['pf'])} − {n(m2['Fr'],0)}·{n(m2['pf'])}] = {big(n(m2['M']))} Ն·մ", 'sm')}
+{L(f"{num(4)} {q('M','P')}<sub>2</sub> = {KMT}·[{C.G2}·({n(m2['ys2'])}) + {C.G5}·{n(m2['pf'])} − {n(m2['Fr'],0)}·{n(m2['pf'])}] = {big(n(m2['M']))} Ն·մ")}
 <table class="ntbl"><thead>
 <tr><th><i>j</i></th><th>ps<sub>2</sub>cos {q('α','2')}</th><th>pf</th><th>{q('α','5')}</th><th>{q('y','j')}</th><th>{q('F','r')}</th><th>{q('M','P')}<sub>j</sub></th><th>({q('M','P')})<sub>j</sub><sup>գծ</sup></th></tr>
 <tr><th></th><th>մմ</th><th>մմ</th><th></th><th>մմ</th><th>Ն</th><th>Ն·մ</th><th>մմ</th></tr></thead><tbody>{mrows}</tbody></table>
-{L(f"{num(4)} {q('μ','M')} = {fr('|'+q('M','P')+'|<sub>max</sub>', '80 մմ')} = {fr(n(C.MP_MAX), '80')} = {big(n(C.MU_M,2))} Ն·մ/մմ")}
+{L(f"{num(5)} {q('μ','M')} = {fr('|'+q('M','P')+'|<sub>max</sub>', '80 մմ')} = {fr(n(C.MP_MAX), '80')} = {big(n(C.MU_M,2))} Ն·մ/մմ")}
 {L(f"{q('μ','φ')} = {fr('2π', '160 մմ')} = {fr('2·3,14', '160')} = {big(n(C.MU_PHI,3))} ռադ/մմ", 'ind')}
-{L(f"{num(5)} ({q('M','P')})<sub>j</sub><sup>գծ</sup> = {fr(q('M','P')+'<sub>j</sub>', q('μ','M'))} &nbsp;(իր նշանով)")}
-<p class="nnote">Ընդգծված տողը՝ |{q('M','P')}|<sub>max</sub>։ Գրաֆիկում φ առանցքը՝ 8 × 20 մմ = 160 մմ, {q('M','P')}-ի առավելագույնը՝ 80 մմ։</p>
+{L(f"{num(6)} ({q('M','P')})<sub>j</sub><sup>գծ</sup> = {fr(q('M','P')+'<sub>j</sub>', q('μ','M'))}")}
 """)
 
-# ---------------- 1.8–1.9: work graphs and kinetic-energy increment (pages 19–20) ----------------
-def sg(x, nd=1): return ('+' if x > 0 else '') + n(x, nd)
+# ---------------- §5 (methodology 1.8–1.9): work graphs and kinetic-energy increment (pages 19–20) ----------------
 OPT = str(C.OP); KOP = n(20/C.OP, 2)
 ar_lines = ''.join(
-    L(f"{q('y', str(k+1)+'′')} = {q('y', str(k)+'′')} + ({n(C.YMID[k])})·{KOP} = {big(n(C.AR[k+1]))} մմ", 'ind sm')
+    L(f"{q('y', str(k+1)+'′')} = {n(C.AR[k])} + ({n(C.YMID[k])})·{KOP} = {big(n(C.AR[k+1]))} մմ", 'ind')
     for k in range(8))
-ymid_line = ' &nbsp; '.join(f"{q('y', str(k+1), 'մ')} = {n(C.YMID[k])}" for k in range(8))
+ymid_line = '; &nbsp;'.join(f"{q('y', str(k+1), 'մ')} = {n(C.YMID[k])}" for k in range(8))
 p19 = page(19, f"""
-<h4 class="nsec">1.8. Աշխատանքների գրաֆիկները (գրաֆիկական ինտեգրում)</h4>
-<p class="ntext">A4 միլիմետրական թերթի վրա. M<sub>P</sub>(φ)-ի φ առանցքը վերևից 40 մմ ցածր է, 8 × 20 մմ = 160 մմ։ Բևեռ P՝ φ առանցքի վրա, 0-ից ձախ՝ OP = {C.OP} մմ հեռավորության վրա։</p>
-{L(f"{q('μ','A')} = {q('μ','M')}·{q('μ','φ')}·OP = {n(C.MU_M,2)}·{n(C.MU_PHI,3)}·{C.OP} = {big(n(C.MU_A,2))} Ջ/մմ")}
-<p class="ntext">Միջակայքերի միջնակետերում կորի օրդինատները (կորից չափած, վեր՝ +, ներքև՝ −), մմ.</p>
-{L(ymid_line, 'sm')}
-<p class="ntext">I…VIII ճառագայթներին զուգահեռ՝ 0-ից սկսած, ամեն հաջորդը՝ նախորդ կետից.</p>
-{L(f"{q('y','j′')} = {q('y','(j−1)′')} + {q('y','j','մ')}·{fr('20', 'OP')} = {q('y','(j−1)′')} + {q('y','j','մ')}·{KOP}", 'ind')}
+<h4 class="nsec">§5. Աշխատանքների և կինետիկ էներգիայի աճի գրաֆիկները</h4>
+{L(f"{num(1)} OP = {C.OP} մմ; &nbsp;{q('μ','A')} = {q('μ','M')}·{q('μ','φ')}·OP = {n(C.MU_M,2)}·{n(C.MU_PHI,3)}·{C.OP} = {big(n(C.MU_A,2))} Ջ/մմ")}
+{L(f"{num(2)} {ymid_line} &nbsp;մմ")}
+{L(f"{num(3)} {q('y','j′')} = {q('y','(j−1)′')} + {q('y','j','մ')}·{fr('20', 'OP')} = {q('y','(j−1)′')} + {q('y','j','մ')}·{KOP}")}
 {ar_lines}
 """, 'r')
 
 drows = ''.join(
     f'<tr{" class=wk" if j in (C.J_MAX, C.J_MIN) else ""}><th>{j}</th><td>{n(C.AM[j])}</td><td>{n(C.AR[j])}</td><td>{n(C.DE[j])}</td><td>{n(C.DE[j]*C.MU_A)}</td></tr>' for j in range(9))
 p20 = page(20, f"""
-{L(f"A<sub>m</sub>-ի ուղիղ. φ առանցքի 8 կետից վեր՝ 8″, |{q('y','8′')}| = {big(n(-C.AR[8]))} մմ։ 0 → 8″ ուղիղ։ &nbsp;{q('y','j','Am')} = |{q('y','8′')}|·{fr('j', '8')}", 'sm')}
-<h4 class="nsec">1.9. Կինետիկ էներգիայի աճը</h4>
-{L(f"{q('y','j','ΔE')} = {q('y','j','Am')} + {q('y','j′')} &nbsp;(օր.՝ j = 3՝ {n(C.AM[3])} + ({n(C.AR[3])}) = {n(C.DE[3])} մմ)")}
+{L(f"{num(4)} {q('y','j','Am')} = |{q('y','8′')}|·{fr('j', '8')}; &nbsp;|{q('y','8′')}| = {big(n(-C.AR[8]))} մմ")}
+{L(f"{num(5)} {q('y','j','ΔE')} = {q('y','j','Am')} + {q('y','j′')}; &nbsp;ΔE<sub>j</sub> = {q('y','j','ΔE')}·{q('μ','A')}")}
 <table class="ntbl"><thead>
 <tr><th><i>j</i></th><th>{q('y','j','Am')}</th><th>{q('y','j′')}</th><th>{q('y','j','ΔE')}</th><th>ΔE<sub>j</sub></th></tr>
 <tr><th></th><th>մմ</th><th>մմ</th><th>մմ</th><th>Ջ</th></tr></thead><tbody>{drows}</tbody></table>
-{L(f"ΔE<sub>j</sub> = {q('y','j','ΔE')}·{q('μ','A')}, &nbsp;{q('μ','ΔE')} = {q('μ','A')} = {n(C.MU_A,2)} Ջ/մմ", 'sm')}
-{L(f"A = |{q('y','8′')}|·{q('μ','A')} = {n(-C.AR[8])}·{n(C.MU_A,2)} = {big(n(C.A_CYCLE,0))} Ջ")}
-{L(f"M<sub>m</sub>՝ P-ից A<sub>m</sub>-ի ուղղին զուգահեռ ճառագայթ. {q('y','Mm')} = {n(C.YMM)} մմ, &nbsp;{q('M','m')} = {q('y','Mm')}·{q('μ','M')} = {n(C.YMM)}·{n(C.MU_M,2)} = {big(n(C.M_M))} Ն·մ")}
-{L(f"ΔE<sub>max</sub> − ΔE<sub>min</sub> = {n(C.DE_MAX*C.MU_A)} − ({n(C.DE_MIN*C.MU_A)}) = {big(n(C.DE_RANGE))} Ջ &nbsp;(թափանիվի համար)")}
-<p class="nnote">Ընդգծված տողերը՝ ΔE<sub>max</sub> և ΔE<sub>min</sub>։ Ստուգում. A/2π = {n(C.A_CYCLE/(2*3.14))} Ն·մ ≈ M<sub>m</sub>։</p>
+{L(f"{num(6)} A = |{q('y','8′')}|·{q('μ','A')} = {n(-C.AR[8])}·{n(C.MU_A,2)} = {big(n(C.A_CYCLE,0))} Ջ")}
+{L(f"{num(7)} {q('M','m')} = {q('y','Mm')}·{q('μ','M')} = {n(C.YMM)}·{n(C.MU_M,2)} = {big(n(C.M_M))} Ն·մ")}
+{L(f"{num(8)} ΔE<sub>max</sub> − ΔE<sub>min</sub> = {n(C.DE_MAX*C.MU_A)} − ({n(C.DE_MIN*C.MU_A)}) = {big(n(C.DE_RANGE))} Ջ")}
 """)
 
-# ---------------- 1.10: reduced moment of inertia (pages 21–22) ----------------
+# ---------------- §6 (methodology 1.10): reduced moment of inertia (pages 21–22) ----------------
 j2 = C.IP[2]
 ip_line = lambda x: f"{n(C.M2,2)}·{n(x['a'],5)} + {n(C.IS2,2)}·{n(x['b'],5)} + {n(C.M5,2)}·{n(x['f'],5)}"
 p21 = page(21, f"""
-<h4 class="nsec">1.10. Բերված իներցիայի մոմենտը</h4>
-<p class="ntext">{q('I','P')}՝ բերման օղակի (1 շուռտվիկի) պայմանական իներցիայի մոմենտն է. նրա կինետիկ էներգիան ամեն պահի հավասար է ամբողջ մեխանիզմի կինետիկ էներգիային։ Օղակ 2՝ հարթ շարժում (պտույտ + համընթաց), օղակ 5՝ համընթաց.</p>
-{L(f"{q('I','P')}·{fr(w[1]+'<sup>2</sup>', '2')} = {q('m','2')}·{fr(q('V','S<sub>2</sub>')+'<sup>2</sup>', '2')} + {q('I','S<sub>2</sub>')}·{fr(w[2]+'<sup>2</sup>', '2')} + {q('m','5')}·{fr(q('V','F')+'<sup>2</sup>', '2')}")}
-{L(f"{num(1)} {q('I','P')} = {q('m','2')}·({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup> + {q('I','S<sub>2</sub>')}·({fr(w[2], w[1])})<sup>2</sup> + {q('m','5')}·({fr(q('V','F'), w[1])})<sup>2</sup>")}
-{L(f"{num(2)} {q('m','2')} = {fr(q('G','2'), 'g')} = {fr(str(C.G2), str(C.G_ACC))} = {big(n(C.M2,2))} կգ; &nbsp;{q('m','5')} = {fr(q('G','5'), 'g')} = {fr(str(C.G5), str(C.G_ACC))} = {big(n(C.M5,2))} կգ", 'ind')}
-{L(f"g = {C.G_ACC} մ/վ<sup>2</sup>; &nbsp;{q('I','S<sub>2</sub>')} = {D_['IS2']}·10<sup>−3</sup> = {big(n(C.IS2,2))} կգ·մ<sup>2</sup>; &nbsp;{w[1]} = {W1T} {INV1}", 'ind')}
-{L(f"{q('V','S<sub>2</sub>')}, {w[2]}, {q('V','F')}՝ էջ 12–13-ի արժեքները (նոր չափում պետք չէ)", 'ind sm')}
-{L(f"Դիրք 2. {q('V','S<sub>2</sub>')} = {n(j2['VS2'],3)} {MS}, &nbsp;{w[2]} = {n(j2['w2'],2)} {INV1}, &nbsp;{q('V','F')} = {n(j2['VF'],3)} {MS}", 'sm')}
-{L(f"({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup> = ({fr(n(j2['VS2'],3), W1T)})<sup>2</sup> = {n(j2['a'],5)}; &nbsp;({fr(w[2], w[1])})<sup>2</sup> = ({fr(n(j2['w2'],2), W1T)})<sup>2</sup> = {n(j2['b'],5)}; &nbsp;({fr(q('V','F'), w[1])})<sup>2</sup> = ({fr(n(j2['VF'],3), W1T)})<sup>2</sup> = {n(j2['f'],5)}", 'ind sm')}
-{L(f"{q('I','P')}<sub>2</sub> = {ip_line(j2)} = {n(j2['t2'],6)} + {n(j2['tw'],6)} + {n(j2['t5'],6)} ≈ {big(n(j2['I'],5))} կգ·մ<sup>2</sup>")}
+<h4 class="nsec">§6. Բերված իներցիայի մոմենտի որոշումը և գրաֆիկի կառուցումը</h4>
+{L(f"{num(1)} {q('I','P')}·{fr(w[1]+'<sup>2</sup>', '2')} = {q('m','2')}·{fr(q('V','S<sub>2</sub>')+'<sup>2</sup>', '2')} + {q('I','S<sub>2</sub>')}·{fr(w[2]+'<sup>2</sup>', '2')} + {q('m','5')}·{fr(q('V','F')+'<sup>2</sup>', '2')}")}
+{L(f"{q('I','P')} = {q('m','2')}·({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup> + {q('I','S<sub>2</sub>')}·({fr(w[2], w[1])})<sup>2</sup> + {q('m','5')}·({fr(q('V','F'), w[1])})<sup>2</sup>", 'ind')}
+{L(f"{num(2)} {q('m','2')} = {fr(q('G','2'), 'g')} = {fr(str(C.G2), str(C.G_ACC))} = {big(n(C.M2,2))} կգ; &nbsp;{q('m','5')} = {fr(q('G','5'), 'g')} = {fr(str(C.G5), str(C.G_ACC))} = {big(n(C.M5,2))} կգ")}
+{L(f"{q('I','S<sub>2</sub>')} = {D_['IS2']}·10<sup>−3</sup> = {big(n(C.IS2,2))} կգ·մ<sup>2</sup>; &nbsp;{w[1]} = {W1T} {INV1}", 'ind')}
+{L(f"{num(3)} Դիրք 2. {q('V','S<sub>2</sub>')} = {n(j2['VS2'],3)} {MS}; &nbsp;{w[2]} = {n(j2['w2'],2)} {INV1}; &nbsp;{q('V','F')} = {n(j2['VF'],3)} {MS}")}
+{L(f"({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup> = ({fr(n(j2['VS2'],3), W1T)})<sup>2</sup> = {n(j2['a'],5)}; &nbsp;({fr(w[2], w[1])})<sup>2</sup> = ({fr(n(j2['w2'],2), W1T)})<sup>2</sup> = {n(j2['b'],5)}; &nbsp;({fr(q('V','F'), w[1])})<sup>2</sup> = ({fr(n(j2['VF'],3), W1T)})<sup>2</sup> = {n(j2['f'],5)}", 'ind')}
+{L(f"{q('I','P')}<sub>2</sub> = {ip_line(j2)} = {n(j2['t2'],6)} + {n(j2['tw'],6)} + {n(j2['t5'],6)} = {big(n(j2['I'],5))} կգ·մ<sup>2</sup>", 'ind')}
 """, 'r')
 
 irows = ''.join(
@@ -279,10 +266,9 @@ p22 = page(22, f"""
 <table class="ntbl"><thead>
 <tr><th><i>j</i></th><th>({fr(q('V','S<sub>2</sub>'), w[1])})<sup>2</sup></th><th>({fr(w[2], w[1])})<sup>2</sup></th><th>({fr(q('V','F'), w[1])})<sup>2</sup></th><th>({q('I','P')})<sub>j</sub></th><th>({q('I','P')})<sub>j</sub><sup>գծ</sup></th></tr>
 <tr><th></th><th>մ<sup>2</sup></th><th>—</th><th>մ<sup>2</sup></th><th>կգ·մ<sup>2</sup></th><th>մմ</th></tr></thead><tbody>{irows}</tbody></table>
-{L(f"{num(3)} {q('μ','I')} = {fr(q('I','P')+'<sub>max</sub>', '80 մմ')} = {fr(n(C.IP_MAX,5), '80')} = {big(n(C.MU_I*1e4,3))}·10<sup>−4</sup> կգ·մ<sup>2</sup>/մմ")}
-{L(f"{num(4)} ({q('I','P')})<sub>j</sub><sup>գծ</sup> = {fr(q('I','P')+'<sub>j</sub>', q('μ','I'))}")}
-{L(f"{q('μ','φ')} = {n(C.MU_PHI,3)} ռադ/մմ (էջ 18)", 'ind sm')}
-<p class="nnote">Ընդգծված տողը՝ {q('I','P')}<sub>max</sub> (j = {C.J_IMAX}, պարապ ընթացք). 8-րդ դիրքը = 0-ին։ Գրաֆիկը՝ թերթ 4-ի վրա, 90°-ով շրջված. {q('I','P')} առանցքը հորիզոնական, φ-ն՝ ուղղաձիգ ներքև, 8 × 20 մմ = 160 մմ, {q('I','P')}<sub>max</sub> = 80 մմ։</p>
+{L(f"{num(4)} {q('μ','I')} = {fr(q('I','P')+'<sub>max</sub>', '80 մմ')} = {fr(n(C.IP_MAX,5), '80')} = {big(n(C.MU_I*1e4,3))}·10<sup>−4</sup> կգ·մ<sup>2</sup>/մմ")}
+{L(f"{q('μ','φ')} = {fr('2π', '160 մմ')} = {big(n(C.MU_PHI,3))} ռադ/մմ", 'ind')}
+{L(f"{num(5)} ({q('I','P')})<sub>j</sub><sup>գծ</sup> = {fr(q('I','P')+'<sub>j</sub>', q('μ','I'))}")}
 """)
 
 SECTION = f'''
