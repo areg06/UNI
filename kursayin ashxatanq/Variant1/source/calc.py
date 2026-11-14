@@ -73,9 +73,32 @@ MU_M = r(MP_MAX/MP_YMAX, 2)                              # (N·m)/mm
 MU_PHI = r(2*3.14/160, 3)                                # rad/mm, one crank turn = 160 mm
 for x in MP: x['Mmm'] = r(x['M']/MU_M, 1)
 
+# ---------------- 1.8–1.9: work graphs and kinetic-energy increment (teacher's A4 sheet, graphical integration) ----------------
+# A4 sheet: M_P(φ) on top, A(φ) 150 mm below it. Integration pole P at OP = 40 mm left of 0 on the φ axis of M_P.
+# For each interval j-1…j: read the curve at the midpoint (ym, mm), ray from P to (0, ym) has slope ym/OP;
+# the parallel through (j-1)' reaches the vertical of j at y'_j = y'_(j-1) + ym·20/OP (20 mm = one interval).
+OP = 40                                                  # mm, polar distance (teacher: 40 mm)
+A_GAP = 150                                              # mm between the φ axes of M_P(φ) and A(φ)
+def _mid_ordinates():
+    ys = [x['Mmm'] for x in MP]; ms = M._pchip_slopes([20*j for j in range(9)], ys)
+    return [r((ys[k]+ys[k+1])/2 + 20*(ms[k]-ms[k+1])/8, 1) for k in range(8)]   # the drawn curve at the midpoint
+YMID = _mid_ordinates()                                  # ym for intervals 0-1 … 7-8, mm (signed, up = +)
+AR = [0.0]                                               # A_r ordinates 0', 1', … 8', mm (down = −)
+for _k in range(8): AR.append(r(AR[-1] + YMID[_k]*20/OP, 1))
+AM = [r(-AR[8]*j/8, 1) for j in range(9)]                # A_m: straight line from 0 to 8'' (8'' = −8', mirrored up)
+DE = [r(AM[j] + AR[j], 1) for j in range(9)]             # ΔE = A_m + A_r, mm (A_r already negative)
+YMM = r(-AR[8]*OP/160, 1)                                # M_m on the M_P axis: ray from P parallel to A_m, mm
+MU_A = r(MU_M*MU_PHI*OP, 2)                              # J/mm (= μ_ΔE)
+A_CYCLE = r(-AR[8]*MU_A, 0)                              # J, work of the resistance (= of the motor) per cycle
+M_M = r(YMM*MU_M, 1)                                     # N·m, motor moment
+DE_MAX = max(DE); DE_MIN = min(DE); J_MAX = DE.index(DE_MAX); J_MIN = DE.index(DE_MIN)
+DE_RANGE = r((DE_MAX-DE_MIN)*MU_A, 1)                    # J, ΔE_max − ΔE_min (for the flywheel later)
+
 if __name__ == '__main__':
     print('AC0', AC0, 'AC0p', AC0P, 'BC', BC, 'AB', AB, 'lAB', LAB, 'lBC', LBC, 'lBS2', LBS2, 'BS2*', BS2S)
     print('W1', W1, 'VB4', VB4, 'VB', VB, 'PB', PB, 'aB', AB_ACC, 'PIB', PIB, 'CE*', round(CE_S, 2))
     for i in range(8):
         c = vchain(i); print(i, {k: (round(v, 4) if isinstance(v, float) else v) for k, v in c.items()})
     c = achain(2); print('acc2', {k: (round(v, 4) if isinstance(v, float) else v) for k, v in c.items()})
+    print('YMID', YMID); print('AR', AR); print('AM', AM); print('DE', DE)
+    print('YMM', YMM, 'MU_A', MU_A, 'A', A_CYCLE, 'M_M', M_M, 'DEmax', DE_MAX, J_MAX, 'DEmin', DE_MIN, J_MIN, 'range J', DE_RANGE)

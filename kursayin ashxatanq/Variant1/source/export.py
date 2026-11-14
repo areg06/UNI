@@ -1,7 +1,9 @@
-"""Export the two A3 drawings: chertej_A3_1/2 .svg (vector), .png (6000 px), .pdf (true A3 scale).
+"""Export the two A3 drawings: chertej_A3_1/2 .svg (vector), .png (6000 px), .pdf (true A3 scale),
+and the A4 graph sheet (1.8–1.9): chertej_A4_graf .svg/.png/.pdf (true A4 scale, millimetre grid).
 Run:  python3 export.py      (needs Google Chrome for PNG/PDF)"""
 import os, subprocess, tempfile, shutil
 import sheet as SH
+import graf as GR
 HERE = os.path.dirname(os.path.abspath(__file__)); OUT = os.path.abspath(os.path.join(HERE, '..'))
 CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 FONTS = "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..600&family=Noto+Sans+Armenian:wdth,wght@62.5..100,400..700&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap');"
@@ -27,5 +29,15 @@ for no, raw in ((1, SH.build('sh')), (2, SH.build2('sh2'))):
     if os.path.exists(CHROME):
         chrome(['--window-size=1600,1149', '--force-device-scale-factor=3.75', '--screenshot=' + os.path.join(OUT, name + '.png'), 'file://' + png_html])
         chrome(['--no-pdf-header-footer', '--print-to-pdf-no-header', '--print-to-pdf=' + os.path.join(OUT, name + '.pdf'), 'file://' + pdf_html])
+svg = GR.a4_sheet().replace('<svg class="a4g"', '<svg class="a4g" xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm"', 1)
+svg = svg.replace('>', '><style><![CDATA[' + FONTS + GR.A4_CSS.replace('width:100%;height:auto;', '') + ']]></style>', 1)
+open(os.path.join(OUT, 'chertej_A4_graf.svg'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n' + svg)
+a4 = os.path.join(tmp, 'a4.html')
+open(a4, 'w').write('<!doctype html><meta charset="utf-8"><style>@page{size:210mm 297mm;margin:0}html,body{margin:0;width:210mm;height:297mm;overflow:hidden}svg{display:block}</style>' + svg)
+if os.path.exists(CHROME):
+    chrome(['--no-pdf-header-footer', '--print-to-pdf-no-header', '--print-to-pdf=' + os.path.join(OUT, 'chertej_A4_graf.pdf'), 'file://' + a4])
+    png = os.path.join(tmp, 'a4png.html')
+    open(png, 'w').write('<!doctype html><meta charset="utf-8"><style>html,body{margin:0}svg{display:block}</style>' + svg.replace('width="210mm" height="297mm"', 'width="1050" height="1485"', 1))
+    chrome(['--window-size=1050,1485', '--force-device-scale-factor=4', '--screenshot=' + os.path.join(OUT, 'chertej_A4_graf.png'), 'file://' + png])
 shutil.rmtree(tmp, ignore_errors=True)
 print('exported to', OUT)
