@@ -12,27 +12,28 @@ def num(v, nd=1):
     return s.replace('-', '−')
 
 class SVG:
-    def __init__(self, prefix):
-        self.p = prefix; self.layers = {}; self.cur = None
+    def __init__(self, prefix, gh=None):
+        self.p = prefix; self.layers = {}; self.cur = None; self.gh = GH if gh is None else gh
+    def _y(self, p): return fx(self.gh-p[1])
     def layer(self, name): self.cur = self.layers.setdefault(name, [])
     def add(self, s): self.cur.append(s)
     def line(self, a, b, cls, marker=None, extra=''):
         m = f' marker-end="url(#{self.p}-ar-{marker})"' if marker else ''
-        self.add(f'<line x1="{X(a)}" y1="{Y(a)}" x2="{X(b)}" y2="{Y(b)}" class="{cls}"{m}{extra}/>')
+        self.add(f'<line x1="{X(a)}" y1="{self._y(a)}" x2="{X(b)}" y2="{self._y(b)}" class="{cls}"{m}{extra}/>')
     def poly(self, pts, cls, closed=False):
-        d = 'M' + ' L'.join(f'{X(p)} {Y(p)}' for p in pts) + (' Z' if closed else '')
+        d = 'M' + ' L'.join(f'{X(p)} {self._y(p)}' for p in pts) + (' Z' if closed else '')
         self.add(f'<path d="{d}" class="{cls}"/>')
     def arc(self, c, r, a0, a1, cls, n=48):
         pts = [(c[0]+r*math.cos(math.radians(a0+(a1-a0)*k/n)), c[1]+r*math.sin(math.radians(a0+(a1-a0)*k/n))) for k in range(n+1)]
         self.poly(pts, cls)
     def circle(self, c, r, cls):
-        self.add(f'<circle cx="{X(c)}" cy="{Y(c)}" r="{fx(r)}" class="{cls}"/>')
+        self.add(f'<circle cx="{X(c)}" cy="{self._y(c)}" r="{fx(r)}" class="{cls}"/>')
     def text(self, p, s, cls='lbl', anchor='middle', rotate=None, size=None):
-        tr = f' transform="rotate({rotate} {X(p)} {Y(p)})"' if rotate is not None else ''
+        tr = f' transform="rotate({rotate} {X(p)} {self._y(p)})"' if rotate is not None else ''
         fs = f' font-size="{size}"' if size else ''
-        self.add(f'<text x="{X(p)}" y="{Y(p)}" class="{cls}" text-anchor="{anchor}" dominant-baseline="central"{fs}{tr}>{s}</text>')
+        self.add(f'<text x="{X(p)}" y="{self._y(p)}" class="{cls}" text-anchor="{anchor}" dominant-baseline="central"{fs}{tr}>{s}</text>')
     def point(self, p, key, label, r=0.55, cls='jt'):
-        self.add(f'<circle id="{self.p}-pt-{key}" cx="{X(p)}" cy="{Y(p)}" r="{r}" class="pt {cls}" '
+        self.add(f'<circle id="{self.p}-pt-{key}" cx="{X(p)}" cy="{self._y(p)}" r="{r}" class="pt {cls}" '
                  f'data-k="{label}" data-x="{num(p[0])}" data-y="{num(p[1])}"/>')
 
 def unit(v):
@@ -60,19 +61,20 @@ def ground(svg, c, up=True):
     svg.line(base_l, base_r, 'thick')
     hatch(svg, base_l, base_r, (0.0, float(sgn)))
 
-def draw_grid(svg):
+def draw_grid(svg, gw=None, gh=None):
+    gw = M.GRID_W if gw is None else gw; GH = gh if gh is not None else globals()['GH']
     for step, cls in ((1, 'g1'), (5, 'g5'), (10, 'g10'), (50, 'g50')):
         d = []
-        for x in range(0, M.GRID_W+1, step):
+        for x in range(0, gw+1, step):
             if step < 50 and x % (step*5 if step < 10 else 50) == 0 and step != 10: continue
             if step == 10 and x % 50 == 0: continue
             d.append(f'M{x} 0V{GH}')
         for y in range(0, GH+1, step):
             if step < 50 and y % (step*5 if step < 10 else 50) == 0 and step != 10: continue
             if step == 10 and y % 50 == 0: continue
-            d.append(f'M0 {GH-y}H{M.GRID_W}')
+            d.append(f'M0 {GH-y}H{gw}')
         svg.add(f'<path d="{"".join(d)}" class="{cls}"/>')
-    for x in range(0, M.GRID_W+1, 10):
+    for x in range(0, gw+1, 10):
         svg.add(f'<text x="{x}" y="{GH+3.6}" class="ax{" ax5" if x % 50 == 0 else ""}" text-anchor="middle">{x}</text>')
     for y in range(0, GH+1, 10):
         svg.add(f'<text x="-2.2" y="{GH-y}" class="ax{" ax5" if y % 50 == 0 else ""}" text-anchor="end" dominant-baseline="central">{y}</text>')
