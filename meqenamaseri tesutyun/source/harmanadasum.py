@@ -315,7 +315,68 @@ def svg_style(color, width, fill=None, dash=()):
             + (f' stroke-dasharray="{" ".join(map(f, dash))}"' if dash else ''))
 
 
-def make_svg(dr):
+def corner_points(dr):
+    """Pick actual outline vertices, excluding grid, dimensions and symbol strokes."""
+    points = {}
+    counts = dict(housing=0, shafts=0, gears=0, supports=0)
+    sides = ['ձախ ստորին', 'աջ ստորին', 'աջ վերին', 'ձախ վերին']
+    for layer, kind, args in dr.items:
+        if layer not in counts or not (kind == 'rect' or kind == 'poly' and args[-1]):
+            continue
+        index = counts[layer]
+        counts[layer] += 1
+        if layer == 'housing':
+            feature = 'Իրան՝ ' + ('արտաքին եզրագիծ' if index == 0 else 'ներքին եզրագիծ')
+        elif layer == 'shafts':
+            feature = ['I', 'II', 'III'][index] + ' լիսեռ'
+        elif layer == 'gears':
+            gear = GEARS[index]
+            feature = gear['label'] + ' աստիճանի ' + ('անվակ' if gear['part'] == 1 else 'անիվ')
+        elif index < 2*len(SUPPORTS):
+            support = list(SUPPORTS)[index//2]
+            feature = support + ' հենարան՝ ' + ('ձախ մաս' if index % 2 == 0 else 'աջ մաս')
+        else:
+            feature = 'Ներքին հենարանների գոտի'
+        if kind == 'rect':
+            x, y, w, h = args[:4]
+            vertices = [(x,y), (x+w,y), (x+w,y+h), (x,y+h)]
+        else:
+            vertices = args[0]
+        for number, (x,y) in enumerate(vertices):
+            key = (round(x,6), round(y,6))
+            corner = sides[number] if kind == 'rect' else f'եզրակետ {number+1}'
+            description = feature + ' · ' + corner
+            if key not in points:
+                points[key] = dict(id=f'P{len(points)+1:03d}', x=x, y=y,
+                                   labels=[], layers=[])
+            point = points[key]
+            point['labels'].append(description)
+            if layer not in point['layers']:
+                point['layers'].append(layer)
+    return list(points.values())
+
+
+def corner_svg(dr):
+    parts = ['<g class="corner-points" data-layer="corners">']
+    for point in corner_points(dr):
+        key, x, y = point['id'], f(point['x']), f(point['y'])
+        label = ' / '.join(point['labels'])
+        title = f'{key} · {label} · x = {n(point["x"],3)}, y = {n(point["y"],3)} մմ'
+        parts.append(f'<g id="corner-{key}" class="corner-point" data-corner="{key}" '
+                     f'data-x="{x}" data-y="{y}" data-label="{html.escape(label,quote=True)}" '
+                     f'data-owners="{" ".join(point["layers"])}" '
+                     f'transform="translate({x} {f(GH-point["y"])})" '
+                     f'role="button" tabindex="0" aria-haspopup="dialog" '
+                     f'aria-label="{html.escape(title,quote=True)}">'
+                     f'<title>{html.escape(title)}</title>'
+                     '<circle class="corner-hit" r="1.5"/>'
+                     '<circle class="corner-halo" r="1.15"/>'
+                     '<circle class="corner-dot" r="0.55"/></g>')
+    parts.append('</g>')
+    return ''.join(parts)
+
+
+def make_svg(dr, with_corners=False):
     layers = {}
     for layer, kind, args in dr.items:
         parts = layers.setdefault(layer, [])
@@ -342,7 +403,10 @@ def make_svg(dr):
                 cursor+=pdfmetrics.stringWidth(run,font,run_size)
             parts.append('</g>')
     body = ''.join(f'<g data-layer="{key}">{"".join(parts)}</g>' for key,parts in layers.items())
-    return (f'<svg id="layout" xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297" role="img" aria-labelledby="drawing-title drawing-desc">'
+    if with_corners:
+        body += corner_svg(dr)
+    role = 'group' if with_corners else 'img'
+    return (f'<svg id="layout" xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297" role="{role}" aria-labelledby="drawing-title drawing-desc">'
             '<title id="drawing-title">Ռեդուկտորի նախնական հարմարադասում՝ A3, M 1:2</title>'
             '<desc id="drawing-desc">Համառանցք երկաստիճան ռեդուկտոր, 200 մմ միջառանցքային հեռավորություն, միջին սերիայի 36306, 36307 և 309 առանցքակալներ։ Ցանցը՝ մեկ միլիմետր։</desc>'
             '<style>text{font-family:"Noto Sans Armenian","Arial Unicode MS",Arial,sans-serif}g[hidden]{display:none}</style>'
@@ -413,35 +477,90 @@ button[aria-pressed=true]{background:var(--ink);color:white;border-color:var(--i
 .tip{font-size:.87rem;color:var(--muted)}.info{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}.card{padding:22px;background:#fff;border:1px solid var(--line);border-radius:8px}
 table{border-collapse:collapse;width:100%;font-size:.87rem}th,td{padding:7px 9px;text-align:left;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}th{font-weight:600}.table-wrap{overflow:auto}ol{padding-left:24px}li{margin:9px 0}
 .measure-overlay{pointer-events:none}.measure-overlay line,.measure-overlay circle{stroke:#c12a3b;stroke-width:.35;fill:white}.measure-overlay line{stroke-dasharray:2 1}
+.corner-point{cursor:pointer;outline:none}.corner-hit{fill:transparent;stroke:none}.corner-dot{fill:#fffdf8;stroke:#1f54a3;stroke-width:.28}.corner-halo{fill:none;stroke:#1f54a3;stroke-width:.25;opacity:0}
+.corner-point:hover .corner-dot,.corner-point:focus .corner-dot,.corner-point.is-selected .corner-dot{fill:#1f54a3}.corner-point:hover .corner-halo,.corner-point:focus .corner-halo,.corner-point.is-selected .corner-halo{opacity:1}
+.corner-popup{position:fixed;z-index:10;width:300px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow-y:auto;padding:18px;border:1px solid #91afd4;border-radius:9px;background:#fff;box-shadow:0 8px 32px #18273430;font-size:.9rem}.corner-popup[hidden]{display:none}
+.corner-popup strong{display:block;padding-right:28px;font-size:1.05rem;color:var(--blue)}.corner-popup p{margin:8px 0}.corner-popup .popup-close{position:absolute;right:9px;top:8px;padding:2px 10px;font-size:1.2rem}.corner-values{display:flex;flex-wrap:wrap;gap:4px 18px;font-variant-numeric:tabular-nums;font-weight:600}.corner-popup .tip{font-size:.78rem;margin-bottom:12px}
 @media(max-width:850px){main{padding:18px 12px}.info{grid-template-columns:1fr}.card{padding:17px}.sheet-scroll{max-height:70vh}}
-@page{size:A3 landscape;margin:0}@media print{html,body{margin:0;background:white;width:420mm;height:297mm}main{padding:0;max-width:none}main>*:not(.sheet-scroll){display:none!important}.sheet-scroll{border:0;max-height:none;overflow:visible}.sheet-inner{width:420mm!important;min-width:0}.sheet-inner svg{width:420mm;height:297mm}.measure-overlay{display:none}}
+@page{size:A3 landscape;margin:0}@media print{html,body{margin:0;background:white;width:420mm;height:297mm}main{padding:0;max-width:none}main>*:not(.sheet-scroll){display:none!important}.sheet-scroll{border:0;max-height:none;overflow:visible}.sheet-inner{width:420mm!important;min-width:0}.sheet-inner svg{width:420mm;height:297mm}.measure-overlay,.corner-points,.corner-popup{display:none}}
 '''
 
 PAGE_JS = r'''
 (() => {
  const svg=document.getElementById('layout'),inner=document.querySelector('.sheet-inner'),scroller=document.querySelector('.sheet-scroll');
  const fmt=v=>v.toFixed(2).replace('.',',');
+ const exact=v=>Number(v).toFixed(3).replace('.',',');
+ const corners=[...svg.querySelectorAll('[data-corner]')],popup=document.getElementById('corner-popup');
+ const pointOf=corner=>({x:Number(corner.dataset.x),y:Number(corner.dataset.y)});
+ let selected=null,first=null;
+ const closeCorner=(restoreFocus=false)=>{
+  const previous=selected;popup.hidden=true;selected?.classList.remove('is-selected');selected=null;
+  if(restoreFocus&&previous&&!previous.hasAttribute('hidden'))previous.focus({preventScroll:true});
+ };
+ const placePopup=()=>{
+  if(!selected||popup.hidden)return;
+  const r=selected.getBoundingClientRect(),w=popup.offsetWidth,h=popup.offsetHeight;
+  const left=Math.max(12,Math.min(r.right+12,window.innerWidth-w-12));
+  const top=Math.max(12,Math.min(r.bottom+10,window.innerHeight-h-12));
+  popup.style.left=left+'px';popup.style.top=top+'px';
+ };
+ const showCorner=corner=>{
+  selected?.classList.remove('is-selected');selected=corner;corner.classList.add('is-selected');
+  document.getElementById('corner-name').textContent=corner.dataset.corner;
+  document.getElementById('corner-description').textContent=corner.dataset.label;
+  document.getElementById('corner-x').textContent='x = '+exact(corner.dataset.x)+' մմ';
+  document.getElementById('corner-y').textContent='y = '+exact(corner.dataset.y)+' մմ';
+  popup.hidden=false;placePopup();
+ };
+ const updateCorners=()=>{
+  corners.forEach(corner=>corner.toggleAttribute('hidden',!corner.dataset.owners.split(' ').some(owner=>
+   !svg.querySelector('[data-layer="'+owner+'"]').hasAttribute('hidden'))));
+  if(selected&&(selected.hasAttribute('hidden')||svg.querySelector('[data-layer="corners"]').hasAttribute('hidden')))closeCorner();
+ };
+ document.getElementById('close-corner').addEventListener('click',()=>closeCorner(true));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!popup.hidden){e.preventDefault();closeCorner(true);}});
+ document.addEventListener('pointerdown',e=>{if(!popup.contains(e.target)&&!e.target.closest('[data-corner]'))closeCorner();});
+ corners.forEach(corner=>corner.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();showCorner(corner);document.getElementById('close-corner').focus({preventScroll:true});}
+ }));
+ scroller.addEventListener('scroll',placePopup,{passive:true});window.addEventListener('resize',placePopup);
  document.querySelectorAll('[data-toggle]').forEach(input=>input.addEventListener('change',()=>{
   svg.querySelectorAll('[data-layer="'+input.dataset.toggle+'"]').forEach(g=>g.toggleAttribute('hidden',!input.checked));
+  updateCorners();
  }));
  document.querySelectorAll('[data-zoom]').forEach(button=>button.addEventListener('click',()=>{
   const x=(scroller.scrollLeft+scroller.clientWidth/2)/scroller.scrollWidth,y=(scroller.scrollTop+scroller.clientHeight/2)/scroller.scrollHeight;
   const z=Number(button.dataset.zoom);inner.style.width=100*z+'%';inner.style.minWidth=700*z+'px';
   document.querySelectorAll('[data-zoom]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
   scroller.scrollLeft=x*scroller.scrollWidth-scroller.clientWidth/2;scroller.scrollTop=y*scroller.scrollHeight-scroller.clientHeight/2;
+  placePopup();
  }));
  const position=e=>{const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const m=svg.getScreenCTM();if(!m)return null;const q=p.matrixTransform(m.inverse());return {x:q.x-22,y:270-(q.y-9.5)};};
  const valid=p=>p&&p.x>=0&&p.x<=380&&p.y>=0&&p.y<=270;
- svg.addEventListener('pointermove',e=>{const p=position(e);document.getElementById('coordinates').textContent=valid(p)?'Թղթի վրա՝ x = '+fmt(p.x)+', y = '+fmt(p.y)+' մմ':'Կուրսորը ցանցից դուրս է';});
+ svg.addEventListener('pointermove',e=>{const corner=e.target.closest('[data-corner]'),p=corner?pointOf(corner):position(e);document.getElementById('coordinates').textContent=valid(p)?'Թղթի վրա՝ x = '+(corner?exact(p.x):fmt(p.x))+', y = '+(corner?exact(p.y):fmt(p.y))+' մմ':'Կուրսորը ցանցից դուրս է';});
  const ns='http://www.w3.org/2000/svg',overlay=document.createElementNS(ns,'g');overlay.setAttribute('class','measure-overlay');svg.append(overlay);
- let first=null;
  document.getElementById('clear-measure').addEventListener('click',()=>{first=null;overlay.replaceChildren();document.getElementById('distance').textContent='Չափելու համար ընտրեք երկու կետ։';});
- svg.addEventListener('click',e=>{
-  const p=position(e);if(!valid(p))return;
+ const addMeasurementPoint=p=>{
+  if(!valid(p))return;
   const point=document.createElementNS(ns,'circle');point.setAttribute('cx',p.x+22);point.setAttribute('cy',270-p.y+9.5);point.setAttribute('r','.8');
   if(!first){overlay.replaceChildren();overlay.append(point);first=p;document.getElementById('distance').textContent='Ընտրեք երկրորդ կետը։';return;}
   const line=document.createElementNS(ns,'line');line.setAttribute('x1',first.x+22);line.setAttribute('y1',270-first.y+9.5);line.setAttribute('x2',p.x+22);line.setAttribute('y2',270-p.y+9.5);overlay.append(line,point);
   const d=Math.hypot(p.x-first.x,p.y-first.y);document.getElementById('distance').textContent='Հեռավորություն՝ '+fmt(d)+' մմ թուղթ = '+fmt(2*d)+' մմ իրական չափ';first=null;
+ };
+ document.getElementById('measure-corner').addEventListener('click',()=>{if(selected)addMeasurementPoint(pointOf(selected));});
+ svg.addEventListener('click',e=>{
+  const hit=e.target.closest('[data-corner]');
+  if(hit){
+   if(e.detail===0){showCorner(hit);return;}
+   // Overlapping touch targets resolve to the nearest exact vertex.
+   const p=position(e);
+   if(!p){showCorner(hit);return;}
+   const nearest=corners.filter(c=>!c.hasAttribute('hidden')).reduce((best,c)=>{
+    const q=pointOf(c),d=Math.hypot(q.x-p.x,q.y-p.y);return d<best.distance?{corner:c,distance:d}:best;
+   },{corner:hit,distance:Infinity}).corner;
+   showCorner(nearest);return;
+  }
+  closeCorner();addMeasurementPoint(position(e));
  });
 })();
 '''
@@ -457,10 +576,11 @@ def make_page(svg):
 <p class="intro">Էսքիզի տրամաբանությամբ՝ երկու ատամնազույգ, աստիճանավոր լիսեռներ և հենարաններ։ 1-ին և 3-րդ լիսեռները համառանցք են։ A3 թերթ՝ 420 × 297 մմ, ցանց՝ 1 × 1 մմ, մասշտաբ՝ <b>1:2</b>։</p>
 <div class="bar"><div class="downloads"><a href="{NAME}.pdf" download>PDF · A3</a><a href="{NAME}.svg" download>SVG · վեկտորային</a><a href="{NAME}.png" download>PNG · 300 dpi</a></div>
 <div class="zoom" role="group" aria-label="Մեծացում"><button data-zoom="1" aria-pressed="true">Ամբողջը</button><button data-zoom="2" aria-pressed="false">×2</button><button data-zoom="3" aria-pressed="false">×3</button><button id="clear-measure">Մաքրել չափումը</button></div></div>
-<div class="layers">{''.join(f'<label><input type="checkbox" data-toggle="{key}" checked> {label}</label>' for key,label in [('grid','Ցանց'),('dimensions','Չափեր'),('housing','Իրան'),('supports','Հենարաններ')])}</div>
+<div class="layers">{''.join(f'<label><input type="checkbox" data-toggle="{key}" checked> {label}</label>' for key,label in [('grid','Ցանց'),('dimensions','Չափեր'),('housing','Իրան'),('supports','Հենարաններ'),('corners','Անկյունների կետեր')])}</div>
 <div class="sheet-scroll" tabindex="0" aria-label="Մեծացվող A3 գծագիր"><div class="sheet-inner">{svg}</div></div>
 <div class="readout"><span id="coordinates">Կոորդինատները՝ ցանցի ձախ ստորին O կետից։</span><span id="distance" aria-live="polite">Չափելու համար ընտրեք երկու կետ։</span></div>
-<p class="tip">Մեծացրեք՝ մանրամասները տեսնելու համար։ Երկու կետի չափումը գործում է նաև հպումով։ Տպելու համար ներբեռնեք PDF-ը և ընտրեք A3, 100% / «Իրական չափ»։ 100 մմ սանդղակը տպված թղթի վրա պետք է չափվի ճիշտ 100 մմ։</p>
+<p class="tip">Սեղմեք անկյան կապույտ կետին՝ նրա կոորդինատները բացելու համար։ Մոտ կետերն ընտրելու համար մեծացրեք գծագիրը։ Բացված պատուհանի «Օգտագործել չափման մեջ» կոճակով կարելի է չափել հենց ճշգրիտ կետերի միջև։ Կետերը հասանելի են նաև Tab և Enter ստեղներով։</p>
+<p class="tip">Տպելու համար ներբեռնեք PDF-ը և ընտրեք A3, 100% / «Իրական չափ»։ 100 մմ սանդղակը տպված թղթի վրա պետք է չափվի ճիշտ 100 մմ։</p>
 <div class="info"><section class="card"><h2>Ինչպես գծել նույն թերթը</h2><ol>
 <li>Ցանցի ձախ ստորին անկյունն ընդունեք O։ Քաշեք ուղղաձիգ առանցքները՝ x = 110 և x = 210 մմ։ Թղթի վրա 100 մմ-ը համապատասխանում է իրական 200 մմ միջառանցքային հեռավորությանը։</li>
 <li>I աստիճանի կենտրոնների հորիզոնականը՝ y = 105 մմ, II աստիճանինը՝ y = 170 մմ։ Փոքր անիվը I աստիճանում ձախ է, II-ում՝ աջ։</li>
@@ -468,7 +588,7 @@ def make_page(svg):
 <li>Գծեք լիսեռներն ու աղյուսակում նշված առանցքակալները՝ բոլոր իրական չափերը բաժանելով 2-ի։ Հենարանների պայմանական նշանները ցույց են տալիս դիրքն ու գաբարիտը։</li>
 <li>Ավելացրեք իրանի նախնական եզրագիծը։ Անիվի և պատի շառավղային բացակն այստեղ ընտրված է 5 մմ, իրանի պատը՝ 8 մմ։</li></ol>
 <p class="tip">Անիվների, լիսեռների և առանցքակալների տվյալները՝ <a href="kinematik_hashvark.html">տետրում</a>։ Հարմարադասման սկզբունքը՝ <a href="EUDV31.pdf#page=87">ձեռնարկի §7.2-ում</a>։</p></section>
-<section class="card"><h2>Կետերի կոորդինատները թղթի վրա</h2><div class="table-wrap"><table><thead><tr><th>Կետ</th><th>x, մմ</th><th>y, մմ</th></tr></thead><tbody>{rows}</tbody></table></div>
+<section class="card"><h2>Կենտրոնների կոորդինատները թղթի վրա</h2><div class="table-wrap"><table><thead><tr><th>Կետ</th><th>x, մմ</th><th>y, մմ</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p class="tip">O՝ անիվի կենտրոն։ Փակագծի հռոմեական թիվը՝ աստիճանը, ստորին 1/2-ը՝ փոքր/մեծ անիվը։ A և B՝ լիսեռների հենարանների կենտրոնները։</p></section>
 <section class="card"><h2>Ինչն է հաշվարկված, ինչը՝ ընտրված</h2><p>Անիվների տրամագծերն ու լայնությունները, 200 մմ միջառանցքային հեռավորությունը, լիսեռների տրամագծերը և առանցքակալների գաբարիտները վերցված են մեր հաշվարկից։</p>
 <p>Ատամնազույգերի և հենարանների առանցքային դիրքերը նախնական ընտրված են այս թերթի համար։ Ներքին հենարանների ամրացումը, առանցքակալների կարգավորումը և հավաքման եղանակը պետք է ճշտել կառուցվածքը մշակելիս։</p>
@@ -479,7 +599,13 @@ def make_page(svg):
 <tr><td>II լիսեռի A₂–B₂ հենարանների միջև</td><td>269</td></tr>
 <tr><td>III լիսեռի A₃–B₃ հենարանների միջև</td><td>108,5</td></tr></table></div>
 <p class="tip">Այս երկարությունները նկարագրված նախնական դասավորության արդյունքն են։ Կառուցվածքը վերջնականացնելուց հետո դրանցով կարելի է սկսել հենարանային հակազդումների և ամրության ստուգումները։</p></section></div>
-</main><script>{PAGE_JS}</script></body></html>'''
+</main><div id="corner-popup" class="corner-popup" role="dialog" aria-labelledby="corner-name" aria-describedby="corner-description" hidden>
+<button id="close-corner" class="popup-close" aria-label="Փակել կոորդինատները">×</button>
+<strong id="corner-name"></strong><p id="corner-description"></p>
+<p class="corner-values"><span id="corner-x"></span><span id="corner-y"></span></p>
+<p class="tip">Կոորդինատները՝ թղթի վրա, ցանցի ձախ ստորին O կետից։</p>
+<button id="measure-corner">Օգտագործել չափման մեջ</button></div>
+<script>{PAGE_JS}</script></body></html>'''
 
 
 def verify_geometry(dr):
@@ -504,7 +630,7 @@ def main():
     dr=build_drawing();verify_geometry(dr)
     svg=make_svg(dr)
     (OUT/f'{NAME}.svg').write_text('<?xml version="1.0" encoding="utf-8"?>\n'+svg)
-    (OUT/f'{NAME}.html').write_text(make_page(svg))
+    (OUT/f'{NAME}.html').write_text(make_page(make_svg(dr,with_corners=True)))
     make_pdf(dr)
     print('Built A3 420 × 297 mm at 1:2; grid spacing = 1 paper mm.')
     print('Validated gear centre distances, layout spans, page size and font coverage.')
