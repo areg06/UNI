@@ -30,7 +30,7 @@ SCALE = .5
 PAPER = '#FFFDF8'
 INK = '#1D2326'
 BLUE = '#1F54A3'
-X1, X2 = 110., 210.              # shafts I/III and II, paper mm
+X1, X2 = 210., 110.              # I/III on the right, II on the left, as in the copybook
 YI, YII = 105., 170.             # stage centre planes, paper mm
 BEARINGS = {
     1: dict(code='36306', d=30, D=72, B=19, C=26.9, C0=20.4),
@@ -146,8 +146,8 @@ def build_drawing():
     # Radial clearance: chosen 5 actual mm. Wall delta_1: calculated 8 mm.
     dr.rect(left-4, 64, right-left+8, 145, color='#7C878C', width=.35)
     dr.rect(left, 68, right-left, 137, color='#7C878C', width=.2)
-    dr.text(43, 197, 'δ₁ = 8', size=2.6, color='#56626A', mask=True)
-    dr.text(42, 73, '5 մմ բացակ', size=2.3, color='#56626A', mask=True)
+    dr.text(277, 197, 'δ₁ = 8', size=2.6, color='#56626A', mask=True)
+    dr.text(278, 73, '5 մմ բացակ', size=2.3, color='#56626A', mask=True)
 
     dr.layer = 'shafts'
     stepped_shaft(dr, X1, [(36, 60, 25), (60, 79, 30), (79, 128.75, 35), (128.75, 139, 30)])
@@ -174,7 +174,7 @@ def build_drawing():
             if shaft in (1, 2):
                 # Schematic angular-contact symbol, not the actual raceway section.
                 # Its direction reverses between opposite supports.
-                direction = 1 if name.startswith('A') else -1
+                direction = (1 if name.startswith('A') else -1) * (-1 if X1 > X2 else 1)
                 dr.line((a+.6, y-direction*(height/2-.6)),
                         (a+width-.6, y+direction*(height/2-.6)), width=.28)
                 dr.line((a+.6, y+direction*(height/2-.6)),
@@ -194,22 +194,22 @@ def build_drawing():
         dr.line((18, y), (300, y), '#8A959A', .15, (6, 1.2, 1, 1.2))
 
     dr.layer = 'dimensions'
-    dr.hdim(X1, X2, 244, 'a<sub>w</sub><sup>I</sup> = a<sub>w</sub><sup>II</sup> = 200', ref=211)
+    dr.hdim(min(X1,X2), max(X1,X2), 244, 'a<sub>w</sub><sup>I</sup> = a<sub>w</sub><sup>II</sup> = 200', ref=211)
     for g in GEARS:
         x, y = g['x'], g['y']
         dr.hdim(x-g['d']*SCALE/2, x+g['d']*SCALE/2, y+3,
                 f'd<sub>{g["part"]}</sub><sup>{g["label"]}</sup> = {n(g["d"])}')
     # Gear face-width dimensions, placed beyond each relevant gear outline.
-    dr.vdim(YI-85*SCALE/2, YI+85*SCALE/2, 78, 'b<sub>w1</sub><sup>I</sup> = 85', X1-GEARS[0]['da']*SCALE/2)
-    dr.vdim(YI-80*SCALE/2, YI+80*SCALE/2, 302, 'b<sub>w2</sub><sup>I</sup> = 80', X2+GEARS[1]['da']*SCALE/2)
-    dr.vdim(YII-55*SCALE/2, YII+55*SCALE/2, 242, 'b<sub>w1</sub><sup>II</sup> = 55', X2+GEARS[2]['da']*SCALE/2)
-    dr.vdim(YII-50*SCALE/2, YII+50*SCALE/2, 15, 'b<sub>w2</sub><sup>II</sup> = 50', X1-GEARS[3]['da']*SCALE/2)
+    dr.vdim(YI-85*SCALE/2, YI+85*SCALE/2, 242, 'b<sub>w1</sub><sup>I</sup> = 85', X1+GEARS[0]['da']*SCALE/2)
+    dr.vdim(YI-80*SCALE/2, YI+80*SCALE/2, 18, 'b<sub>w2</sub><sup>I</sup> = 80', X2-GEARS[1]['da']*SCALE/2)
+    dr.vdim(YII-55*SCALE/2, YII+55*SCALE/2, 78, 'b<sub>w1</sub><sup>II</sup> = 55', X2-GEARS[2]['da']*SCALE/2)
+    dr.vdim(YII-50*SCALE/2, YII+50*SCALE/2, 305, 'b<sub>w2</sub><sup>II</sup> = 50', X1+GEARS[3]['da']*SCALE/2)
 
     dr.layer = 'labels'
     dr.text(190, 261, 'ՀԱՄԱՌԱՆՑՔ ՌԵԴՈՒԿՏՈՐԻ ՆԱԽՆԱԿԱՆ ՀԱՐՄԱՐԱԴԱՍՈՒՄ', size=4.)
     dr.text(190, 254.5, 'Առաջադրանք 2 · տարբերակ 1 · A3 · M 1:2 · չափերը՝ իրական մմ-ով', size=2.9)
-    dr.text(260, 95, 'I · շեղատամ', size=3.)
-    dr.text(71, 164, 'II · ուղղատամ', size=3.)
+    dr.text(60, 95, 'I · շեղատամ', size=3.)
+    dr.text(249, 164, 'II · ուղղատամ', size=3.)
     for g in GEARS:
         x,y=g['x'],g['y']
         dr.line((x-.7,y),(x+.7,y),BLUE,.25)
@@ -218,12 +218,12 @@ def build_drawing():
                 size=2.4,color=BLUE,anchor='start',mask=True)
     dr.text(X1, 31, 'I · Մուտք', size=3., mask=True)
     dr.text(X1, 240, 'III · Ելք', size=3., mask=True)
-    dr.text(X2+14, 216, 'II', size=3., mask=True)
-    dr.leader((X1-18, 66), (72, 53), (57, 53), '36306', anchor='end')
-    dr.leader((X2+20, 68), (256, 53), (271, 53), '36307')
-    dr.leader((X1+25, 203), (155, 221), (168, 221), '309')
-    dr.text(190, 45, 'Անիվների ու առանցքակալների գաբարիտները՝ մասշտաբով։', size=2.7)
-    dr.text(190, 39, 'Առանցքային դիրքերն ընդունված են այս նախնական հարմարադասման համար։', size=2.6)
+    dr.text(X2-14, 216, 'II', size=3., mask=True)
+    dr.leader((X1+18, 66), (248, 53), (263, 53), '36306')
+    dr.leader((X2-20, 68), (64, 53), (49, 53), '36307', anchor='end')
+    dr.leader((X1-25, 203), (165, 221), (152, 221), '309', anchor='end')
+    dr.text(190, 45, 'Անիվների ու առանցքակալների գաբարիտները՝ մասշտաբով։', size=2.7, anchor='end')
+    dr.text(190, 39, 'Առանցքային դիրքերն ընդունված են այս նախնական հարմարադասման համար։', size=2.6, anchor='end')
     dr.text(190, 24, 'Կետագծով նշված ներքին հենարանների հանգույցը դեռ պետք է կառուցել։', size=2.5, color='#56626A')
 
     dr.layer = 'notes'
@@ -408,7 +408,7 @@ def make_svg(dr, with_corners=False):
     role = 'group' if with_corners else 'img'
     return (f'<svg id="layout" xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297" role="{role}" aria-labelledby="drawing-title drawing-desc">'
             '<title id="drawing-title">Ռեդուկտորի նախնական հարմարադասում՝ A3, M 1:2</title>'
-            '<desc id="drawing-desc">Համառանցք երկաստիճան ռեդուկտոր, 200 մմ միջառանցքային հեռավորություն, միջին սերիայի 36306, 36307 և 309 առանցքակալներ։ Ցանցը՝ մեկ միլիմետր։</desc>'
+            '<desc id="drawing-desc">Համառանցք երկաստիճան ռեդուկտոր, 200 մմ միջառանցքային հեռավորություն, միջին սերիայի 36306, 36307 և 309 առանցքակալներ։ Մուտքն ու ելքն աջում են, միջանկյալ լիսեռը՝ ձախում։ Ցանցը՝ մեկ միլիմետր։</desc>'
             '<style>text{font-family:"Noto Sans Armenian","Arial Unicode MS",Arial,sans-serif}g[hidden]{display:none}</style>'
             f'<rect width="420" height="297" fill="{PAPER}"/>'
             f'<g transform="translate({GX} {GY})">{body}</g></svg>')
@@ -573,7 +573,7 @@ def make_page(svg):
     return f'''<!doctype html><html lang="hy"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ռեդուկտորի հարմարադասում · A3</title><style>{PAGE_CSS}</style></head><body><main>
 <a href="index.html">← Մեքենամասերի տեսություն</a><h1>Ռեդուկտորի հարմարադասում</h1>
-<p class="intro">Էսքիզի տրամաբանությամբ՝ երկու ատամնազույգ, աստիճանավոր լիսեռներ և հենարաններ։ 1-ին և 3-րդ լիսեռները համառանցք են։ A3 թերթ՝ 420 × 297 մմ, ցանց՝ 1 × 1 մմ, մասշտաբ՝ <b>1:2</b>։</p>
+<p class="intro">Դասավորությունը՝ ինչպես տետրի սխեմայում. աջ կողմում 1-ին՝ մուտքի և 3-րդ՝ ելքի համառանցք լիսեռներն են, ձախում՝ 2-րդ միջանկյալ լիսեռը։ A3 թերթ՝ 420 × 297 մմ, ցանց՝ 1 × 1 մմ, մասշտաբ՝ <b>1:2</b>։</p>
 <div class="bar"><div class="downloads"><a href="{NAME}.pdf" download>PDF · A3</a><a href="{NAME}.svg" download>SVG · վեկտորային</a><a href="{NAME}.png" download>PNG · 300 dpi</a></div>
 <div class="zoom" role="group" aria-label="Մեծացում"><button data-zoom="1" aria-pressed="true">Ամբողջը</button><button data-zoom="2" aria-pressed="false">×2</button><button data-zoom="3" aria-pressed="false">×3</button><button id="clear-measure">Մաքրել չափումը</button></div></div>
 <div class="layers">{''.join(f'<label><input type="checkbox" data-toggle="{key}" checked> {label}</label>' for key,label in [('grid','Ցանց'),('dimensions','Չափեր'),('housing','Իրան'),('supports','Հենարաններ'),('corners','Անկյունների կետեր')])}</div>
@@ -582,8 +582,8 @@ def make_page(svg):
 <p class="tip">Սեղմեք անկյան կապույտ կետին՝ նրա կոորդինատները բացելու համար։ Մոտ կետերն ընտրելու համար մեծացրեք գծագիրը։ Բացված պատուհանի «Օգտագործել չափման մեջ» կոճակով կարելի է չափել հենց ճշգրիտ կետերի միջև։ Կետերը հասանելի են նաև Tab և Enter ստեղներով։</p>
 <p class="tip">Տպելու համար ներբեռնեք PDF-ը և ընտրեք A3, 100% / «Իրական չափ»։ 100 մմ սանդղակը տպված թղթի վրա պետք է չափվի ճիշտ 100 մմ։</p>
 <div class="info"><section class="card"><h2>Ինչպես գծել նույն թերթը</h2><ol>
-<li>Ցանցի ձախ ստորին անկյունն ընդունեք O։ Քաշեք ուղղաձիգ առանցքները՝ x = 110 և x = 210 մմ։ Թղթի վրա 100 մմ-ը համապատասխանում է իրական 200 մմ միջառանցքային հեռավորությանը։</li>
-<li>I աստիճանի կենտրոնների հորիզոնականը՝ y = 105 մմ, II աստիճանինը՝ y = 170 մմ։ Փոքր անիվը I աստիճանում ձախ է, II-ում՝ աջ։</li>
+<li>Ցանցի ձախ ստորին անկյունն ընդունեք O։ Ձախում քաշեք 2-րդ միջանկյալ լիսեռի առանցքը՝ x = 110 մմ, աջում՝ 1-ին և 3-րդ լիսեռների ընդհանուր առանցքը՝ x = 210 մմ։ Թղթի վրա 100 մմ-ը համապատասխանում է իրական 200 մմ միջառանցքային հեռավորությանը։</li>
+<li>I աստիճանի կենտրոնների հորիզոնականը՝ y = 105 մմ, II աստիճանինը՝ y = 170 մմ։ Փոքր անիվը I աստիճանում աջ է, II-ում՝ ձախ։ Մուտքը աջ ներքևում է, ելքը՝ աջ վերևում։</li>
 <li>Ամեն անիվի գագաթային տրամագիծն ու լայնությունը բաժանեք 2-ի և գծեք ուղղանկյունը։ Կապույտ կետագիծը բաժանարար տրամագիծն է. այդ տրամագծերը նշված են չափագծերի վրա։</li>
 <li>Գծեք լիսեռներն ու աղյուսակում նշված առանցքակալները՝ բոլոր իրական չափերը բաժանելով 2-ի։ Հենարանների պայմանական նշանները ցույց են տալիս դիրքն ու գաբարիտը։</li>
 <li>Ավելացրեք իրանի նախնական եզրագիծը։ Անիվի և պատի շառավղային բացակն այստեղ ընտրված է 5 մմ, իրանի պատը՝ 8 մմ։</li></ol>
@@ -609,6 +609,9 @@ def make_page(svg):
 
 
 def verify_geometry(dr):
+    # Match the copybook scheme's handedness, not just its centre distance.
+    assert X1 > X2
+    assert GEARS[0]['x'] > GEARS[1]['x'] and GEARS[2]['x'] < GEARS[3]['x']
     for pair in (GEARS[:2],GEARS[2:]):
         assert math.isclose(sum(g['d'] for g in pair)/2, 200, abs_tol=1e-10)
         assert math.isclose(abs(pair[1]['x']-pair[0]['x'])/SCALE, 200)
