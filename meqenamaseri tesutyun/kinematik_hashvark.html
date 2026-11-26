@@ -42,7 +42,7 @@
   hr{border:0; border-top:2px solid var(--rule); margin:22px -8px}
   .ln{display:flex; gap:10px; align-items:baseline; margin:10px 0; min-height:24px}
   .ln .no{flex:0 0 34px; font-weight:700; font-family:"Noto Sans Armenian",sans-serif}
-  .ln .f{flex:1 1 auto; overflow-x:auto; overflow-y:hidden; padding:2px 0}
+  .ln .f{flex:1 1 auto; min-width:0; overflow-x:auto; overflow-y:hidden; padding:2px 0}
   .ln .f.t{font-size:1rem}
   .sub{margin-left:44px}
   .note{font-size:.88rem; color:var(--ink-soft); font-family:"Noto Sans Armenian",sans-serif; margin:4px 0 4px 44px; overflow-x:auto}
@@ -146,163 +146,319 @@
       </svg></div>
 
 
-  <ol class="given">
-    <li>\(\eta_1=\eta_2=0{,}98,\quad\eta_{\text{առ}}=0{,}99,\quad k=3\) (աղ. 1.1)</li>
-    <li>\(u_1\approx1{,}1u_2\) — նախնական բաժանում՝ ըստ տետրի:</li>
-    <li>\(y=5\) տարի, \(d=270\) օր/տարի, \(s=1\) հերթափոխ, \(t=8\) ժամ, բեռը՝ հաստատուն (ընդունված):</li>
-  </ol>
-  <p class="note">Հիմնական հաշվարկը կատարված է ձեռնարկի էջ 10-ի եղանակով՝ ընտրված շարժիչի \(P_{\text{էլ}}=15\) կՎտ հզորությամբ և \(T_i=P_i/\omega_i\cdot10^6\) բանաձևով: \(P_{\text{դ}}=12\) կՎտ-ը պահանջվող ելքային հզորությունն է:</p>
-  <p class="note">Թվերը ցուցադրված են կլորացված, իսկ միջանկյալ հաշվարկները կատարված են առանց կլորացման: Ատամնաքանակների ընտրությունից հետո այստեղ թարմացված են փաստացի փոխանցման թվերը, պտուտաթվերը և մոմենտները:</p>
-  <hr>
-  <h2>§1. Կինեմատիկ հաշվարկ</h2>
-  <h3>1) Շարժիչի ընտրությունը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\eta=0{,}98^2\cdot0{,}99^3=0{,}9318751596\approx\R{0{,}9319}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle P_{\text{պ}}=\frac{12}{\eta}\approx\R{12{,}88}\ \text{կՎտ},\qquad P_{\text{էլ}}=15\ \text{կՎտ}\ge P_{\text{պ}}\)</div></div>
-  <p class="note">Ընտրված է հզորության ստանդարտ արժեքը: Առաջադրանքի \(7950\) պտ/ր-ը տրված մեծություն է. աղ. 1.2-ը նման պտուտաթվով շարժիչի մակնիշ չի տալիս, ուստի կոնկրետ մակնիշ և սահք չեն հորինվում:</p>
-  <h3>2) Փոխանցման թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle u_{\text{պ}}=\frac{7950}{490}\approx16{,}224490,\quad u_{2,\text{նախ}}=\sqrt{\frac{u_{\text{պ}}}{1{,}1}}\approx3{,}840512,\quad u_{1,\text{նախ}}\approx4{,}224564\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle u_1=\frac{156}{37}\approx\R{4{,}216216},\qquad u_2=\frac{127}{33}\approx\R{3{,}848485},\qquad u_{\text{փ}}=\frac{156}{37}\frac{127}{33}\approx16{,}226044\)</div></div>
-  <p class="note">Փաստացի արժեքները ստացվում են §2-ում ընտրված ամբողջ ատամնաքանակներից: Դրանք օգտագործվում են հետագա բոլոր ստուգումներում:</p>
-  <h3>3) Լիսեռների պտուտաթվերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle n_1=7950,\qquad n_2=\frac{7950}{156/37}\approx\R{1885{,}5769},\qquad n_3=\frac{7950}{(156/37)(127/33)}\approx\R{489{,}9531}\ \text{պտ/ր}\)</div></div>
-  <p class="note">\(n_3\approx490{,}0\) պտ/ր. պահանջված \(490\) պտ/ր-ից շեղումը մոտ \(0{,}0096\%\) է:</p>
-  <h3>4) Լիսեռների անկյունային արագությունները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \omega_i=\frac{\pi n_i}{30},\qquad \omega_1\approx\R{832{,}5221},\quad\omega_2\approx\R{197{,}4572},\quad\omega_3\approx\R{51{,}3078}\ \text{ռադ/վ}\)</div></div>
-  <h3>5) Լիսեռների հզորությունները (ձեռնարկ, էջ 10)</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(P_1=P_{\text{էլ}}\eta_{\text{առ}}=15\cdot0{,}99=\R{14{,}85}\ \text{կՎտ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(P_2=P_1\eta_1\eta_{\text{առ}}=14{,}85\cdot0{,}98\cdot0{,}99\approx\R{14{,}4075}\ \text{կՎտ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(P_3=P_2\eta_2\eta_{\text{առ}}\approx\R{13{,}9781}\ \text{կՎտ}\ge P_{\text{դ}}=12\ \text{կՎտ}\)</div></div>
-  <p class="note">Սա շարժիչի անվանական հզորությամբ հաշվարկային ռեժիմն է: \(P_3\)-ը ռեդուկտորի հաշվարկային ելքային հզորությունն է և չի հավասարեցվում պահանջվող 12 կՎտ-ին:</p>
-  <h3>6) Լիսեռների ոլորող մոմենտները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle T_i=\frac{P_i}{\omega_i}\cdot10^6,\qquad T_1\approx\R{17837{,}4},\quad T_2\approx\R{72965{,}0},\quad T_3\approx\R{272436{,}9}\ \text{Ն}\cdot\text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(T_2=T_1u_1\eta_1\eta_{\text{առ}},\qquad T_3=T_2u_2\eta_2\eta_{\text{առ}}\)</div></div>
-  <p class="note">Տետրի \(T_2\approx T_1u_1,\ T_3\approx T_2u_2\) պարզեցումը կորուստները չի ներառում: Այստեղ մոմենտները համաձայնեցված են հենց վերևում հաշվված հզորությունների հետ:</p>
+
+<p class="note">Մաքուր լուծում՝ տետրում գրելու համար: Թվերը ցուցադրված են կլորացված, իսկ հաշվարկները կատարված են առանց միջանկյալ կլորացման:</p>
+<p class="note">Բանաձևերի իմաստը և մանրամասն հիմնավորումները՝ <a href="bacatrutyun.html">բացատրության էջում</a>:</p>
+<h2>§1. Կինեմատիկ հաշվարկ</h2>
+<h3>1) Ընտրում ենք շարժիչի հզորությունը</h3>
+<div class="ln"><div class="f">\(\eta_1=\eta_2=0{,}98,\qquad\eta_{\text{առ}}=0{,}99,\qquad k=3\)</div></div>
+<div class="ln"><div class="f">\(\eta=0{,}98^2\cdot0{,}99^3\approx0{,}9319\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle P_{\text{պ}}=\frac{P_{\text{դ}}}{\eta}=\frac{12}{\eta}\approx12{,}88\ \text{կՎտ}\)</div></div>
+<div class="ln"><div class="f">\(\R{P_{\text{էլ}}=15\ \text{կՎտ}}\ge P_{\text{պ}}\)</div></div>
+<p class="note">15 կՎտ-ը ընտրված ստանդարտ հզորությունն է: Շարժիչի 7950 պտ/ր արագությունը տրված է առաջադրանքում:</p>
+<h3>2) Որոշում ենք փոխանցման թվերը</h3>
+<div class="ln"><div class="f">\(\displaystyle u_{\text{պ}}=\frac{7950}{490}\approx16{,}2245\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle u_{2,\text{նախ}}=\sqrt{\frac{u_{\text{պ}}}{1{,}1}}\approx3{,}84\)</div></div>
+<div class="ln"><div class="f">\(u_{1,\text{նախ}}=1{,}1u_{2,\text{նախ}}\approx4{,}22\)</div></div>
+<p class="note">Սրանք նախնական արժեքներն են: §2-ում ատամների թվերն ընտրելուց հետո ստանում ենք՝</p>
+<div class="ln"><div class="f">\(\displaystyle u_1=\frac{156}{37}\approx\R{4{,}2162},\qquad u_2=\frac{127}{33}\approx\R{3{,}8485}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle u_{\text{փ}}=\frac{156}{37}\cdot\frac{127}{33}\approx\R{16{,}2260}\)</div></div>
+<p class="note">Հաջորդ քայլերում օգտագործում ենք հենց այս կոտորակները՝ առանց կլորացման:</p>
+<h3>3) Հաշվում ենք լիսեռների պտուտաթվերը</h3>
+<div class="ln"><div class="f">\(n_1=7950\ \text{պտ/ր}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle n_2=\frac{7950}{156/37}\approx\R{1885{,}58}\ \text{պտ/ր}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle n_3=\frac{7950}{(156/37)(127/33)}\approx\R{489{,}95}\ \text{պտ/ր}\approx490\ \text{պտ/ր}\)</div></div>
+<h3>4) Հաշվում ենք անկյունային արագությունները</h3>
+<div class="ln"><div class="f">\(\displaystyle \omega_1=\frac{\pi n_1}{30}\approx\R{832{,}52}\ \text{ռադ/վ}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \omega_2=\frac{\pi n_2}{30}\approx\R{197{,}46}\ \text{ռադ/վ}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \omega_3=\frac{\pi n_3}{30}\approx\R{51{,}31}\ \text{ռադ/վ}\)</div></div>
+<h3>5) Հաշվում ենք լիսեռների հզորությունները</h3>
+<p class="note">Ըստ ձեռնարկի՝ հաշվարկը սկսում ենք ընտրված շարժիչի 15 կՎտ հզորությունից:</p>
+<div class="ln"><div class="f">\(P_1=15\cdot0{,}99=\R{14{,}85}\ \text{կՎտ}\)</div></div>
+<div class="ln"><div class="f">\(P_2=P_1\cdot0{,}98\cdot0{,}99\approx\R{14{,}41}\ \text{կՎտ}\)</div></div>
+<div class="ln"><div class="f">\(P_3=P_2\cdot0{,}98\cdot0{,}99\approx\R{13{,}98}\ \text{կՎտ}\)</div></div>
+<p class="note">Ելքի հաշվարկային հզորությունը 13,98 կՎտ է՝ պահանջվող 12 կՎտ-ից մեծ:</p>
+<h3>6) Հաշվում ենք ոլորող մոմենտները</h3>
+<div class="ln"><div class="f">\(\displaystyle T_1=\frac{P_1}{\omega_1}\cdot10^6\approx\R{17\,837{,}4}\ \text{Ն}\cdot\text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle T_2=\frac{P_2}{\omega_2}\cdot10^6\approx\R{72\,965{,}0}\ \text{Ն}\cdot\text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle T_3=\frac{P_3}{\omega_3}\cdot10^6\approx\R{272\,436{,}9}\ \text{Ն}\cdot\text{մմ}\)</div></div>
+</section>
+<section class="sheet">
+<div class="pg">2</div>
+<h2>§2. Նյութերը և թույլատրելի լարումները</h2>
+<p class="note">§2-ում 1 և 2 ինդեքսները յուրաքանչյուր ատամնազույգի փոքր և մեծ անիվներինն են:</p>
+<h3>1) Ընտրում ենք անվակի և անիվի նյութերը</h3>
+<p class="note">Անվակ՝ Պողպատ 45, մխում յուղում՝ 840–860°C (աղ. 2.1, էջ 14):</p>
+<div class="ln"><div class="f">\(HB_1=236,\quad\sigma_{ժ1}=715\ldots805,\quad\sigma_{հ1}=510\ldots598\ \text{Ն/մմ}^2\)</div></div>
+<p class="note">Անիվ՝ Պողպատ 45 (աղ. 2.1, էջ 15): Այս տողի համար ջերմամշակման ռեժիմը նշված չէ:</p>
+<div class="ln"><div class="f">\(HB_2=190,\quad\sigma_{ժ2}=550\ldots590,\quad\sigma_{հ2}=280\ldots300\ \text{Ն/մմ}^2\)</div></div>
+<div class="ln"><div class="f">\(HB_1-HB_2=236-190=\R{46}\approx50\)</div></div>
+<h3>2) Հաշվում ենք թույլատրելի կոնտակտային լարումները</h3>
+<div class="ln"><div class="f">\(\sigma_{Hlimb1}=2HB_1+70=2\cdot236+70=542\)</div></div>
+<div class="ln"><div class="f">\(\sigma_{Hlimb2}=2HB_2+70=2\cdot190+70=450\)</div></div>
+<div class="ln"><div class="f">\([S]=1{,}1,\qquad Z_R=Z_V=1\)</div></div>
+<p class="note">Ընդունում ենք՝ 5 տարի, տարեկան 270 օր, օրական մեկ 8-ժամյա հերթափոխ, հաստատուն բեռ:</p>
+<div class="ln"><div class="f">\(t_h=5\cdot270\cdot1\cdot8=10\,800\ \text{ժամ}\)</div></div>
+<div class="ln"><div class="f">\(N_{HE}=60n_3t_h\approx3{,}1749\cdot10^8\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle K_{HL}=\sqrt[6]{\frac{10^7}{N_{HE}}}\approx0{,}562<1\Rightarrow\R{K_{HL}=1}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle [\sigma_{H1}]=\frac{542}{1{,}1}\approx\R{492{,}7}\ \text{Ն/մմ}^2\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle [\sigma_{H2}]=\frac{450}{1{,}1}\approx\R{409{,}1}\ \text{Ն/մմ}^2\)</div></div>
+<p class="note">I աստիճանը շեղատամ է՝ վերցնում ենք միջինը: II աստիճանը ուղղատամ է՝ վերցնում ենք փոքր արժեքը:</p>
+<div class="ln"><div class="f">\(\displaystyle [\sigma_H]^I=\frac{[\sigma_{H1}]+[\sigma_{H2}]}2\approx\R{450{,}9}\ \text{Ն/մմ}^2\)</div></div>
+<div class="ln"><div class="f">\([\sigma_H]^{II}=[\sigma_{H2}]\approx\R{409{,}1}\ \text{Ն/մմ}^2\)</div></div>
+<h3>3) Հաշվում ենք թույլատրելի ծռման լարումները</h3>
+<div class="ln"><div class="f">\(\sigma^0_{Flimb1}=1{,}8\cdot236=424{,}8\)</div></div>
+<div class="ln"><div class="f">\(\sigma^0_{Flimb2}=1{,}8\cdot190=342\)</div></div>
+<div class="ln"><div class="f">\([S_F]=1{,}75,\qquad K_{FC}=1,\qquad N_{FE}=N_{HE}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle K_{FL}=\sqrt[6]{\frac{4\cdot10^6}{N_{FE}}}\approx0{,}482<1\Rightarrow\R{K_{FL}=1}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle [\sigma_{F1}]=\frac{424{,}8}{1{,}75}\approx\R{242{,}7}\ \text{Ն/մմ}^2\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle [\sigma_{F2}]=\frac{342}{1{,}75}\approx\R{195{,}4}\ \text{Ն/մմ}^2\)</div></div>
+</section>
+<section class="sheet">
+<div class="pg">3</div>
+<h2>§2.1. II աստիճան — ուղղատամ փոխանցում</h2>
+<p class="note">Այս զույգի փոքր անիվը 2-րդ լիսեռի վրա է: Ուստի այստեղ նրա մոմենտն ու արագությունը հետևյալն են՝</p>
+<div class="ln"><div class="f">\(T\approx72\,965{,}0\ \text{Ն}\cdot\text{մմ},\qquad n\approx1885{,}58\ \text{պտ/ր},\qquad u=\frac{127}{33}\)</div></div>
+<h3>1) Ընտրում ենք միջառանցքային հեռավորությունը</h3>
+<div class="ln"><div class="f">\(K_{փ}=45{,}8,\qquad\psi_{ba}=0{,}25,\qquad K_{H,\text{նախ}}=1{,}265\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle a_w=K_{փ}(u+1)\sqrt[3]{\frac{TK_{H,\text{նախ}}}{[\sigma_H]^2u\psi_{ba}}}\approx184{,}5\ \text{մմ}\)</div></div>
+<p class="note">Ստանդարտ շարքից ընտրում ենք հաջորդ մեծ չափը՝</p>
+<div class="ln"><div class="f">\(\R{a_w=200\ \text{մմ}}\)</div></div>
+<h3>2) Ընտրում ենք մոդուլը</h3>
+<div class="ln"><div class="f">\(m=(0{,}01\ldots0{,}02)a_w=2\ldots4\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(\R{m=2{,}5\ \text{մմ}}\)</div></div>
+<h3>3) Գտնում ենք ատամների ընդհանուր թիվը</h3>
+<div class="ln"><div class="f">\(\displaystyle Z_\Sigma=\frac{2a_w}{m}=\frac{2\cdot200}{2{,}5}=\R{160}\)</div></div>
+<h3>4) Գտնում ենք երկու անիվների ատամների թվերը</h3>
+<div class="ln"><div class="f">\(\displaystyle Z_1=\frac{160}{1+u_{2,\text{նախ}}}\approx33{,}05\Rightarrow\R{Z_1=33}\)</div></div>
+<div class="ln"><div class="f">\(Z_2=160-33=\R{127}\)</div></div>
+<div class="ln"><div class="f">\(Z_1=33\ge17\qquad\text{(նվազագույն ատամնաքանակ)}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle u_2=\frac{127}{33}\approx\R{3{,}8485}\)</div></div>
+<h3>5) Ստուգում ենք միջառանցքային հեռավորությունը</h3>
+<div class="ln"><div class="f">\(\displaystyle a_w=\frac{33+127}{2}\cdot2{,}5=\R{200\ \text{մմ}}\)</div></div>
+<h3>6) Հաշվում ենք անիվների չափերը</h3>
+<div class="ln"><div class="f">\(d_1=mZ_1=2{,}5\cdot33=\R{82{,}5\ \text{մմ}}\)</div></div>
+<div class="ln"><div class="f">\(d_2=mZ_2=2{,}5\cdot127=\R{317{,}5\ \text{մմ}}\)</div></div>
+<div class="ln"><div class="f">\(d_{a1}=d_1+2m=87{,}5,\qquad d_{a2}=d_2+2m=322{,}5\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(d_{f1}=d_1-2{,}5m=76{,}25,\qquad d_{f2}=d_2-2{,}5m=311{,}25\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(b_{w2}=\psi_{ba}a_w=0{,}25\cdot200=50\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(b_{w1}=b_{w2}+5=55\ \text{մմ}\)</div></div>
+<h3>7) Հաշվում ենք արագությունը և ընտրում ճշտությունը</h3>
+<div class="ln"><div class="f">\(\displaystyle V=\frac{\pi d_1n}{60000}\approx\R{8{,}15\ \text{մ/վ}}\)</div></div>
+<p class="note">Աղ. 2.5-ից՝ ճշտության 7-րդ աստիճան:</p>
+<h3>8) Որոշում ենք բեռնվածքի գործակիցը</h3>
+<div class="ln"><div class="f">\(\displaystyle \psi_{bd}=\frac{50}{82{,}5}\approx0{,}6061\)</div></div>
+<div class="ln"><div class="f">\(K_{H\alpha}=1,\qquad K_{H\beta}\approx1{,}061,\qquad K_{HV}=1{,}10\ \text{(ընդ.)}\)</div></div>
+<div class="ln"><div class="f">\(K_H=1\cdot1{,}061\cdot1{,}10=\R{1{,}1671}\)</div></div>
+<p class="note">1,061-ը ստացվում է աղ. 2.7-ի երկու տողերի միջև միջարկմամբ: Աղ. 2.8-ը այս դեպքի համար թիվ չի տալիս, ուստի 1,10-ը նախնական ընդունում է:</p>
+<h3>9) Ստուգում ենք կոնտակտային լարումը</h3>
+<div class="ln"><div class="f">\(Z_M=275,\qquad Z_H=1{,}76,\qquad Z_\Sigma=0{,}9\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \sigma_H=Z_MZ_HZ_\Sigma\sqrt{\frac{TK_H(u+1)^3}{2a_w^2b_{w2}u}}\)</div></div>
+<div class="ln"><div class="f">\(\sigma_H\approx\R{345{,}9}\le[\sigma_H]\approx409{,}1\ \text{Ն/մմ}^2\)</div></div>
+<p class="note">Արդյունքը նախնական է, քանի որ \(K_{HV}=1{,}10\)-ը դեռ ընդունված արժեք է:</p>
+<h3>10) Հաշվում ենք կառչման ուժերը</h3>
+<div class="ln"><div class="f">\(\displaystyle F_t=\frac{2T}{d_1}\approx\R{1768{,}8\ \text{Ն}}\)</div></div>
+<div class="ln"><div class="f">\(F_r=F_t\tan20^\circ\approx\R{643{,}8\ \text{Ն}}\)</div></div>
+<div class="ln"><div class="f">\(F_a=0\)</div></div>
+<h3>11) Ստուգում ենք ծռման լարումները</h3>
+<div class="ln"><div class="f">\(Y_{F1}=3{,}766,\quad Y_{F2}=3{,}60,\quad Y_\beta=1,\quad\varepsilon_\alpha=1\)</div></div>
+<p class="note">3,766-ը ստացվում է աղ. 2.10-ի՝ 32 և 37 ատամների տողերի միջև միջարկմամբ:</p>
+<div class="ln"><div class="f">\(K_{F\alpha}=1,\qquad K_{F\beta}=1{,}122,\qquad K_{Fv}=1{,}45\)</div></div>
+<p class="note">1,122-ը՝ աղ. 2.12-ից միջարկմամբ: 1,45-ը՝ աղ. 2.13-ի 7-րդ աստիճան, 8…20 մ/վ տողից:</p>
+<div class="ln"><div class="f">\(K_F=1\cdot1{,}122\cdot1{,}45=\R{1{,}6269}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \sigma_{F1}=\frac{F_tY_{F1}Y_\beta K_F}{b_{w1}m\varepsilon_\alpha}\approx\R{78{,}8}\le242{,}7\ \text{Ն/մմ}^2\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \sigma_{F2}=\frac{F_tY_{F2}Y_\beta K_F}{b_{w2}m\varepsilon_\alpha}\approx\R{82{,}9}\le195{,}4\ \text{Ն/մմ}^2\)</div></div>
+</section>
+<section class="sheet">
+<div class="pg">4</div>
+<h2>§2.2. I աստիճան — շեղատամ փոխանցում</h2>
+<div class="ln"><div class="f">\(T\approx17\,837{,}4\ \text{Ն}\cdot\text{մմ},\qquad n=7950\ \text{պտ/ր},\qquad u=\frac{156}{37}\)</div></div>
+<h3>1) Վերցնում ենք նույն միջառանցքային հեռավորությունը</h3>
+<p class="note">Համառանցք ռեդուկտորում երկու աստիճանների այս չափը պետք է նույնը լինի:</p>
+<div class="ln"><div class="f">\(\R{a_w^I=a_w^{II}=200\ \text{մմ}}\)</div></div>
+<h3>2) Ընտրում ենք նորմալ մոդուլը</h3>
+<div class="ln"><div class="f">\(m_n=(0{,}01\ldots0{,}02)\cdot200=2\ldots4\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(\R{m_n=2\ \text{մմ}}\)</div></div>
+<h3>3) Ընտրում ենք նախնական անկյունը և ատամների գումարը</h3>
+<div class="ln"><div class="f">\(\beta_{\text{նախ}}=15^\circ\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle Z_\Sigma=\frac{2a_w}{m_n}\cos15^\circ\approx193{,}19\Rightarrow\R{Z_\Sigma=193}\)</div></div>
+<h3>4) Գտնում ենք ատամների թվերը</h3>
+<div class="ln"><div class="f">\(\displaystyle Z_1=\frac{193}{1+u_{1,\text{նախ}}}\approx36{,}94\Rightarrow\R{Z_1=37}\)</div></div>
+<div class="ln"><div class="f">\(Z_2=193-37=\R{156}\)</div></div>
+<div class="ln"><div class="f">\(Z_1=37\ge17\cos^315^\circ\approx15{,}32\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle u_1=\frac{156}{37}\approx\R{4{,}2162}\)</div></div>
+<h3>5) Ճշտում ենք թեքության անկյունը</h3>
+<p class="note">Անկյունը ճշտում ենք այնպես, որ ընտրված ատամների դեպքում պահպանվի 200 մմ հեռավորությունը:</p>
+<div class="ln"><div class="f">\(\displaystyle \cos\beta=\frac{(37+156)\cdot2}{2\cdot200}=0{,}965\)</div></div>
+<div class="ln"><div class="f">\(\R{\beta\approx15{,}20^\circ}\)</div></div>
+<h3>6) Հաշվում ենք անիվների չափերը</h3>
+<div class="ln"><div class="f">\(\displaystyle d_1=\frac{m_nZ_1}{\cos\beta}\approx\R{76{,}68\ \text{մմ}}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle d_2=\frac{m_nZ_2}{\cos\beta}\approx\R{323{,}32\ \text{մմ}}\)</div></div>
+<div class="ln"><div class="f">\(d_{a1}=d_1+2m_n\approx80{,}68,\qquad d_{a2}\approx327{,}32\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(d_{f1}=d_1-2{,}5m_n\approx71{,}68,\qquad d_{f2}\approx318{,}32\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(\psi_{ba}=0{,}4,\qquad b_{w2}=0{,}4\cdot200=80\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(b_{w1}=80+5=85\ \text{մմ}\)</div></div>
+<h3>7) Հաշվում ենք արագությունը և ընտրում ճշտությունը</h3>
+<div class="ln"><div class="f">\(\displaystyle V=\frac{\pi d_1n}{60000}\approx\R{31{,}92\ \text{մ/վ}}\)</div></div>
+<p class="note">Աղ. 2.5-ից՝ ճշտության 5-րդ աստիճան:</p>
+<h3>8) Որոշում ենք բեռնվածքի գործակիցը</h3>
+<div class="ln"><div class="f">\(\displaystyle \psi_{bd}=\frac{80}{d_1}\approx1{,}0432\)</div></div>
+<div class="ln"><div class="f">\(K_{H\beta}=1{,}119,\qquad K_{HV}=1,\qquad K_{H\alpha}=1{,}02\ \text{(ընդ.)}\)</div></div>
+<div class="ln"><div class="f">\(K_H=1{,}02\cdot1{,}119\cdot1=\R{1{,}14138}\)</div></div>
+<p class="note">1,119-ը՝ աղ. 2.7-ից միջարկմամբ: 1-ը՝ աղ. 2.8-ի ծանոթությունից: 1,02-ը նախնական ընդունում է. աղ. 2.6-ը 31,92 մ/վ-ի համար թիվ չի տալիս:</p>
+<h3>9) Կատարում ենք կոնտակտային լարման նախնական ստուգում</h3>
+<div class="ln"><div class="f">\(Z_M=275,\qquad Z_H=1{,}72,\qquad Z_\Sigma=0{,}8\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \sigma_H=Z_MZ_HZ_\Sigma\sqrt{\frac{TK_H(u+1)^3}{2a_w^2b_{w2}u}}\)</div></div>
+<div class="ln"><div class="f">\(\sigma_H\approx\R{123{,}8}\le[\sigma_H]\approx450{,}9\ \text{Ն/մմ}^2\)</div></div>
+<h3>10) Հաշվում ենք կառչման ուժերը</h3>
+<div class="ln"><div class="f">\(\displaystyle F_t=\frac{2T}{d_1}\approx\R{465{,}2\ \text{Ն}}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle F_r=\frac{F_t}{\cos\beta}\tan20^\circ\approx\R{175{,}5\ \text{Ն}}\)</div></div>
+<div class="ln"><div class="f">\(F_a=F_t\tan\beta\approx\R{126{,}4\ \text{Ն}}\)</div></div>
+<h3>11) Կատարում ենք ծռման լարումների նախնական ստուգում</h3>
+<div class="ln"><div class="f">\(\displaystyle Z_{v1}=\frac{37}{\cos^3\beta}\approx41{,}17,\qquad Z_{v2}\approx173{,}60\)</div></div>
+<div class="ln"><div class="f">\(Y_{F1}=3{,}695,\quad Y_{F2}=3{,}60,\quad Y_\beta=0{,}886,\quad\varepsilon_\alpha=0{,}9\)</div></div>
+<p class="note">Ատամի ձևի գործակիցները՝ աղ. 2.10-ից միջարկմամբ, իսկ \(Y_\beta\)-ն՝ նկ. 2.7-ից:</p>
+<div class="ln"><div class="f">\(K_{F\beta}=1{,}245,\quad K_{F\alpha}=1{,}10\ \text{(ընդ.)},\quad K_{Fv}=1{,}20\ \text{(ընդ.)}\)</div></div>
+<div class="ln"><div class="f">\(K_F=1{,}10\cdot1{,}245\cdot1{,}20=\R{1{,}6434}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \sigma_{F1}=\frac{F_tY_{F1}Y_\beta K_F}{b_{w1}m_n\varepsilon_\alpha}\approx\R{16{,}4}\le242{,}7\ \text{Ն/մմ}^2\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle \sigma_{F2}=\frac{F_tY_{F2}Y_\beta K_F}{b_{w2}m_n\varepsilon_\alpha}\approx\R{16{,}9}\le195{,}4\ \text{Ն/մմ}^2\)</div></div>
+<p class="note">Այս երեք լարումների ստուգումները նախնական են: Աղ. 2.6, 2.11 և 2.13-ը այս արագության ու ճշտության համար բոլոր գործակիցները չեն տալիս: Դրանց հիմնավորումը՝ բացատրության էջում:</p>
 </section>
 
 <section class="sheet">
-  <div class="pg">2</div>
-  <h2>§2. Ատամնավոր փոխանցումների հաշվարկ</h2>
-  <h3>1) Նյութերի ընտրությունը (աղ. 2.1, էջ 14–16)</h3>
-  <div class="ln"><span class="no"></span><div class="f t">Ատամնանվակ՝ Պողպատ 45, մխում յուղում՝ \(840\ldots860^\circ C\), \(\sigma_{ժ}=715\ldots805,\ \sigma_{հ}=510\ldots598\ \text{Ն/մմ}^2,\ \R{HB_1=236}\) (էջ 14):</div></div>
-  <div class="ln"><span class="no"></span><div class="f t">Ատամնանիվ՝ Պողպատ 45, \(\sigma_{ժ}=550\ldots590,\ \sigma_{հ}=280\ldots300\ \text{Ն/մմ}^2,\ \R{HB_2=190}\) (էջ 15): Ընտրված տողի համար ջերմամշակման ռեժիմը չի նշված:</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(HB_1-HB_2=236-190=\R{46}\approx50\)</div></div>
-  <p class="note">Նյութերի այս ընտրությունը պահպանում է ձեռնարկի էջ 16-ի՝ անվակի մոտ 50 HB-ով ավելի կարծր լինելու ուղեցույցը: Անիվի համար աղբյուրում չտրված մխման ռեժիմ չի վերագրվում:</p>
-  <h3>2) Թույլատրելի կոնտակտային լարումները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\sigma_{Hlimb1}=2\cdot236+70=542,\qquad \sigma_{Hlimb2}=2\cdot190+70=450\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\([S]=1{,}1,\quad Z_R=1{,}0,\quad Z_V=1{,}0,\quad t_h=5\cdot270\cdot1\cdot8=10800\ \text{ժամ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(N_{HE}=60n_3t_h\approx3{,}174896\cdot10^8,\qquad K_{HL}=\max\left(1,\sqrt[6]{\frac{10^7}{N_{HE}}}\right)=\R{1}\)</div></div>
-  <p class="note">Հաստատուն բեռի համար \(t_{hE}=t_h\): Ստուգված է ամենադանդաղ անիվը. մնացածների ցիկլերի թիվն ավելի մեծ է, և նրանց \(K_{HL}\)-ը նույնպես 1 է:</p>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_{H1}]=\frac{542}{1{,}1}\approx\R{492{,}7},\qquad [\sigma_{H2}]=\frac{450}{1{,}1}\approx\R{409{,}1}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_H]^I=\frac{[\sigma_{H1}]+[\sigma_{H2}]}2\approx\R{450{,}9},\qquad [\sigma_H]^{II}=[\sigma_{H2}]\approx\R{409{,}1}\ \text{Ն/մմ}^2\)</div></div>
-  <h3>3) Թույլատրելի ծռման լարումները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\sigma^0_{Flimb1}=1{,}8\cdot236=424{,}8,\qquad \sigma^0_{Flimb2}=1{,}8\cdot190=342\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\([S_F]=1{,}75,\quad K_{FC}=1,\quad m_F=6,\quad N_{FE}=N_{HE},\quad K_{FL}=\max\left(1,\sqrt[6]{\frac{4\cdot10^6}{N_{FE}}}\right)=\R{1}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_{F1}]=\frac{424{,}8}{1{,}75}\approx\R{242{,}7},\qquad [\sigma_{F2}]=\frac{342}{1{,}75}\approx\R{195{,}4}\ \text{Ն/մմ}^2\)</div></div>
+<div class="pg">5</div>
+<h2>Արդյունքների ամփոփում</h2>
+<div class="wrap"><table class="sum">
+<tr><th>Մեծություն</th><th>I աստիճան</th><th>II աստիճան</th></tr>
+<tr><td>\(a_w\), մմ</td><td>200</td><td>200</td></tr>
+<tr><td>\(m_n\) կամ \(m\), մմ</td><td>2</td><td>2,5</td></tr>
+<tr><td>\(\beta\)</td><td>15,20°</td><td>0°</td></tr>
+<tr><td>\(Z_1/Z_2\)</td><td>37 / 156</td><td>33 / 127</td></tr>
+<tr><td>\(u\)</td><td>4,2162</td><td>3,8485</td></tr>
+<tr><td>Փոքր անիվի մոմենտը, Ն·մմ</td><td>17 837,4</td><td>72 965,0</td></tr>
+<tr><td>\(d_1/d_2\), մմ</td><td>76,68 / 323,32</td><td>82,5 / 317,5</td></tr>
+<tr><td>\(d_{a1}/d_{a2}\), մմ</td><td>80,68 / 327,32</td><td>87,5 / 322,5</td></tr>
+<tr><td>\(d_{f1}/d_{f2}\), մմ</td><td>71,68 / 318,32</td><td>76,25 / 311,25</td></tr>
+<tr><td>\(b_{w1}/b_{w2}\), մմ</td><td>85 / 80</td><td>55 / 50</td></tr>
+<tr><td>\(V\), մ/վ</td><td>31,92</td><td>8,15</td></tr>
+<tr><td>Ճշտության աստիճանը</td><td>5</td><td>7</td></tr>
+<tr><td>\(F_t/F_r/F_a\), Ն</td><td>465,2 / 175,5 / 126,4</td><td>1768,8 / 643,8 / 0</td></tr>
+<tr><td>\(\sigma_H/[\sigma_H]\), Ն/մմ²</td><td>123,8 / 450,9 (նախն.)</td><td>345,9 / 409,1 (նախն.)</td></tr>
+<tr><td>\(\sigma_{F1}/[\sigma_{F1}]\), Ն/մմ²</td><td>16,4 / 242,7 (նախն.)</td><td>78,8 / 242,7</td></tr>
+<tr><td>\(\sigma_{F2}/[\sigma_{F2}]\), Ն/մմ²</td><td>16,9 / 195,4 (նախն.)</td><td>82,9 / 195,4</td></tr>
+</table></div>
+<p class="note">«Նախն.»՝ ստուգումը կատարված է նախնական ընդունված գործակիցներով: Այդ գործակիցները դեռ պետք է հիմնավորվեն:</p>
+<p class="note">Աղբյուր՝ <a href="EUDV31.pdf">ձեռնարկը</a>: Քայլերի իմաստը, աղյուսակների տողերը և գործակիցների սահմանափակումները՝ <a href="bacatrutyun.html">մանրամասն բացատրության մեջ</a>:</p>
 </section>
 
 <section class="sheet">
-  <div class="pg">3</div>
-  <h2>§2.1. II աստիճան (դանդաղընթաց, ուղղատամ)</h2>
-  <p class="note" style="margin-left:0">Տվյալ զույգի անվակի համար \(T_1=T_2^{\text{լիսեռ}}\approx72965{,}0\) Ն·մմ, \(n_1=n_2^{\text{լիսեռ}}\approx1885{,}5769\) պտ/ր: Նախնական \(u\approx3{,}840512\), փաստացի \(u=127/33\):</p>
-  <h3>1) Միջառանցքային հեռավորությունը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{փ}=45{,}8,\quad\psi_{ba}=0{,}25,\quad K_{H,\text{նախ}}=1\cdot1{,}15\cdot1{,}1=1{,}265\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle a_{w,\text{հաշվ}}=45{,}8(u+1)\sqrt[3]{\frac{T_1K_{H,\text{նախ}}}{[\sigma_H]^2u\psi_{ba}}}\approx184{,}5\ \text{մմ},\qquad \R{a_w=200}\ \text{մմ}\)</div></div>
-  <p class="note">Վերցված է ստանդարտ շարքի հաջորդ մեծ արժեքը՝ 200 մմ: Այն ընդհանուր է երկու աստիճանների համար:</p>
-  <h3>2) Մոդուլը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(m=(0{,}01\ldots0{,}02)a_w=2\ldots4\ \text{մմ},\qquad \R{m=2{,}5}\ \text{մմ}\)</div></div>
-  <h3>3) Ատամների գումարային թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(Z_\Sigma=2a_w/m=160\)</div></div>
-  <h3>4) Ատամների թվերը և փաստացի փոխանցման թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_1=\frac{160}{1+u_{2,\text{նախ}}}\approx33{,}05\Rightarrow\R{Z_1=33}\ge17,\qquad \R{Z_2=127},\quad u=\frac{127}{33}\approx3{,}848485\)</div></div>
-  <h3>5) Միջառանցքային հեռավորության ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(a_w=(33+127)\cdot2{,}5/2=\R{200}\ \text{մմ}\) <span class="ok">✓</span></div></div>
-  <h3>6) Անիվների հիմնական չափերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(d_1=82{,}5,\quad d_2=317{,}5,\quad d_{a1}=87{,}5,\quad d_{a2}=322{,}5\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(d_{f1}=76{,}25,\quad d_{f2}=311{,}25,\quad b_{w2}=0{,}25\cdot200=50,\quad b_{w1}=55\ \text{մմ}\)</div></div>
-  <h3>7) Շրջագծային արագությունը և ճշտության աստիճանը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle V=\frac{\pi d_1n_1}{60000}\approx\R{8{,}1451}\ \text{մ/վ}\Rightarrow\text{ճշտության 7-րդ աստիճան}\)</div></div>
-  <h3>8) Բեռնվածքի գործակիցը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\psi_{bd}=50/82{,}5\approx0{,}606061,\quad K_{H\alpha}=1,\quad K_{H\beta}\approx1{,}061\ \text{(աղ. 2.7, միջարկում, դիրք II)}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{HV}^{II}=1{,}10\ \text{(ընդունված)},\qquad K_H=1\cdot1{,}061\cdot1{,}10=\R{1{,}1671}\)</div></div>
-  <p class="note">Աղ. 2.8-ում այս \(V\)-ի և 7-րդ աստիճանի ուղղատամ փոխանցման համար թիվ չի տրված: \(K_{HV}^{II}=1{,}10\)-ը նախնական ընդունում է՝ էջ 22-ի \(1{,}05\ldots1{,}10\) միջակայքի վերին սահմանը, ոչ թե աղ. 2.8-ից ճշգրիտ ընտրված արժեք:</p>
-  <h3>9) Կոնտակտային լարման պայմանական ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_H=275\cdot1{,}76\cdot0{,}9\sqrt{\frac{T_1K_H(u+1)^3}{2a_w^2b_{w2}u}}\approx329{,}7898\sqrt{K_{HV}^{II}}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{HV}^{II}=1{,}10\Rightarrow\sigma_H\approx\R{345{,}9}\le[\sigma_H]\approx409{,}1\ \text{Ն/մմ}^2\)</div></div>
-  <p class="note">Պայմանը կատարվում է, եթե \(K_{HV}^{II}\le1{,}5387\): Ընդունված 1,10-ի դեպքում ստուգումը բավարար է, սակայն գործակցի վերջնական աղբյուրը դեռ պետք է հստակեցվի:</p>
-  <h3>10) Կառչման ուժերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle F_t=\frac{2T_1}{d_1}\approx\R{1768{,}8},\qquad F_r=F_t\tan20^\circ\approx\R{643{,}8},\qquad F_a=0\ \text{Ն}\)</div></div>
-  <h3>11) Ծռման լարումների ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(Y_{F1}=3{,}78+\frac{33-32}{37-32}(3{,}71-3{,}78)=3{,}766,\quad Y_{F2}=3{,}60,\quad Y_\beta=1,\quad\varepsilon_\alpha=1\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{F\alpha}=1,\quad K_{F\beta}\approx1{,}122\ \text{(աղ. 2.12, միջարկում)},\quad K_{Fv}=1{,}45\ \text{(աղ. 2.13)}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_F=1\cdot1{,}122\cdot1{,}45=\R{1{,}6269}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_{F1}=\frac{F_tY_{F1}K_F}{55\cdot2{,}5}\approx\R{78{,}8}\le242{,}7,\quad \sigma_{F2}=\frac{F_tY_{F2}K_F}{50\cdot2{,}5}\approx\R{82{,}9}\le195{,}4\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
-  <p class="note">Աղ. 2.13՝ ուղղատամ, \(HB\le350\), 7-րդ աստիճան, \(8\ldots20\) մ/վ: Բոլոր միջարկված գործակիցները ընդունված են այստեղ ցուցադրված ճշտությամբ:</p>
+<div class="pg">6</div>
+<h2>§3. Լիսեռների նախնական հաշվարկ</h2>
+<p class="note">Ձեռնարկ՝ §7.2, <a href="EUDV31.pdf#page=85">տպագիր էջ 84–85</a>: Այստեղ 1, 2, 3 ինդեքսները լիսեռների համարներն են:</p>
+<h3>1) Վերցնում ենք նյութը և մոմենտները</h3>
+<p class="note">Լիսեռների նյութը՝ Պողպատ 45 (աղ. 7.1): Մոմենտները վերցնում ենք §1-ից:</p>
+<div class="ln"><div class="f">\(T_1\approx17\,837{,}4\ \text{Ն}\cdot\text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(T_2\approx72\,965{,}0\ \text{Ն}\cdot\text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(T_3\approx272\,436{,}9\ \text{Ն}\cdot\text{մմ}\)</div></div>
+<h3>2) Հաշվում ենք նվազագույն տրամագծերը</h3>
+<p class="note">Այս փուլում հաշվի ենք առնում միայն ոլորումը: Ծռման ազդեցությունը ստուգվում է հետագայում:</p>
+<div class="ln"><div class="f">\(\displaystyle d_{\min}=\sqrt[3]{\frac{16T}{\pi[\tau]}}\)</div></div>
+<p class="note">\(T\)-ն՝ Ն·մմ, \([\tau]\)-ն՝ Ն/մմ²: Արդյունքը ստանում ենք մմ-ով:</p>
+<p class="note">Ձեռնարկի միջակայքներից ընտրում ենք՝ արագընթաց լիսեռի համար 10, միջանկյալի՝ 20, դանդաղընթացի՝ 30 Ն/մմ²:</p>
+<div class="ln"><div class="f">\(\displaystyle d_{\min,1}=\sqrt[3]{\frac{16\cdot17\,837{,}4}{\pi\cdot10}}\approx20{,}87\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle d_{\min,2}=\sqrt[3]{\frac{16\cdot72\,965{,}0}{\pi\cdot20}}\approx26{,}49\ \text{մմ}\)</div></div>
+<div class="ln"><div class="f">\(\displaystyle d_{\min,3}=\sqrt[3]{\frac{16\cdot272\,436{,}9}{\pi\cdot30}}\approx35{,}90\ \text{մմ}\)</div></div>
+<p class="note">Ստանդարտ շարքից՝ 15, 20, 25, 30, 35, 40, … մմ, ընտրում ենք հաշվարկայինից մեծ մոտակա չափը:</p>
+<div class="ln"><div class="f">\(\R{d_1=25\ \text{մմ}},\qquad\R{d_2=30\ \text{մմ}},\qquad\R{d_3=40\ \text{մմ}}\)</div></div>
+<h3>3) Որոշում ենք նստեցման տրամագծերը</h3>
+<div class="ln"><div class="f">\(d_{\text{առ}}=d+5,\qquad d_{\text{ան}}=d+10\ \text{մմ}\)</div></div>
+<p class="note">\(d_{\text{առ}}\)՝ առանցքակալի նստեցման տեղը, \(d_{\text{ան}}\)՝ անիվի նստեցման տեղը:</p>
+<div class="wrap"><table class="sum">
+<tr><th>Լիսեռ</th><th>\(d\), մմ</th><th>\(d_{\text{առ}}\), մմ</th><th>\(d_{\text{ան}}\), մմ</th></tr>
+<tr><td>1 — արագընթաց</td><td>25</td><td>30</td><td>35</td></tr>
+<tr><td>2 — միջանկյալ</td><td>30</td><td>35</td><td>40</td></tr>
+<tr><td>3 — դանդաղընթաց</td><td>40</td><td>45</td><td>50</td></tr>
+</table></div>
+<p class="note">Սրանք նախնական չափեր են: Վերջնական տրամագծերը ճշտվում են ծռման, ոլորման և հոգնածային ամրության հաշվարկներով (§7.3, §7.4):</p>
 </section>
 
 <section class="sheet">
-  <div class="pg">4</div>
-  <h2>§2.2. I աստիճան (արագընթաց, շեղատամ)</h2>
-  <p class="note" style="margin-left:0">\(T_1\approx17837{,}4\) Ն·մմ, \(n_1=7950\) պտ/ր: Նախնական \(u\approx4{,}224564\), փաստացի \(u=156/37\):</p>
-  <h3>1) Միջառանցքային հեռավորությունը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(a_w^I=a_w^{II}=\R{200}\ \text{մմ}\)</div></div>
-  <p class="note">Համառանցք կառուցվածքի պատճառով ընդունվում է II աստիճանի միջառանցքային հեռավորությունը: I աստիճանի ամրությունն այս չափով ստուգվում է ստորև՝ 9-րդ և 11-րդ կետերում:</p>
-  <h3>2) Նորմալ մոդուլը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(m_n=(0{,}01\ldots0{,}02)\cdot200=2\ldots4\ \text{մմ},\qquad \R{m_n=2}\ \text{մմ}\)</div></div>
-  <h3>3) Թեքության անկյունը և ատամների գումարային թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\beta_{\text{նախ}}=15^\circ,\qquad Z_\Sigma=\frac{2a_w}{m_n}\cos15^\circ\approx193{,}1852\Rightarrow\R{Z_\Sigma=193}\)</div></div>
-  <h3>4) Ատամների թվերը և փաստացի փոխանցման թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_1=\frac{193}{1+u_{1,\text{նախ}}}\approx36{,}94\Rightarrow\R{Z_1=37}\ge17\cos^315^\circ,\quad\R{Z_2=156},\quad u=\frac{156}{37}\approx4{,}216216\)</div></div>
-  <p class="note">\(u_{\text{փ}}=(156/37)(127/33)\approx16{,}226044\), իսկ \(n_3\approx489{,}9531\approx490{,}0\) պտ/ր: Վերջնական պտուտաթվերը ներառված են §1-ում:</p>
-  <h3>5) Թեքության անկյան ճշտումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\cos\beta=\frac{193\cdot2}{2\cdot200}=0{,}965,\qquad \R{\beta\approx15{,}2036^\circ},\qquad a_w=\frac{193\cdot2}{2\cdot0{,}965}=200\ \text{մմ}\)</div></div>
-  <h3>6) Անիվների հիմնական չափերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(d_1\approx76{,}6839,\ d_2\approx323{,}3161,\ d_{a1}\approx80{,}6839,\ d_{a2}\approx327{,}3161\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(d_{f1}\approx71{,}6839,\ d_{f2}\approx318{,}3161,\ \psi_{ba}=0{,}4,\ b_{w2}=\psi_{ba}a_w=80,\ b_{w1}=85\ \text{մմ}\)</div></div>
-  <h3>7) Շրջագծային արագությունը և ճշտության աստիճանը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle V=\frac{\pi d_1n_1}{60000}\approx\R{31{,}9205}\ \text{մ/վ}\Rightarrow\text{ճշտության 5-րդ աստիճան (աղ. 2.5)}\)</div></div>
-  <h3>8) Բեռնվածքի գործակիցները և աղբյուրի սահմանները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\psi_{bd}=80/d_1\approx1{,}043243,\quad K_{H\beta}\approx1{,}119,\quad K_{F\beta}\approx1{,}245\)</div></div>
-  <p class="note">\(K_{H\beta},K_{F\beta}\)-ն գծային միջարկված են աղ. 2.7 և 2.12-ի դիրք II, \(HB\le350\), \(\psi_{bd}=1{,}0\) և \(1{,}2\) տողերի միջև:</p>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{HV}=1\ \text{(աղ. 2.8-ի ծանոթություն, 5-րդ աստիճան)},\qquad K_H=1{,}119K_{H\alpha}\)</div></div>
-  <p class="note">Աղ. 2.6 և 2.11-ը ավարտվում են 20 մ/վ-ում, իսկ աղ. 2.13-ը՝ 25 մ/վ-ում և 6-րդ աստիճանից է սկսվում: Հետևաբար \(K_{H\alpha},K_{F\alpha},K_{Fv}\)-ի ճշգրիտ արժեքները այս աղբյուրով չեն որոշվում:</p>
-  <p class="note">Միայն նախնական թվային օրինակի համար ընդունված են \(K_{H\alpha}=1{,}02,\ K_{F\alpha}=1{,}10,\ K_{Fv}=1{,}20\): Սրանք համապատասխան աղյուսակներից այս ռեժիմի համար հաստատված արժեքներ չեն:</p>
-  <h3>9) Կոնտակտային լարման պայմանական ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_H\approx122{,}6065\sqrt{K_{H\alpha}}\ \text{Ն/մմ}^2,\qquad \sigma_H\le[\sigma_H]\ \Longleftrightarrow\ K_{H\alpha}\lesssim13{,}5254\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{H\alpha}=1{,}02\Rightarrow K_H=1{,}14138,\quad\sigma_H\approx\R{123{,}8}\le[\sigma_H]\approx450{,}9\ \text{Ն/մմ}^2\)</div></div>
-  <p class="note">Այս թվային անհավասարությունը վերաբերում է միայն ընդունված գործակցին. վերջնական ստուգման համար անհրաժեշտ է այս արագության և ճշտության աստիճանի համար հիմնավորված գործակից:</p>
-  <h3>10) Կառչման ուժերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle F_t=\frac{2T_1}{d_1}\approx\R{465{,}2},\quad F_r=\frac{F_t}{\cos\beta}\tan20^\circ\approx\R{175{,}5},\quad F_a=F_t\tan\beta\approx\R{126{,}4}\ \text{Ն}\)</div></div>
-  <h3>11) Ծռման լարումների պայմանական ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(Z_{v1}=37/0{,}965^3\approx41{,}1737,\quad Z_{v2}\approx173{,}5972,\quad Y_{F1}\approx3{,}695,\quad Y_{F2}=3{,}60\)</div></div>
-  <p class="note">\(Y_{F1}\)-ը միջարկված է աղ. 2.10-ի \(Z_v=40,\ 45\) տողերի միջև: Ըստ նկ. 2.7-ի ընդունված է \(Y_\beta\approx0{,}886\), իսկ \(\varepsilon_\alpha=0{,}9\):</p>
-  <div class="ln"><span class="no"></span><div class="f">\(K_F=1{,}245K_{F\alpha}K_{Fv},\quad \sigma_{F1}\approx12{,}3932K_{F\alpha}K_{Fv},\quad \sigma_{F2}\approx12{,}8292K_{F\alpha}K_{Fv}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{F\alpha}=1{,}10,\ K_{Fv}=1{,}20\Rightarrow K_F=1{,}6434,\quad\sigma_{F1}\approx\R{16{,}4},\quad\sigma_{F2}\approx\R{16{,}9}\ \text{Ն/մմ}^2\)</div></div>
-  <p class="note">Երկու ծռման պայմաններն էլ կատարվում են, եթե \(K_{F\alpha}K_{Fv}\le15{,}23\): Օրինակում արտադրյալը 1,32 է, սակայն այդ ընդունումները չեն փոխարինում աղբյուրով հիմնավորված վերջնական արժեքներին:</p>
+<div class="pg">7</div>
+<h2>§3.1. Ռեդուկտորի հարմարադասում</h2>
+<h3>4) Հաշվում ենք պատերի հաստությունները</h3>
+<p class="note">Երկաստիճան գլանական ռեդուկտորի համար՝ <a href="EUDV31.pdf#page=87">աղ. 7.2, տպագիր էջ 86</a>: Օգտագործում ենք դանդաղընթաց աստիճանի \(a_w=200\) մմ-ը:</p>
+<div class="ln"><div class="f">\(\delta_1=0{,}025a_w+3=0{,}025\cdot200+3=\R{8\ \text{մմ}}\)</div></div>
+<div class="ln"><div class="f">\(\delta_2=0{,}8\delta_1=0{,}8\cdot8=6{,}4\ \text{մմ}\)</div></div>
+<p class="note">Իրանի պատի նվազագույն հաստությունը 8 մմ է, իրանի կափարիչինը՝ 7 մմ: Ուստի ընդունում ենք՝</p>
+<div class="ln"><div class="f">\(\R{\delta_1=8\ \text{մմ}},\qquad\R{\delta_2=7\ \text{մմ}}\)</div></div>
+<h3>5) Տեղադրում ենք լիսեռներն ու անիվները</h3>
+<p class="note">Գծում ենք առաջադրանքի համառանցք սխեման՝ ցանկալի է 1:1 մասշտաբով: 1-ին և 3-րդ լիսեռներն ունեն ընդհանուր առանցք, բայց առանձին լիսեռներ են:</p>
+<div class="ln"><div class="f">\(\R{a_w^I=a_w^{II}=200\ \text{մմ}}\)</div></div>
+<p class="note">Գծագրի համար օգտագործում ենք §2-ի անիվների չափերը.</p>
+<div class="wrap"><table class="sum">
+<tr><th>Չափ</th><th>I աստիճան՝ 1 → 2</th><th>II աստիճան՝ 2 → 3</th></tr>
+<tr><td>Բաժանարար տրամագծեր, մմ</td><td>76,68 / 323,32</td><td>82,5 / 317,5</td></tr>
+<tr><td>Գագաթային տրամագծեր, մմ</td><td>80,68 / 327,32</td><td>87,5 / 322,5</td></tr>
+<tr><td>Անիվների լայնություններ, մմ</td><td>85 / 80</td><td>55 / 50</td></tr>
+</table></div>
+<p class="note">Յուրաքանչյուր զույգում առաջին թիվը փոքր անիվինն է, երկրորդը՝ մեծ անիվինը:</p>
+<p class="note">Տեղադրում ենք նաև լիսեռների աստիճանները, առանցքակալները և իրանի պատերը: Կառուցվածքային բացակները որոշում ենք <a href="EUDV31.pdf#page=90">աղ. 7.3-ի</a> համապատասխան նշանակումների օգնությամբ:</p>
+<p class="note">Լիսեռների տեղամասերի երկարություններն ու ուժերի բազուկները կստանանք այս գծագրից: Դրանք պետք են հենարանային հակազդումները հաշվելու համար:</p>
 </section>
 
 <section class="sheet">
-  <div class="pg">5</div>
-  <h2>Ատամնազույգերի պարամետրերի ամփոփում</h2>
-  <div class="wrap"><table class="sum">
-    <tr><th>Պարամետր</th><th>I աստ. (շեղատամ)</th><th>II աստ. (ուղղատամ)</th></tr>
-    <tr><td>\(a_w\), մմ</td><td>200</td><td>200</td></tr>
-    <tr><td>\(m_n\ (m)\), մմ</td><td>2,0</td><td>2,5</td></tr>
-    <tr><td>\(\beta\)</td><td>15,2036°</td><td>0°</td></tr>
-    <tr><td>\(Z_1/Z_2\)</td><td>37 / 156</td><td>33 / 127</td></tr>
-    <tr><td>\(u_{\text{փ}}\)</td><td>4,216216</td><td>3,848485</td></tr>
-    <tr><td>\(T_1\), Ն·մմ (տվյալ զույգի անվակ)</td><td>17837,4</td><td>72965,0</td></tr>
-    <tr><td>\(d_1/d_2\), մմ</td><td>76,6839 / 323,3161</td><td>82,5 / 317,5</td></tr>
-    <tr><td>\(d_{a1}/d_{a2}\), մմ</td><td>80,6839 / 327,3161</td><td>87,5 / 322,5</td></tr>
-    <tr><td>\(d_{f1}/d_{f2}\), մմ</td><td>71,6839 / 318,3161</td><td>76,25 / 311,25</td></tr>
-    <tr><td>\(b_{w1}/b_{w2}\), մմ</td><td>85 / 80</td><td>55 / 50</td></tr>
-    <tr><td>\(V\), մ/վ; ճշտություն</td><td>31,9205; 5</td><td>8,1451; 7</td></tr>
-    <tr><td>\(F_t/F_r/F_a\), Ն</td><td>465,2 / 175,5 / 126,4</td><td>1768,8 / 643,8 / 0</td></tr>
-    <tr><td>\(\sigma_H/[\sigma_H]\), Ն/մմ²</td><td>123,8 / 450,9 — պայմանական</td><td>345,9 / 409,1 — նախնական</td></tr>
-    <tr><td>\(\sigma_{F1}/[\sigma_{F1}]\), Ն/մմ²</td><td>16,4 / 242,7 — պայմանական</td><td>78,8 / 242,7</td></tr>
-    <tr><td>\(\sigma_{F2}/[\sigma_{F2}]\), Ն/մմ²</td><td>16,9 / 195,4 — պայմանական</td><td>82,9 / 195,4</td></tr>
-  </table></div>
-  <p class="note">Լարումների թվային օրինակներում՝ \(K_{HV}^{II}=1{,}10\), իսկ I աստիճանի համար՝ \(K_{H\alpha}=1{,}02,\ K_{F\alpha}=1{,}10,\ K_{Fv}=1{,}20\): Դրանցից աղբյուրով չհաստատված ընդունումների պատճառով ամբողջ նախագծի վերջնական ամրությունը հաստատված չի հայտարարվում:</p>
-  <p class="note">Աղբյուր՝ <a href="EUDV31.pdf">«Մեքենաների մասերի կուրսային նախագծում»</a>, էջ 6–10, 14–31: Ջերմամշակումը, հզորության հիմքը և գործակիցների սահմանափակումները բացատրված են <a href="bacatrutyun.html">բացատրության էջում</a>:</p>
+<div class="pg">8</div>
+<h2>§3.2. Առանցքակալների նախնական ընտրություն</h2>
+<h3>6) Ընտրում ենք ըստ նստեցման տրամագծի</h3>
+<p class="note">Հարմարադասման համար վերցնում ենք թեթև սերիայի միաշարք շառավղային գնդիկավոր առանցքակալներ՝ <a href="EUDV31.pdf#page=124">հավելված 2, տպագիր էջ 123–124</a>: Նշանակումները՝ ձեռնարկի ձևով:</p>
+<div class="wrap"><table class="sum">
+<tr><th>Լիսեռ</th><th>Առանցքակալ</th><th>\(d\), մմ</th><th>\(D\), մմ</th><th>\(B\), մմ</th><th>\(C\), կՆ</th><th>\(C_0\), կՆ</th></tr>
+<tr><td>1</td><td>206</td><td>30</td><td>62</td><td>16</td><td>19,5</td><td>10,0</td></tr>
+<tr><td>2</td><td>207</td><td>35</td><td>72</td><td>17</td><td>25,5</td><td>13,7</td></tr>
+<tr><td>3</td><td>209</td><td>45</td><td>85</td><td>19</td><td>33,2</td><td>18,6</td></tr>
+</table></div>
+<p class="note">\(d\)՝ ներքին տրամագիծը, որը հավասար է լիսեռի \(d_{\text{առ}}\)-ին: \(D\)՝ արտաքին տրամագիծը, \(B\)՝ լայնությունը:</p>
+<p class="note">\(C\)՝ դինամիկ բեռնամբարձությունը, \(C_0\)՝ ստատիկ բեռնամբարձությունը: Հետագա հաշվարկներում բեռները բերում ենք նույն միավորի՝ 1 կՆ = 1000 Ն:</p>
+<h3>7) Հաշվում ենք պարզեցված գծագրման չափերը</h3>
+<div class="ln"><div class="f">\(d_{\text{շ}}=0{,}3(D-d),\qquad S=0{,}15(D-d)=\frac{d_{\text{շ}}}{2}\)</div></div>
+<p class="note">\(d_{\text{շ}}\)-ն գնդիկի, \(S\)-ը օղակի մոտավոր չափն է՝ հավելվածի գծագրի համաձայն:</p>
+<div class="wrap"><table class="sum">
+<tr><th>Առանցքակալ</th><th>\(D-d\), մմ</th><th>\(d_{\text{շ}}\), մմ</th><th>\(S\), մմ</th></tr>
+<tr><td>206</td><td>62 − 30 = 32</td><td>9,6</td><td>4,80</td></tr>
+<tr><td>207</td><td>72 − 35 = 37</td><td>11,1</td><td>5,55</td></tr>
+<tr><td>209</td><td>85 − 45 = 40</td><td>12,0</td><td>6,00</td></tr>
+</table></div>
+<p class="note">Ընտրությունը նախնական է: Հենարանային հակազդումները որոշելուց հետո պետք է ստուգել համարժեք բեռը, երկարակեցությունն ու ստատիկ բեռնամբարձությունը (§9.2): 1-ին և 2-րդ լիսեռների համար հաշվի ենք առնում նաև I աստիճանի \(F_a\approx126{,}4\) Ն առանցքային ուժը:</p>
+<p class="note">1-ին լիսեռի 7950 պտ/ր արագության համար առանցքակալի թույլատրելի պտուտաթիվը պետք է ստուգել արտադրողի տվյալներով: Ձեռնարկի այս աղյուսակում արագության սահման չկա:</p>
+</section>
+
+<section class="sheet">
+<div class="pg">9</div>
+<h2>§3.3. Առանցքակալային կափարիչներ</h2>
+<h3>8) Ընտրում ենք կափարիչների չափերը</h3>
+<p class="note">Հավելված 3-ի աղյուսակներում \(D\)-ն առանցքակալի արտաքին տրամագիծն է՝ 62, 72 կամ 85 մմ: Ստորև բոլոր գծային չափերը մմ-ով են:</p>
+<p class="note">1-ին և 3-րդ լիսեռների արտաքին ելքերի համար ընտրում ենք <a href="EUDV31.pdf#page=131">անցքավոր կափարիչներ՝ տպագիր էջ 130</a>:</p>
+<div class="wrap"><table class="sum">
+<tr><th>Լիսեռ</th><th>\(D\)</th><th>\(D_1\)</th><th>\(D_2\)</th><th>\(D_3\)</th><th>\(H\)</th><th>\(h\)</th><th>\(b\)</th></tr>
+<tr><td>1</td><td>62</td><td>78</td><td>95</td><td>52</td><td>15</td><td>5</td><td>4</td></tr>
+<tr><td>3</td><td>85</td><td>100</td><td>120</td><td>72</td><td>18</td><td>6</td><td>4</td></tr>
+</table></div>
+<p class="note">Միջանկյալ՝ 2-րդ լիսեռը արտաքին ելք չունի: Նրա երկու հենարանների համար ընտրում ենք <a href="EUDV31.pdf#page=130">փակ կափարիչ՝ տիպ 1, տպագիր էջ 129</a>:</p>
+<div class="wrap"><table class="sum">
+<tr><th>Լիսեռ</th><th>\(D\)</th><th>\(D_1\)</th><th>\(D_2\)</th><th>\(D_3\)</th><th>\(H\)</th><th>\(b\)</th></tr>
+<tr><td>2</td><td>72</td><td>90</td><td>110</td><td>62</td><td>12</td><td>4</td></tr>
+</table></div>
+<p class="note">Բոլոր կափարիչների ամրացման համար նախնական ընտրում ենք հավելվածի «Եղանակ 1»-ը: Անցքերի չափերը՝</p>
+<div class="wrap"><table class="sum">
+<tr><th>Լիսեռ</th><th>\(d\)</th><th>\(d_1\)</th><th>Անցքերի քանակը</th></tr>
+<tr><td>1</td><td>7</td><td>12</td><td>4</td></tr>
+<tr><td>2</td><td>9</td><td>15</td><td>4</td></tr>
+<tr><td>3</td><td>9</td><td>15</td><td>4</td></tr>
+</table></div>
+<p class="note">Այստեղ \(d\) և \(d_1\)-ը ամրացման անցքի չափերն են: Հավելվածի \(d_2\)-ը վերաբերում է «Եղանակ 2»-ին և մեր ընտրության համար չի օգտագործվում:</p>
+<p class="note">Ելքային անցքի կնքումը և 1-ին ու 3-րդ լիսեռների ներքին հենարանների ամրացումը ճշտվում են համառանցք կառուցվածքի գծագրով:</p>
+<h3>9) Հաջորդը որոշում ենք երկարություններն ու հակազդումները</h3>
+<p class="note">Հարմարադասման գծագրից որոշում ենք առանցքակալների կենտրոնների և անիվների դիրքերը, լիսեռների տեղամասերի երկարություններն ու ուժերի բազուկները: Դրանցով շարունակում ենք §7.3-ի լիսեռների և §9.2-ի առանցքակալների ստուգումները:</p>
 </section>
 </body>
 </html>
