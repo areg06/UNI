@@ -45,7 +45,7 @@
   .ln .f{flex:1 1 auto; overflow-x:auto; overflow-y:hidden; padding:2px 0}
   .ln .f.t{font-size:1rem}
   .sub{margin-left:44px}
-  .note{font-size:.88rem; color:var(--ink-soft); font-family:"Noto Sans Armenian",sans-serif; margin:4px 0 4px 44px}
+  .note{font-size:.88rem; color:var(--ink-soft); font-family:"Noto Sans Armenian",sans-serif; margin:4px 0 4px 44px; overflow-x:auto}
   .ok{color:var(--ok); font-weight:700}
   .scheme{display:flex; justify-content:center; margin:6px 0 4px}
   .scheme svg{max-width:100%; height:auto}
@@ -145,218 +145,164 @@
         </g>
       </svg></div>
 
-  <ol class="given">
-    <li>\(\eta_1=\eta_2=0{,}97\div0{,}98\), ընդ. \(\eta_1=\eta_2=0{,}98\) (աղ. 1.1)</li>
-    <li>\(\eta_{\text{առ}}=0{,}99\div0{,}995\), ընդ. \(\eta_{\text{առ}}=0{,}99\)</li>
-    <li>\(k=3\) — առանցքակալների զույգերի թիվ</li>
-    <li>\(u_1\approx1{,}1\,u_2\)</li>
-    <li>\(y=5\) տարի, \(s=1\) հերթափոխ, \(t=8\) ժամ (ընդունված)</li>
-  </ol>
 
+  <ol class="given">
+    <li>\(\eta_1=\eta_2=0{,}98,\quad\eta_{\text{առ}}=0{,}99,\quad k=3\) (աղ. 1.1)</li>
+    <li>\(u_1\approx1{,}1u_2\) — նախնական բաժանում՝ ըստ տետրի:</li>
+    <li>\(y=5\) տարի, \(d=270\) օր/տարի, \(s=1\) հերթափոխ, \(t=8\) ժամ, բեռը՝ հաստատուն (ընդունված):</li>
+  </ol>
+  <p class="note">Հիմնական հաշվարկը կատարված է ձեռնարկի էջ 10-ի եղանակով՝ ընտրված շարժիչի \(P_{\text{էլ}}=15\) կՎտ հզորությամբ և \(T_i=P_i/\omega_i\cdot10^6\) բանաձևով: \(P_{\text{դ}}=12\) կՎտ-ը պահանջվող ելքային հզորությունն է:</p>
+  <p class="note">Թվերը ցուցադրված են կլորացված, իսկ միջանկյալ հաշվարկները կատարված են առանց կլորացման: Ատամնաքանակների ընտրությունից հետո այստեղ թարմացված են փաստացի փոխանցման թվերը, պտուտաթվերը և մոմենտները:</p>
   <hr>
   <h2>§1. Կինեմատիկ հաշվարկ</h2>
-
   <h3>1) Շարժիչի ընտրությունը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \eta=\eta_1\cdot\eta_2\cdot\eta_{\text{առ}}^{\,k}=0{,}98\cdot0{,}98\cdot0{,}99^3=\R{0{,}932}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle P_{\text{պ}}=\frac{P_{\text{դ}}}{\eta}=\frac{12{,}0}{0{,}932}=\R{12{,}88}\ \text{կՎտ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(P_{\text{էլ}}\ge P_{\text{պ}}\ \Rightarrow\ \) ընդ. \(P_{\text{էլ}}=\R{15}\ \text{կՎտ}\) (աղ. 1.2)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\eta=0{,}98^2\cdot0{,}99^3=0{,}9318751596\approx\R{0{,}9319}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle P_{\text{պ}}=\frac{12}{\eta}\approx\R{12{,}88}\ \text{կՎտ},\qquad P_{\text{էլ}}=15\ \text{կՎտ}\ge P_{\text{պ}}\)</div></div>
+  <p class="note">Ընտրված է հզորության ստանդարտ արժեքը: Առաջադրանքի \(7950\) պտ/ր-ը տրված մեծություն է. աղ. 1.2-ը նման պտուտաթվով շարժիչի մակնիշ չի տալիս, ուստի կոնկրետ մակնիշ և սահք չեն հորինվում:</p>
   <h3>2) Փոխանցման թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle u=\frac{n_{\text{էլ}}}{n_{\text{դ}}}=\frac{7950}{490}=\R{16{,}22}\qquad u=u_1\cdot u_2,\quad u_1\approx1{,}1\,u_2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle u_2=\sqrt{\frac{u}{1{,}1}}=\sqrt{\frac{16{,}22}{1{,}1}}=\R{3{,}84}\qquad u_1=1{,}1\cdot3{,}84=\R{4{,}22}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle u_{\text{պ}}=\frac{7950}{490}\approx16{,}224490,\quad u_{2,\text{նախ}}=\sqrt{\frac{u_{\text{պ}}}{1{,}1}}\approx3{,}840512,\quad u_{1,\text{նախ}}\approx4{,}224564\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle u_1=\frac{156}{37}\approx\R{4{,}216216},\qquad u_2=\frac{127}{33}\approx\R{3{,}848485},\qquad u_{\text{փ}}=\frac{156}{37}\frac{127}{33}\approx16{,}226044\)</div></div>
+  <p class="note">Փաստացի արժեքները ստացվում են §2-ում ընտրված ամբողջ ատամնաքանակներից: Դրանք օգտագործվում են հետագա բոլոր ստուգումներում:</p>
   <h3>3) Լիսեռների պտուտաթվերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle n_1=n_{\text{էլ}}=\R{7950}\ \tfrac{\text{պտ}}{\text{ր}}\qquad n_2=\frac{n_1}{u_1}=\frac{7950}{4{,}22}=\R{1883{,}9}\ \tfrac{\text{պտ}}{\text{ր}}\qquad n_3=\frac{n_2}{u_2}=\frac{1883{,}9}{3{,}84}\approx\R{490}\ \tfrac{\text{պտ}}{\text{ր}}=n_{\text{դ}}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle n_1=7950,\qquad n_2=\frac{7950}{156/37}\approx\R{1885{,}5769},\qquad n_3=\frac{7950}{(156/37)(127/33)}\approx\R{489{,}9531}\ \text{պտ/ր}\)</div></div>
+  <p class="note">\(n_3\approx490{,}0\) պտ/ր. պահանջված \(490\) պտ/ր-ից շեղումը մոտ \(0{,}0096\%\) է:</p>
   <h3>4) Լիսեռների անկյունային արագությունները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \omega_1=\frac{\pi n_1}{30}\approx\frac{3{,}1416\cdot7950}{30}\approx\R{832{,}52}\ \tfrac{\text{ռադ}}{\text{վ}}\qquad \omega_2=\frac{\pi n_2}{30}=\R{197{,}28}\ \tfrac{\text{ռադ}}{\text{վ}}\qquad \omega_3=\frac{\pi n_3}{30}=\R{51{,}31}\ \tfrac{\text{ռադ}}{\text{վ}}\)</div></div>
-
-  <h3>5) Լիսեռների հզորությունները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(P_1=P_{\text{պ}}\cdot\eta_{\text{առ}}=12{,}88\cdot0{,}99=\R{12{,}75}\ \text{կՎտ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(P_2=P_1\cdot\eta_1\cdot\eta_{\text{առ}}=12{,}75\cdot0{,}98\cdot0{,}99=\R{12{,}37}\ \text{կՎտ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(P_3=P_2\cdot\eta_2\cdot\eta_{\text{առ}}=12{,}37\cdot0{,}98\cdot0{,}99=\R{12{,}00}\ \text{կՎտ}=P_{\text{դ}}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \omega_i=\frac{\pi n_i}{30},\qquad \omega_1\approx\R{832{,}5221},\quad\omega_2\approx\R{197{,}4572},\quad\omega_3\approx\R{51{,}3078}\ \text{ռադ/վ}\)</div></div>
+  <h3>5) Լիսեռների հզորությունները (ձեռնարկ, էջ 10)</h3>
+  <div class="ln"><span class="no"></span><div class="f">\(P_1=P_{\text{էլ}}\eta_{\text{առ}}=15\cdot0{,}99=\R{14{,}85}\ \text{կՎտ}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(P_2=P_1\eta_1\eta_{\text{առ}}=14{,}85\cdot0{,}98\cdot0{,}99\approx\R{14{,}4075}\ \text{կՎտ}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(P_3=P_2\eta_2\eta_{\text{առ}}\approx\R{13{,}9781}\ \text{կՎտ}\ge P_{\text{դ}}=12\ \text{կՎտ}\)</div></div>
+  <p class="note">Սա շարժիչի անվանական հզորությամբ հաշվարկային ռեժիմն է: \(P_3\)-ը ռեդուկտորի հաշվարկային ելքային հզորությունն է և չի հավասարեցվում պահանջվող 12 կՎտ-ին:</p>
   <h3>6) Լիսեռների ոլորող մոմենտները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle T_1=\frac{P_1}{\omega_1}\cdot10^6=\frac{12{,}75}{832{,}52}\cdot10^6=\R{15\,313}\ \text{Ն·մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(T_2=T_1\cdot u_1=15\,313\cdot4{,}22=\R{64\,621}\ \text{Ն·մմ}\qquad T_3=T_2\cdot u_2=64\,621\cdot3{,}84=\R{248\,144}\ \text{Ն·մմ}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle T_i=\frac{P_i}{\omega_i}\cdot10^6,\qquad T_1\approx\R{17837{,}4},\quad T_2\approx\R{72965{,}0},\quad T_3\approx\R{272436{,}9}\ \text{Ն}\cdot\text{մմ}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(T_2=T_1u_1\eta_1\eta_{\text{առ}},\qquad T_3=T_2u_2\eta_2\eta_{\text{առ}}\)</div></div>
+  <p class="note">Տետրի \(T_2\approx T_1u_1,\ T_3\approx T_2u_2\) պարզեցումը կորուստները չի ներառում: Այստեղ մոմենտները համաձայնեցված են հենց վերևում հաշվված հզորությունների հետ:</p>
 </section>
 
-<!-- ======================= ԹԵՐԹ 2 ======================= -->
 <section class="sheet">
   <div class="pg">2</div>
   <h2>§2. Ատամնավոր փոխանցումների հաշվարկ</h2>
-
-  <h3>1) Նյութերի ընտրությունը (աղ. 2.1)</h3>
-  <div class="ln"><span class="no"></span><div class="f t">Ատամնանվակ՝ Պողպատ 45 (աղ. 2.1): \(\sigma_{ժ}=550\div590\ \text{Ն/մմ}^2,\ \sigma_{հ}=280\div300\ \text{Ն/մմ}^2,\ \R{HB_1=190}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f t">Ատամնանիվ՝ Պողպատ 45 (աղ. 2.1): \(\sigma_{ժ}=530\div540\ \text{Ն/մմ}^2,\ \sigma_{հ}=270\div280\ \text{Ն/մմ}^2,\ \R{HB_2=167}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(HB_1-HB_2=190-167=23\) (անվակն ավելի կարծր է)</div></div>
-
+  <h3>1) Նյութերի ընտրությունը (աղ. 2.1, էջ 14–16)</h3>
+  <div class="ln"><span class="no"></span><div class="f t">Ատամնանվակ՝ Պողպատ 45, մխում յուղում՝ \(840\ldots860^\circ C\), \(\sigma_{ժ}=715\ldots805,\ \sigma_{հ}=510\ldots598\ \text{Ն/մմ}^2,\ \R{HB_1=236}\) (էջ 14):</div></div>
+  <div class="ln"><span class="no"></span><div class="f t">Ատամնանիվ՝ Պողպատ 45, \(\sigma_{ժ}=550\ldots590,\ \sigma_{հ}=280\ldots300\ \text{Ն/մմ}^2,\ \R{HB_2=190}\) (էջ 15): Ընտրված տողի համար ջերմամշակման ռեժիմը չի նշված:</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(HB_1-HB_2=236-190=\R{46}\approx50\)</div></div>
+  <p class="note">Նյութերի այս ընտրությունը պահպանում է ձեռնարկի էջ 16-ի՝ անվակի մոտ 50 HB-ով ավելի կարծր լինելու ուղեցույցը: Անիվի համար աղբյուրում չտրված մխման ռեժիմ չի վերագրվում:</p>
   <h3>2) Թույլատրելի կոնտակտային լարումները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\sigma_{Hlimb1}=2HB_1+70=2\cdot190+70=\R{450}\ \text{Ն/մմ}^2\qquad \sigma_{Hlimb2}=2\cdot167+70=\R{404}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\([S]=1{,}1\div1{,}2\), ընդ. \([S]=1{,}1\);\(\quad Z_R=0{,}9\div1{,}0\), ընդ. \(Z_R=1{,}0\);\(\quad Z_V=1{,}0\div1{,}1\), ընդ. \(Z_V=1{,}0\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(t_h=y\cdot d\cdot s\cdot t=5\cdot270\cdot1\cdot8=\R{10\,800}\ \text{ժամ};\qquad t_{hE}=t_h\) (բեռնվածքը հաստատուն)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(N_{HE}=60\cdot n_w\cdot n_3\cdot t_{hE}=60\cdot1\cdot490\cdot10\,800=\R{3{,}18\cdot10^8}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle K_{HL}=\sqrt[6]{\frac{N_{HO}}{N_{HE}}}=\sqrt[6]{\frac{10^7}{3{,}18\cdot10^8}}=0{,}56<1\ \Rightarrow\ \R{K_{HL}=1{,}0}\)</div></div>
-  <p class="note">Մնացած անիվներն ավելի արագ են պտտվում, նրանց \(N_{HE}\)-ն ավելի մեծ է, ուստի բոլորի համար \(K_{HL}=1{,}0\):</p>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_{H1}]=\frac{\sigma_{Hlimb1}}{[S]}\cdot Z_R\cdot Z_V\cdot K_{HL}=\frac{450}{1{,}1}\cdot1\cdot1\cdot1=\R{409{,}1}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_{H2}]=\frac{404}{1{,}1}=\R{367{,}3}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">Շեղատամ (I աստ.)՝ \(\displaystyle [\sigma_H]=\frac{[\sigma_{H1}]+[\sigma_{H2}]}{2}=\frac{409{,}1+367{,}3}{2}=\R{388{,}2}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">Ուղղատամ (II աստ.)՝ \([\sigma_H]=[\sigma_{H2}]=\R{367{,}3}\ \text{Ն/մմ}^2\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\sigma_{Hlimb1}=2\cdot236+70=542,\qquad \sigma_{Hlimb2}=2\cdot190+70=450\ \text{Ն/մմ}^2\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\([S]=1{,}1,\quad Z_R=1{,}0,\quad Z_V=1{,}0,\quad t_h=5\cdot270\cdot1\cdot8=10800\ \text{ժամ}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(N_{HE}=60n_3t_h\approx3{,}174896\cdot10^8,\qquad K_{HL}=\max\left(1,\sqrt[6]{\frac{10^7}{N_{HE}}}\right)=\R{1}\)</div></div>
+  <p class="note">Հաստատուն բեռի համար \(t_{hE}=t_h\): Ստուգված է ամենադանդաղ անիվը. մնացածների ցիկլերի թիվն ավելի մեծ է, և նրանց \(K_{HL}\)-ը նույնպես 1 է:</p>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_{H1}]=\frac{542}{1{,}1}\approx\R{492{,}7},\qquad [\sigma_{H2}]=\frac{450}{1{,}1}\approx\R{409{,}1}\ \text{Ն/մմ}^2\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_H]^I=\frac{[\sigma_{H1}]+[\sigma_{H2}]}2\approx\R{450{,}9},\qquad [\sigma_H]^{II}=[\sigma_{H2}]\approx\R{409{,}1}\ \text{Ն/մմ}^2\)</div></div>
   <h3>3) Թույլատրելի ծռման լարումները</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\sigma^0_{Flimb1}=1{,}8\,HB_1=1{,}8\cdot190=\R{342}\ \text{Ն/մմ}^2\qquad \sigma^0_{Flimb2}=1{,}8\cdot167=\R{300{,}6}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\([S_F]=1{,}75;\quad K_{FC}=1{,}0;\quad m_F=6\ (H\le HB350);\quad N_{FE}=3{,}18\cdot10^8\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle K_{FL}=\sqrt[6]{\frac{4\cdot10^6}{3{,}18\cdot10^8}}=0{,}48<1\ \Rightarrow\ \R{K_{FL}=1{,}0}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_{F1}]=\frac{\sigma^0_{Flimb1}}{[S_F]}\cdot K_{FC}\cdot K_{FL}=\frac{342}{1{,}75}=\R{195{,}4}\ \text{Ն/մմ}^2\qquad [\sigma_{F2}]=\frac{300{,}6}{1{,}75}=\R{171{,}8}\ \text{Ն/մմ}^2\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\sigma^0_{Flimb1}=1{,}8\cdot236=424{,}8,\qquad \sigma^0_{Flimb2}=1{,}8\cdot190=342\ \text{Ն/մմ}^2\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\([S_F]=1{,}75,\quad K_{FC}=1,\quad m_F=6,\quad N_{FE}=N_{HE},\quad K_{FL}=\max\left(1,\sqrt[6]{\frac{4\cdot10^6}{N_{FE}}}\right)=\R{1}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle [\sigma_{F1}]=\frac{424{,}8}{1{,}75}\approx\R{242{,}7},\qquad [\sigma_{F2}]=\frac{342}{1{,}75}\approx\R{195{,}4}\ \text{Ն/մմ}^2\)</div></div>
 </section>
 
-<!-- ======================= ԹԵՐԹ 3 ======================= -->
 <section class="sheet">
   <div class="pg">3</div>
   <h2>§2.1. II աստիճան (դանդաղընթաց, ուղղատամ)</h2>
-  <p class="note" style="margin-left:0">\(T_1=T_2=64\,621\) Ն·մմ, \(n_1=n_2=1883{,}9\) պտ/ր, \(u=u_2=3{,}84\): Համառանցք ռեդուկտորում հաշվարկը սկսում ենք ավելի բեռնված II աստիճանից:</p>
-
+  <p class="note" style="margin-left:0">Տվյալ զույգի անվակի համար \(T_1=T_2^{\text{լիսեռ}}\approx72965{,}0\) Ն·մմ, \(n_1=n_2^{\text{լիսեռ}}\approx1885{,}5769\) պտ/ր: Նախնական \(u\approx3{,}840512\), փաստացի \(u=127/33\):</p>
   <h3>1) Միջառանցքային հեռավորությունը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{փ}=45{,}8;\quad \psi_{ba}=0{,}125\div0{,}25\), ընդ. \(\psi_{ba}=0{,}25\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{H\alpha}=1{,}0;\quad K_{H\beta}=1{,}1\div1{,}25\) (II), ընդ. \(1{,}15;\quad K_{HV}=1{,}05\div1{,}1\), ընդ. \(1{,}1\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_H=K_{H\alpha}\cdot K_{H\beta}\cdot K_{HV}=1{,}0\cdot1{,}15\cdot1{,}1=\R{1{,}265}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle a_w=K_{փ}(u+1)\sqrt[3]{\left(\frac{1}{[\sigma_H]}\right)^2\frac{T_1K_H}{u\,\psi_{ba}}}=45{,}8\cdot(3{,}84+1)\sqrt[3]{\left(\frac{1}{367{,}3}\right)^2\frac{64\,621\cdot1{,}265}{3{,}84\cdot0{,}25}}=190{,}2\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">ընդ. \(\R{a_w=200}\ \text{մմ}\) (ստանդարտ շարք)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(K_{փ}=45{,}8,\quad\psi_{ba}=0{,}25,\quad K_{H,\text{նախ}}=1\cdot1{,}15\cdot1{,}1=1{,}265\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle a_{w,\text{հաշվ}}=45{,}8(u+1)\sqrt[3]{\frac{T_1K_{H,\text{նախ}}}{[\sigma_H]^2u\psi_{ba}}}\approx184{,}5\ \text{մմ},\qquad \R{a_w=200}\ \text{մմ}\)</div></div>
+  <p class="note">Վերցված է ստանդարտ շարքի հաջորդ մեծ արժեքը՝ 200 մմ: Այն ընդհանուր է երկու աստիճանների համար:</p>
   <h3>2) Մոդուլը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(m=(0{,}01\div0{,}02)\,a_w=(0{,}01\div0{,}02)\cdot200=2\div4\ \text{մմ}\), ընդ. \(\R{m=2{,}5}\ \text{մմ}\) (աղ. 2.3)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(m=(0{,}01\ldots0{,}02)a_w=2\ldots4\ \text{մմ},\qquad \R{m=2{,}5}\ \text{մմ}\)</div></div>
   <h3>3) Ատամների գումարային թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_\Sigma=\frac{2a_w}{m}=\frac{2\cdot200}{2{,}5}=\R{160}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(Z_\Sigma=2a_w/m=160\)</div></div>
   <h3>4) Ատամների թվերը և փաստացի փոխանցման թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_1=\frac{Z_\Sigma}{u+1}=\frac{160}{4{,}84}=33{,}06\), ընդ. \(\R{Z_1=33}\ge Z_{min}=17\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(Z_2=Z_\Sigma-Z_1=160-33=\R{127}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle u_{փ}=\frac{Z_2}{Z_1}=\frac{127}{33}=\R{3{,}85}\)</div></div>
-
-  <h3>5) Միջառանցքային հեռավորության ճշտումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle a_w=\frac{Z_1+Z_2}{2}\cdot m=\frac{33+127}{2}\cdot2{,}5=\R{200}\ \text{մմ}\) <span class="ok">✓</span></div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_1=\frac{160}{1+u_{2,\text{նախ}}}\approx33{,}05\Rightarrow\R{Z_1=33}\ge17,\qquad \R{Z_2=127},\quad u=\frac{127}{33}\approx3{,}848485\)</div></div>
+  <h3>5) Միջառանցքային հեռավորության ստուգումը</h3>
+  <div class="ln"><span class="no"></span><div class="f">\(a_w=(33+127)\cdot2{,}5/2=\R{200}\ \text{մմ}\) <span class="ok">✓</span></div></div>
   <h3>6) Անիվների հիմնական չափերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(d_1=m\,Z_1=2{,}5\cdot33=\R{82{,}5}\ \text{մմ}\qquad d_2=m\,Z_2=2{,}5\cdot127=\R{317{,}5}\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(d_{a1}=d_1+2m=\R{87{,}5}\ \text{մմ}\qquad d_{a2}=d_2+2m=\R{322{,}5}\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(d_{f1}=d_1-2{,}5m=\R{76{,}25}\ \text{մմ}\qquad d_{f2}=d_2-2{,}5m=\R{311{,}25}\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(a_w=0{,}5(d_1+d_2)=0{,}5\,(82{,}5+317{,}5)=200\ \text{մմ}\) <span class="ok">✓</span></div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(b_{w2}=\psi_{ba}\,a_w=0{,}25\cdot200=\R{50}\ \text{մմ}\qquad b_{w1}=b_{w2}+5=\R{55}\ \text{մմ}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(d_1=82{,}5,\quad d_2=317{,}5,\quad d_{a1}=87{,}5,\quad d_{a2}=322{,}5\ \text{մմ}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(d_{f1}=76{,}25,\quad d_{f2}=311{,}25,\quad b_{w2}=0{,}25\cdot200=50,\quad b_{w1}=55\ \text{մմ}\)</div></div>
   <h3>7) Շրջագծային արագությունը և ճշտության աստիճանը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle V=\frac{\pi d_1 n_1}{60\cdot1000}=\frac{3{,}14\cdot82{,}5\cdot1883{,}9}{60\,000}=\R{8{,}13}\ \text{մ/վ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">Ճշտության \(\R{7}\)-րդ աստիճան (աղ. 2.5)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle V=\frac{\pi d_1n_1}{60000}\approx\R{8{,}1451}\ \text{մ/վ}\Rightarrow\text{ճշտության 7-րդ աստիճան}\)</div></div>
   <h3>8) Բեռնվածքի գործակիցը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle K_{H\alpha}=1{,}0;\quad \psi_{bd}=\frac{b_{w2}}{d_1}=\frac{50}{82{,}5}=0{,}61\Rightarrow K_{H\beta}=1{,}06\ (\text{աղ. 2.7});\quad K_{HV}=1{,}05\ (\text{աղ. 2.8})\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_H=1{,}0\cdot1{,}06\cdot1{,}05=\R{1{,}113}\)</div></div>
-
-  <h3>9) Կոնտակտային լարումների ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(Z_M=275;\quad Z_H=1{,}76;\quad Z_\Sigma=0{,}9\div1{,}0\), ընդ. \(Z_\Sigma=0{,}9\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_H=Z_MZ_HZ_\Sigma\sqrt{\frac{T_1K_H}{2a_w^2b_{w2}u}(u+1)^3}=275\cdot1{,}76\cdot0{,}9\sqrt{\frac{64\,621\cdot1{,}113}{2\cdot200^2\cdot50\cdot3{,}85}(3{,}85+1)^3}=\R{317{,}9}\ \text{Ն/մմ}^2\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\sigma_H=317{,}9\le[\sigma_H]=367{,}3\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\psi_{bd}=50/82{,}5\approx0{,}606061,\quad K_{H\alpha}=1,\quad K_{H\beta}\approx1{,}061\ \text{(աղ. 2.7, միջարկում, դիրք II)}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(K_{HV}^{II}=1{,}10\ \text{(ընդունված)},\qquad K_H=1\cdot1{,}061\cdot1{,}10=\R{1{,}1671}\)</div></div>
+  <p class="note">Աղ. 2.8-ում այս \(V\)-ի և 7-րդ աստիճանի ուղղատամ փոխանցման համար թիվ չի տրված: \(K_{HV}^{II}=1{,}10\)-ը նախնական ընդունում է՝ էջ 22-ի \(1{,}05\ldots1{,}10\) միջակայքի վերին սահմանը, ոչ թե աղ. 2.8-ից ճշգրիտ ընտրված արժեք:</p>
+  <h3>9) Կոնտակտային լարման պայմանական ստուգումը</h3>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_H=275\cdot1{,}76\cdot0{,}9\sqrt{\frac{T_1K_H(u+1)^3}{2a_w^2b_{w2}u}}\approx329{,}7898\sqrt{K_{HV}^{II}}\ \text{Ն/մմ}^2\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(K_{HV}^{II}=1{,}10\Rightarrow\sigma_H\approx\R{345{,}9}\le[\sigma_H]\approx409{,}1\ \text{Ն/մմ}^2\)</div></div>
+  <p class="note">Պայմանը կատարվում է, եթե \(K_{HV}^{II}\le1{,}5387\): Ընդունված 1,10-ի դեպքում ստուգումը բավարար է, սակայն գործակցի վերջնական աղբյուրը դեռ պետք է հստակեցվի:</p>
   <h3>10) Կառչման ուժերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle F_t=\frac{2T_1}{d_1}=\frac{2\cdot64\,621}{82{,}5}=\R{1566{,}6}\ \text{Ն}\qquad F_r=F_t\cdot\text{tg}\,\alpha_w=1566{,}6\cdot\text{tg}\,20^\circ=\R{570{,}2}\ \text{Ն}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle F_t=\frac{2T_1}{d_1}\approx\R{1768{,}8},\qquad F_r=F_t\tan20^\circ\approx\R{643{,}8},\qquad F_a=0\ \text{Ն}\)</div></div>
   <h3>11) Ծռման լարումների ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(Y_{F1}=3{,}78\ (Z_1=33);\quad Y_{F2}=3{,}60\ (Z_2=127)\) (աղ. 2.10);\(\quad Y_\beta=1{,}0;\quad \varepsilon_\alpha=1{,}0\)</div></div>
-  <p class="note">\(Z_1=33\)-ի համար ընդունված է աղ. 2.10-ի մոտակա \(Z=32\) տողի \(Y_{F1}=3{,}78\)-ը՝ պահպանողական մոտարկմամբ:</p>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{F\alpha}=1{,}0;\quad K_{F\beta}=1{,}12\ (\text{աղ. 2.12});\quad K_{Fv}=1{,}45\ (\text{աղ. 2.13})\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_F=1{,}0\cdot1{,}12\cdot1{,}45=\R{1{,}624}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_{F1}=\frac{F_tY_{F1}Y_\beta K_F}{b_{w1}\,m\,\varepsilon_\alpha}=\frac{1566{,}6\cdot3{,}78\cdot1\cdot1{,}624}{55\cdot2{,}5\cdot1}=\R{69{,}9}\le[\sigma_{F1}]=195{,}4\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_{F2}=\frac{F_tY_{F2}Y_\beta K_F}{b_{w2}\,m\,\varepsilon_\alpha}=\frac{1566{,}6\cdot3{,}60\cdot1\cdot1{,}624}{50\cdot2{,}5\cdot1}=\R{73{,}3}\le[\sigma_{F2}]=171{,}8\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(Y_{F1}=3{,}78+\frac{33-32}{37-32}(3{,}71-3{,}78)=3{,}766,\quad Y_{F2}=3{,}60,\quad Y_\beta=1,\quad\varepsilon_\alpha=1\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(K_{F\alpha}=1,\quad K_{F\beta}\approx1{,}122\ \text{(աղ. 2.12, միջարկում)},\quad K_{Fv}=1{,}45\ \text{(աղ. 2.13)}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(K_F=1\cdot1{,}122\cdot1{,}45=\R{1{,}6269}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_{F1}=\frac{F_tY_{F1}K_F}{55\cdot2{,}5}\approx\R{78{,}8}\le242{,}7,\quad \sigma_{F2}=\frac{F_tY_{F2}K_F}{50\cdot2{,}5}\approx\R{82{,}9}\le195{,}4\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
+  <p class="note">Աղ. 2.13՝ ուղղատամ, \(HB\le350\), 7-րդ աստիճան, \(8\ldots20\) մ/վ: Բոլոր միջարկված գործակիցները ընդունված են այստեղ ցուցադրված ճշտությամբ:</p>
 </section>
 
-<!-- ======================= ԹԵՐԹ 4 ======================= -->
 <section class="sheet">
   <div class="pg">4</div>
   <h2>§2.2. I աստիճան (արագընթաց, շեղատամ)</h2>
-  <p class="note" style="margin-left:0">\(T_1=15\,313\) Ն·մմ, \(n_1=7950\) պտ/ր, \(u=u_1=4{,}22\)</p>
-
+  <p class="note" style="margin-left:0">\(T_1\approx17837{,}4\) Ն·մմ, \(n_1=7950\) պտ/ր: Նախնական \(u\approx4{,}224564\), փաստացի \(u=156/37\):</p>
   <h3>1) Միջառանցքային հեռավորությունը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{փ}=41{,}8;\quad \psi_{ba}=0{,}25\div0{,}63\), ընդ. \(\psi_{ba}=0{,}4\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{H\alpha}=1{,}05\div1{,}15\), ընդ. \(1{,}1;\quad K_{H\beta}=1{,}15;\quad K_{HV}=1{,}0\div1{,}1\), ընդ. \(1{,}1\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_H=1{,}1\cdot1{,}15\cdot1{,}1=\R{1{,}392}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle a_w=41{,}8\cdot(4{,}22+1)\sqrt[3]{\left(\frac{1}{388{,}2}\right)^2\frac{15\,313\cdot1{,}392}{4{,}22\cdot0{,}4}}=95{,}5\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">Ռեդուկտորը համառանցք է \(\Rightarrow\) ընդ. \(\R{a_w=a_{w}^{II}=200}\ \text{մմ}\ (200>95{,}5)\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(K_{փ}=41{,}8,\quad\psi_{ba}=0{,}4,\quad K_{H,\text{նախ}}=1{,}1\cdot1{,}15\cdot1{,}1=1{,}3915\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle a_{w,\text{հաշվ}}\approx\R{90{,}9}\ \text{մմ},\qquad a_w=a_w^{II}=\R{200}\ \text{մմ}\)</div></div>
   <h3>2) Նորմալ մոդուլը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(m_n=(0{,}01\div0{,}02)\cdot200=2\div4\ \text{մմ}\), ընդ. \(\R{m_n=2{,}0}\ \text{մմ}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(m_n=(0{,}01\ldots0{,}02)\cdot200=2\ldots4\ \text{մմ},\qquad \R{m_n=2}\ \text{մմ}\)</div></div>
   <h3>3) Թեքության անկյունը և ատամների գումարային թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\beta=8\div20^\circ\), ընդ. \(\beta=15^\circ\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_\Sigma=\frac{2a_w}{m_n}\cos\beta=\frac{2\cdot200}{2}\cdot\cos15^\circ=193{,}2\), ընդ. \(\R{Z_\Sigma=193}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\beta_{\text{նախ}}=15^\circ,\qquad Z_\Sigma=\frac{2a_w}{m_n}\cos15^\circ\approx193{,}1852\Rightarrow\R{Z_\Sigma=193}\)</div></div>
   <h3>4) Ատամների թվերը և փաստացի փոխանցման թիվը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(Z_{min}=17\cos^3\beta=17\cdot\cos^315^\circ=15{,}3\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_1=\frac{Z_\Sigma}{u+1}=\frac{193}{5{,}22}=36{,}97\), ընդ. \(\R{Z_1=37}\ge15{,}3\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_2=193-37=\R{156}\qquad u_{փ}=\frac{156}{37}=\R{4{,}22}\)</div></div>
-  <p class="note">Ընդհանուր \(\displaystyle u_{փ}=\frac{156}{37}\cdot\frac{127}{33}\approx16{,}2260\approx16{,}23\), իսկ պահանջվողը՝ \(u\approx16{,}22\):</p>
-  <p class="note">Ելքի պտուտաթիվը՝ \(\displaystyle n_{\text{դ}}^{փ}=\frac{7950}{(156/37)\cdot(127/33)}\approx489{,}9531\approx490{,}0\) պտ/ր:</p>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_1=\frac{193}{1+u_{1,\text{նախ}}}\approx36{,}94\Rightarrow\R{Z_1=37}\ge17\cos^315^\circ,\quad\R{Z_2=156},\quad u=\frac{156}{37}\approx4{,}216216\)</div></div>
+  <p class="note">\(u_{\text{փ}}=(156/37)(127/33)\approx16{,}226044\), իսկ \(n_3\approx489{,}9531\approx490{,}0\) պտ/ր: Վերջնական պտուտաթվերը ներառված են §1-ում:</p>
   <h3>5) Թեքության անկյան ճշտումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \cos\beta=\frac{Z_\Sigma m_n}{2a_w}=\frac{193\cdot2}{2\cdot200}=0{,}965\ \Rightarrow\ \R{\beta=15{,}2^\circ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle a_w=\frac{Z_1+Z_2}{2\cos\beta}\,m_n=\frac{37+156}{2\cdot0{,}965}\cdot2=\R{200}\ \text{մմ}\) <span class="ok">✓</span></div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\cos\beta=\frac{193\cdot2}{2\cdot200}=0{,}965,\qquad \R{\beta\approx15{,}2036^\circ},\qquad a_w=\frac{193\cdot2}{2\cdot0{,}965}=200\ \text{մմ}\)</div></div>
   <h3>6) Անիվների հիմնական չափերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle d_1=\frac{m_n}{\cos\beta}Z_1=\frac{2}{0{,}965}\cdot37=\R{76{,}68}\ \text{մմ}\qquad d_2=\frac{2}{0{,}965}\cdot156=\R{323{,}32}\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(d_{a1}=d_1+2m_n=\R{80{,}68}\ \text{մմ}\qquad d_{a2}=d_2+2m_n=\R{327{,}32}\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(d_{f1}=d_1-2{,}5m_n=\R{71{,}68}\ \text{մմ}\qquad d_{f2}=d_2-2{,}5m_n=\R{318{,}32}\ \text{մմ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(a_w=0{,}5\,(76{,}68+323{,}32)=200\ \text{մմ}\) <span class="ok">✓</span></div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(b_{w2}=\psi_{ba}a_w=0{,}4\cdot200=\R{80}\ \text{մմ}\qquad b_{w1}=b_{w2}+5=\R{85}\ \text{մմ}\)</div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(d_1\approx76{,}6839,\ d_2\approx323{,}3161,\ d_{a1}\approx80{,}6839,\ d_{a2}\approx327{,}3161\ \text{մմ}\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(d_{f1}\approx71{,}6839,\ d_{f2}\approx318{,}3161,\ b_{w2}=80,\ b_{w1}=85\ \text{մմ}\)</div></div>
   <h3>7) Շրջագծային արագությունը և ճշտության աստիճանը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle V=\frac{\pi d_1n_1}{60\cdot1000}=\frac{3{,}14\cdot76{,}68\cdot7950}{60\,000}=\R{31{,}90}\ \text{մ/վ}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">Ճշտության \(\R{5}\)-րդ աստիճան (աղ. 2.5, շեղատամ \(V>30\) մ/վ)</div></div>
-
-  <h3>8) Բեռնվածքի գործակիցը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle K_{H\alpha}=1{,}02\ (\text{աղ. 2.6});\quad \psi_{bd}=\frac{80}{76{,}68}=1{,}04\approx1{,}0\Rightarrow K_{H\beta}=1{,}11\ (\text{աղ. 2.7})\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{HV}=1{,}0\) (աղ. 2.8-ի ծանոթ., 5-րդ աստ.)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_H=1{,}02\cdot1{,}11\cdot1{,}0=\R{1{,}132}\)</div></div>
-
-  <h3>9) Կոնտակտային լարումների ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(Z_M=275;\quad Z_H=1{,}7\div1{,}74\), ընդ. \(Z_H=1{,}72;\quad Z_\Sigma=0{,}8\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_H=275\cdot1{,}72\cdot0{,}8\sqrt{\frac{15\,313\cdot1{,}132}{2\cdot200^2\cdot80\cdot4{,}22}(4{,}22+1)^3}=\R{114{,}3}\le[\sigma_H]=388{,}2\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
-
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle V=\frac{\pi d_1n_1}{60000}\approx\R{31{,}9205}\ \text{մ/վ}\Rightarrow\text{ճշտության 5-րդ աստիճան (աղ. 2.5)}\)</div></div>
+  <h3>8) Բեռնվածքի գործակիցները և աղբյուրի սահմանները</h3>
+  <div class="ln"><span class="no"></span><div class="f">\(\psi_{bd}=80/d_1\approx1{,}043243,\quad K_{H\beta}\approx1{,}119,\quad K_{F\beta}\approx1{,}245\)</div></div>
+  <p class="note">\(K_{H\beta},K_{F\beta}\)-ն գծային միջարկված են աղ. 2.7 և 2.12-ի դիրք II, \(HB\le350\), \(\psi_{bd}=1{,}0\) և \(1{,}2\) տողերի միջև:</p>
+  <div class="ln"><span class="no"></span><div class="f">\(K_{HV}=1\ \text{(աղ. 2.8-ի ծանոթություն, 5-րդ աստիճան)},\qquad K_H=1{,}119K_{H\alpha}\)</div></div>
+  <p class="note">Աղ. 2.6 և 2.11-ը ավարտվում են 20 մ/վ-ում, իսկ աղ. 2.13-ը՝ 25 մ/վ-ում և 6-րդ աստիճանից է սկսվում: Հետևաբար \(K_{H\alpha},K_{F\alpha},K_{Fv}\)-ի ճշգրիտ արժեքները այս աղբյուրով չեն որոշվում:</p>
+  <p class="note">Միայն նախնական թվային օրինակի համար ընդունված են \(K_{H\alpha}=1{,}02,\ K_{F\alpha}=1{,}10,\ K_{Fv}=1{,}20\): Սրանք համապատասխան աղյուսակներից այս ռեժիմի համար հաստատված արժեքներ չեն:</p>
+  <h3>9) Կոնտակտային լարման պայմանական ստուգումը</h3>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_H\approx122{,}6065\sqrt{K_{H\alpha}}\ \text{Ն/մմ}^2,\qquad \sigma_H\le[\sigma_H]\ \Longleftrightarrow\ K_{H\alpha}\lesssim13{,}5254\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(K_{H\alpha}=1{,}02\Rightarrow K_H=1{,}14138,\quad\sigma_H\approx\R{123{,}8}\le[\sigma_H]\approx450{,}9\ \text{Ն/մմ}^2\)</div></div>
+  <p class="note">Այս թվային անհավասարությունը վերաբերում է միայն ընդունված գործակցին. վերջնական ստուգման համար անհրաժեշտ է այս արագության և ճշտության աստիճանի համար հիմնավորված գործակից:</p>
   <h3>10) Կառչման ուժերը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle F_t=\frac{2T_1}{d_1}=\frac{2\cdot15\,313}{76{,}68}=\R{399{,}4}\ \text{Ն}\qquad F_r=\frac{F_t}{\cos\beta}\text{tg}\,\alpha_w=\frac{399{,}4}{0{,}965}\cdot\text{tg}\,20^\circ=\R{150{,}6}\ \text{Ն}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(F_a=F_t\,\text{tg}\,\beta=399{,}4\cdot\text{tg}\,15{,}2^\circ=\R{108{,}5}\ \text{Ն}\) (աղ. 2.9)</div></div>
-
-  <h3>11) Ծռման լարումների ստուգումը</h3>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle Z_{v1}=\frac{Z_1}{\cos^3\beta}=\frac{37}{0{,}965^3}=41{,}2\Rightarrow Y_{F1}=3{,}70\qquad Z_{v2}=\frac{156}{0{,}965^3}=174\Rightarrow Y_{F2}=3{,}60\) (աղ. 2.10)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(Y_\beta=0{,}89\ (\text{նկ. 2.7});\quad \varepsilon_\alpha=0{,}8\div0{,}9\), ընդ. \(\varepsilon_\alpha=0{,}9\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_{F\alpha}=1{,}1\ (\text{աղ. 2.11});\quad K_{F\beta}=1{,}23\ (\text{աղ. 2.12});\quad K_{Fv}=1{,}2\ (\text{աղ. 2.13})\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(K_F=1{,}1\cdot1{,}23\cdot1{,}2=\R{1{,}624}\)</div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_{F1}=\frac{399{,}4\cdot3{,}70\cdot0{,}89\cdot1{,}624}{85\cdot2\cdot0{,}9}=\R{14{,}0}\le[\sigma_{F1}]=195{,}4\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
-  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle \sigma_{F2}=\frac{399{,}4\cdot3{,}60\cdot0{,}89\cdot1{,}624}{80\cdot2\cdot0{,}9}=\R{14{,}4}\le[\sigma_{F2}]=171{,}8\ \text{Ն/մմ}^2\) <span class="ok">✓</span></div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(\displaystyle F_t=\frac{2T_1}{d_1}\approx\R{465{,}2},\quad F_r=\frac{F_t}{\cos\beta}\tan20^\circ\approx\R{175{,}5},\quad F_a=F_t\tan\beta\approx\R{126{,}4}\ \text{Ն}\)</div></div>
+  <h3>11) Ծռման լարումների պայմանական ստուգումը</h3>
+  <div class="ln"><span class="no"></span><div class="f">\(Z_{v1}=37/0{,}965^3\approx41{,}1737,\quad Z_{v2}\approx173{,}5972,\quad Y_{F1}\approx3{,}695,\quad Y_{F2}=3{,}60\)</div></div>
+  <p class="note">\(Y_{F1}\)-ը միջարկված է աղ. 2.10-ի \(Z_v=40,\ 45\) տողերի միջև: Ըստ նկ. 2.7-ի ընդունված է \(Y_\beta\approx0{,}886\), իսկ \(\varepsilon_\alpha=0{,}9\):</p>
+  <div class="ln"><span class="no"></span><div class="f">\(K_F=1{,}245K_{F\alpha}K_{Fv},\quad \sigma_{F1}\approx12{,}3932K_{F\alpha}K_{Fv},\quad \sigma_{F2}\approx12{,}8292K_{F\alpha}K_{Fv}\ \text{Ն/մմ}^2\)</div></div>
+  <div class="ln"><span class="no"></span><div class="f">\(K_{F\alpha}=1{,}10,\ K_{Fv}=1{,}20\Rightarrow K_F=1{,}6434,\quad\sigma_{F1}\approx\R{16{,}4},\quad\sigma_{F2}\approx\R{16{,}9}\ \text{Ն/մմ}^2\)</div></div>
+  <p class="note">Երկու ծռման պայմաններն էլ կատարվում են, եթե \(K_{F\alpha}K_{Fv}\le15{,}23\): Օրինակում արտադրյալը 1,32 է, սակայն այդ ընդունումները չեն փոխարինում աղբյուրով հիմնավորված վերջնական արժեքներին:</p>
 </section>
 
-<!-- ======================= ԹԵՐԹ 5 ======================= -->
 <section class="sheet">
   <div class="pg">5</div>
   <h2>Ատամնազույգերի պարամետրերի ամփոփում</h2>
-  <div class="wrap">
-  <table class="sum">
+  <div class="wrap"><table class="sum">
     <tr><th>Պարամետր</th><th>I աստ. (շեղատամ)</th><th>II աստ. (ուղղատամ)</th></tr>
     <tr><td>\(a_w\), մմ</td><td>200</td><td>200</td></tr>
-    <tr><td>\(m\ (m_n)\), մմ</td><td>2,0</td><td>2,5</td></tr>
-    <tr><td>\(\beta\)</td><td>15,2°</td><td>0°</td></tr>
-    <tr><td>\(Z_1 / Z_2\)</td><td>37 / 156</td><td>33 / 127</td></tr>
-    <tr><td>\(u_{փ}\)</td><td>4,22</td><td>3,85</td></tr>
-    <tr><td>\(d_1 / d_2\), մմ</td><td>76,68 / 323,32</td><td>82,5 / 317,5</td></tr>
-    <tr><td>\(d_{a1} / d_{a2}\), մմ</td><td>80,68 / 327,32</td><td>87,5 / 322,5</td></tr>
-    <tr><td>\(d_{f1} / d_{f2}\), մմ</td><td>71,68 / 318,32</td><td>76,25 / 311,25</td></tr>
-    <tr><td>\(b_{w1} / b_{w2}\), մմ</td><td>85 / 80</td><td>55 / 50</td></tr>
-    <tr><td>\(V\), մ/վ; ճշտություն</td><td>31,90; 5</td><td>8,13; 7</td></tr>
-    <tr><td>\(F_t / F_r / F_a\), Ն</td><td>399,4 / 150,6 / 108,5</td><td>1566,6 / 570,2 / 0</td></tr>
-    <tr><td>\(\sigma_H / [\sigma_H]\), Ն/մմ²</td><td>114,3 / 388,2</td><td>317,9 / 367,3</td></tr>
-    <tr><td>\(\sigma_{F1} / [\sigma_{F1}]\), Ն/մմ²</td><td>14,0 / 195,4</td><td>69,9 / 195,4</td></tr>
-    <tr><td>\(\sigma_{F2} / [\sigma_{F2}]\), Ն/մմ²</td><td>14,4 / 171,8</td><td>73,3 / 171,8</td></tr>
-  </table>
-  </div>
+    <tr><td>\(m_n\ (m)\), մմ</td><td>2,0</td><td>2,5</td></tr>
+    <tr><td>\(\beta\)</td><td>15,2036°</td><td>0°</td></tr>
+    <tr><td>\(Z_1/Z_2\)</td><td>37 / 156</td><td>33 / 127</td></tr>
+    <tr><td>\(u_{\text{փ}}\)</td><td>4,216216</td><td>3,848485</td></tr>
+    <tr><td>\(T_1\), Ն·մմ (տվյալ զույգի անվակ)</td><td>17837,4</td><td>72965,0</td></tr>
+    <tr><td>\(d_1/d_2\), մմ</td><td>76,6839 / 323,3161</td><td>82,5 / 317,5</td></tr>
+    <tr><td>\(d_{a1}/d_{a2}\), մմ</td><td>80,6839 / 327,3161</td><td>87,5 / 322,5</td></tr>
+    <tr><td>\(d_{f1}/d_{f2}\), մմ</td><td>71,6839 / 318,3161</td><td>76,25 / 311,25</td></tr>
+    <tr><td>\(b_{w1}/b_{w2}\), մմ</td><td>85 / 80</td><td>55 / 50</td></tr>
+    <tr><td>\(V\), մ/վ; ճշտություն</td><td>31,9205; 5</td><td>8,1451; 7</td></tr>
+    <tr><td>\(F_t/F_r/F_a\), Ն</td><td>465,2 / 175,5 / 126,4</td><td>1768,8 / 643,8 / 0</td></tr>
+    <tr><td>\(\sigma_H/[\sigma_H]\), Ն/մմ²</td><td>123,8 / 450,9 — պայմանական</td><td>345,9 / 409,1 — նախնական</td></tr>
+    <tr><td>\(\sigma_{F1}/[\sigma_{F1}]\), Ն/մմ²</td><td>16,4 / 242,7 — պայմանական</td><td>78,8 / 242,7</td></tr>
+    <tr><td>\(\sigma_{F2}/[\sigma_{F2}]\), Ն/մմ²</td><td>16,9 / 195,4 — պայմանական</td><td>82,9 / 195,4</td></tr>
+  </table></div>
+  <p class="note">Լարումների թվային օրինակներում՝ \(K_{HV}^{II}=1{,}10\), իսկ I աստիճանի համար՝ \(K_{H\alpha}=1{,}02,\ K_{F\alpha}=1{,}10,\ K_{Fv}=1{,}20\): Դրանցից աղբյուրով չհաստատված ընդունումների պատճառով ամբողջ նախագծի վերջնական ամրությունը հաստատված չի հայտարարվում:</p>
+  <p class="note">Աղբյուր՝ <a href="EUDV31.pdf">«Մեքենաների մասերի կուրսային նախագծում»</a>, էջ 6–10, 14–31: Ջերմամշակումը, հզորության հիմքը և գործակիցների սահմանափակումները բացատրված են <a href="bacatrutyun.html">բացատրության էջում</a>:</p>
 </section>
-
 </body>
 </html>
