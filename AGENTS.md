@@ -1,0 +1,60 @@
+# UNI — university workspace instructions
+
+This folder (`~/Desktop/UNI`) is **one git repository** for every subject:
+**https://github.com/areg06/UNI** (branch `main`).
+It is published as **one GitHub Pages site: https://areg06.github.io/UNI/**
+
+All user-facing text is in **Armenian**; keep it Armenian.
+
+## Always ignore Aren's work
+
+- Always exclude Aren's work from inspection, analysis, calculation checks, and edits.
+- This includes `meqenamaseri tesutyun/aren.html`,
+  `meqenamaseri tesutyun/aren_hashvark.html`, and all of
+  `kursayin ashxatanq/Variant2/`.
+- Leave Aren's files and his navigation links and descriptions in shared pages unchanged.
+- A general request to examine or check a subject does not include Aren's work.
+  For the machine-parts calculations, focus on the user's variant 1.
+
+## Rules for agents working in any subject folder
+
+- The git root is `~/Desktop/UNI`. **Do not run `git init`** in a subject folder, and do not
+  create a separate GitHub repo for a subject. Commit and push from this one repo.
+- Before editing a subject, read any `CLAUDE.md` in that subject's directory or its parent
+  directories within this repository. Those files contain additional subject-specific
+  context and build instructions; follow them alongside this file.
+- The old per-subject repos `areg06/Meqenanerimaser` and `areg06/kursayin` are **archived
+  (read-only)**. Don't push to them; their content and history now live here.
+- Stage only the files you worked on, using explicit paths (for example,
+  `git add "<subject folder>/..."`). Other chats may have uncommitted work in other folders,
+  so never `git add -A` or `git add .` at the root. Preserve unrelated changes.
+- `git pull --rebase` before pushing: several chats (and phone/cloud sessions) push to this repo.
+- When you add a new page that should be reachable on the site, add a link to it in the root
+  `index.html` (and in the subject's own `index.html`, if it has one).
+- Folder names contain spaces; on the site they appear URL-encoded (`%20`). Link to them with
+  relative links (for example `href="meqenamaseri tesutyun/"`); the browser encodes them.
+- Large source files (textbook PDFs, photos) are fine below approximately 50 MB each.
+  Never commit anything over 100 MB (GitHub rejects it).
+
+## Subjects
+
+| Folder | Subject | Site |
+|---|---|---|
+| `meqenamaseri tesutyun/` | Մեքենամասերի տեսություն: gear reducer calculation and explanation | https://areg06.github.io/UNI/meqenamaseri%20tesutyun/ |
+| `kursayin ashxatanq/Variant1/` | Կուրսային աշխատանք (ՄՄՏ), variant 1; has its own `CLAUDE.md` with build steps | https://areg06.github.io/UNI/kursayin%20ashxatanq/Variant1/ |
+| `kursayin ashxatanq/Variant2/` | Կուրսային աշխատանք (ՄՄՏ), variant 2 (row 2 of the table) for Aren; same generator as Variant1, see its `CLAUDE.md` | https://areg06.github.io/UNI/kursayin%20ashxatanq/Variant2/ |
+| `nyutagitutyun/` | Նյութագիտություն: lectures 1–7 and the midterm-1 study platform | https://areg06.github.io/UNI/nyutagitutyun/ |
+| `gazodinamika/` | Գազադինամիկա: Armenian translation of the textbook (`translation/`) and the midterm-1 study platform (built by `midterm1/build.py`) | https://areg06.github.io/UNI/gazodinamika/ |
+| `jermatexnika/` | Ջերմատեխնիկա: practical work, ideal-gas cycle calculation (variant 10: p=const, dq=0, v=const, T=const); constants cp=1, cv=0.71, R=287, k=1.4 | https://areg06.github.io/UNI/jermatexnika/ |
+| `chapagrutyun/` | Չափագրություն: lecture notes typed from notebook photos (`daser.html`, photos in `img/`); doubtful words marked `.u`, passages filled from standard textbook material (ISO 286 / ЕСДП) `.t`, still-unread `.x` | https://areg06.github.io/UNI/chapagrutyun/ |
+| `hidravlika/` | Հիդրավլիկա: lab works typed from the manual (`laboratorner.html`, lab 3 Bernoulli demo and lab 4 boiling point vs pressure, with fill-in tables that compute by the manual's formulas); `mijankyal1.html` has the first 13 midterm-1 questions (hydrostatics + kinematics) answered from the lecturer's notes in `daser/Tema_1–9.pdf` (ArmSCII-8 fonts: pdftotext, then map to Unicode; figures cropped to `img/m1/`); `daser/Arajadranq_1–2.pdf` are the homework templates | https://areg06.github.io/UNI/hidravlika/ |
+
+## Local-only files and intentionally removed pages
+
+- The root `.gitignore` excludes `kursayin ashxatanq/Variant13/`, `Variant13.zip`, and
+  `kursayin ashxatanq/source/` (the variant 7 generator). These other variants stay local.
+- The meqenamaser pages for Yuri and Hovhannes were removed from the site on purpose.
+  Don't add them back.
+- Aren's page was restored at the owner's request: `meqenamaseri tesutyun/aren.html` has
+  two tabs, «Մեքենամասեր» (`aren_hashvark.html`, reducer row 5) and «Կուրսային»
+  (links to `kursayin ashxatanq/Variant2/`).

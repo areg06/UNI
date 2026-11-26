@@ -6,6 +6,16 @@ It is published as **one GitHub Pages site: https://areg06.github.io/UNI/**
 
 All user-facing text is in **Armenian**; keep it Armenian.
 
+## Always ignore Aren's work
+
+- Always exclude Aren's work from inspection, analysis, calculation checks, and edits.
+- This includes `meqenamaseri tesutyun/aren.html`,
+  `meqenamaseri tesutyun/aren_hashvark.html`, and all of
+  `kursayin ashxatanq/Variant2/`.
+- Leave Aren's files and his navigation links and descriptions in shared pages unchanged.
+- A general request to examine or check a subject does not include Aren's work.
+  For the machine-parts calculations, focus on the user's variant 1.
+
 ## Rules for every Claude chat working in any subject folder
 
 - The git root is `~/Desktop/UNI`. **Do not run `git init`** in a subject folder, and do not
