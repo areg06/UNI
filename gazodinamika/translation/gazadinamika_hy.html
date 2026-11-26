@@ -2,6 +2,7 @@
 <html lang="hy">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Թերմոդինամիկա և ջերմափոխանակում</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian:wght@400;700&family=Noto+Sans+Armenian:wght@400;700&display=swap" rel="stylesheet">
@@ -45,9 +46,19 @@
   .gloss tr.sec td { background:var(--soft); font-family:'Noto Sans Armenian',sans-serif; font-weight:700; color:var(--accent); text-align:left; }
   .toc { list-style:none; padding:0; margin:0; } .toc li { margin:1.5mm 0; text-align:left; } .toc .s { font-weight:700; margin-top:3mm; }
   .pb { break-before:page; }
+  .document-actions { display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; padding:16px 0; font-family:'Noto Sans Armenian',sans-serif; }
+  .document-actions button,.document-actions a { box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:9px 16px; border:1px solid var(--accent); border-radius:8px; background:#fff; color:var(--accent); font:inherit; font-size:11pt; line-height:1.4; text-decoration:none; cursor:pointer; }
+  .document-actions button { background:var(--accent); color:#fff; }
+  .document-actions button:hover,.document-actions a:hover { filter:brightness(.9); }
+  .document-actions button:focus-visible,.document-actions a:focus-visible { outline:3px solid #6789bd; outline-offset:3px; }
+  @media print { .document-actions { display:none !important; } }
 </style>
 </head>
 <body>
+<nav class="document-actions" aria-label="Փաստաթղթի գործողություններ">
+  <a href="gazadinamika_hy.docx" download>Ներբեռնել Word տարբերակը</a>
+  <button type="button" onclick="window.print()">Տպել</button>
+</nav>
 <div class="title-page">
 <div class="org">ՀՀ ՊԱՇՏՊԱՆՈՒԹՅԱՆ ՆԱԽԱՐԱՐՈՒԹՅՈՒՆ<br>ՄԱՐՇԱԼ Ա. ԽԱՆՓԵՐՅԱՆՑԻ ԱՆՎԱՆ ՌԱԶՄԱԿԱՆ ԱՎԻԱՑԻՈՆ ՀԱՄԱԼՍԱՐԱՆ</div>
 <div class="author">Ա. Ռ. ԲԱՐՍԵՂՅԱՆ</div>
