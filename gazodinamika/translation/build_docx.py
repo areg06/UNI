@@ -123,7 +123,7 @@ class Book:
         lang = OxmlElement('w:lang')
         lang.set(qn('w:val'), 'hy-AM')
         normal.element.get_or_add_rPr().append(lang)
-        self.doc.core_properties.title = 'Թերմոդինամիկա և ջերմափոխանակում'
+        self.doc.core_properties.title = 'Թերմոդինամիկա և ջերմափոխանակություն'
         self.doc.core_properties.author = 'Ա. Ռ. Բարսեղյան'
         self.doc.core_properties.language = 'hy-AM'
         self.doc.core_properties.subject = 'Դասախոսությունների համառոտագիր'
