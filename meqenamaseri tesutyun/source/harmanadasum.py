@@ -376,25 +376,28 @@ def corner_svg(dr):
     return ''.join(parts)
 
 
-def make_svg(dr, with_corners=False):
+def make_svg(dr, with_corners=False, *, page_size=(PW,PH), grid_origin=(GX,GY),
+             grid_height=GH, title='Ռեդուկտորի նախնական հարմարադասում՝ A3, M 1:2',
+             description='Համառանցք երկաստիճան ռեդուկտոր, 200 մմ միջառանցքային հեռավորություն, միջին սերիայի 36306, 36307 և 309 առանցքակալներ։ Մուտքն ու ելքն աջում են, միջանկյալ լիսեռը՝ ձախում։ Ցանցը՝ մեկ միլիմետր։'):
+    pw,ph=page_size;gx,gy=grid_origin;gh=grid_height
     layers = {}
     for layer, kind, args in dr.items:
         parts = layers.setdefault(layer, [])
         if kind == 'line':
             a, b, color, width, dash = args
-            parts.append(f'<line x1="{f(a[0])}" y1="{f(GH-a[1])}" x2="{f(b[0])}" y2="{f(GH-b[1])}"{svg_style(color,width,dash=dash)}/>')
+            parts.append(f'<line x1="{f(a[0])}" y1="{f(gh-a[1])}" x2="{f(b[0])}" y2="{f(gh-b[1])}"{svg_style(color,width,dash=dash)}/>')
         elif kind == 'rect':
             x, y, w, h, color, width, fill, dash = args
-            parts.append(f'<rect x="{f(x)}" y="{f(GH-y-h)}" width="{f(w)}" height="{f(h)}"{svg_style(color,width,fill,dash)}/>')
+            parts.append(f'<rect x="{f(x)}" y="{f(gh-y-h)}" width="{f(w)}" height="{f(h)}"{svg_style(color,width,fill,dash)}/>')
         elif kind == 'poly':
             points, color, width, fill, closed = args
-            path = 'M'+' L'.join(f'{f(x)} {f(GH-y)}' for x,y in points)+(' Z' if closed else '')
+            path = 'M'+' L'.join(f'{f(x)} {f(gh-y)}' for x,y in points)+(' Z' if closed else '')
             parts.append(f'<path d="{path}"{svg_style(color,width,fill)}/>')
         else:
             x, y, text, size, color, anchor, rotate, mask = args
             w = text_width(text, size)
             start = {'start': 0, 'middle': -w/2, 'end': -w}[anchor]
-            parts.append(f'<g transform="translate({f(x)} {f(GH-y)}) rotate({f(-rotate)})">')
+            parts.append(f'<g transform="translate({f(x)} {f(gh-y)}) rotate({f(-rotate)})">')
             if mask:
                 parts.append(f'<rect x="{f(start-.65)}" y="{f(-size*.62)}" width="{f(w+1.3)}" height="{f(size*1.12)}" fill="{PAPER}"/>')
             cursor=start
@@ -404,24 +407,27 @@ def make_svg(dr, with_corners=False):
             parts.append('</g>')
     body = ''.join(f'<g data-layer="{key}">{"".join(parts)}</g>' for key,parts in layers.items())
     if with_corners:
+        assert grid_height==GH and grid_origin==(GX,GY) and page_size==(PW,PH)
         body += corner_svg(dr)
     role = 'group' if with_corners else 'img'
-    return (f'<svg id="layout" xmlns="http://www.w3.org/2000/svg" width="420mm" height="297mm" viewBox="0 0 420 297" role="{role}" aria-labelledby="drawing-title drawing-desc">'
-            '<title id="drawing-title">Ռեդուկտորի նախնական հարմարադասում՝ A3, M 1:2</title>'
-            '<desc id="drawing-desc">Համառանցք երկաստիճան ռեդուկտոր, 200 մմ միջառանցքային հեռավորություն, միջին սերիայի 36306, 36307 և 309 առանցքակալներ։ Մուտքն ու ելքն աջում են, միջանկյալ լիսեռը՝ ձախում։ Ցանցը՝ մեկ միլիմետր։</desc>'
+    return (f'<svg id="layout" xmlns="http://www.w3.org/2000/svg" width="{f(pw)}mm" height="{f(ph)}mm" viewBox="0 0 {f(pw)} {f(ph)}" role="{role}" aria-labelledby="drawing-title drawing-desc">'
+            f'<title id="drawing-title">{html.escape(title)}</title>'
+            f'<desc id="drawing-desc">{html.escape(description)}</desc>'
             '<style>text{font-family:"Noto Sans Armenian","Arial Unicode MS",Arial,sans-serif}g[hidden]{display:none}</style>'
-            f'<rect width="420" height="297" fill="{PAPER}"/>'
-            f'<g transform="translate({GX} {GY})">{body}</g></svg>')
+            f'<rect width="{f(pw)}" height="{f(ph)}" fill="{PAPER}"/>'
+            f'<g transform="translate({f(gx)} {f(gy)})">{body}</g></svg>')
 
 
-def make_pdf(dr):
-    path = OUT / f'{NAME}.pdf'
-    c = canvas.Canvas(str(path), pagesize=(PW*mm, PH*mm), pageCompression=1,
+def make_pdf(dr, *, name=NAME, page_size=(PW,PH), grid_origin=(GX,GY), grid_height=GH,
+             title='Ռեդուկտորի նախնական հարմարադասում · A3 · M 1:2'):
+    pw,ph=page_size;gx,gy=grid_origin
+    path = OUT / f'{name}.pdf'
+    c = canvas.Canvas(str(path), pagesize=(pw*mm, ph*mm), pageCompression=1,
                       initialFontName='DrawingUnicode')
-    c.setTitle('Ռեդուկտորի նախնական հարմարադասում · A3 · M 1:2')
+    c.setTitle(title)
     c.setAuthor('UNI · Տարբերակ 1')
-    c.setFillColor(HexColor(PAPER)); c.rect(0, 0, PW*mm, PH*mm, stroke=0, fill=1)
-    c.translate(GX*mm, (PH-GY-GH)*mm); c.scale(mm, mm)
+    c.setFillColor(HexColor(PAPER)); c.rect(0, 0, pw*mm, ph*mm, stroke=0, fill=1)
+    c.translate(gx*mm, (ph-gy-grid_height)*mm); c.scale(mm, mm)
     for layer, kind, args in dr.items:
         c.saveState()
         if kind == 'text':
@@ -460,8 +466,8 @@ def make_pdf(dr):
     c.showPage();c.save()
     doc=pymupdf.open(path)
     assert len(doc)==1
-    assert abs(doc[0].rect.width/mm-PW)<.001 and abs(doc[0].rect.height/mm-PH)<.001
-    doc[0].get_pixmap(dpi=300, alpha=False).save(OUT/f'{NAME}.png')
+    assert abs(doc[0].rect.width/mm-pw)<.001 and abs(doc[0].rect.height/mm-ph)<.001
+    doc[0].get_pixmap(dpi=300, alpha=False).save(OUT/f'{name}.png')
 
 
 PAGE_CSS = r'''
@@ -574,6 +580,7 @@ def make_page(svg):
 <title>Ռեդուկտորի հարմարադասում · A3</title><style>{PAGE_CSS}</style></head><body><main>
 <a href="index.html">← Մեքենամասերի տեսություն</a><h1>Ռեդուկտորի հարմարադասում</h1>
 <p class="intro">Դասավորությունը՝ ինչպես տետրի սխեմայում. աջ կողմում 1-ին՝ մուտքի և 3-րդ՝ ելքի համառանցք լիսեռներն են, ձախում՝ 2-րդ միջանկյալ լիսեռը։ A3 թերթ՝ 420 × 297 մմ, ցանց՝ 1 × 1 մմ, մասշտաբ՝ <b>1:2</b>։</p>
+<p class="tip">Դասախոսին ցույց տալու համար՝ <a href="eskiz_review.pdf">պարզ էսքիզը (PDF)</a> կամ <a href="eskiz_review.png">նկարը (PNG)</a>։</p>
 <div class="bar"><div class="downloads"><a href="{NAME}.pdf" download>PDF · A3</a><a href="{NAME}.svg" download>SVG · վեկտորային</a><a href="{NAME}.png" download>PNG · 300 dpi</a></div>
 <div class="zoom" role="group" aria-label="Մեծացում"><button data-zoom="1" aria-pressed="true">Ամբողջը</button><button data-zoom="2" aria-pressed="false">×2</button><button data-zoom="3" aria-pressed="false">×3</button><button id="clear-measure">Մաքրել չափումը</button></div></div>
 <div class="layers">{''.join(f'<label><input type="checkbox" data-toggle="{key}" checked> {label}</label>' for key,label in [('grid','Ցանց'),('dimensions','Չափեր'),('housing','Իրան'),('supports','Հենարաններ'),('corners','Անկյունների կետեր')])}</div>
