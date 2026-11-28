@@ -30,6 +30,8 @@ This folder is part of the single `areg06/UNI` repo (git root: `~/Desktop/UNI`, 
 | `thumb_A3_1.jpg`, `thumb_A3_2.jpg`, `thumb_A3_4.jpg`, `thumb_A4_graf.jpg` | Sheet previews (900 px) shown on the overview panel; made by `export.py` on the owner's Mac via `sips` |
 | `source/build.py` | Assembles `TMM_Variant1.html` (uses model, calc, sheet, notebook, and the page list `PAGES` from tetr.py) |
 | `source/explain.py` | Builds `bacatrutyun.html` |
+| `bacatrutyun.pdf` | Printable A4 explanation; vector formulas, embedded Armenian fonts, page numbers. Refresh whenever the explanation changes. |
+| `source/print_explain.py`, `source/math_svg.cjs` | Optional PDF exporter: WeasyPrint + server-side MathJax SVG, independent of browser scripts/network at print time |
 | `source/tetr.py` | Builds `tetr.html` (uses notebook) |
 | `source/export.py` | Exports `chertej_A3_*` and `chertej_A4_graf.*` (svg/png/pdf) |
 
@@ -50,3 +52,27 @@ python3 export.py     # -> ../chertej_A3_{1,2}.svg (+ .png/.pdf only on the owne
   the SVGs get regenerated — say so, and tell the owner to run `python3 export.py` on the Mac
   to refresh the PNG/PDF.
 - Numbers shown to the reader use a comma decimal separator (Armenian convention) via `calc.n()`.
+
+## Optional explanation PDF export
+
+Normal HTML generators still need only the Python standard library. The explanation PDF
+export additionally needs Node.js, WeasyPrint 70.0 (and its Pango system library), FontTools,
+and MathJax 3.2.2. For example, from the repository root:
+
+```sh
+python3 -m venv --system-site-packages /tmp/uni-print-venv
+/tmp/uni-print-venv/bin/python -m pip install 'weasyprint==70.0' fonttools
+npm install --prefix /tmp/uni-print-tools --no-audit --no-fund 'mathjax-full@3.2.2'
+python3 'kursayin ashxatanq/Variant1/source/explain.py'
+/tmp/uni-print-venv/bin/python 'kursayin ashxatanq/Variant1/source/print_explain.py' --mathjax-root /tmp/uni-print-tools/node_modules/mathjax-full
+```
+
+On macOS the exporter embeds the regular/bold Noto Sans Armenian faces from the system TTC;
+on other systems install Noto Sans Armenian through fontconfig. Render and visually check
+the PDF after editing. The interactive rotor is screen-only; static figures remain printable.
+The explanation's sheet previews are reduced illustrations. Full-size drawings must be
+printed from their separate A3/A4 PDFs at 100%, with fitting disabled.
+
+Keep the acceleration scale (`MUACC`, μ_a) and the work scale (`MUWORK`, μ_A) in
+`explain.py` distinct. They are 0.2909 (m/s²)/mm and 4.35 J/mm respectively; reusing
+one substitution key silently corrupts the displayed acceleration equations.
